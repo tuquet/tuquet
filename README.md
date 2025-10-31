@@ -1,6 +1,6 @@
-# TU NGUYEN
+[EN](./README.md) | [VI](./README_vi.md)
 
-[Bản tiếng Việt tại đây](./README_vi.md)
+# TU NGUYEN
 **Software Engineer**
 **Phone:** +84 936 683 088 | **Email:** tunyk.93@gmail.com | **Location:** Ha Dong, Ha Noi | **Date of Birth:** 03/1993
 
