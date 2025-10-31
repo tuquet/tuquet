@@ -1,11 +1,11 @@
 # TU NGUYEN
-**Full-Stack Software Engineer & Technical Leader**
 
+[Bản tiếng Việt tại đây](./README_vi.md)
+**Software Engineer**
 **Phone:** +84 936 683 088 | **Email:** tunyk.93@gmail.com | **Location:** Ha Dong, Ha Noi | **Date of Birth:** 03/1993
 
 ## CAREER SUMMARY
-
-Highly accomplished **Full-Stack Software Engineer** and **Technical Leader** with over **9 years of experience** specializing in building reliable, scalable, and user-centric applications. Proven track record in leading technical initiatives, optimizing system performance, and delivering complex solutions across diverse sectors including **SaaS, Government, Banking, and E-commerce**.
+Highly accomplished **Fullstack Developer** with over **9 years of experience** specializing in building reliable, scalable, and user-centric applications. Proven track record in leading technical initiatives, optimizing system performance, and delivering complex solutions across diverse sectors including **SaaS, Government, Banking, and E-commerce**.
 
 Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanced database management (PostgreSQL, MongoDB, ClickHouse), and modern DevOps practices (Docker, Kubernetes, AWS CI/CD). Passionate about solving real-world problems through thoughtful design and scalable architecture.
 
@@ -24,19 +24,31 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 | **Language** | Strong English reading comprehension of technical documentation; Basic English communication |
 
 
+### Skills Assessment Table
+
+| Skill Area      | Score (out of 10) | Notes                                  |
+|-----------------|-------------------|----------------------------------------|
+| Frontend        | 9.5               | Very strong in React, Vue, Angular, UI/UX |
+| Backend         | 8                 | Proficient in Node.js, .NET, Java, Python |
+| DevOps & Cloud  | 7.5               | Solid hands-on experience, good CI/CD skills |
+| Databases       | 8                 | Skilled in both SQL & NoSQL            |
+| Architecture    | 8                 | Good at system design, microservices   |
+| Tooling         | 8                 | Code management, mentoring, monorepo   |
+| English         | 7                 | Good reading, basic communication      |
+
 ## COMPANY EXPERIENCE
 
 | Company Name        | Position                              | Duration           |
 |---------------------|---------------------------------------|--------------------|
-| ICOMM TECH.JSC      | Software Engineer / Technical Leader  | 5/2020 – 8/2024    |
+| ICOMM TECH.JSC      | Fullstack Developer                   | 5/2020 – 8/2024    |
 | OPEN COMMERCE GROUP | Fullstack Developer                   | 12/2018 – 4/2020   |
 | TDT ASIA JSC        | Fullstack Developer                   | 5/2018 – 12/2018   |
-| LUSH ERA LLC        | Software Engineer                     | 12/2016 – 4/2018   |
+| LUSH ERA LLC        | Fullstack Developer                   | 12/2016 – 4/2018   |
 
 ## PROFESSIONAL EXPERIENCE
 
 ### ICOMM TECH.JSC
-**Software Engineer / Technical Leader** | 5/2020 – 8/2024
+**Fullstack Developer ** | 5/2020 – 8/2024
 
 *Domains: Government, Enterprise, and Banking Sectors (e.g., cAvatar, sBeat, iERP)*
 
@@ -66,7 +78,7 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 * **Delivered** new features iteratively in sprints using **Java Spring Boot** and **Angular**, ensuring strict alignment with client specifications and local compliance standards.
 
 ### LUSH ERA LLC
-**Software Engineer** | 12/2016 – 4/2018
+**Fullstack Developer** | 12/2016 – 4/2018
 
 *Domain: Telemedicine, Health Consultation Platforms (DoHereOnline)*
 
@@ -77,7 +89,7 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 
 ## PERSONAL PROJECTS
 
-### Software Engineer | 9/2024 – Present
+### Fullstack Developer | 9/2024 – Present
 
 Developed and maintained high-impact platforms for advertising, content automation, and SaaS utilizing **React, Vue 3, Node.js, and Python (Flask)**.
 
