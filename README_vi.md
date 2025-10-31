@@ -1,3 +1,5 @@
+[EN](./README.md) | [VI](./README_vi.md)
+
 # TU NGUYEN
 **Kỹ sư phần mềm Fullstack**
 
@@ -113,4 +115,3 @@ Phát triển, duy trì các nền tảng quảng cáo, tự động hóa nội 
 * **Chuyên sâu:** Lập trình fullstack, các môn học trọng tâm về lập trình web và thiết kế ứng dụng desktop.
 * **GPA:** 8.2 / **TOEIC:** 650
 
-[English version here](./README.md)
