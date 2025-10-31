@@ -94,7 +94,7 @@ Developed and maintained high-impact platforms for advertising, content automati
 
 ---
 
-## 🎓 EDUCATION
+## 🎓 EDUCATION | 1/2012 - 9/2014
 
 **FPT University** | Information Technology
 * **Focus:** Full-Stack training with key coursework in Web Programming and Desktop Application Design.
