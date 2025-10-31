@@ -1,9 +1,9 @@
-# 🇻🇳 TU NGUYEN
+# TU NGUYEN
 **Full-Stack Software Engineer & Technical Leader**
 
 **Phone:** +84 936 683 088 | **Email:** tunyk.93@gmail.com | **Location:** Ha Dong, Ha Noi | **Date of Birth:** 03/1993
 
-## 🌟 CAREER SUMMARY
+## CAREER SUMMARY
 
 Highly accomplished **Full-Stack Software Engineer** and **Technical Leader** with over **9 years of experience** specializing in building reliable, scalable, and user-centric applications. Proven track record in leading technical initiatives, optimizing system performance, and delivering complex solutions across diverse sectors including **SaaS, Government, Banking, and E-commerce**.
 
@@ -11,7 +11,7 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 
 ---
 
-## 💻 CORE TECHNICAL SKILLS
+## CORE TECHNICAL SKILLS
 
 | Category | Key Technologies & Expertise |
 | :--- | :--- |
@@ -24,7 +24,7 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 | **Language** | Strong English reading comprehension of technical documentation; Basic English communication |
 
 
-## 🏢 COMPANY EXPERIENCE
+## COMPANY EXPERIENCE
 
 | Company Name        | Position                              | Duration           |
 |---------------------|---------------------------------------|--------------------|
@@ -33,7 +33,7 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 | TDT ASIA JSC        | Fullstack Developer                   | 5/2018 – 12/2018   |
 | LUSH ERA LLC        | Software Engineer                     | 12/2016 – 4/2018   |
 
-## 💼 PROFESSIONAL EXPERIENCE
+## PROFESSIONAL EXPERIENCE
 
 ### ICOMM TECH.JSC
 **Software Engineer / Technical Leader** | 5/2020 – 8/2024
@@ -75,7 +75,7 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 
 ---
 
-## 🚀 PERSONAL PROJECTS
+## PERSONAL PROJECTS
 
 ### Software Engineer | 9/2024 – Present
 
@@ -87,14 +87,14 @@ Developed and maintained high-impact platforms for advertising, content automati
 
 ---
 
-## 🏆 ACHIEVEMENTS & AWARDS
+## ACHIEVEMENTS & AWARDS
 
 * **2023:** Team of the Year (ICOMM TECH.JSC)
 * **2022:** Outstanding Employee of the Project (cAvatar Project)
 
 ---
 
-## 🎓 EDUCATION | 1/2012 - 9/2014
+## EDUCATION | 1/2012 - 9/2014
 
 **FPT University** | Information Technology
 * **Focus:** Full-Stack training with key coursework in Web Programming and Desktop Application Design.
