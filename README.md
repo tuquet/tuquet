@@ -2,7 +2,8 @@
 
 # TU NGUYEN
 **Software Engineer**
-**Phone:** +84 936 683 088 | **Email:** tunyk.93@gmail.com | **Location:** Ha Dong, Ha Noi | **Date of Birth:** 03/1993
+**Phone** +84 936 683 088 | **Email:** tunyk.93@gmail.com | **Location:** Ha Dong, Ha Noi | **Date of Birth:** 03/1993
+**Bio** Experienced Fullstack Developer with a strong frontend focus, passionate about building scalable and user-centric solutions.
 
 ## CAREER SUMMARY
 Highly accomplished **Fullstack Developer** with over **9 years of experience** specializing in building reliable, scalable, and user-centric applications. Proven track record in leading technical initiatives, optimizing system performance, and delivering complex solutions across diverse sectors including **SaaS, Government, Banking, and E-commerce**.

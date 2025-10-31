@@ -2,8 +2,8 @@
 
 # TU NGUYEN
 **Kỹ sư phần mềm Fullstack**
-
 **Điện thoại:** +84 936 683 088 | **Email:** tunyk.93@gmail.com | **Địa chỉ:** Hà Đông, Hà Nội | **Ngày sinh:** 03/1993
+**Bio** Lập trình viên Fullstack giàu kinh nghiệm, mạnh về frontend, đam mê xây dựng giải pháp mở rộng và lấy người dùng làm trung tâm.
 
 [English version here](./README.md)
 
