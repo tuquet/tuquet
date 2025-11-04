@@ -1,8 +1,12 @@
-# TU NGUYEN
+<div align="center">
+	<strong style="font-size:1.3em">TU NGUYEN</strong><br/>
+	<em>Senior Frontend Engineer</em><br/>
+	<br/>
+	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
+	<strong>Location:</strong> Ha Dong, Ha Noi &nbsp;|&nbsp; <strong>Date of Birth:</strong> 03/1993
+</div>
 
-**Senior Frontend Engineer**
-**Phone** +84 936 683 088 | **Email:** tunyk.93@gmail.com | **Location:** Ha Dong, Ha Noi | **Date of Birth:** 03/1993
-**Bio** Experienced Frontend Engineer with 8+ years specializing in building scalable, high-performance, and user-centric web applications with strong emphasis on UI/UX excellence.
+<p align="center"><em>Experienced Frontend Engineer with 8+ years specializing in building scalable, high-performance, and user-centric web applications with strong emphasis on UI/UX excellence.</em></p>
 
 ## CAREER SUMMARY
 
@@ -14,21 +18,21 @@ Expert in modern frontend technologies (React, Vue 3, Angular, TypeScript), adva
 
 ## CORE TECHNICAL SKILLS
 
-| Category                | Key Technologies & Expertise                                                                    |
-| :---------------------- | :---------------------------------------------------------------------------------------------- |
-| **Frontend Frameworks** | **React, Vue.js 3, Angular, Next.js, Electron JS,** Nuxt.js, Svelte                             |
-| **Languages**           | **TypeScript, JavaScript (ES6+),** HTML5, CSS3, WebAssembly basics                              |
-| **Styling & Design**    | **Tailwind CSS, CSS Modules,** SASS/SCSS, styled-components, Emotion, Shadcn UI, Ant Design     |
-| **State Management**    | **Redux, Zustand, Vuex, Pinia,** React Query, TanStack Query, Context API, Recoil               |
-| **Build & Tooling**     | **Vite, Webpack, Rollup,** esbuild, TurboRepo, PNPM, Nx, Module Federation                      |
-| **Testing**             | **Jest, React Testing Library, Cypress,** Playwright, Vitest, Testing Library, Storybook        |
-| **Performance**         | Lighthouse optimization, code-splitting, lazy-loading, memoization, Web Vitals, bundle analysis |
-| **Accessibility**       | WCAG 2.1, ARIA, semantic HTML, keyboard navigation, screen reader testing                       |
-| **Version Control**     | Git, GitHub/GitLab, SVN, branching strategies, **Code Review, PR best practices**               |
-| **DevOps & Cloud**      | Docker, AWS (S3, CloudFront, Amplify), Vercel, Netlify, CI/CD (GitHub Actions, GitLab CI)       |
-| **Language**            | Strong English reading comprehension of technical documentation; Basic English communication    |
+| Category                     | Key Technologies & Expertise                                                                    |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Frontend Frameworks**      | React, Vue.js 3, Angular, Next.js, Electron JS, Nuxt.js, Svelte                                 |
+| **Languages**                | TypeScript, JavaScript (ES6+), HTML5, CSS3, WebAssembly basics                                  |
+| **Styling & Design**         | Tailwind CSS, CSS Modules, SASS/SCSS, styled-components, Emotion, Shadcn UI, Ant Design         |
+| **State Management**         | Redux, Zustand, Vuex, Pinia, React Query, TanStack Query, Context API, Recoil                   |
+| **Build & Tooling**          | Vite, Webpack, Rollup, esbuild, TurboRepo, PNPM, Nx, Module Federation                          |
+| **Testing**                  | Jest, React Testing Library, Cypress, Playwright, Vitest, Testing Library, Storybook            |
+| **Performance Optimization** | Lighthouse optimization, code-splitting, lazy-loading, memoization, Web Vitals, bundle analysis |
+| **Accessibility**            | WCAG 2.1, ARIA, semantic HTML, keyboard navigation, screen reader testing                       |
+| **Version Control**          | Git, GitHub/GitLab, SVN, branching strategies, Code Review, PR best practices                   |
+| **DevOps & Cloud**           | Docker, AWS (S3, CloudFront, Amplify), Vercel, Netlify, CI/CD (GitHub Actions, GitLab CI)       |
+| **Language**                 | Strong English reading comprehension of technical documentation; Basic English communication    |
 
-### Skills Assessment Table
+### Skills Assessment
 
 | Skill Area     | Score (out of 10) | Notes                                     |
 | -------------- | ----------------- | ----------------------------------------- |

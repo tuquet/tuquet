@@ -1,0 +1,24 @@
+{
+  // Markdown PDF extension settings
+  "markdown-pdf.headerTemplate": "<style>body { font-family: 'Segoe UI', Arial, sans-serif; }</style>",
+  "markdown-pdf.footerTemplate": "<div style='text-align:center;font-size:10px;'>Page <span class='pageNumber'></span> of <span class='totalPages'></span></div>",
+  "markdown-pdf.styles": ["style/pdf-export.css"],
+  "markdown-pdf.puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+  "markdown-pdf.displayHeaderFooter": false,
+  "markdown-pdf.format": "A4",
+  "markdown-pdf.margin.top": "20mm",
+  "markdown-pdf.margin.bottom": "20mm",
+  "markdown-pdf.margin.left": "15mm",
+  "markdown-pdf.margin.right": "15mm",
+  "markdown-pdf.highlightStyle": "github.css",
+  "markdown-pdf.launchOptions": {
+    "args": ["--no-sandbox"]
+  },
+  // File nesting: group related files in sidebar (VS Code 1.64+)
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*README.md": "README.css, README.pdf, README.png, README.jpg, README.jpeg, README.html",
+    "*frontend.md": "frontend.css, frontend.pdf, frontend.png, frontend.jpg, frontend.jpeg, frontend.html"
+  }
+}

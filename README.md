@@ -1,8 +1,12 @@
-# TU NGUYEN
+<div align="center">
+	<strong style="font-size:1.3em">TU NGUYEN</strong><br/>
+	<em>Full Stack Developer</em><br/>
+	<br/>
+	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
+	<strong>Location:</strong> Ha Dong, Ha Noi &nbsp;|&nbsp; <strong>Date of Birth:</strong> 03/1993
+</div>
 
-**Full Stack Developer**
-**Phone** +84 936 683 088 | **Email:** tunyk.93@gmail.com | **Location:** Ha Dong, Ha Noi | **Date of Birth:** 03/1993
-**Bio** Experienced Fullstack Developer with a strong frontend focus, passionate about building scalable and user-centric solutions.
+<p align="center"><em>Experienced Fullstack Developer with 8+ years specializing in building scalable, high-performance, and user-centric solutions with a strong frontend focus.</em></p>
 
 ## CAREER SUMMARY
 
@@ -14,15 +18,23 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 
 ## CORE TECHNICAL SKILLS
 
-| Category           | Key Technologies & Expertise                                                                             |
-| :----------------- | :------------------------------------------------------------------------------------------------------- |
-| **Frontend**       | **React, Vue.js (3), Angular, Electron JS,** TypeScript, HTML5, CSS3, Tailwind, Shadcn UI, Antdesign UI  |
-| **Backend**        | **Node.js, Next.js, .NET (C#), Python (Flask), Java (Spring Boot), Golang, PHP (Laravel, CakePHP)**      |
-| **DevOps & Cloud** | **Docker, Kubernetes,** AWS (EC2, Lambda, S3, RDS, ECS), Supabase, Vercel, CI/CD (GitHub/GitLab Actions) |
-| **Databases**      | **PostgreSQL, SQL Server, MongoDB, Redis, ClickHouse,** Oracle, Cassandra                                |
-| **Architecture**   | RESTful APIs, **GraphQL, Microservices,** MVC, Layered Architecture, Authentication (IdentityServer4)    |
-| **Tooling**        | Git/GitHub/GitLab, SVN, Monorepo (Pnpm, TurboRepo), Performance Tuning, **Code Review, Mentoring**       |
-| **Language**       | Strong English reading comprehension of technical documentation; Basic English communication             |
+| Category                     | Key Technologies & Expertise                                                                         |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Frontend Frameworks**      | React, Vue.js 3, Angular, Next.js, Electron JS, Nuxt.js, Svelte                                      |
+| **Backend**                  | Node.js, Next.js, .NET (C#), Python (Flask), Java (Spring Boot), Golang, PHP (Laravel, CakePHP)      |
+| **Languages**                | TypeScript, JavaScript (ES6+), HTML5, CSS3, WebAssembly basics                                       |
+| **Styling & Design**         | Tailwind CSS, CSS Modules, SASS/SCSS, styled-components, Emotion, Shadcn UI, Ant Design              |
+| **State Management**         | Redux, Zustand, Vuex, Pinia, React Query, TanStack Query, Context API, Recoil                        |
+| **Build & Tooling**          | Vite, Webpack, Rollup, esbuild, TurboRepo, PNPM, Nx, Module Federation                               |
+| **Testing**                  | Jest, React Testing Library, Cypress, Playwright, Vitest, Testing Library, Storybook                 |
+| **Performance Optimization** | Lighthouse optimization, code-splitting, lazy-loading, memoization, Web Vitals, bundle analysis      |
+| **Accessibility**            | WCAG 2.1, ARIA, semantic HTML, keyboard navigation, screen reader testing                            |
+| **Version Control**          | Git, GitHub/GitLab, SVN, branching strategies, Code Review, PR best practices                        |
+| **DevOps & Cloud**           | Docker, Kubernetes, AWS (EC2, Lambda, S3, RDS, ECS), Supabase, Vercel, CI/CD (GitHub/GitLab Actions) |
+| **Databases**                | PostgreSQL, SQL Server, MongoDB, Redis, ClickHouse, Oracle, Cassandra                                |
+| **Architecture**             | RESTful APIs, GraphQL, Microservices, MVC, Layered Architecture, Authentication (IdentityServer4)    |
+| **Tooling**                  | Monorepo (Pnpm, TurboRepo), Performance Tuning, Code Review, Mentoring                               |
+| **Language**                 | Strong English reading comprehension of technical documentation; Basic English communication         |
 
 ### Skills Assessment Table
 
