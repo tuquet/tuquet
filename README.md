@@ -10,7 +10,7 @@
 
 ## CAREER SUMMARY
 
-Highly accomplished **Fullstack Developer** with over **8 years of experience** specializing in building reliable, scalable, and user-centric applications. Proven track record in leading technical initiatives, optimizing system performance, and delivering complex solutions across diverse sectors including **SaaS, Government, Banking, and E-commerce**.
+Highly accomplished **Fullstack Developer** with over **8+ years of experience** specializing in building reliable, scalable, and user-centric applications. Proven track record in leading technical initiatives, optimizing system performance, and delivering complex solutions across diverse sectors including **SaaS, Government, Banking, and E-commerce**.
 
 Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanced database management (PostgreSQL, MongoDB, ClickHouse), and modern DevOps practices (Docker, Kubernetes, AWS CI/CD). Passionate about solving real-world problems through thoughtful design and scalable architecture.
 
@@ -20,86 +20,87 @@ Expert in modern full-stack development (React, Vue, Node.js, .NET Core), advanc
 
 | Category                     | Key Technologies & Expertise                                                                         |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Frontend Frameworks**      | React, Vue.js 3, Angular, Next.js, Electron JS, Nuxt.js, Svelte                                      |
-| **Backend**                  | Node.js, Next.js, .NET (C#), Python (Flask), Java (Spring Boot), Golang, PHP (Laravel, CakePHP)      |
-| **Languages**                | TypeScript, JavaScript (ES6+), HTML5, CSS3, WebAssembly basics                                       |
-| **Styling & Design**         | Tailwind CSS, CSS Modules, SASS/SCSS, styled-components, Emotion, Shadcn UI, Ant Design              |
-| **State Management**         | Redux, Zustand, Vuex, Pinia, React Query, TanStack Query, Context API, Recoil                        |
-| **Build & Tooling**          | Vite, Webpack, Rollup, esbuild, TurboRepo, PNPM, Nx, Module Federation                               |
-| **Testing**                  | Jest, React Testing Library, Cypress, Playwright, Vitest, Testing Library, Storybook                 |
-| **Performance Optimization** | Lighthouse optimization, code-splitting, lazy-loading, memoization, Web Vitals, bundle analysis      |
-| **Accessibility**            | WCAG 2.1, ARIA, semantic HTML, keyboard navigation, screen reader testing                            |
-| **Version Control**          | Git, GitHub/GitLab, SVN, branching strategies, Code Review, PR best practices                        |
-| **DevOps & Cloud**           | Docker, Kubernetes, AWS (EC2, Lambda, S3, RDS, ECS), Supabase, Vercel, CI/CD (GitHub/GitLab Actions) |
-| **Databases**                | PostgreSQL, SQL Server, MongoDB, Redis, ClickHouse, Oracle, Cassandra                                |
-| **Architecture**             | RESTful APIs, GraphQL, Microservices, MVC, Layered Architecture, Authentication (IdentityServer4)    |
-| **Tooling**                  | Monorepo (Pnpm, TurboRepo), Performance Tuning, Code Review, Mentoring                               |
-| **Language**                 | Strong English reading comprehension of technical documentation; Basic English communication         |
+| **Frontend Frameworks**      | React, Vue 3, Next.js, Nuxt.js, Electron JS, Svelte                                                  |
+| **Backend Frameworks**       | Node.js, .NET Core, Python, Java (Spring Boot), Golang                                               |
+| **Languages**                | TypeScript, JavaScript (ES6+), C#, HTML5/CSS3                                                        |
+| **Styling & UI**             | Tailwind CSS, Shadcn UI, Ant Design, styled-components, SASS/SCSS                                    |
+| **State Management**         | Redux, Zustand, Pinia, React Query, Web Vitals optimization                                          |
+| **Build & Testing**          | Vite, TurboRepo, Webpack, Jest, Cypress, Playwright                                                  |
+| **DevOps & Cloud**           | Docker, Kubernetes, AWS (ECS, Lambda, S3, RDS), CI/CD (GitHub/GitLab Actions), Supabase              |
+| **Databases**                | PostgreSQL, MongoDB, Redis, ClickHouse, SQL Server                                                   |
+| **Architecture**             | Microservices, Monolith, RESTful APIs, GraphQL, Authentication, Monorepo Architecture                  |
 
 ### Skills Assessment Table
 
-| Skill Area     | Score (out of 10) | Notes                                        |
-| -------------- | ----------------- | -------------------------------------------- |
-| Frontend       | 9.5               | Very strong in React, Vue, Angular, UI/UX    |
-| Backend        | 8                 | Proficient in Node.js, .NET, Java, Python    |
-| DevOps & Cloud | 7.5               | Solid hands-on experience, good CI/CD skills |
-| Databases      | 8                 | Skilled in both SQL & NoSQL                  |
-| Architecture   | 8                 | Good at system design, microservices         |
-| Tooling        | 8                 | Code management, mentoring, monorepo         |
-| English        | 7                 | Good reading, basic communication            |
+| Skill Area     | Score | Notes                                        |
+| -------------- | ----- | -------------------------------------------- |
+| Frontend       | 9.5   | Expert in React, Vue, Next.js, UI/UX         |
+| Backend        | 8.5   | Proficient in Node.js, .NET Core, Python     |
+| DevOps & Cloud | 8.0   | Solid hands-on K8s, Docker, AWS, CI/CD       |
+| Databases      | 8.0   | Scalable design with SQL & NoSQL (Redis, CH) |
+| Architecture   | 8.5   | System design, Microservices, Monorepo       |
 
 ## PROFESSIONAL EXPERIENCE
 
-| Company Name        | Position            | Duration         |
-| ------------------- | ------------------- | ---------------- |
-| ICOMM TECH.JSC      | Fullstack Developer | 5/2020 – 8/2024  |
-| OPEN COMMERCE GROUP | Fullstack Developer | 12/2018 – 4/2020 |
-| TDT ASIA JSC        | Fullstack Developer | 5/2018 – 12/2018 |
-| LUSH ERA LLC        | Fullstack Developer | 12/2016 – 4/2018 |
+| Company Name        | Position                    | Duration         |
+| ------------------- | --------------------------- | ---------------- |
+| CMC Global          | Tech Leaders                | 9/2024 – Present |
+| ICOMM TECH.JSC      | Fullstack Software Engineer | 5/2020 – 8/2024  |
+| OPEN COMMERCE GROUP | Fullstack Software Engineer | 12/2018 – 4/2020 |
+| TDT ASIA JSC        | Fullstack Software Engineer | 5/2018 – 12/2018 |
+| LUSH ERA LLC        | Fullstack Software Engineer | 12/2016 – 4/2018 |
 
 ## COMPANY EXPERIENCE
 
+### CMC Global
+
+**Tech Leader** | 9/2024 – Present
+
+_Domains: Enterprise Software | Global Outsourcing Services_
+
+- **Spearheaded** the development of large-scale enterprise applications for international clients, driving architectural modernization and cloud-native adoption.
+- **Improved** frontend performance and established standardized state management patterns across cross-functional teams.
+- **Key Tech Stack:** React, Node.js, TypeScript, AWS, Docker.
+
 ### ICOMM TECH.JSC
 
-**Fullstack Developer** | 5/2020 – 8/2024
+**Fullstack Software Engineer** | 5/2020 – 8/2024
 
-_Domains: Government, Enterprise, and Banking Sectors (e.g., cAvatar, sBeat, iERP)_
+_Domains: Enterprise Software (Product) | Government & Banking Sectors_
 
-- **Architected** and **led** the development of key multi-platform systems, including **cAvatar** (cross-platform automation) and **aWebex** (browser extension toolkit), used by Government and Banking clients.
-- **Optimized** application performance and implemented caching strategies (Redis, ClickHouse), **reducing latency** and enhancing data throughput for high-volume analytics platforms.
-- **Managed** the full development lifecycle from architectural design and technology stack selection to phased implementation and quality assurance.
-- **Mentored** junior engineers on development processes, code review best practices, and performance standards to maintain high-quality deliverables.
-- **Established** and maintained robust DevOps pipelines utilizing **Docker, Kubernetes, and AWS** services (ECS/Fargate, S3, RDS) to ensure system stability and long-term scalability.
-- **Key Backend Stack:** C#, Entity Framework Core, Dapper, Serilog, IdentityServer4, Hangfire, MediatR.
+- **Architected** core multi-platform products (cAvatar, aWebex) heavily utilized by Government and Banking institutions.
+- **Optimized** system throughput and reduced latency using Redis and ClickHouse for high-volume analytics platforms.
+- **Mentored** engineers and enforced CI/CD pipelines (Docker, Kubernetes, AWS) to ensure reliable deployments.
+- **Key Tech Stack:** .NET Core, React, ClickHouse, Docker, Kubernetes.
 
 ### OPEN COMMERCE GROUP
 
-**Fullstack Developer** | 12/2018 – 4/2020
+**Fullstack Software Engineer** | 12/2018 – 4/2020
 
-_Domains: E-Commerce, Marketing Automation, Conversion Optimization (BSale, CSale)_
+_Domains: Enterprise Software (Product) | E-commerce Ecosystems (Shopify, WordPress, WooCommerce)_
 
-- **Designed** and **developed** core e-commerce application features, including dynamic pricing and secure checkout modules.
-- **Contributed** to the creation of **CSale**, an intelligent cross-selling engine that automated product recommendations to boost customer engagement and revenue.
-- **Selected** and implemented appropriate technologies (**PHP, Golang, Java, React JS, Vue2**) to meet demanding performance and scalability requirements for retail platforms.
-- **Adhered** to Agile methodologies, consistently delivering high-quality solutions on schedule and proactively resolving technical issues.
+- **Developed** core e-commerce product features and an intelligent cross-selling engine (**CSale**) to boost merchant revenue.
+- **Built** highly scalable integrations for Shopify, WooCommerce, and WordPress environments, boosting customer engagement.
+- **Key Tech Stack:** React, Vue, PHP, Golang, Java.
 
 ### TDT ASIA JSC
 
-**Fullstack Developer** | 5/2018 – 12/2018
+**Fullstack Software Engineer** | 5/2018 – 12/2018
 
-_Domain: Financial Systems (Japanese Market)_
+_Domains: Software Outsourcing | SMB Solutions (Japanese Market)_
 
-- **Collaborated** directly with the client to develop and maintain **Waku**, a finance management system tailored for the Japanese market.
-- **Delivered** new features iteratively in sprints using **Java Spring Boot** and **Angular**, ensuring strict alignment with client specifications and local compliance standards.
+- **Delivered** iterative business management solutions (**Waku**) tailored for small and medium businesses in Japan.
+- **Key Tech Stack:** Java Spring Boot, Angular.
 
 ### LUSH ERA LLC
 
-**Fullstack Developer** | 12/2016 – 4/2018
+**Fullstack Software Engineer** | 12/2016 – 4/2018
 
-_Domain: Telemedicine, Health Consultation Platforms (DoHereOnline)_
+_Domains: Enterprise Software (Product) | Telemedicine & Health Consultation_
 
-- **Contributed** to the development of a secure, cross-platform health consultation system, enabling real-time interaction between patients and medical professionals.
-- **Implemented** responsive website interfaces from the ground up using **PHP (CakePHP, Laravel), Bootstrap 3, and jQuery**, focusing on optimized UI/UX for mobile and web.
+- **Built** a secure, real-time health consultation platform enabling interaction between patients and medical professionals.
+- **Implemented** responsive web interfaces and robust backend logic optimized for mobile and web.
+- **Key Tech Stack:** PHP (Laravel), JavaScript, MySQL.
 
 ---
 
