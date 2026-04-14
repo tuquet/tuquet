@@ -1,6 +1,6 @@
 <div align="center">
-	<strong style="font-size:1.3em">Toby Dinh Tu</strong><br/>
-	<em>Full Stack Developer</em><br/>
+	<strong style="font-size:1.3em">Toby Nguyen (Nguyễn Đình Tú)</strong><br/>
+	<em>Senior Full Stack Developer</em><br/>
 	<br/>
 	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
 	<strong>Location:</strong> Ha Dong, Ha Noi &nbsp;|&nbsp; <strong>Date of Birth:</strong> 03/1993
