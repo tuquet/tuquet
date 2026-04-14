@@ -1,5 +1,5 @@
 <div align="center">
-	<strong style="font-size:1.3em">TU NGUYEN</strong><br/>
+	<strong style="font-size:1.3em">Toby Dinh Tu</strong><br/>
 	<em>Full Stack Developer</em><br/>
 	<br/>
 	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
