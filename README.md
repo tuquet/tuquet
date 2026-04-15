@@ -18,13 +18,14 @@ Expert in modern software architectures (**Microservices, Event-Driven Architect
 
 ## CORE COMPETENCIES & TECHNICAL SKILLS
 
-| Category                          | Key Expertise & Technologies                                                                                                                                            |
-| :-------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Management & Strategy**         | Engineering Leadership, Product Roadmap, Stakeholder Management, Cross-functional Team Leadership, Agile/Scrum Orchestration, Technical Strategy, Resource Planning     |
-| **Quality & Product Mindset**     | UX Strategy, Product-Led Growth (PLG), Data-Driven Decision Making, KPI/OKR Alignment, Technical Debt Management, Code Quality Assurance, Architecture Review           |
-| **AI & Productivity**             | AI-Augmented Development, Prompt Engineering for Developers, LLM-driven Toolchains, Model Context Protocol (MCP), LLM Integration, Automated Testing Suites |
-| **Modern Tech Stack**             | TypeScript, React/Vue.js Ecosystem, Next.js, Micro-frontends, Web Vitals Optimization, Node.js, Go (Golang), gRPC, PostgreSQL, Supabase, Redis                          |
-| **Architecture & Infrastructure** | System Design, Microservices, Monorepo (Turborepo), Serverless, Event-Driven Architecture, CI/CD Pipelines, Infrastructure as Code (IaC), Docker, Kubernetes, AWS       |
+| Category                          | Key Expertise & Technologies                                                                                                                                         |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Management & Strategy**         | Engineering Leadership, Product Roadmap, Stakeholder Management, Cross-functional Team Leadership, Agile/Scrum Orchestration, Technical Strategy, Resource Planning  |
+| **Quality & Product Mindset**     | UX Strategy, Product-Led Growth (PLG), Data-Driven Decision Making, KPI/OKR Alignment, Technical Debt Management, Code Quality Assurance, Architecture Review        |
+| **AI & Productivity**             | AI-Augmented Development, Prompt Engineering for Developers, LLM-driven Toolchains, Model Context Protocol (MCP), LLM Integration, Automated Testing Suites          |
+| **Data & Algorithms**             | DSA (Data Structures & Algorithms), Big O Optimization, Large-Scale Data Crawling, Message Queues (Kafka, RabbitMQ), Search/Data Warehouse (Apache Solr, ClickHouse) |
+| **Modern Tech Stack**             | TypeScript, React/Vue.js Ecosystem, Node.js, Java (Spring Boot), Go (Golang), gRPC, PostgreSQL, Supabase, Redis, Web Vitals Optimization                             |
+| **Architecture & Infrastructure** | System Design, Microservices, Monorepo (Turborepo), Serverless, Event-Driven Architecture, CI/CD Pipelines, IaC, Docker, Kubernetes, AWS, Azure                      |
 
 ### Skills Assessment Table
 
@@ -32,7 +33,8 @@ Expert in modern software architectures (**Microservices, Event-Driven Architect
 | :------------------------- | :----------------------- | :------------------------------------------------------------------------- |
 | **Engineering Leadership** | Strategy, Management     | Driving engineering excellence, Mentorship, Cross-functional collaboration |
 | **System Architecture**    | Scalability, Design      | Microservices, Monorepo, Low-latency Systems, Scalable Infrastructure      |
-| **Modern Development**     | Fullstack, Quality       | TypeScript, Go, React Ecosystem, Supabase, Code Review                     |
+| **Big Data & Algorithms**  | Processing, Performance  | Deep DSA, Kafka, RabbitMQ, Data Warehousing, Solr, ClickHouse              |
+| **Modern Development**     | Full-stack, Quality      | TypeScript, Java, Go, React Ecosystem, Supabase, Code Review               |
 | **AI Adoption**            | Automation, Productivity | GenAI, MCP, AI-driven CI/CD, RAG applications                              |
 
 ## PROFESSIONAL EXPERIENCE
@@ -53,8 +55,8 @@ Expert in modern software architectures (**Microservices, Event-Driven Architect
 
 _Domains: Automotive Tech, IoT Integration | Enterprise Software Services_
 
-- **Driving engineering excellence** and **cross-functional team leadership** for a comprehensive **Electric Vehicle (EV) management and aggregation system** for a leading automotive manufacturer, overseeing **Technical Strategy** and resource planning.
-- **Architected** scalable integration pipelines and led architectural modernization toward cloud-native microservices. Leveraged **AI-augmented workflows** and **LLM-driven toolchains** to optimize developer productivity across distributed teams.
+- **Driving engineering excellence** and **cross-functional team leadership** (managing 15+ engineers across 3 squads) for a comprehensive **Electric Vehicle (EV) management and aggregation system** processing millions of daily telemetry events for a leading automotive manufacturer, overseeing **Technical Strategy** and resource planning.
+- **Architected** scalable integration pipelines and led architectural modernization toward cloud-native microservices. Leveraged **AI-augmented workflows** and **LLM-driven toolchains** to optimize developer productivity across distributed teams, accelerating feature delivery by an estimated 25%.
 - **Championed Code Quality Assurance** and **Web Vitals Optimization**, establishing standardized **Technical Debt Management** practices across both frontend (React) and robust backend (Spring Boot) squads.
 - **Key Tech Stack:** Java (Spring Boot Ecosystem), Node.js, TypeScript, React Ecosystem, Azure, Docker, Kubernetes.
 
@@ -62,12 +64,12 @@ _Domains: Automotive Tech, IoT Integration | Enterprise Software Services_
 
 **Chief Product Officer (CPO) / Tech Lead** | 5/2020 – 8/2024
 
-Domains: Big Data Analytics, Data Crawling, Enterprise Software | Government, Banking & Aviation Sectors..
+_Domains: Big Data Analytics, Data Crawling, Enterprise Software | Government, Banking & Aviation Sectors_
 
 - **Orchestrated Agile/Scrum processes** and directed the **Product Roadmap** for flagship multi-platform enterprise solutions specialized in **Large-Scale Data Crawling** and **Big Data** processing, aligning **Data-Driven Decision Making** with strict government, banking, and aviation security requirements.
-- **Optimized System Architecture** to handle massive data extraction pipelines, leveraging **ClickHouse** for high-volume data analytics and **Redis** for robust caching. Solved critical data bottlenecks, reducing system latency and ensuring a seamless **UX Strategy**.
-- **Scaled technical organizations** by mentoring engineers in complex data architectures, aligning KPIs with business targets, and enforcing robust **CI/CD Pipelines** and **Automated Testing Suites** to ensure reliable deployments of heavy data-driven applications.
-- **Key Tech Stack:** .NET Core, React, ClickHouse, Docker, Kubernetes, Web Scraping/Data Extraction, Data Engineering, System Design.
+- **Optimized System Architecture** to handle massive data extraction pipelines (processing 1M+ data requests/day) by applying deep **DSA (Data Structures & Algorithms)** principles and **Big O optimization**. Architected robust data streaming and Data Warehouse solutions utilizing **Kafka, RabbitMQ**, and **Apache Solr**, alongside **ClickHouse** and **Redis** to eliminate critical bottlenecks and reduce system latency by over 40%.
+- **Scaled technical organizations** by mentoring a team of 15+ engineers in complex data architectures, aligning KPIs with business targets, and enforcing robust **CI/CD Pipelines** and **Automated Testing Suites** to guarantee 99.9% uptime across heavy data-driven applications.
+- **Key Tech Stack:** .NET Core, React, Kafka, RabbitMQ, Apache Solr, ClickHouse, Redis, Docker, Kubernetes, Data Engineering, DSA.
 
 ### OPEN COMMERCE GROUP
 
@@ -75,8 +77,8 @@ Domains: Big Data Analytics, Data Crawling, Enterprise Software | Government, Ba
 
 _Domains: Enterprise Software (Product) | E-commerce Ecosystems (Shopify, WordPress, WooCommerce)_
 
-- **Developed** core e-commerce product features and an intelligent cross-selling engine focusing on **Product-Led Growth (PLG)** to directly boost merchant revenue.
-- **Built** highly scalable integrations utilizing **Go (Golang)** and robust APIs for Shopify, WooCommerce, and WordPress, substantially improving customer engagement.
+- **Developed** core e-commerce product features and an intelligent cross-selling engine focusing on **Product-Led Growth (PLG)**, driving an estimated 15-20% increase in merchant revenue.
+- **Built** highly scalable integrations utilizing **Go (Golang)** and robust APIs handling 50,000+ daily transactions across Shopify, WooCommerce, and WordPress platforms, substantially improving customer engagement.
 - **Key Tech Stack:** React, Vue.js, PHP, Go, Java.
 
 ### TDT ASIA JSC
