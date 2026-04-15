@@ -41,7 +41,7 @@ Expert in modern software architectures (**Microservices, Event-Driven Architect
 
 | Company Name        | Position                    | Duration         |
 | ------------------- | --------------------------- | ---------------- |
-| CMC Global          | Technical Project Lead      | 9/2024 – Present |
+| CMC GLOBAL          | Technical Project Lead      | 9/2024 – Present |
 | ICOMM TECH.JSC      | Chief Product Officer (CPO) | 5/2020 – 8/2024  |
 | OPEN COMMERCE GROUP | Senior Frontend Engineer    | 12/2018 – 4/2020 |
 | TDT ASIA JSC        | Software Engineer           | 5/2018 – 12/2018 |
@@ -49,7 +49,7 @@ Expert in modern software architectures (**Microservices, Event-Driven Architect
 
 ## COMPANY EXPERIENCE
 
-### CMC Global
+### CMC GLOBAL
 
 **Technical Project Lead** | 9/2024 – Present
 
