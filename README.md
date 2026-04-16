@@ -3,16 +3,17 @@
 	<em>Engineering Leader | Product-Minded Technologist</em><br/>
 	<br/>
 	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
-	<strong>Location:</strong> Ha Dong, Ha Noi &nbsp;|&nbsp; <strong>Date of Birth:</strong> 03/1993
+	<strong>Location:</strong> Ha Dong, Ha Noi &nbsp;|&nbsp; <strong>Date of Birth:</strong> 03/1993<br/>
+	<strong>GitHub:</strong> <a href="https://github.com/tuquet">https://github.com/tuquet</a> &nbsp;|&nbsp; <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tuquet">https://www.linkedin.com/in/tuquet</a>
 </div>
 
 <p align="center"><em>Engineering Leader with a <strong>Product-first mindset</strong>, specialized in <strong>scaling technical architectures</strong> and <strong>optimizing developer productivity</strong> through <strong>AI-augmented workflows</strong>.</em></p>
 
 ## CAREER SUMMARY
 
-Highly accomplished **Engineering Leader and Product Architect** with over **8+ years of experience** bridging the gap between deep technical implementation and **Product-Led Growth (PLG)**. Proven track record in **Engineering Leadership**, **Stakeholder Management**, and delivering complex **Technical Strategies** across diverse sectors including **SaaS, Government, Banking, and E-commerce**.
+"Highly accomplished Engineering Leader and Product Architect with over 8+ years of experience bridging the gap between deep technical implementation and **AI-enhanced Product-Led Growth (PLG)**. Proven track record in Engineering Leadership, Stakeholder Management, and delivering **LLM-driven technical strategies** across diverse sectors including SaaS, Government, Banking, and E-commerce.
 
-Expert in modern software architectures (**Microservices, Event-Driven Architecture, Monorepo**), advanced data infrastructure (**PostgreSQL, ClickHouse, Redis**), and modern DevOps practices (**IaC, Kubernetes, AWS CI/CD**). Passionate about driving engineering excellence through **Data-Driven Decision Making**, **Technical Debt Management**, and **Code Quality Assurance**.
+Expert in architecting **high-scale distributed systems** (Event-Driven, Monorepo Architecture), **Cognitive Computing Integration (RAG, Domain-Specific Model Adaptation)**, and **comprehensive data ecosystems**. Passionate about driving engineering excellence through **AI-augmented SDLC**, Data-Driven Decision Making, and Strategic Technical Debt Management."
 
 ---
 
