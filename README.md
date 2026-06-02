@@ -56,7 +56,7 @@ Expert in architecting **high-scale distributed systems** (Event-Driven, Monorep
 
 _Domains: Automotive Tech, IoT Integration | Enterprise Software Services_
 
-- **Driving engineering excellence** and **cross-functional team leadership** (managing 15+ engineers across 3 squads) for a comprehensive **Electric Vehicle (EV) management and aggregation system** processing millions of daily telemetry events for a leading automotive manufacturer, overseeing **Technical Strategy** and resource planning.
+- **Successfully delivered** the **Digital Twin** project (a comprehensive Electric Vehicle (EV) management and aggregation system) as **Technical Project Leader**, providing **cross-functional team leadership** (managing 15+ engineers across 3 squads). Oversaw **Technical Strategy** and resource planning to process millions of daily telemetry events for a leading automotive manufacturer.
 - **Architected** scalable integration pipelines and led architectural modernization toward cloud-native microservices. Leveraged **AI-augmented workflows** and **LLM-driven toolchains** to optimize developer productivity across distributed teams, accelerating feature delivery by an estimated 25%.
 - **Championed Code Quality Assurance** and **Web Vitals Optimization**, establishing standardized **Technical Debt Management** practices across both frontend (React) and robust backend (Spring Boot) squads.
 - **Key Tech Stack:** Java (Spring Boot Ecosystem), Node.js, TypeScript, React Ecosystem, Azure, Docker, Kubernetes.
@@ -119,6 +119,7 @@ _Domains: Digital Marketing Automation, Content Creation, SaaS Platforms_
 
 ## ACHIEVEMENTS & AWARDS
 
+- **Q4/2025:** Rising Star Award (CMC GLOBAL) for successful delivery of the Digital Twin project.
 - **2023:** Team of the Year (ICOMM TECH.JSC)
 - **2022:** Outstanding Employee for a Flagship Data Platform Project
 
