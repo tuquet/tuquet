@@ -64,7 +64,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ---
 
-## 🚀 FEATURED PROJECT LIST
+## FEATURED PROJECT LIST
 
 ### (09/2024 – Present) Lotte World Ecosystem – Theme Park Web & Mobile Portals
 - **Timeline**: 09/2024 – Present

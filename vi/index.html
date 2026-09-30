@@ -1,24 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
 <title>Nguyễn Đình Tú (Toby Nguyen) | Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<meta name="description" content="Technical Lead & Senior Software Engineer với tư duy Product-first, chuyên sâu về hệ thống backend phân tán, ứng dụng Web quy mô lớn và quy trình tăng cường bởi AI.">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Nguyễn Đình Tú (Toby Nguyen)",
-  "jobTitle": "Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp",
-  "url": "https://github.com/tuquet",
-  "sameAs": [
-    "https://github.com/tuquet",
-    "https://www.linkedin.com/in/tuquet"
-  ],
-  "knowsAbout": ["Hệ thống phân tán", "Rust", "Java", "Spring Boot", "Node.js", "React", "Next.js", "Quy trình AI", "Telemetry Streaming", "Kiến trúc hệ thống"]
-}
-</script>
 
 <style>
 /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
@@ -415,21 +399,49 @@ code {
 
 </style>
 <link rel="stylesheet" href="../style/pdf-export.css" type="text/css">
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Technical Lead & Senior Software Engineer với tư duy Product-first, chuyên sâu về hệ thống phân tán và quy trình AI.">
+<link rel="stylesheet" href="../web/web-enhancements.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nguyen Dinh Tu (Toby Nguyen)",
+  "jobTitle": "Technical Project Lead & Senior Software Engineer",
+  "url": "https://tuquet.github.io/",
+  "sameAs": [
+    "https://github.com/tuquet",
+    "https://www.linkedin.com/in/tuquet"
+  ],
+  "knowsAbout": ["Distributed Systems", "Rust", "Java", "Spring Boot", "Node.js", "React", "Next.js", "AI-Augmented Workflows", "Telemetry Streaming", "System Architecture"]
+}
+</script>
+
 </head>
 <body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
-    });
-  </script>
-<div class="nav-bar no-print">
-	<div><a href="../index.html">English</a> &nbsp;|&nbsp; <strong>Tiếng Việt</strong></div>
-	<a href="./README.pdf" download class="btn-pdf">📄 Tải CV (PDF)</a>
-</div>
+  
+<div id="reading-progress"></div>
+<header class="web-top-bar">
+  <div class="nav-left">
+    <span class="lang-switch">
+      <a href="../">English</a> &nbsp;|&nbsp; <strong>Tiếng Việt</strong>
+    </span>
+  </div>
+  <div class="nav-center">
+    <div class="lens-group" role="group" aria-label="Lens Filter">
+      <button class="btn-lens active" data-lens="all">Tất cả</button>
+      <button class="btn-lens" data-lens="frontend">Frontend</button>
+      <button class="btn-lens" data-lens="backend">Backend</button>
+      <button class="btn-lens" data-lens="leadership">Kĩ năng lãnh đạo</button>
+    </div>
+  </div>
+  <div class="nav-right">
+    <button id="theme-toggle" class="btn-theme" aria-label="Toggle Dark/Light Mode" title="Toggle theme">Tối</button>
+    <a href="./README.pdf" download class="btn-pdf">Tải CV (PDF)</a>
+  </div>
+</header>
+
 <div align="center">
 	<strong style="font-size:1.35em">Nguyễn Đình Tú (Toby Nguyen)</strong><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
@@ -586,7 +598,7 @@ code {
 </tbody>
 </table>
 <hr>
-<h2 id="-danh-sách-dự-án-chi-tiết-project-list">🚀 DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)</h2>
+<h2 id="-danh-sách-dự-án-chi-tiết-project-list">DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)</h2>
 <h3 id="092024--hiện-tại-hệ-sinh-thái-lotte-world--cổng-thông-tin-web--mobile-công-viên-giải-trí">(09/2024 – Hiện tại) Hệ sinh thái Lotte World – Cổng thông tin Web &amp; Mobile Công viên Giải trí</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 09/2024 – Hiện tại</li>
@@ -745,6 +757,40 @@ code {
 <li><strong>Kết quả học tập:</strong> GPA 8.2 / 10</li>
 <li><strong>Chứng chỉ ngoại ngữ:</strong> TOEIC 650 (Đọc hiểu tài liệu kỹ thuật &amp; giao tiếp làm việc thành thạo)</li>
 </ul>
+
+
+<!-- Ask Toby Widget -->
+<button id="copilot-trigger" class="copilot-trigger" aria-label="Hỏi Toby">
+  Hỏi Toby
+</button>
+
+<div id="copilot-panel" class="copilot-panel" role="dialog" aria-label="Hỏi Toby">
+  <div class="copilot-header">
+    <div class="copilot-header-title">
+      Hỏi Toby
+    </div>
+    <button id="copilot-close" class="copilot-close">Đóng</button>
+  </div>
+  <div id="copilot-body" class="copilot-body">
+    <div class="copilot-msg bot">
+      Xin chào! Tôi là AI của Toby. Bạn có thể hỏi tôi bất cứ điều gì về năng lực kỹ thuật, kinh nghiệm lead 15+ kỹ sư hay kiến trúc hệ thống!
+    </div>
+  </div>
+  <div class="copilot-chips">
+    <button class="copilot-chip" data-q="summary">Thế mạnh & Thành tựu</button>
+<button class="copilot-chip" data-q="digital twin">Kiến trúc Digital Twin</button>
+<button class="copilot-chip" data-q="tuquet">Xử lý Zombie Process Tuquet</button>
+<button class="copilot-chip" data-q="lead">Quản lý team 15+ devs</button>
+<button class="copilot-chip" data-q="stack">Kỹ năng công nghệ</button>
+  </div>
+  <div class="copilot-footer">
+    <input id="copilot-input" class="copilot-input" type="text" placeholder="Nhập câu hỏi...">
+    <button id="copilot-send" class="copilot-send">Gửi</button>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="../web/web-copilot.js" defer></script>
 
 </body>
 </html>

@@ -1,24 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Toby Nguyen (Nguyễn Đình Tú) | Technical Lead & Senior Software Engineer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toby Nguyen (Nguyễn Đình Tú) | Technical Project Lead & Senior Software Engineer</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<meta name="description" content="Technical Lead & Senior Software Engineer with a Product-first mindset, specialized in distributed systems, high-scale web applications, and AI-augmented workflows.">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Nguyen Dinh Tu (Toby Nguyen)",
-  "jobTitle": "Technical Lead & Senior Software Engineer",
-  "url": "https://github.com/tuquet",
-  "sameAs": [
-    "https://github.com/tuquet",
-    "https://www.linkedin.com/in/tuquet"
-  ],
-  "knowsAbout": ["Distributed Systems", "Rust", "Java", "Spring Boot", "Node.js", "React", "Next.js", "AI-Augmented Workflows", "Telemetry Streaming", "System Architecture"]
-}
-</script>
 
 <style>
 /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
@@ -415,21 +399,49 @@ code {
 
 </style>
 <link rel="stylesheet" href="./style/pdf-export.css" type="text/css">
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, and AI-augmented workflows.">
+<link rel="stylesheet" href="./web/web-enhancements.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nguyen Dinh Tu (Toby Nguyen)",
+  "jobTitle": "Technical Project Lead & Senior Software Engineer",
+  "url": "https://tuquet.github.io/",
+  "sameAs": [
+    "https://github.com/tuquet",
+    "https://www.linkedin.com/in/tuquet"
+  ],
+  "knowsAbout": ["Distributed Systems", "Rust", "Java", "Spring Boot", "Node.js", "React", "Next.js", "AI-Augmented Workflows", "Telemetry Streaming", "System Architecture"]
+}
+</script>
+
 </head>
 <body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
-    });
-  </script>
-<div class="nav-bar no-print">
-	<div><strong>English</strong> &nbsp;|&nbsp; <a href="./vi/index.html">Tiếng Việt</a></div>
-	<a href="./README.pdf" download class="btn-pdf">📄 Download PDF</a>
-</div>
+  
+<div id="reading-progress"></div>
+<header class="web-top-bar">
+  <div class="nav-left">
+    <span class="lang-switch">
+      <strong>English</strong> &nbsp;|&nbsp; <a href="./vi/">Tiếng Việt</a>
+    </span>
+  </div>
+  <div class="nav-center">
+    <div class="lens-group" role="group" aria-label="Lens Filter">
+      <button class="btn-lens active" data-lens="all">All</button>
+      <button class="btn-lens" data-lens="frontend">Frontend</button>
+      <button class="btn-lens" data-lens="backend">Backend</button>
+      <button class="btn-lens" data-lens="leadership">Leadership</button>
+    </div>
+  </div>
+  <div class="nav-right">
+    <button id="theme-toggle" class="btn-theme" aria-label="Toggle Dark/Light Mode" title="Toggle theme">Dark</button>
+    <a href="./README.pdf" download class="btn-pdf">Download PDF</a>
+  </div>
+</header>
+
 <div align="center">
 	<strong style="font-size:1.35em">Toby Nguyen (Nguyễn Đình Tú)</strong><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
@@ -586,7 +598,7 @@ code {
 </tbody>
 </table>
 <hr>
-<h2 id="-featured-project-list">🚀 FEATURED PROJECT LIST</h2>
+<h2 id="-featured-project-list">FEATURED PROJECT LIST</h2>
 <h3 id="092024--present-lotte-world-ecosystem--theme-park-web--mobile-portals">(09/2024 – Present) Lotte World Ecosystem – Theme Park Web &amp; Mobile Portals</h3>
 <ul>
 <li><strong>Timeline</strong>: 09/2024 – Present</li>
@@ -745,6 +757,40 @@ code {
 <li><strong>Academic Standing:</strong> GPA 8.2 / 10</li>
 <li><strong>English Proficiency:</strong> TOEIC 650 (Fluent technical reading/writing &amp; professional collaboration)</li>
 </ul>
+
+
+<!-- Ask Toby Widget -->
+<button id="copilot-trigger" class="copilot-trigger" aria-label="Ask Toby">
+  Ask Toby
+</button>
+
+<div id="copilot-panel" class="copilot-panel" role="dialog" aria-label="Ask Toby">
+  <div class="copilot-header">
+    <div class="copilot-header-title">
+      Ask Toby
+    </div>
+    <button id="copilot-close" class="copilot-close">Close</button>
+  </div>
+  <div id="copilot-body" class="copilot-body">
+    <div class="copilot-msg bot">
+      Hello! I am Toby's AI. Ask me anything about his 8+ years leading distributed systems, PLG achievements, or system architecture!
+    </div>
+  </div>
+  <div class="copilot-chips">
+    <button class="copilot-chip" data-q="summary">Top 3 Achievements</button>
+<button class="copilot-chip" data-q="digital twin">Digital Twin Architecture</button>
+<button class="copilot-chip" data-q="tuquet">Tuquet Zombie Process Fix</button>
+<button class="copilot-chip" data-q="lead">15+ Engineers Leadership</button>
+<button class="copilot-chip" data-q="stack">Core Tech Stack</button>
+  </div>
+  <div class="copilot-footer">
+    <input id="copilot-input" class="copilot-input" type="text" placeholder="Ask a question...">
+    <button id="copilot-send" class="copilot-send">Send</button>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="./web/web-copilot.js" defer></script>
 
 </body>
 </html>

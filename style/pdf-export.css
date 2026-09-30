@@ -108,11 +108,7 @@ code, pre {
   }
 }
 
-/* 5. Hide elements with .no-print during PDF/print generation */
-.no-print {
-  display: none !important;
-}
-
+/* 5. Print & PDF Export Rules */
 @media print {
   .no-print {
     display: none !important;

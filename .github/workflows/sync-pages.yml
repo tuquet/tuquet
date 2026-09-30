@@ -16,6 +16,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Inject Web Enhancements (Dark Mode, Lens & AI Copilot)
+        run: node scripts/inject-web.js
+
       - name: Setup SSH and Push to tuquet.github.io
         env:
           SYNC_DEPLOY_KEY: ${{ secrets.SYNC_DEPLOY_KEY }}

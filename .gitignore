@@ -6,6 +6,7 @@
 *.jpg
 *.jpeg
 
-# Stylesheets (keep custom export styling)
+# Stylesheets (keep custom export styling and web enhancements)
 *.css
 !style/pdf-export.css
+!web/*.css

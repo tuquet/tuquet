@@ -64,7 +64,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ---
 
-## 🚀 DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)
+## DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)
 
 ### (09/2024 – Hiện tại) Hệ sinh thái Lotte World – Cổng thông tin Web & Mobile Công viên Giải trí
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
