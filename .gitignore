@@ -1,6 +1,11 @@
-*.pdf
+# Temporary files generated during markdown-pdf export
+*_tmp.html
+
+# Images
 *.png
 *.jpg
 *.jpeg
-*.html
+
+# Stylesheets (keep custom export styling)
 *.css
+!style/pdf-export.css

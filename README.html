@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="./style/pdf-export.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div align="center" class="no-print">
+	<strong>English</strong> | <a href="./vi/README.md">Tiếng Việt</a>
+	<br/><br/>
+</div>
+<div align="center">
+	<strong style="font-size:1.35em">Toby Nguyen (Nguyễn Đình Tú)</strong><br/>
+	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
+	<br/>
+	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
+	<strong>Location:</strong> Ha Dong, Ha Noi, Vietnam &nbsp;|&nbsp; <strong>Date of Birth:</strong> 03/1993<br/>
+	<strong>GitHub:</strong> <a href="https://github.com/tuquet">https://github.com/tuquet</a> &nbsp;|&nbsp; <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tuquet">https://www.linkedin.com/in/tuquet</a>
+</div>
+<p align="center"><em>Technical Lead & Senior Software Engineer with a <strong>Product-first mindset</strong>, specialized in <strong>distributed backend systems</strong>, <strong>high-scale web applications</strong>, and <strong>optimizing engineering productivity</strong> through <strong>AI-augmented workflows (MCP, LLMs)</strong>.</em></p>
+<h2 id="career-summary">CAREER SUMMARY</h2>
+<p>Accomplished Technical Lead &amp; Senior Software Engineer with over 8+ years of experience engineering high-scale distributed systems, resilient backend services, and world-class web applications. Deeply versatile across systems programming (Rust, Java/Spring Boot, Node.js) and modern web ecosystems (React, Next.js, Vue.js, Micro-frontends). Proven expertise in data pipelines, real-time telemetry streaming (WebSockets, SSE), distributed caching, and Core Web Vitals optimization.</p>
+<p>Pioneer in marrying a <strong>Product-Led Growth (PLG)</strong> mindset with <strong>AI-augmented engineering workflows (MCP, LLM toolchains)</strong> to drive technical excellence, deliver resilient software architectures, and scale cross-functional engineering teams.</p>
+<hr>
+<h2 id="core-competencies--technical-skills">CORE COMPETENCIES &amp; TECHNICAL SKILLS</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Category</th>
+<th style="text-align:left">Key Expertise &amp; Technologies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Backend &amp; Systems Engineering</strong></td>
+<td style="text-align:left">Java, Spring Boot (Spring Data JPA, Spring Security), Rust (Tokio Async, Win32 Job Objects, Concurrency), Node.js (NestJS, Express), TypeScript server-side, Event-Driven Architecture</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>API Design &amp; Real-Time Streaming</strong></td>
+<td style="text-align:left">RESTful APIs, GraphQL, gRPC Contracts, WebSockets, Server-Sent Events (SSE), API Gateways, Backend-for-Frontend (BFF), Distributed IPC</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Databases &amp; Distributed Caching</strong></td>
+<td style="text-align:left">PostgreSQL (Supabase), MS SQL Server, MySQL, Redis (Pub/Sub, Caching Strategies, Session Management), ClickHouse (OLAP), Apache Solr, SQLite, Schema Design &amp; Index Optimization</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Frontend Architecture &amp; Web</strong></td>
+<td style="text-align:left">React Ecosystem (Concurrent Features, Next.js, Server Components), Vue.js Ecosystem (Composition API, NuxtJS), TypeScript, Angular, Cross-Platform Desktop (Electron JS)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Scalability &amp; Performance</strong></td>
+<td style="text-align:left">Micro-frontends (Module Federation), Component-Driven Design Systems (Storybook, Radix UI), Core Web Vitals (LCP &lt; 2.0s, INP &lt; 150ms, CLS ≈ 0), Critical Rendering Path, Dynamic Code Splitting</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Real-time Data Visualization</strong></td>
+<td style="text-align:left">High-Density Canvas/SVG Charting, Virtual Scrolling / Grids, ECharts, Highcharts, Optimistic UI, Client-side Caching (TanStack Query, SWR)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cloud, DevOps &amp; Infrastructure</strong></td>
+<td style="text-align:left">Docker, Docker Compose, Kubernetes fundamentals, Azure Cloud, Linux CLI, Bash/PowerShell, GitHub Actions CI/CD, Monorepo Orchestration (Turborepo, Nx)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>AI-Augmented Engineering</strong></td>
+<td style="text-align:left">Model Context Protocol (MCP), LLM-assisted Software Engineering, Prompt Engineering for Toolchains, Automated Testing Suites (Playwright, Cypress, Vitest, Jest)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Engineering Leadership</strong></td>
+<td style="text-align:left">Technical Strategy, Cross-Squad Engineering Leadership (15+ engineers), System Architecture Roadmap, Technical Debt Governance, Agile/Scrum Orchestration</td>
+</tr>
+</tbody>
+</table>
+<h3 id="skills-assessment-table">Skills Assessment Table</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Skill Area</th>
+<th style="text-align:left">Focus</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Backend &amp; Systems Design</strong></td>
+<td style="text-align:left">Microservices, Runtimes</td>
+<td style="text-align:left">Java / Spring Boot, Rust async (Tokio), Node.js/NestJS, Win32 Job Objects, Event-Driven Architecture</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>APIs &amp; Streaming</strong></td>
+<td style="text-align:left">Real-time, Communication</td>
+<td style="text-align:left">WebSockets telemetry feeds, SSE streaming, RESTful, GraphQL, gRPC, BFF orchestration</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Databases &amp; Caching</strong></td>
+<td style="text-align:left">Data Storage, Performance</td>
+<td style="text-align:left">PostgreSQL, MS SQL, Redis caching strategies, ClickHouse OLAP, query and index optimization</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Frontend Architecture</strong></td>
+<td style="text-align:left">Micro-frontends, Systems</td>
+<td style="text-align:left">Micro-frontends (Module Federation), Enterprise Design Systems, Monorepo (Turborepo), Clean Code</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Web Performance Tuning</strong></td>
+<td style="text-align:left">Core Web Vitals, Rendering</td>
+<td style="text-align:left">Sub-2s LCP, INP &lt; 150ms, zero layout shifts, dynamic code splitting, bundle size minimization</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Modern Web Ecosystem</strong></td>
+<td style="text-align:left">TypeScript, React, Vue</td>
+<td style="text-align:left">Deep expertise in React Ecosystem, Next.js, Vue.js Composition API, NuxtJS, Tailwind CSS, Electron JS</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Real-time Data Visualization</strong></td>
+<td style="text-align:left">Streaming, High-Density Charts</td>
+<td style="text-align:left">Real-time WebSockets telemetry, Virtual Grids, ECharts, Canvas/SVG, Client-side Caching (SWR)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>DevOps &amp; Cloud</strong></td>
+<td style="text-align:left">Containers, CI/CD</td>
+<td style="text-align:left">Docker, Azure Cloud, Linux CLI, GitHub Actions CI/CD, process supervision &amp; multi-runtime tools</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>AI-Augmented Development</strong></td>
+<td style="text-align:left">Productivity, Automation</td>
+<td style="text-align:left">Model Context Protocol (MCP), GenAI-assisted engineering, LLM toolchains, Playwright E2E</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="professional-experience">PROFESSIONAL EXPERIENCE</h2>
+<table>
+<thead>
+<tr>
+<th>Company Name</th>
+<th>Position</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMC GLOBAL</td>
+<td>Technical Project Lead / Tech Lead</td>
+<td>9/2024 – Present</td>
+</tr>
+<tr>
+<td>ICOMM TECH.JSC</td>
+<td>Chief Product Officer (CPO) / Tech Lead</td>
+<td>5/2020 – 8/2024</td>
+</tr>
+<tr>
+<td>OPEN COMMERCE GROUP</td>
+<td>Senior Software Engineer</td>
+<td>12/2018 – 4/2020</td>
+</tr>
+<tr>
+<td>TDT ASIA JSC</td>
+<td>Fullstack Software Engineer</td>
+<td>5/2018 – 12/2018</td>
+</tr>
+<tr>
+<td>LUSH ERA LLC</td>
+<td>Software Engineer / Web Developer</td>
+<td>12/2016 – 4/2018</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-featured-project-list">🚀 FEATURED PROJECT LIST</h2>
+<h3 id="092024--present-lotte-world-ecosystem--theme-park-web--mobile-portals">(09/2024 – Present) Lotte World Ecosystem – Theme Park Web &amp; Mobile Portals</h3>
+<ul>
+<li><strong>Timeline</strong>: 09/2024 – Present</li>
+<li><strong>Company</strong>: CMC GLOBAL</li>
+<li><strong>Client</strong>: Lotte World (Theme Parks, Entertainment &amp; Hospitality)</li>
+<li><strong>Project description *</strong>: Large-scale multi-runtime enterprise ecosystem for Lotte World amusement parks (Jamsil &amp; Busan), encompassing high-traffic web &amp; webview portals, real-time attraction wait-time &amp; reservation engines, and digital interactive park navigation.</li>
+<li><strong>Team size</strong>: 15+ engineers</li>
+<li><strong>Responsibilities *</strong>:
+<ul>
+<li>Participated as <strong>Core Frontend Maintainer</strong>, maintaining, refactoring, and delivering feature enhancements for Park Visitor Web Portals and Partner Booking WebViews strictly adhering to client functional specifications and technical docs.</li>
+<li>Implemented responsive Web and mobile-embedded WebView user interfaces using React, Vite, and Tailwind CSS, ensuring UI fidelity with design documentation and smooth interactions.</li>
+<li>Configured multi-runtime local developer workflows and mock data synchronization to streamline testing between Spring Boot backend services and React/React Native frontend clients.</li>
+<li>Performed continuous code maintenance, bug fixes, and performance tuning to guarantee cross-browser compatibility and responsive UX across mobile WebViews.</li>
+</ul>
+</li>
+<li><strong>Programming Language *</strong>: TypeScript, JavaScript, Java</li>
+<li><strong>Framework *</strong>: React, Vite, React Native, Tailwind CSS, Spring Boot</li>
+<li><strong>Platform, server and database *</strong>: Docker, Redis, MS SQL Server, Linux</li>
+<li><strong>Methodology</strong>: Agile / Scrum</li>
+</ul>
+<h3 id="092024--present-digital-twin--electric-vehicle-ev-real-time-telemetry-dashboard">(09/2024 – Present) Digital Twin – Electric Vehicle (EV) Real-Time Telemetry Dashboard</h3>
+<ul>
+<li><strong>Timeline</strong>: 09/2024 – Present</li>
+<li><strong>Company</strong>: CMC GLOBAL</li>
+<li><strong>Client</strong>: Leading Automotive Manufacturer (Automotive Tech, IoT Integration)</li>
+<li><strong>Team size</strong>: 15+ engineers (3 squads)</li>
+<li><strong>Project description *</strong>: Large-scale real-time Digital Twin telemetry dashboard platform for aggregating, monitoring, and analyzing telemetry and operational status for fleets of electric vehicles (EVs).</li>
+<li><strong>Responsibilities *</strong>:
+<ul>
+<li>Served as <strong>Technical Project Leader &amp; Tech Lead</strong>, establishing overall technical architecture, engineering standards, and real-time telemetry streaming across 3 squads (15+ engineers) processing millions of daily EV operational events.</li>
+<li>Architected a <strong>Micro-frontends</strong> architecture and standardized a shared enterprise <strong>Design System</strong>, ensuring visual consistency and decoupled release cycles across squads.</li>
+<li>Optimized real-time telemetry streaming via WebSockets by implementing <strong>Virtual Scrolling, Canvas Data Charting, and Debounced/Throttled State Updates</strong>, sustaining a continuous 60fps rendering rate under high telemetry volume without blocking the Main Thread.</li>
+<li>Formulated a comprehensive <strong>Core Web Vitals</strong> strategy: orchestrated route-based and component-based dynamic code splitting, reducing First Input Delay / INP to &lt; 150ms and maintaining LCP &lt; 2.0s across all mission-critical monitor views.</li>
+<li>Introduced <strong>AI-augmented Frontend SDLC</strong> practices (LLM UI generation, automated visual regression testing), elevating frontend feature delivery velocity by 25%.</li>
+</ul>
+</li>
+<li><strong>Programming Language *</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (BFF tooling)</li>
+<li><strong>Framework *</strong>: React (Concurrent Features), Next.js, Tailwind CSS, Zustand, Node.js</li>
+<li><strong>Platform, server and database *</strong>: Azure Cloud, Docker, Kubernetes, WebSocket, PostgreSQL, Redis</li>
+<li><strong>Methodology</strong>: Agile / Scrum</li>
+</ul>
+<h3 id="052020--082024-big-data-analytics--interactive-intelligence-platform">(05/2020 – 08/2024) Big Data Analytics &amp; Interactive Intelligence Platform</h3>
+<ul>
+<li><strong>Timeline</strong>: 05/2020 – 08/2024</li>
+<li><strong>Company</strong>: ICOMM TECH.JSC</li>
+<li><strong>Client</strong>: Government, Banking &amp; Aviation Sectors</li>
+<li><strong>Team size</strong>: 15+ engineers</li>
+<li><strong>Project description *</strong>: Multi-platform enterprise Big Data extraction and intelligence dashboard, delivering interactive data visualization, real-time reporting, and deep analytics under strict enterprise security constraints.</li>
+<li><strong>Responsibilities *</strong>:
+<ul>
+<li>Directed product roadmap and technical architecture as <strong>Chief Product Officer (CPO) &amp; Technical Lead</strong>.</li>
+<li>Engineered an interactive <strong>Data Visualization Dashboard</strong> powered by ECharts and Highcharts, solving high-density data rendering challenges for 100,000+ complex visual data points without frame drops.</li>
+<li>Implemented <strong>Client-side Caching (SWR/React Query patterns)</strong> and <strong>Virtualized Data Grids</strong>, enabling near-instantaneous search, filtering, and paging across millions of records.</li>
+<li>Established automated frontend quality assurance suites (End-to-End testing with Cypress/Playwright and unit testing with Jest), achieving 99.9% application uptime SLA.</li>
+<li>Mentored 15+ engineers in Component-Driven Architecture, JavaScript Clean Code principles, and runtime render profiling.</li>
+</ul>
+</li>
+<li><strong>Programming Language *</strong>: TypeScript, JavaScript, HTML5, SCSS/CSS3, Python</li>
+<li><strong>Framework *</strong>: React Ecosystem, Redux Toolkit, ECharts, .NET Core (Backend API)</li>
+<li><strong>Platform, server and database *</strong>: Docker, Kubernetes, Redis, Apache Solr, ClickHouse, Linux</li>
+<li><strong>Methodology</strong>: Agile / Scrum</li>
+</ul>
+<h3 id="122018--042020-high-converting-e-commerce-storefront--merchant-suite">(12/2018 – 04/2020) High-Converting E-Commerce Storefront &amp; Merchant Suite</h3>
+<ul>
+<li><strong>Timeline</strong>: 12/2018 – 04/2020</li>
+<li><strong>Company</strong>: OPEN COMMERCE GROUP</li>
+<li><strong>Client</strong>: Global E-commerce Merchants</li>
+<li><strong>Team size</strong>: 8–10 members</li>
+<li><strong>Project description *</strong>: Ultra-fast e-commerce storefront platform and intelligent cross-selling engine integrated across Shopify, WooCommerce, and WordPress ecosystems.</li>
+<li><strong>Responsibilities *</strong>:
+<ul>
+<li>Served as <strong>Senior Software Engineer</strong>, spearheading storefront user interface development and AI-driven cross-selling recommendation widgets geared toward Product-Led Growth (PLG).</li>
+<li>Maximized conversion rate optimization (CRO) and checkout velocity: drove <strong>First Contentful Paint (FCP) to &lt; 1.2s</strong> and <strong>LCP to &lt; 1.8s</strong>, contributing to an estimated 15–20% increase in merchant revenue.</li>
+<li>Engineered reusable, modular UI components using <strong>Vue.js and React</strong>, enforcing scoped styles, responsive image optimization (WebP/AVIF), and aggressive bundle size minimization.</li>
+<li>Delivered seamless Mobile-First responsive layouts and frictionless multi-gateway payment flows.</li>
+</ul>
+</li>
+<li><strong>Programming Language *</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (microservices)</li>
+<li><strong>Framework *</strong>: Vue.js (Vuex), React, Tailwind CSS, Laravel (Backend API)</li>
+<li><strong>Platform, server and database *</strong>: AWS, Nginx, Redis, MySQL</li>
+<li><strong>Methodology</strong>: Agile / Scrum</li>
+</ul>
+<h3 id="052018--122018-enterprise-japanese-business-management-portal">(05/2018 – 12/2018) Enterprise Japanese Business Management Portal</h3>
+<ul>
+<li><strong>Timeline</strong>: 05/2018 – 12/2018</li>
+<li><strong>Company</strong>: TDT ASIA JSC</li>
+<li><strong>Client</strong>: Japanese Small &amp; Medium Enterprises (SMB Solutions – Japan Market)</li>
+<li><strong>Team size</strong>: 6–8 members</li>
+<li><strong>Project description *</strong>: Enterprise Resource Planning (ERP) and business management web portal customized to meet the rigorous quality and UX standards of the Japanese corporate market.</li>
+<li><strong>Responsibilities *</strong>:
+<ul>
+<li>Operated as <strong>Fullstack Software Engineer</strong>, taking primary ownership of the Single Page Application (SPA) client architecture.</li>
+<li>Leveraged <strong>Angular with RxJS Observables</strong> for reactive state handling and orchestrated complex business workflows with Angular Reactive Forms.</li>
+<li>Ensured strict <strong>Cross-Browser Compatibility</strong> (Chrome, Firefox, Safari, Edge) and achieved pixel-perfect adherence to Japanese UX/UI specifications.</li>
+</ul>
+</li>
+<li><strong>Programming Language *</strong>: TypeScript, JavaScript, HTML5, SCSS</li>
+<li><strong>Framework *</strong>: Angular, Angular Material, RxJS, Spring Boot (Backend API)</li>
+<li><strong>Platform, server and database *</strong>: Tomcat, Docker, MySQL, Linux</li>
+<li><strong>Methodology</strong>: Agile / Scrum</li>
+</ul>
+<h3 id="122016--042018-responsive-real-time-telemedicine-web-application">(12/2016 – 04/2018) Responsive Real-time Telemedicine Web Application</h3>
+<ul>
+<li><strong>Timeline</strong>: 12/2016 – 04/2018</li>
+<li><strong>Company</strong>: LUSH ERA LLC</li>
+<li><strong>Client</strong>: Medical Clinics &amp; Healthcare Service Providers</li>
+<li><strong>Team size</strong>: 5 members</li>
+<li><strong>Project description *</strong>: Secure real-time telemedicine and remote healthcare consultation web application connecting patients with certified medical specialists via video and chat.</li>
+<li><strong>Responsibilities *</strong>:
+<ul>
+<li>Acted as <strong>Software Engineer / Web Developer</strong>, building an intuitive, accessible, and fast-loading telemedicine web client.</li>
+<li>Engineered <strong>Mobile-First Responsive Layouts</strong>, prioritizing Web Accessibility (a11y) standards for elderly patients and individuals with visual impairments.</li>
+<li>Implemented interactive WebRTC video calling interfaces and low-latency real-time messaging UI.</li>
+</ul>
+</li>
+<li><strong>Programming Language *</strong>: JavaScript, HTML5, CSS3, PHP</li>
+<li><strong>Framework *</strong>: jQuery, Bootstrap, Laravel (Backend)</li>
+<li><strong>Platform, server and database *</strong>: MySQL, Apache, Ubuntu Linux</li>
+<li><strong>Methodology</strong>: Agile</li>
+</ul>
+<h3 id="2024--present-tuquet--developer-cli--distributed-automation-ecosystem">(2024 – Present) Tuquet – Developer CLI &amp; Distributed Automation Ecosystem</h3>
+<ul>
+<li><strong>Timeline</strong>: 2024 – Present</li>
+<li><strong>Company</strong>: Independent Product Labs (Open-Source R&amp;D)</li>
+<li><strong>Client</strong>: Self-initiated Open-Source Developer Tooling &amp; Global Automation Engineers</li>
+<li><strong>Team size</strong>: Creator &amp; Principal Architect (Solo / Core Team)</li>
+<li><strong>Project description *</strong>: High-performance open-source developer tooling ecosystem and distributed browser automation suite consisting of a unified master CLI (<code>tuquet</code>) in Rust, a visual workflow web studio in Vue.js, a supervised background runner daemon (<code>tuquet runner</code>), and cloud coordination services.</li>
+<li><strong>Responsibilities *</strong>:
+<ul>
+<li>Acted as <strong>Creator &amp; Principal Architect</strong>, architecting the end-to-end multi-runtime ecosystem spanning systems programming in Rust, visual web studio in Vue.js, and distributed task supervision.</li>
+<li>Engineered the master CLI (<code>tuquet</code>) in <strong>Rust</strong>: built an interactive scoped shell with hierarchical state management, rustyline-based smart tab-completion, ANSI color styling, and sub-command delegation (<code>automa</code>, <code>runner</code>, <code>cloud</code>, <code>browser</code>).</li>
+<li>Developed the visual automation workflow studio with <strong>Vue.js Ecosystem &amp; TypeScript</strong>: designed an interactive node-graph canvas (Drawflow), custom automation blocks, and a real-time execution inspector with instant visual feedback.</li>
+<li>Architected a zero-leakage process supervision engine in the runner daemon (<code>tuquet runner</code>) leveraging Win32 Job Objects to eliminate orphan Chromium zombie processes and strictly isolate CPU/RAM.</li>
+<li>Engineered a high-throughput Medallion data crawler pipeline (Bronze gzip BLOB storage -&gt; Silver Rust deduplication &amp; HTML sanitizer -&gt; Gold Supabase synchronization).</li>
+<li>Standardized local workspace configurations into a Single Source of Truth (<code>~/.tuquet/</code>), eliminating configuration drift across CLI, extensions, and runner runtimes.</li>
+<li>Automated binary builds, multi-platform packaging, and distribution through an official Windows Scoop bucket (<code>tuquet/scoop-bucket</code>).</li>
+</ul>
+</li>
+<li><strong>Programming Language *</strong>: Rust, TypeScript, JavaScript, SQL</li>
+<li><strong>Framework *</strong>: Vue.js Ecosystem, Tailwind CSS, Drawflow, Tokio (Rust Async), Node.js</li>
+<li><strong>Platform, server and database *</strong>: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions</li>
+<li><strong>Methodology</strong>: Agile / Kanban</li>
+</ul>
+<hr>
+<h2 id="achievements--awards">ACHIEVEMENTS &amp; AWARDS</h2>
+<ul>
+<li><strong>Q4/2025:</strong> <strong>Rising Star Award (CMC GLOBAL)</strong> – Recognized for exemplary technical leadership and high-impact delivery of the Digital Twin EV project.</li>
+<li><strong>2023:</strong> <strong>Team of the Year (ICOMM TECH.JSC)</strong> – Leading the engineering organization to exceed all product delivery targets.</li>
+<li><strong>2022:</strong> <strong>Outstanding Employee (ICOMM TECH.JSC)</strong> – Awarded for spearheading the flagship Big Data platform.</li>
+</ul>
+<hr>
+<h2 id="education">EDUCATION</h2>
+<p><strong>FPT University</strong> | Information Technology (1/2012 – 9/2014)</p>
+<ul>
+<li><strong>Focus:</strong> Full-Stack Web Development, Desktop Application Design &amp; Software Architecture.</li>
+<li><strong>Academic Standing:</strong> GPA 8.2 / 10</li>
+<li><strong>English Proficiency:</strong> TOEIC 650 (Fluent technical reading/writing &amp; professional collaboration)</li>
+</ul>
+
+</body>
+</html>

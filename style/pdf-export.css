@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Styles for yzane.markdown-pdf Export & GitHub Pages
+   ========================================================================== */
+
+/* 1. Google Fonts Online Fallback */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700&display=swap');
+
+/* 2. Roboto Font Definitions (Local Offline-First with Vietnamese diacritic support) */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'),
+       local('Roboto Regular'),
+       url('./fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Roboto Medium'),
+       url('./fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Roboto Bold'),
+       url('./fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto Italic'),
+       url('./fonts/Roboto-Italic.ttf') format('truetype');
+}
+
+/* 3. Global Typography */
+body {
+  font-family: 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
+  color: #24292f;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
+  font-weight: 700;
+}
+
+table, th, td {
+  font-family: 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+code, pre {
+  font-family: 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* 4. Web Responsive Container (GitHub Pages) */
+@media screen {
+  html {
+    background-color: #f6f8fa;
+  }
+
+  body {
+    max-width: 880px;
+    margin: 32px auto;
+    padding: 36px 44px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+  }
+
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .btn-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background-color: #0969da;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 13px;
+    transition: background-color 0.15s ease;
+  }
+
+  .btn-pdf:hover {
+    background-color: #0856b5;
+  }
+}
+
+/* 5. Hide elements with .no-print during PDF/print generation */
+.no-print {
+  display: none !important;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+}
