@@ -9,6 +9,7 @@ on:
 jobs:
   sync-to-pages:
     name: Sync Repository to tuquet.github.io
+    if: github.repository == 'tuquet/tuquet'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
