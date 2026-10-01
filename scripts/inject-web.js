@@ -130,6 +130,10 @@ function processTarget(target) {
   html = html.replace(/\s*\*(\))<\/strong>/g, '$1</strong>');
   html = html.replace(/\s*\*<\/strong>/g, '</strong>');
 
+  // Remove default markdown-pdf heading bottom borders to eliminate double-border conflicts
+  html = html.replace(/h2\s*\{\s*font-size:\s*1\.45em;\s*border-bottom:[^}]*\}/gi, 'h2 { font-size: 1.45em; border-bottom: none; padding-bottom: 0; }');
+  html = html.replace(/h1\s*\{\s*font-size:\s*1\.85em;\s*border-bottom:[^}]*\}/gi, 'h1 { font-size: 1.85em; border-bottom: none; padding-bottom: 0; }');
+
   // Wrap all tables in a responsive 100% width container (clean up any previous wrappers first for idempotent builds)
   html = html.replace(/(?:<div class="table-container\b[^>]*>\s*)+<table\b/gi, '<table');
   html = html.replace(/<\/table>(?:\s*<\/div>)+/gi, '</table>');
