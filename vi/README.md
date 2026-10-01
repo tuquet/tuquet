@@ -53,7 +53,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ### [09/2024 – Hiện tại] Nền tảng Web & Đặt vé Trực tuyến – Công viên Giải trí Quốc tế
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
-- **Công ty**: CMC GLOBAL
+- **Công ty**: CMC Global
 - **Khách hàng (Client)**: Tập đoàn Vui chơi Giải trí & Du lịch Đa quốc gia (Hàn Quốc)
 - **Quy mô đội ngũ (Team size)**: 15+ kỹ sư
 - **Mô tả dự án (Project description)**: Hệ thống dịch vụ trực tuyến quy mô lớn phục vụ các đại công viên giải trí quốc tế, bao gồm Web Portal và WebView đặt vé lưu lượng truy cập cao, hệ thống tra cứu thời gian chờ điểm tham quan, đặt chỗ thời gian thực và bản đồ số tương tác.
@@ -69,7 +69,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ### [09/2024 – Hiện tại] Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
-- **Công ty**: CMC GLOBAL
+- **Công ty**: CMC Global
 - **Khách hàng (Client)**: Tập đoàn sản xuất ô tô hàng đầu (Automotive Tech, IoT Integration)
 - **Quy mô đội ngũ (Team size)**: 15+ kỹ sư (3 squads)
 - **Mô tả dự án (Project description)**: Nền tảng Dashboard quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành thời gian thực cho các đội xe điện (EV).
@@ -86,7 +86,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ### [05/2020 – 08/2024] Nền tảng Báo cáo & Trực quan hóa Dữ liệu Lớn Thông minh
 - **Thời gian thực hiện**: 05/2020 – 08/2024
-- **Công ty**: ICOMM TECH.JSC
+- **Công ty**: ICOMM Tech
 - **Khách hàng (Client)**: Khối cơ quan Chính phủ, Ngân hàng và Hàng không (Government, Banking & Aviation Sectors)
 - **Quy mô đội ngũ (Team size)**: 15+ kỹ sư
 - **Mô tả dự án (Project description)**: Nền tảng trích xuất và phân tích dữ liệu lớn đa nền tảng, cung cấp hệ thống báo cáo phân tích thông minh, bảng biểu tương tác cao phục vụ khách hàng khối chính phủ và tài chính ngân hàng với yêu cầu bảo mật khắt khe.
@@ -103,7 +103,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ### [12/2018 – 04/2020] Nền tảng Storefront Thương mại Điện tử Tốc độ cao & Bộ Công cụ Tăng trưởng Doanh số
 - **Thời gian thực hiện**: 12/2018 – 04/2020
-- **Công ty**: OPEN COMMERCE GROUP
+- **Công ty**: OpenCommerce Group
 - **Khách hàng (Client)**: Doanh nghiệp E-commerce quốc tế (Global E-commerce Merchants)
 - **Quy mô đội ngũ (Team size)**: 8–10 thành viên
 - **Mô tả dự án (Project description)**: Nền tảng Storefront thương mại điện tử siêu tốc và công cụ gợi ý bán chéo thông minh (Cross-selling Engine) tích hợp sâu vào hệ sinh thái Shopify, WooCommerce và WordPress.
@@ -119,7 +119,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ### [05/2018 – 12/2018] Cổng Quản lý Vận hành Doanh nghiệp Nhật Bản
 - **Thời gian thực hiện**: 05/2018 – 12/2018
-- **Công ty**: TDT ASIA JSC
+- **Công ty**: TDT Asia
 - **Khách hàng (Client)**: Các doanh nghiệp vừa và nhỏ tại Nhật Bản (SMB Solutions – Japan Market)
 - **Quy mô đội ngũ (Team size)**: 6–8 thành viên
 - **Mô tả dự án (Project description)**: Cổng thông tin và phần mềm quản trị doanh nghiệp (ERP) tùy biến đáp ứng tiêu chuẩn khắt khe về chất lượng mã nguồn và trải nghiệm người dùng của thị trường Nhật Bản.
@@ -134,7 +134,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ### [12/2016 – 04/2018] Ứng dụng Web Khám chữa Bệnh & Tư vấn Y tế Trực tuyến Thời gian thực
 - **Thời gian thực hiện**: 12/2016 – 04/2018
-- **Công ty**: LUSH ERA LLC
+- **Công ty**: Lush Era
 - **Khách hàng (Client)**: Các phòng khám đa khoa & Đơn vị dịch vụ y tế (Healthcare Sector)
 - **Quy mô đội ngũ (Team size)**: 5 thành viên
 - **Mô tả dự án (Project description)**: Ứng dụng web tư vấn y tế từ xa an toàn, bảo mật, kết nối trực tiếp bệnh nhân với đội ngũ bác sĩ chuyên khoa thông qua video và tin nhắn thời gian thực.
@@ -171,9 +171,9 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ## GIẢI THƯỞNG & THÀNH TÍCH (ACHIEVEMENTS & AWARDS)
 
-- **Q4/2025:** **Rising Star Award (CMC GLOBAL)** – Giải thưởng ghi nhận đóng góp xuất sắc và năng lực lãnh đạo kỹ thuật dự án nền tảng telemetry xe điện (EV).
-- **2023:** **Team of the Year (ICOMM TECH.JSC)** – Lãnh đạo đội ngũ kỹ thuật hoàn thành vượt mức tất cả các chỉ tiêu sản phẩm.
-- **2022:** **Outstanding Employee (ICOMM TECH.JSC)** – Nhân viên xuất sắc dẫn dắt nền tảng xử lý dữ liệu lớn trọng điểm.
+- **Q4/2025:** **Rising Star Award (CMC Global)** – Giải thưởng ghi nhận đóng góp xuất sắc và năng lực lãnh đạo kỹ thuật dự án nền tảng telemetry xe điện (EV).
+- **2023:** **Team of the Year (ICOMM Tech)** – Lãnh đạo đội ngũ kỹ thuật hoàn thành vượt mức tất cả các chỉ tiêu sản phẩm.
+- **2022:** **Outstanding Employee (ICOMM Tech)** – Nhân viên xuất sắc dẫn dắt nền tảng xử lý dữ liệu lớn trọng điểm.
 
 ---
 

@@ -54,7 +54,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ### [09/2024 – Present] High-Scale Web & Booking Portals – Theme Park Enterprise
 - **Timeline**: 09/2024 – Present
-- **Company**: CMC GLOBAL
+- **Company**: CMC Global
 - **Client**: Multinational Theme Park & Hospitality Enterprise (South Korea)
 - **Project description**: High-scale digital ecosystem for premier international amusement parks, encompassing high-traffic web portals & partner booking webviews, real-time attraction wait-time & reservation engines, and digital interactive park navigation.
 - **Team size**: 15+ engineers
@@ -70,7 +70,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ### [09/2024 – Present] Electric Vehicle (EV) Real-Time Telemetry & Fleet Monitoring Platform
 - **Timeline**: 09/2024 – Present
-- **Company**: CMC GLOBAL
+- **Company**: CMC Global
 - **Client**: Leading Automotive Manufacturer (Automotive Tech, IoT Integration)
 - **Team size**: 15+ engineers (3 squads)
 - **Project description**: Large-scale real-time telemetry dashboard platform for aggregating, monitoring, and analyzing telemetry and operational status for fleets of electric vehicles (EVs).
@@ -87,7 +87,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ### [05/2020 – 08/2024] Big Data Analytics & Interactive Intelligence Platform
 - **Timeline**: 05/2020 – 08/2024
-- **Company**: ICOMM TECH.JSC
+- **Company**: ICOMM Tech
 - **Client**: Government, Banking & Aviation Sectors
 - **Team size**: 15+ engineers
 - **Project description**: Multi-platform enterprise Big Data extraction and intelligence dashboard, delivering interactive data visualization, real-time reporting, and deep analytics under strict enterprise security constraints.
@@ -104,7 +104,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ### [12/2018 – 04/2020] High-Converting E-Commerce Storefront & Merchant Suite
 - **Timeline**: 12/2018 – 04/2020
-- **Company**: OPEN COMMERCE GROUP
+- **Company**: OpenCommerce Group
 - **Client**: Global E-commerce Merchants
 - **Team size**: 8–10 members
 - **Project description**: Ultra-fast e-commerce storefront platform and intelligent cross-selling engine integrated across Shopify, WooCommerce, and WordPress ecosystems.
@@ -120,7 +120,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ### [05/2018 – 12/2018] Enterprise Japanese Business Management Portal
 - **Timeline**: 05/2018 – 12/2018
-- **Company**: TDT ASIA JSC
+- **Company**: TDT Asia
 - **Client**: Japanese Small & Medium Enterprises (SMB Solutions – Japan Market)
 - **Team size**: 6–8 members
 - **Project description**: Enterprise Resource Planning (ERP) and business management web portal customized to meet the rigorous quality and UX standards of the Japanese corporate market.
@@ -135,7 +135,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ### [12/2016 – 04/2018] Responsive Real-time Telemedicine Web Application
 - **Timeline**: 12/2016 – 04/2018
-- **Company**: LUSH ERA LLC
+- **Company**: Lush Era
 - **Client**: Medical Clinics & Healthcare Service Providers
 - **Team size**: 5 members
 - **Project description**: Secure real-time telemedicine and remote healthcare consultation web application connecting patients with certified medical specialists via video and chat.
@@ -172,9 +172,9 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ## ACHIEVEMENTS & AWARDS
 
-- **Q4/2025:** **Rising Star Award (CMC GLOBAL)** – Recognized for exemplary technical leadership and high-impact delivery of the EV Real-Time Telemetry platform.
-- **2023:** **Team of the Year (ICOMM TECH.JSC)** – Leading the engineering organization to exceed all product delivery targets.
-- **2022:** **Outstanding Employee (ICOMM TECH.JSC)** – Awarded for spearheading the flagship Big Data platform.
+- **Q4/2025:** **Rising Star Award (CMC Global)** – Recognized for exemplary technical leadership and high-impact delivery of the EV Real-Time Telemetry platform.
+- **2023:** **Team of the Year (ICOMM Tech)** – Leading the engineering organization to exceed all product delivery targets.
+- **2022:** **Outstanding Employee (ICOMM Tech)** – Awarded for spearheading the flagship Big Data platform.
 
 ---
 
