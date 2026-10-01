@@ -424,7 +424,24 @@
       candidates.forEach(el => {
         const text = el.textContent.trim();
         if (!isLabel(el) && isHotTech(text)) {
-          el.classList.add('kw-magic');
+          el.classList.add(
+            'kw-magic',
+            'underline',
+            'decoration-zinc-400/60',
+            'dark:decoration-zinc-600/60',
+            'underline-offset-4',
+            'decoration-[1.5px]',
+            'hover:decoration-zinc-950',
+            'dark:hover:decoration-zinc-100',
+            '[&.kw-active]:decoration-zinc-950',
+            'dark:[&.kw-active]:decoration-zinc-50',
+            '[&.kw-active]:bg-zinc-200/50',
+            'dark:[&.kw-active]:bg-zinc-800/50',
+            'transition-all',
+            'duration-300',
+            'cursor-text',
+            'rounded-xs'
+          );
           keywords.push(el);
         }
       });
@@ -444,12 +461,9 @@
 
           setTimeout(() => {
             el.classList.add('kw-active');
-
-            const onEnd = () => {
+            setTimeout(() => {
               el.classList.remove('kw-active');
-              el.removeEventListener('animationend', onEnd);
-            };
-            el.addEventListener('animationend', onEnd, { once: true });
+            }, 800);
           }, delay);
         });
       }, {
@@ -465,11 +479,9 @@
         kw.addEventListener('mouseenter', () => {
           if (!kw.classList.contains('kw-active') && !kw.closest('.lens-dim')) {
             kw.classList.add('kw-active');
-            const onEnd = () => {
+            setTimeout(() => {
               kw.classList.remove('kw-active');
-              kw.removeEventListener('animationend', onEnd);
-            };
-            kw.addEventListener('animationend', onEnd, { once: true });
+            }, 800);
           }
         });
       });
@@ -478,17 +490,12 @@
     triggerHighlighted() {
       const highlighted = document.querySelectorAll('.lens-highlight .kw-magic, .lens-highlight.kw-magic');
       highlighted.forEach((el, idx) => {
-        const delay = Math.min(idx * 50, 300);
+        const delay = Math.min(idx * 40, 250);
         setTimeout(() => {
-          el.classList.remove('kw-active');
-          requestAnimationFrame(() => {
-            el.classList.add('kw-active');
-            const onEnd = () => {
-              el.classList.remove('kw-active');
-              el.removeEventListener('animationend', onEnd);
-            };
-            el.addEventListener('animationend', onEnd, { once: true });
-          });
+          el.classList.add('kw-active');
+          setTimeout(() => {
+            el.classList.remove('kw-active');
+          }, 800);
         }, delay);
       });
     }

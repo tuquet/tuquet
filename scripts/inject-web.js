@@ -332,7 +332,7 @@ function processTarget(target) {
   html = html.replace(/<html[^>]*>/i, `<html lang="${target.lang}" class="scroll-smooth bg-zinc-50 dark:bg-zinc-950">`);
 
   // Set standard Tailwind classes on <body> to ensure unified breakpoints across the layout
-  const bodyClasses = "max-w-[900px] m-0 p-4 md:my-9 md:mx-auto md:py-[44px] md:px-[52px] rounded-[10px] md:rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm md:shadow-lg transition-colors duration-200 text-base leading-relaxed tracking-tight";
+  const bodyClasses = "max-w-[900px] m-0 p-4 md:my-9 md:mx-auto md:py-[44px] md:px-[52px] rounded-[10px] md:rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm md:shadow-lg transition-colors duration-200 text-base leading-relaxed tracking-tight selection:bg-zinc-900 selection:text-white dark:selection:bg-zinc-100 dark:selection:text-zinc-900";
   html = html.replace(/<body[^>]*>/i, `<body class="${bodyClasses}">`);
 
   // Remove old charset meta if any

@@ -348,15 +348,8 @@ h3.lens-highlight {
   }
 
   .kw-magic {
+    text-decoration: none !important;
     background: none !important;
-    background-color: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
   }
 
   .project-heading {
@@ -374,100 +367,7 @@ h3.lens-highlight {
 }
 
 /* ==========================================================================
-   5. Magic Keyword Scroll-Reveal (Sophisticated Monochromatic Accent)
-   Zero Layout Shift (CLS = 0) & Gentle Low-Fatigue Contrast
-   ========================================================================== */
-.kw-magic {
-  display: inline;
-  position: relative;
-  box-sizing: border-box;
-  padding: 0 1px 1px 1px;
-  margin: 0;
-  font-weight: 600;
-  color: inherit;
-  background-color: transparent;
-  border-bottom: 1.5px solid rgba(161, 161, 170, 0.45); /* subtle zinc-400 underline */
-  border-radius: 2px;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  cursor: text;
-}
-
-html.dark .kw-magic {
-  color: inherit;
-  border-bottom-color: rgba(113, 113, 122, 0.55); /* subtle zinc-500 underline in dark mode */
-}
-
-/* Hover feedback: gentle, calm background tint, zero layout shift */
-.kw-magic:hover {
-  background-color: rgba(244, 244, 245, 0.9); /* zinc-100 */
-  border-bottom-color: #18181b;               /* zinc-900 */
-}
-
-html.dark .kw-magic:hover {
-  background-color: rgba(39, 39, 42, 0.8);     /* zinc-800 */
-  border-bottom-color: #f4f4f5;               /* zinc-100 */
-}
-
-/* Subtle, eye-friendly reveal sweep (NO layout shift, NO harsh flashing) */
-.kw-magic.kw-active {
-  animation: kw-gentle-sweep-light 0.85s cubic-bezier(0.25, 1, 0.5, 1) both;
-}
-
-@keyframes kw-gentle-sweep-light {
-  0% {
-    background-color: transparent;
-    border-bottom-color: rgba(161, 161, 170, 0.45);
-  }
-  35% {
-    /* Peak gentle wash: soft tone, zero layout shift, non-intrusive */
-    background-color: rgba(228, 228, 231, 0.65); /* zinc-200 */
-    border-bottom-color: #18181b;                 /* zinc-900 */
-  }
-  100% {
-    background-color: transparent;
-    border-bottom-color: rgba(161, 161, 170, 0.45);
-  }
-}
-
-/* Dark Mode gentle reveal */
-html.dark .kw-magic.kw-active {
-  animation: kw-gentle-sweep-dark 0.85s cubic-bezier(0.25, 1, 0.5, 1) both;
-}
-
-@keyframes kw-gentle-sweep-dark {
-  0% {
-    background-color: transparent;
-    border-bottom-color: rgba(113, 113, 122, 0.55);
-  }
-  35% {
-    background-color: rgba(63, 63, 70, 0.5);   /* zinc-700 */
-    border-bottom-color: #f4f4f5;              /* zinc-100 */
-  }
-  100% {
-    background-color: transparent;
-    border-bottom-color: rgba(113, 113, 122, 0.55);
-  }
-}
-
-/* Lens Dim Protection */
-.lens-dim .kw-magic,
-.lens-dim.kw-magic {
-  animation: none !important;
-  background-color: transparent !important;
-  border-bottom-color: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Accessibility: respect user preferences for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .kw-magic {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* ==========================================================================
-   6. Global Unified Custom Scrollbars (Monochromatic Zinc / Slate)
+   5. Global Unified Custom Scrollbars (Monochromatic Zinc / Slate)
    ========================================================================== */
 /* Modern W3C Standard Scrollbars (Firefox & Modern Standards) */
 html {
