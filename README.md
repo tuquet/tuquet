@@ -52,16 +52,16 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ## FEATURED PROJECT LIST
 
-### (09/2024 – Present) Large-Scale Theme Park & Hospitality Ecosystem – High-Traffic Web & Mobile Portals
+### (09/2024 – Present) High-Scale Web & Booking Portals – Theme Park Enterprise
 - **Timeline**: 09/2024 – Present
 - **Company**: CMC GLOBAL
 - **Client**: Multinational Theme Park & Hospitality Enterprise (South Korea)
-- **Project description**: High-scale multi-runtime digital ecosystem for premier international amusement parks, encompassing high-traffic web & webview portals, real-time attraction wait-time & reservation engines, and digital interactive park navigation.
+- **Project description**: High-scale digital ecosystem for premier international amusement parks, encompassing high-traffic web portals & partner booking webviews, real-time attraction wait-time & reservation engines, and digital interactive park navigation.
 - **Team size**: 15+ engineers
 - **Responsibilities**:
-  - Participated as **Core Frontend Maintainer**, maintaining, refactoring, and delivering feature enhancements for Park Visitor Web Portals and Partner Booking WebViews strictly adhering to client functional specifications and technical docs.
+  - Served as **Lead Frontend Engineer**, steering the architectural refactoring, component modularity, and feature delivery for high-traffic Park Visitor Web Portals and Partner Booking WebViews adhering to client enterprise standards.
   - Implemented responsive Web and mobile-embedded WebView user interfaces using React, Vite, and Tailwind CSS, ensuring UI fidelity with design documentation and smooth interactions.
-  - Configured multi-runtime local developer workflows and mock data synchronization to streamline testing between Spring Boot backend services and React/React Native frontend clients.
+  - Configured streamlined local developer workflows and mock data synchronization between Spring Boot backend services and React / React Native frontend clients.
   - Performed continuous code maintenance, bug fixes, and performance tuning to guarantee cross-browser compatibility and responsive UX across mobile WebViews.
 - **Programming Language**: TypeScript, JavaScript, Java
 - **Framework**: React, Vite, React Native, Tailwind CSS, Spring Boot
@@ -77,12 +77,12 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Responsibilities**:
   - Served as **Technical Project Lead**, establishing overall technical architecture, engineering standards, and real-time telemetry streaming across 3 squads (15+ engineers) processing millions of daily EV operational events.
   - Architected a **Micro-frontends** architecture and standardized a shared enterprise **Design System**, ensuring visual consistency and decoupled release cycles across squads.
-  - Optimized real-time telemetry streaming via WebSockets by implementing **Virtual Scrolling, Canvas Data Charting, and Debounced/Throttled State Updates**, sustaining a continuous 60fps rendering rate under high telemetry volume without blocking the Main Thread.
+  - Optimized real-time telemetry streaming via WebSockets by implementing **Virtual Scrolling, Canvas Data Charting, and Debounced/Throttled State Updates**, while orchestrating high-throughput BFF aggregation services in **Rust** to sustain a continuous 60fps rendering rate under high telemetry volume without blocking the Main Thread.
   - Formulated a comprehensive **Core Web Vitals** strategy: orchestrated route-based and component-based dynamic code splitting, reducing INP to < 150ms and maintaining LCP < 2.0s across all mission-critical monitor views.
   - Introduced **AI-augmented Frontend SDLC** practices (LLM UI generation, automated visual regression testing), elevating frontend feature delivery velocity by 25%.
 - **Programming Language**: TypeScript, JavaScript, HTML5, CSS3, Rust (BFF tooling)
 - **Framework**: React (Concurrent Features), Next.js, Tailwind CSS, Zustand, Node.js
-- **Platform, server and database**: Azure Cloud, Docker, Kubernetes, WebSocket, PostgreSQL, Redis
+- **Platform, server and database**: Azure Cloud, Docker, Kubernetes, WebSockets, PostgreSQL, Redis
 - **Methodology**: Agile Scrum
 
 ### (05/2020 – 08/2024) Big Data Analytics & Interactive Intelligence Platform
@@ -153,17 +153,17 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Company**: Independent Product Labs (Open-Source R&D)
 - **Client**: Self-initiated Open-Source Developer Tooling & Global Automation Engineers
 - **Team size**: Principal Architect (Solo Project)
-- **Project description**: High-performance open-source developer tooling ecosystem and distributed browser automation suite consisting of a unified master CLI (`tuquet`) in Rust, a visual workflow web studio in Vue.js, a supervised background runner daemon (`tuquet runner`), and cloud coordination services.
+- **Project description**: High-performance open-source developer tooling ecosystem and distributed browser automation suite consisting of a unified master CLI (`tuquet`) in Rust, a visual workflow studio & cross-platform desktop suite (Vue.js / Nuxt, Electron JS), a supervised background runner daemon (`tuquet runner`), and cloud coordination services.
 - **Responsibilities**:
   - Acted as **Creator & Principal Architect**, architecting the end-to-end multi-runtime ecosystem spanning systems programming in Rust, visual web studio in Vue.js, and distributed task supervision.
   - Engineered the master CLI (`tuquet`) in **Rust**: built an interactive scoped shell with hierarchical state management, rustyline-based smart tab-completion, ANSI color styling, and sub-command delegation (`automa`, `runner`, `cloud`, `browser`).
-  - Developed the visual automation workflow studio with **Vue.js Ecosystem & TypeScript**: designed an interactive node-graph canvas (Drawflow), custom automation blocks, and a real-time execution inspector with instant visual feedback.
+  - Developed the visual automation studio & cross-platform desktop suite with **Vue.js (Nuxt), Electron JS & TypeScript**: designed an interactive node-graph canvas (Drawflow), custom automation blocks, secure local IPC bridges, and a real-time execution inspector with instant visual feedback.
   - Architected a zero-leakage process supervision engine in the runner daemon (`tuquet runner`) leveraging Win32 Job Objects to eliminate orphan Chromium zombie processes and strictly isolate CPU/RAM.
   - Engineered a high-throughput Medallion data crawler pipeline (Bronze gzip BLOB storage -> Silver Rust deduplication & HTML sanitizer -> Gold Supabase synchronization).
   - Standardized local workspace configurations into a Single Source of Truth (`~/.tuquet/`), eliminating configuration drift across CLI, extensions, and runner runtimes.
   - Automated binary builds, multi-platform packaging, and distribution through an official Windows Scoop bucket (`tuquet/scoop-bucket`).
 - **Programming Language**: Rust, TypeScript, JavaScript, SQL
-- **Framework**: Vue.js Ecosystem, Tailwind CSS, Drawflow, Tokio (Rust Async), Node.js
+- **Framework**: Vue.js Ecosystem (Nuxt, Drawflow), Electron JS, Tailwind CSS, Tokio (Rust Async), Node.js
 - **Platform, server and database**: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions
 - **Methodology**: Agile Kanban
 

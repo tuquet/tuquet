@@ -38,7 +38,7 @@ const TARGETS = [
     copilotSubtitle: "Distributed systems, architecture & role fit",
     copilotTeaserTitle: "Toby AI Assistant",
     copilotTeaserDesc: "Ask about distributed systems, 15+ engineer leadership, or role suitability.",
-    welcomeMsg: "<span id=\"copilot-greeting-text\">Hello.</span> I am Toby's AI assistant. Ask any question regarding his 8+ years leading distributed systems, technical architecture, or role suitability.<br/><br/><strong>Topics you can explore:</strong><br/>• <strong>Executive Summary:</strong> Core strengths & leadership overview<br/>• <strong>Role Fit Check:</strong> Suitability for Tech Lead, Architect, or Senior Engineer<br/>• <strong>Real-Time Telemetry (EV):</strong> 15+ engineers, real-time telemetry streaming<br/>• <strong>High-Traffic Portals:</strong> Multi-runtime theme park web ecosystem<br/>• <strong>Tuquet Engine:</strong> Zero-leakage process supervision in Rust<br/>• <strong>Tech Stack & Contact:</strong> Direct interview scheduling",
+    welcomeMsg: "<span id=\"copilot-greeting-text\">Hello.</span> I am Toby's AI assistant. Ask any question regarding his 8+ years leading distributed systems, technical architecture, or role suitability.<br/><br/><strong>Topics you can explore:</strong><br/>• <strong>Executive Summary:</strong> Core strengths & leadership overview<br/>• <strong>Role Fit Check:</strong> Suitability for Tech Lead, Architect, or Senior Engineer<br/>• <strong>Real-Time Telemetry (EV):</strong> 15+ engineers, real-time telemetry streaming<br/>• <strong>High-Scale Web & Booking:</strong> High-traffic web & webview portals for premier theme park enterprise<br/>• <strong>Tuquet Engine:</strong> Zero-leakage process supervision in Rust<br/>• <strong>Tech Stack & Contact:</strong> Direct interview scheduling",
     themeBtnTitle: 'Toggle Dark / Light Mode',
     lenses: [
       { key: 'all', text: 'All' },
@@ -50,7 +50,7 @@ const TARGETS = [
       { text: 'Executive Summary', q: 'summary' },
       { text: 'Role Fit & Scope', q: 'fit' },
       { text: 'Real-Time Telemetry (EV)', q: 'telemetry' },
-      { text: 'High-Traffic Web Portals', q: 'portal' },
+      { text: 'High-Scale Web & Booking', q: 'portal' },
       { text: 'Rust Process Engine', q: 'tuquet' },
       { text: 'Core Tech Stack', q: 'stack' },
       { text: 'Contact & Availability', q: 'contact' }
@@ -83,7 +83,7 @@ const TARGETS = [
     copilotSubtitle: "Kiến trúc hệ thống, kinh nghiệm lead & độ phù hợp",
     copilotTeaserTitle: "Trợ lý AI Toby",
     copilotTeaserDesc: "Tra cứu nhanh về hệ thống phân tán, lead 15+ kỹ sư và độ phù hợp vị trí.",
-    welcomeMsg: "<span id=\"copilot-greeting-text\">Xin chào.</span> Tôi là trợ lý AI của Toby Nguyen. Bạn có thể tra cứu nhanh về 8+ năm kinh nghiệm kiến trúc hệ thống phân tán, năng lực lãnh đạo kỹ thuật hoặc độ phù hợp vị trí.<br/><br/><strong>Các chủ đề gợi ý:</strong><br/>• <strong>Tóm tắt năng lực:</strong> Tổng quan thế mạnh và kinh nghiệm điều phối<br/>• <strong>Độ phù hợp vị trí:</strong> Đánh giá cho vai trò Tech Lead, Architect hoặc Senior Engineer<br/>• <strong>Telemetry thời gian thực (EV):</strong> Quản lý 15+ kỹ sư, streaming WebSockets<br/>• <strong>Cổng thông tin lưu lượng cao:</strong> Hệ sinh thái giải trí đa runtime<br/>• <strong>Kiến trúc Tuquet:</strong> Giám sát tiến trình không rò rỉ bằng Rust & Win32<br/>• <strong>Kỹ năng & Liên hệ:</strong> Lên lịch phỏng vấn và trao đổi trực tiếp",
+    welcomeMsg: "<span id=\"copilot-greeting-text\">Xin chào.</span> Tôi là trợ lý AI của Toby Nguyen. Bạn có thể tra cứu nhanh về 8+ năm kinh nghiệm kiến trúc hệ thống phân tán, năng lực lãnh đạo kỹ thuật hoặc độ phù hợp vị trí.<br/><br/><strong>Các chủ đề gợi ý:</strong><br/>• <strong>Tóm tắt năng lực:</strong> Tổng quan thế mạnh và kinh nghiệm điều phối<br/>• <strong>Độ phù hợp vị trí:</strong> Đánh giá cho vai trò Tech Lead, Architect hoặc Senior Engineer<br/>• <strong>Telemetry thời gian thực (EV):</strong> Quản lý 15+ kỹ sư, streaming WebSockets<br/>• <strong>Nền tảng Web & Đặt vé Trực tuyến:</strong> Hệ thống Web Portal & WebView cho tập đoàn công viên giải trí quốc tế<br/>• <strong>Kiến trúc Tuquet:</strong> Giám sát tiến trình không rò rỉ bằng Rust & Win32<br/>• <strong>Kỹ năng & Liên hệ:</strong> Lên lịch phỏng vấn và trao đổi trực tiếp",
     themeBtnTitle: 'Chuyển đổi giao diện Sáng / Tối',
     lenses: [
       { key: 'all', text: 'Tất cả' },
@@ -95,7 +95,7 @@ const TARGETS = [
       { text: 'Tóm tắt năng lực', q: 'summary' },
       { text: 'Độ phù hợp vị trí', q: 'fit' },
       { text: 'Telemetry thời gian thực (EV)', q: 'telemetry' },
-      { text: 'Cổng thông tin lưu lượng cao', q: 'portal' },
+      { text: 'Nền tảng Web & Đặt vé', q: 'portal' },
       { text: 'Kiến trúc Tuquet & Rust', q: 'tuquet' },
       { text: 'Hệ thống công nghệ', q: 'stack' },
       { text: 'Liên hệ phỏng vấn', q: 'contact' }

@@ -435,8 +435,8 @@
         answer: '**Tuquet Distributed Automation & Crawler Pipeline:**\n- Toby engineered a zero-leakage process supervision core using **Windows Win32 Job Objects** with IO completion ports, completely eliminating zombie Chromium processes.\n- Designed a 3-tier **Medallion architecture** (Bronze raw BLOB gzip -> Silver Rust sanitizer & deduplicator -> Gold Supabase sync) with zero-cost local caching.\n- Authored the CLI (`tuquet`) in Rust with rustyline auto-completion, distributed via official Windows Scoop bucket.'
       },
       {
-        keys: ['portal', 'theme park', 'booking', 'webview', 'hospitality'],
-        answer: '**Large-Scale Theme Park & Hospitality Ecosystem (CMC Global):**\n- Toby participated as **Core Frontend Maintainer**, building and refactoring high-traffic web portals & partner booking WebViews for a premier multinational theme park enterprise.\n- Implemented responsive mobile-embedded WebViews in React, Vite, and Tailwind CSS adhering strictly to client specifications.\n- Configured multi-runtime local developer workflows and mock data synchronization between Spring Boot backends and React/React Native clients.'
+        keys: ['portal', 'theme park', 'booking', 'webview', 'hospitality', 'high-scale web', 'high-traffic'],
+        answer: '**High-Scale Web & Booking Portals – Theme Park Enterprise (CMC Global):**\n- Toby served as **Lead Frontend Engineer**, building, refactoring, and delivering feature enhancements for high-traffic Visitor Web Portals and Partner Booking WebViews for a premier international theme park enterprise.\n- Engineered responsive, pixel-perfect mobile-embedded WebViews in React, Vite, and Tailwind CSS adhering strictly to client design specs.\n- Established seamless local developer workflows and mock data synchronization between Spring Boot backend services and React/React Native clients.'
       },
       {
         keys: ['team', 'squad', 'mentoring', 'management', 'culture', '15+'],
@@ -482,8 +482,8 @@
         answer: '**Dự án Tuquet & Sửa lỗi Zombie Process:**\n- Toby thiết kế lõi giám sát tiến trình zero-leakage sử dụng **Windows Win32 Job Objects** và IO completion ports, loại bỏ triệt để hiện tượng Chromium zombie process.\n- Xây dựng kiến trúc **Medallion 3 tầng** (Bronze raw BLOB gzip -> Silver Rust sanitizer & deduplicator -> Gold Supabase sync) với bộ nhớ đệm cục bộ zero-cost.\n- Viết CLI chính (`tuquet`) bằng Rust với auto-completion thông minh, phân phối qua Scoop bucket chính thức trên Windows.'
       },
       {
-        keys: ['cổng thông tin', 'portal', 'công viên', 'giải trí', 'webview', 'đặt vé'],
-        answer: '**Hệ sinh thái Cổng dịch vụ Công viên Giải trí Đa quốc gia (CMC Global):**\n- Toby đảm nhiệm vai trò **Core Frontend Maintainer**, bảo trì, tối ưu và phát triển Cổng dịch vụ Web Khách tham quan & WebView Đặt vé Đối tác cho tập đoàn vui chơi giải trí quốc tế.\n- Xây dựng giao diện responsive và WebView nhúng bằng React, Vite, Tailwind CSS chuẩn pixel-perfect.\n- Thiết lập quy trình phát triển đa runtime đồng bộ giữa Spring Boot backend và React/React Native frontend.'
+        keys: ['nền tảng web', 'đặt vé', 'web & đặt vé', 'portal', 'công viên', 'giải trí', 'webview', 'lưu lượng cao', 'bán vé'],
+        answer: '**Nền tảng Web & Đặt vé Trực tuyến – Công viên Giải trí Quốc tế (CMC Global):**\n- Toby đảm nhiệm vai trò **Lead Frontend Engineer**, phát triển, bảo trì và tối ưu Cổng dịch vụ Web Khách tham quan & WebView Đặt vé Đối tác cho tập đoàn công viên giải trí hàng đầu.\n- Xây dựng giao diện responsive và WebView nhúng di động bằng React, Vite, Tailwind CSS đạt chuẩn pixel-perfect.\n- Thiết lập quy trình phát triển và cơ chế mock data đồng bộ giữa backend Spring Boot và giao diện React / React Native.'
       },
       {
         keys: ['quản lý', 'team', 'squad', 'mentoring', 'lãnh đạo', 'kinh nghiệm', '15+', 'devs'],

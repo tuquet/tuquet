@@ -52,16 +52,16 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ## DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)
 
-### (09/2024 – Hiện tại) Hệ sinh thái Cổng dịch vụ Công viên Giải trí Đa quốc gia
+### (09/2024 – Hiện tại) Nền tảng Web & Đặt vé Trực tuyến – Công viên Giải trí Quốc tế
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
 - **Công ty**: CMC GLOBAL
 - **Khách hàng (Client)**: Tập đoàn Vui chơi Giải trí & Du lịch Đa quốc gia (Hàn Quốc)
 - **Quy mô đội ngũ (Team size)**: 15+ kỹ sư
-- **Mô tả dự án (Project description)**: Hệ sinh thái đa nền tảng quy mô lớn phục vụ các đại công viên giải trí quốc tế, bao gồm các cổng web & webview portal lưu lượng truy cập cao, hệ thống tra cứu thời gian chờ (wait times), đặt chỗ (reservations) thời gian thực và bản đồ số tương tác.
+- **Mô tả dự án (Project description)**: Hệ thống dịch vụ trực tuyến quy mô lớn phục vụ các đại công viên giải trí quốc tế, bao gồm Web Portal và WebView đặt vé lưu lượng truy cập cao, hệ thống tra cứu thời gian chờ điểm tham quan, đặt chỗ thời gian thực và bản đồ số tương tác.
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
-  - Tham gia với vai trò **Core Frontend Maintainer**, bảo trì, tái cấu trúc (refactor) và phát triển các tính năng nâng cấp cho Cổng dịch vụ Web Khách tham quan & WebView Đặt vé Đối tác, bám sát nghiêm ngặt tài liệu đặc tả kỹ thuật và yêu cầu chức năng của khách hàng.
+  - Đảm nhiệm vai trò **Lead Frontend Engineer**, trực tiếp dẫn dắt quá trình tái cấu trúc kiến trúc (refactoring), chuẩn hóa component và phát triển tính năng cho các Cổng dịch vụ Web Khách tham quan và WebView Đối tác theo tiêu chuẩn khắt khe của khách hàng.
   - Xây dựng giao diện Web và WebView nhúng di động đáp ứng (RWD) bằng React, Vite và Tailwind CSS, bảo đảm độ chính xác thiết kế pixel-perfect và trải nghiệm tương tác mượt mà.
-  - Cấu hình môi trường phát triển đa runtime (Multi-Runtime Local Workflow) và cơ chế mock data giúp đồng bộ hóa kiểm thử cục bộ giữa các dịch vụ backend Spring Boot và giao diện frontend React/React Native.
+  - Cấu hình môi trường phát triển cục bộ và cơ chế mock data đồng bộ kiểm thử giữa các dịch vụ backend Spring Boot và giao diện frontend React / React Native.
   - Thực hiện bảo trì mã nguồn liên tục, xử lý các lỗi UI/UX trọng yếu và tinh chỉnh hiệu năng để bảo đảm khả năng tương thích mượt mà trên các WebView iOS và Android.
 - **Ngôn ngữ lập trình (Programming Language)**: TypeScript, JavaScript, Java
 - **Framework**: React, Vite, React Native, Tailwind CSS, Spring Boot
@@ -77,12 +77,12 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
   - Đảm nhiệm vai trò **Technical Project Lead**, thiết lập toàn diện kiến trúc kỹ thuật, chuẩn mực kỹ nghệ và luồng truyền phát dữ liệu đo xa thời gian thực trên 3 squads (15+ kỹ sư), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày.
   - Thiết kế kiến trúc **Micro-frontends** và chuẩn hóa hệ thống **Design System** cấp doanh nghiệp, đảm bảo tính nhất quán giao diện và giải phóng chu kỳ phát hành độc lập giữa các squad.
-  - Tối ưu hóa luồng truyền phát dữ liệu đo xa thời gian thực qua WebSockets bằng kỹ thuật **Virtual Scrolling, Canvas Data Charting, và Debounced/Throttled State Updates**, duy trì tốc độ hiển thị liên tục 60fps mượt mà dưới tải dữ liệu lớn mà không nghẽn Main Thread.
+  - Tối ưu hóa luồng truyền phát dữ liệu đo xa thời gian thực qua WebSockets bằng kỹ thuật **Virtual Scrolling, Canvas Data Charting, và Debounced/Throttled State Updates**, kết hợp xây dựng công cụ tổng hợp ở tầng BFF bằng **Rust** giúp duy trì tốc độ hiển thị liên tục 60fps mượt mà dưới tải dữ liệu lớn mà không nghẽn Main Thread.
   - Thiết lập chiến lược tối ưu hóa **Core Web Vitals** toàn diện: thực hiện dynamic code splitting theo route và component, hạ INP xuống < 150ms và giữ vững LCP < 2.0s trên tất cả các màn hình giám sát trọng yếu.
   - Tiên phong đưa quy trình **AI-augmented Frontend SDLC** vào thực tế (sinh UI qua LLM, kiểm thử hồi quy trực quan tự động), nâng cao 25% tốc độ bàn giao tính năng của đội ngũ frontend.
 - **Ngôn ngữ lập trình (Programming Language)**: TypeScript, JavaScript, HTML5, CSS3, Rust (công cụ hỗ trợ BFF)
 - **Framework**: React (Concurrent Features), Next.js, Tailwind CSS, Zustand, Node.js
-- **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Azure Cloud, Docker, Kubernetes, WebSocket, PostgreSQL, Redis
+- **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Azure Cloud, Docker, Kubernetes, WebSockets, PostgreSQL, Redis
 - **Phương pháp phát triển (Methodology)**: Agile Scrum
 
 ### (05/2020 – 08/2024) Nền tảng Báo cáo & Trực quan hóa Dữ liệu Lớn Thông minh
@@ -153,17 +153,17 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Công ty**: Dự án R&D độc lập
 - **Khách hàng (Client)**: Dự án công cụ lập trình mã nguồn mở & Kỹ sư tự động hóa toàn cầu
 - **Quy mô đội ngũ (Team size)**: Tác giả & Kiến trúc sư trưởng (Dự án độc lập)
-- **Mô tả dự án (Project description)**: Hệ sinh thái công cụ phát triển mã nguồn mở hiệu năng cao và bộ giải pháp tự động hóa trình duyệt phân tán gồm CLI điều phối chính (`tuquet`) viết bằng Rust, web studio thiết kế quy trình trực quan bằng Vue.js, tiến trình nền daemon giám sát tác vụ (`tuquet runner`), và dịch vụ điều phối đám mây (Cloud).
+- **Mô tả dự án (Project description)**: Hệ sinh thái công cụ phát triển mã nguồn mở hiệu năng cao và bộ giải pháp tự động hóa trình duyệt phân tán gồm CLI điều phối chính (`tuquet`) viết bằng Rust, web studio & ứng dụng desktop thiết kế quy trình trực quan (Vue.js / Nuxt, Electron JS), tiến trình nền daemon giám sát tác vụ (`tuquet runner`), và dịch vụ điều phối đám mây (Cloud).
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
   - Đảm nhiệm vai trò **Creator & Principal Architect**, thiết kế toàn diện kiến trúc hệ sinh thái đa runtime từ lập trình hệ thống bằng Rust, web studio trực quan bằng Vue.js, đến giám sát tác vụ phân tán.
   - Phát triển CLI chính (`tuquet`) bằng **Rust**: xây dựng interactive shell phân cấp với rustyline tự động hoàn thành thông minh, định dạng màu sắc ANSI, và điều phối các lệnh con (`automa`, `runner`, `cloud`, `browser`).
-  - Xây dựng web studio thiết kế quy trình tự động hóa với **Vue.js & TypeScript**: thiết kế canvas dạng node-graph tương tác (Drawflow), các khối tự động hóa tùy chỉnh, và bộ theo dõi thực thi thời gian thực.
+  - Xây dựng web studio trực quan & ứng dụng desktop với **Vue.js (Nuxt), Electron JS & TypeScript**: thiết kế canvas dạng node-graph tương tác (Drawflow), các khối tự động hóa tùy chỉnh, cơ chế cầu nối IPC an toàn và bộ theo dõi thực thi thời gian thực.
   - Thiết kế kiến trúc giám sát tiến trình không rò rỉ (Zero-Leakage Supervision) cho runner daemon (`tuquet runner`) tận dụng Win32 Job Objects để triệt tiêu hoàn toàn tiến trình Chromium zombie và cô lập CPU/RAM an toàn.
   - Xây dựng pipeline dữ liệu Medallion hiệu năng cao (Bronze raw BLOB gzip -> Silver Rust deduplicator & HTML sanitizer -> Gold Supabase sync).
   - Chuẩn hóa cấu trúc thư mục cấu hình cục bộ thành Nguồn Chân Lý Duy Nhất (Single Source of Truth: `~/.tuquet/`), loại bỏ hoàn toàn tình trạng phân mảnh cấu hình giữa CLI, extensions và runner runtime.
   - Tự động hóa quy trình đóng gói đa nền tảng và phân phối thông qua Scoop bucket chính thức trên Windows (`tuquet/scoop-bucket`).
 - **Ngôn ngữ lập trình (Programming Language)**: Rust, TypeScript, JavaScript, SQL
-- **Framework**: Vue.js Ecosystem, Tailwind CSS, Drawflow, Tokio (Rust Async), Node.js
+- **Framework**: Vue.js Ecosystem (Nuxt, Drawflow), Electron JS, Tailwind CSS, Tokio (Rust Async), Node.js
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions
 - **Phương pháp phát triển (Methodology)**: Agile Kanban
 
