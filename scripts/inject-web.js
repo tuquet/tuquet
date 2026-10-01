@@ -26,7 +26,7 @@ const TARGETS = [
     personName: 'Toby Nguyen (Nguyễn Đình Tú)',
     title: 'Toby Nguyen (Nguyễn Đình Tú) | Technical Project Lead & Senior Software Engineer',
     desc: 'Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, high-scale web apps, and AI-augmented workflows.',
-    keywords: 'Toby Nguyen, Nguyen Dinh Tu, Technical Lead, Senior Software Engineer, Distributed Systems, Rust, Tokio, Java, Spring Boot, Node.js, React, Next.js, AI Workflows, Digital Twin, Real-Time Telemetry, Tuquet',
+    keywords: 'Toby Nguyen, Nguyen Dinh Tu, Technical Lead, Senior Software Engineer, Distributed Systems, Rust, Tokio, Java, Spring Boot, Node.js, React, Next.js, AI Workflows, EV Fleet Monitoring, Real-Time Telemetry, Tuquet',
     skipText: 'Skip to main content',
     downloadLabel: 'Download Resume',
     downloadHeader: 'Export Formats',
@@ -126,9 +126,9 @@ function processTarget(target) {
   html = html.replace(/\s*\*<\/strong>/g, '</strong>');
 
   // Wrap all tables in a responsive 100% width container if not already wrapped
-  html = html.replace(/<div class="table-container\b[^>]*>/gi, '<div class="table-container w-full my-4">');
+  html = html.replace(/<div class="table-container\b[^>]*>/gi, '<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible">');
   if (!html.includes('class="table-container"')) {
-    html = html.replace(/<table\b([^>]*)>/gi, '<div class="table-container w-full my-4"><table$1>');
+    html = html.replace(/<table\b([^>]*)>/gi, '<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table$1>');
     html = html.replace(/<\/table>/gi, '</table></div>');
   }
 
@@ -136,7 +136,7 @@ function processTarget(target) {
   html = html.replace(/(<h3>\s*\[(.*?)\]\s*(.*?)<\/h3>)([\s\S]*?)(?=(?:<h3>|<hr\b|<h2>|$))/gi, (match, h3Tag, date, title, restOfContent) => {
     const cleanDate = date.trim();
     return `<section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="${cleanDate}">[${cleanDate}] ${title}</h3>${restOfContent}
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="${cleanDate}">[${cleanDate}] ${title}</h3>${restOfContent}
 </section>\n`;
   });
 
@@ -349,8 +349,8 @@ function processTarget(target) {
   const topBarHtml = `
 <a href="#main-content" class="skip-to-content">${target.skipText}</a>
 <div id="reading-progress"></div>
-<header class="web-top-bar flex flex-wrap items-center justify-between gap-2.5 mb-6 text-xs transition-colors" role="banner">
-  <nav class="nav-left order-1 flex items-center" aria-label="Language">
+<header class="web-top-bar sticky top-0 md:static z-40 -mx-4 -mt-4 md:m-0 p-4 pb-2.5 md:p-0 mb-5 md:mb-6 bg-white dark:bg-zinc-900 md:bg-transparent md:dark:bg-transparent border-b border-transparent md:border-b-0 transition-all flex flex-wrap items-center justify-between gap-2.5 text-xs" role="banner">
+  <nav class="nav-left order-1 flex items-center md:!flex" aria-label="Language">
     <div class="lang-switch inline-flex items-center p-0.5 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 rounded-lg text-xs md:text-[13px] font-medium shadow-xs">
       ${target.lang === 'en' 
         ? `<span class="px-2 py-0.5 rounded-md bg-white dark:bg-zinc-700 text-zinc-950 dark:text-white font-semibold shadow-xs">EN</span>
@@ -360,12 +360,12 @@ function processTarget(target) {
       }
     </div>
   </nav>
-  <nav class="nav-center order-3 md:order-2 w-full md:w-auto mt-2 md:mt-0 flex justify-center" aria-label="Lens Filter">
-    <div class="lens-group flex flex-wrap items-center justify-center gap-1.5 md:gap-2" role="group">
+  <nav class="nav-center order-3 md:order-2 w-full md:w-auto mt-1.5 md:mt-0 flex justify-center overflow-x-auto md:overflow-x-visible no-scrollbar" aria-label="Lens Filter">
+    <div class="lens-group flex flex-nowrap md:flex-wrap items-center justify-center gap-1.5 md:gap-2 min-w-max md:min-w-0 px-1 py-0.5 md:p-0 mx-auto" role="group">
       ${lensButtonsHtml}
     </div>
   </nav>
-  <div class="nav-right order-2 md:order-3 flex items-center gap-2">
+  <div class="nav-right order-2 md:order-3 flex items-center gap-2 md:!flex">
     <button id="theme-toggle" class="btn-theme w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all cursor-pointer shadow-xs" aria-label="${target.themeBtnTitle}" title="${target.themeBtnTitle}">
       <svg class="w-3.5 h-3.5 md:w-4 md:h-4 theme-icon-moon dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -419,11 +419,11 @@ function processTarget(target) {
 
   // 4. Inject Semantic H1 Heading and Profile Avatar (Core Web Vitals & SEO)
   // Convert strong name element into semantic H1
-  html = html.replace(/<strong style="font-size:1\.35em">(.*?)<\/strong>/gi, '<h1 class="profile-name">$1</h1>');
+  html = html.replace(/<strong style="font-size:1\.35em">(.*?)<\/strong>/gi, '<h1 class="profile-name text-[26px] md:text-[32px] leading-tight font-bold tracking-tight text-zinc-900 dark:text-zinc-100">$1</h1>');
 
   const avatarHtml = `<div class="avatar-container flex justify-center my-3 md:my-4"><img src="https://avatars.githubusercontent.com/u/20990824?v=4" alt="${target.personName} Profile Avatar" width="96" height="96" loading="eager" decoding="async" class="profile-avatar w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-zinc-200 dark:border-zinc-800 shadow-md object-cover hover:scale-105 transition-transform duration-200"></div>`;
   if (!html.includes('class="profile-avatar"')) {
-    html = html.replace(/(<div align="center">\s*)(<h1 class="profile-name">|<strong style="font-size:1\.35em">)/i, `$1${avatarHtml}\n\t$2`);
+    html = html.replace(/(<div align="center">\s*)(<h1 class="profile-name\b[^>]*>|<strong style="font-size:1\.35em">)/i, `$1${avatarHtml}\n\t$2`);
   } else {
     // Ensure avatar has explicit dimensions and alt
     html = html.replace(/<img\s+src="([^"]*avatars\.githubusercontent[^"]*)"\s+alt="[^"]*"\s+class="profile-avatar\b([^>]*)>/gi,
@@ -457,7 +457,7 @@ function processTarget(target) {
   </button>
 </div>
 
-<div id="copilot-panel" class="copilot-panel fixed bottom-16 md:bottom-20 right-4 md:right-6 w-[calc(100vw-32px)] md:w-[390px] h-[520px] max-h-[calc(100vh-100px)] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden opacity-0 pointer-events-none transition-all duration-150 scale-95 translate-y-2" role="dialog" aria-label="${target.copilotHeaderTitle}">
+<div id="copilot-panel" class="copilot-panel fixed bottom-[72px] md:bottom-20 right-4 md:right-6 w-[calc(100vw-32px)] md:w-[390px] h-[calc(100vh-90px)] md:h-[520px] max-h-[calc(100vh-90px)] md:max-h-[calc(100vh-100px)] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden opacity-0 pointer-events-none transition-all duration-150 scale-95 translate-y-2" role="dialog" aria-label="${target.copilotHeaderTitle}">
   <div class="copilot-header shrink-0 flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50">
     <div class="flex items-center gap-2">
       <svg class="w-4 h-4 text-zinc-700 dark:text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

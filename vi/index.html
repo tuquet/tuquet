@@ -305,22 +305,22 @@ pre code {
 
 <a href="#main-content" class="skip-to-content">Chuyển đến nội dung chính</a>
 <div id="reading-progress"></div>
-<header class="web-top-bar flex flex-wrap items-center justify-between gap-2.5 mb-6 text-xs transition-colors" role="banner">
-  <nav class="nav-left order-1 flex items-center" aria-label="Language">
+<header class="web-top-bar sticky top-0 md:static z-40 -mx-4 -mt-4 md:m-0 p-4 pb-2.5 md:p-0 mb-5 md:mb-6 bg-white dark:bg-zinc-900 md:bg-transparent md:dark:bg-transparent border-b border-transparent md:border-b-0 transition-all flex flex-wrap items-center justify-between gap-2.5 text-xs" role="banner">
+  <nav class="nav-left order-1 flex items-center md:!flex" aria-label="Language">
     <div class="lang-switch inline-flex items-center p-0.5 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 rounded-lg text-xs md:text-[13px] font-medium shadow-xs">
       <a href="../" class="px-2 py-0.5 rounded-md text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-all duration-200 no-underline" title="English">EN</a>
            <span class="px-2 py-0.5 rounded-md bg-white dark:bg-zinc-700 text-zinc-950 dark:text-white font-semibold shadow-xs">VI</span>
     </div>
   </nav>
-  <nav class="nav-center order-3 md:order-2 w-full md:w-auto mt-2 md:mt-0 flex justify-center" aria-label="Lens Filter">
-    <div class="lens-group flex flex-wrap items-center justify-center gap-1.5 md:gap-2" role="group">
+  <nav class="nav-center order-3 md:order-2 w-full md:w-auto mt-1.5 md:mt-0 flex justify-center overflow-x-auto md:overflow-x-visible no-scrollbar" aria-label="Lens Filter">
+    <div class="lens-group flex flex-nowrap md:flex-wrap items-center justify-center gap-1.5 md:gap-2 min-w-max md:min-w-0 px-1 py-0.5 md:p-0 mx-auto" role="group">
       <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap active" data-lens="all">Tất cả</button>
       <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="frontend">Frontend</button>
       <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="backend">Backend</button>
       <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="leadership">Lãnh đạo</button>
     </div>
   </nav>
-  <div class="nav-right order-2 md:order-3 flex items-center gap-2">
+  <div class="nav-right order-2 md:order-3 flex items-center gap-2 md:!flex">
     <button id="theme-toggle" class="btn-theme w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all cursor-pointer shadow-xs" aria-label="Chuyển đổi giao diện Sáng / Tối" title="Chuyển đổi giao diện Sáng / Tối">
       <svg class="w-3.5 h-3.5 md:w-4 md:h-4 theme-icon-moon dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -365,7 +365,7 @@ pre code {
 
 <div align="center">
 	<div class="avatar-container flex justify-center my-3 md:my-4"><img src="https://avatars.githubusercontent.com/u/20990824?v=4" alt="Nguyễn Đình Tú (Toby Nguyen) Profile Avatar" width="96" height="96" loading="eager" decoding="async" class="profile-avatar w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-zinc-200 dark:border-zinc-800 shadow-md object-cover hover:scale-105 transition-transform duration-200"></div>
-	<h1 class="profile-name">Nguyễn Đình Tú (Toby Nguyen)</h1><br/>
+	<h1 class="profile-name text-[26px] md:text-[32px] leading-tight font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Nguyễn Đình Tú (Toby Nguyen)</h1><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
 	<br/>
 	<strong>Số điện thoại:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com &nbsp;|&nbsp; <strong>Địa chỉ:</strong> Hà Đông, Hà Nội, Việt Nam<br/>
@@ -377,8 +377,8 @@ pre code {
 <p>Tiên phong kết hợp tư duy <strong>Product-Led Growth (PLG)</strong> với <strong>quy trình kỹ thuật tăng cường bởi AI (MCP, LLM toolchains)</strong> nhằm thúc đẩy sự chuẩn mực kỹ thuật, xây dựng các kiến trúc phần mềm linh hoạt, và phát triển các đội ngũ kỹ thuật liên chức năng.</p>
 <hr>
 <h2>NĂNG LỰC CỐT LÕI &amp; KỸ NĂNG CÔNG NGHỆ</h2>
-<div class="table-container w-full my-4">
-<div class="table-container w-full my-4"><table>
+<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible">
+<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table>
 <thead>
 <tr>
 <th style="text-align:left">Lĩnh vực</th>
@@ -427,8 +427,8 @@ pre code {
 
 </div><hr>
 <h2>KINH NGHIỆM LÀM VIỆC (WORK EXPERIENCE)</h2>
-<div class="table-container w-full my-4">
-<div class="table-container w-full my-4"><table>
+<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible">
+<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table>
 <thead>
 <tr>
 <th style="text-align:left">Công ty</th>
@@ -468,7 +468,7 @@ pre code {
 </div><hr>
 <h2>DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)</h2>
 <section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="09/2024 – Hiện tại">[09/2024 – Hiện tại] Nền tảng Web &amp; Đặt vé Trực tuyến – Công viên Giải trí Quốc tế</h3>
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="09/2024 – Hiện tại">[09/2024 – Hiện tại] Nền tảng Web &amp; Đặt vé Trực tuyến – Công viên Giải trí Quốc tế</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 09/2024 – Hiện tại</li>
 <li><strong>Công ty</strong>: CMC GLOBAL</li>
@@ -491,13 +491,13 @@ pre code {
 
 </section>
 <section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="09/2024 – Hiện tại">[09/2024 – Hiện tại] Digital Twin – Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực</h3>
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="09/2024 – Hiện tại">[09/2024 – Hiện tại] Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 09/2024 – Hiện tại</li>
 <li><strong>Công ty</strong>: CMC GLOBAL</li>
 <li><strong>Khách hàng (Client)</strong>: Tập đoàn sản xuất ô tô hàng đầu (Automotive Tech, IoT Integration)</li>
 <li><strong>Quy mô đội ngũ (Team size)</strong>: 15+ kỹ sư (3 squads)</li>
-<li><strong>Mô tả dự án (Project description)</strong>: Nền tảng Dashboard Digital Twin quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành thời gian thực cho các đội xe điện (EV).</li>
+<li><strong>Mô tả dự án (Project description)</strong>: Nền tảng Dashboard quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành thời gian thực cho các đội xe điện (EV).</li>
 <li><strong>Trách nhiệm đảm nhiệm (Responsibilities)</strong>:
 <ul>
 <li>Đảm nhiệm vai trò <strong>Technical Project Lead</strong>, thiết lập toàn diện kiến trúc kỹ thuật, chuẩn mực kỹ nghệ và luồng truyền phát dữ liệu đo xa thời gian thực trên 3 squads (15+ kỹ sư), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày.</li>
@@ -515,7 +515,7 @@ pre code {
 
 </section>
 <section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="05/2020 – 08/2024">[05/2020 – 08/2024] Nền tảng Báo cáo &amp; Trực quan hóa Dữ liệu Lớn Thông minh</h3>
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="05/2020 – 08/2024">[05/2020 – 08/2024] Nền tảng Báo cáo &amp; Trực quan hóa Dữ liệu Lớn Thông minh</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 05/2020 – 08/2024</li>
 <li><strong>Công ty</strong>: ICOMM TECH.JSC</li>
@@ -539,7 +539,7 @@ pre code {
 
 </section>
 <section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="12/2018 – 04/2020">[12/2018 – 04/2020] Nền tảng Storefront Thương mại Điện tử Tốc độ cao &amp; Bộ Công cụ Tăng trưởng Doanh số</h3>
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="12/2018 – 04/2020">[12/2018 – 04/2020] Nền tảng Storefront Thương mại Điện tử Tốc độ cao &amp; Bộ Công cụ Tăng trưởng Doanh số</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 12/2018 – 04/2020</li>
 <li><strong>Công ty</strong>: OPEN COMMERCE GROUP</li>
@@ -562,7 +562,7 @@ pre code {
 
 </section>
 <section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="05/2018 – 12/2018">[05/2018 – 12/2018] Cổng Quản lý Vận hành Doanh nghiệp Nhật Bản</h3>
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="05/2018 – 12/2018">[05/2018 – 12/2018] Cổng Quản lý Vận hành Doanh nghiệp Nhật Bản</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 05/2018 – 12/2018</li>
 <li><strong>Công ty</strong>: TDT ASIA JSC</li>
@@ -584,7 +584,7 @@ pre code {
 
 </section>
 <section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="12/2016 – 04/2018">[12/2016 – 04/2018] Ứng dụng Web Khám chữa Bệnh &amp; Tư vấn Y tế Trực tuyến Thời gian thực</h3>
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="12/2016 – 04/2018">[12/2016 – 04/2018] Ứng dụng Web Khám chữa Bệnh &amp; Tư vấn Y tế Trực tuyến Thời gian thực</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 12/2016 – 04/2018</li>
 <li><strong>Công ty</strong>: LUSH ERA LLC</li>
@@ -606,7 +606,7 @@ pre code {
 
 </section>
 <section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="2024 – Hiện tại">[2024 – Hiện tại] Tuquet – Hệ Sinh Thái CLI &amp; Tự Động Hóa Phân Tán</h3>
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="2024 – Hiện tại">[2024 – Hiện tại] Tuquet – Hệ Sinh Thái CLI &amp; Tự Động Hóa Phân Tán</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 2024 – Hiện tại</li>
 <li><strong>Công ty</strong>: Dự án R&amp;D độc lập</li>
@@ -635,7 +635,7 @@ pre code {
 <hr>
 <h2>GIẢI THƯỞNG &amp; THÀNH TÍCH (ACHIEVEMENTS &amp; AWARDS)</h2>
 <ul>
-<li><strong>Q4/2025:</strong> <strong>Rising Star Award (CMC GLOBAL)</strong> – Giải thưởng ghi nhận đóng góp xuất sắc và năng lực lãnh đạo kỹ thuật dự án xe điện Digital Twin.</li>
+<li><strong>Q4/2025:</strong> <strong>Rising Star Award (CMC GLOBAL)</strong> – Giải thưởng ghi nhận đóng góp xuất sắc và năng lực lãnh đạo kỹ thuật dự án nền tảng telemetry xe điện (EV).</li>
 <li><strong>2023:</strong> <strong>Team of the Year (ICOMM TECH.JSC)</strong> – Lãnh đạo đội ngũ kỹ thuật hoàn thành vượt mức tất cả các chỉ tiêu sản phẩm.</li>
 <li><strong>2022:</strong> <strong>Outstanding Employee (ICOMM TECH.JSC)</strong> – Nhân viên xuất sắc dẫn dắt nền tảng xử lý dữ liệu lớn trọng điểm.</li>
 </ul>
@@ -670,7 +670,7 @@ pre code {
   </button>
 </div>
 
-<div id="copilot-panel" class="copilot-panel fixed bottom-16 md:bottom-20 right-4 md:right-6 w-[calc(100vw-32px)] md:w-[390px] h-[520px] max-h-[calc(100vh-100px)] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden opacity-0 pointer-events-none transition-all duration-150 scale-95 translate-y-2" role="dialog" aria-label="Trợ lý AI Toby">
+<div id="copilot-panel" class="copilot-panel fixed bottom-[72px] md:bottom-20 right-4 md:right-6 w-[calc(100vw-32px)] md:w-[390px] h-[calc(100vh-90px)] md:h-[520px] max-h-[calc(100vh-90px)] md:max-h-[calc(100vh-100px)] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden opacity-0 pointer-events-none transition-all duration-150 scale-95 translate-y-2" role="dialog" aria-label="Trợ lý AI Toby">
   <div class="copilot-header shrink-0 flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50">
     <div class="flex items-center gap-2">
       <svg class="w-4 h-4 text-zinc-700 dark:text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

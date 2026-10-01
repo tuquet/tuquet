@@ -67,12 +67,12 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Platform, server and database**: Docker, Redis, MS SQL Server, Linux
 - **Methodology**: Agile Scrum
 
-### [09/2024 – Present] Digital Twin – Electric Vehicle (EV) Real-Time Telemetry Dashboard
+### [09/2024 – Present] Electric Vehicle (EV) Real-Time Telemetry & Fleet Monitoring Platform
 - **Timeline**: 09/2024 – Present
 - **Company**: CMC GLOBAL
 - **Client**: Leading Automotive Manufacturer (Automotive Tech, IoT Integration)
 - **Team size**: 15+ engineers (3 squads)
-- **Project description**: Large-scale real-time Digital Twin telemetry dashboard platform for aggregating, monitoring, and analyzing telemetry and operational status for fleets of electric vehicles (EVs).
+- **Project description**: Large-scale real-time telemetry dashboard platform for aggregating, monitoring, and analyzing telemetry and operational status for fleets of electric vehicles (EVs).
 - **Responsibilities**:
   - Served as **Technical Project Lead**, establishing overall technical architecture, engineering standards, and real-time telemetry streaming across 3 squads (15+ engineers) processing millions of daily EV operational events.
   - Architected a **Micro-frontends** architecture and standardized a shared enterprise **Design System**, ensuring visual consistency and decoupled release cycles across squads.
@@ -171,7 +171,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ## ACHIEVEMENTS & AWARDS
 
-- **Q4/2025:** **Rising Star Award (CMC GLOBAL)** – Recognized for exemplary technical leadership and high-impact delivery of the Digital Twin EV project.
+- **Q4/2025:** **Rising Star Award (CMC GLOBAL)** – Recognized for exemplary technical leadership and high-impact delivery of the EV Real-Time Telemetry platform.
 - **2023:** **Team of the Year (ICOMM TECH.JSC)** – Leading the engineering organization to exceed all product delivery targets.
 - **2022:** **Outstanding Employee (ICOMM TECH.JSC)** – Awarded for spearheading the flagship Big Data platform.
 

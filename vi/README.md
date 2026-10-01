@@ -67,12 +67,12 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Docker, Redis, MS SQL Server, Linux
 - **Phương pháp phát triển (Methodology)**: Agile Scrum
 
-### [09/2024 – Hiện tại] Digital Twin – Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực
+### [09/2024 – Hiện tại] Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
 - **Công ty**: CMC GLOBAL
 - **Khách hàng (Client)**: Tập đoàn sản xuất ô tô hàng đầu (Automotive Tech, IoT Integration)
 - **Quy mô đội ngũ (Team size)**: 15+ kỹ sư (3 squads)
-- **Mô tả dự án (Project description)**: Nền tảng Dashboard Digital Twin quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành thời gian thực cho các đội xe điện (EV).
+- **Mô tả dự án (Project description)**: Nền tảng Dashboard quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành thời gian thực cho các đội xe điện (EV).
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
   - Đảm nhiệm vai trò **Technical Project Lead**, thiết lập toàn diện kiến trúc kỹ thuật, chuẩn mực kỹ nghệ và luồng truyền phát dữ liệu đo xa thời gian thực trên 3 squads (15+ kỹ sư), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày.
   - Thiết kế kiến trúc **Micro-frontends** và chuẩn hóa hệ thống **Design System** cấp doanh nghiệp, đảm bảo tính nhất quán giao diện và giải phóng chu kỳ phát hành độc lập giữa các squad.
@@ -171,7 +171,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ## GIẢI THƯỞNG & THÀNH TÍCH (ACHIEVEMENTS & AWARDS)
 
-- **Q4/2025:** **Rising Star Award (CMC GLOBAL)** – Giải thưởng ghi nhận đóng góp xuất sắc và năng lực lãnh đạo kỹ thuật dự án xe điện Digital Twin.
+- **Q4/2025:** **Rising Star Award (CMC GLOBAL)** – Giải thưởng ghi nhận đóng góp xuất sắc và năng lực lãnh đạo kỹ thuật dự án nền tảng telemetry xe điện (EV).
 - **2023:** **Team of the Year (ICOMM TECH.JSC)** – Lãnh đạo đội ngũ kỹ thuật hoàn thành vượt mức tất cả các chỉ tiêu sản phẩm.
 - **2022:** **Outstanding Employee (ICOMM TECH.JSC)** – Nhân viên xuất sắc dẫn dắt nền tảng xử lý dữ liệu lớn trọng điểm.
 
