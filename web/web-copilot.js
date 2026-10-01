@@ -350,147 +350,44 @@
 
           if (mode !== 'all') {
             KeywordMagic.triggerHighlighted();
+          } else {
+            KeywordMagic.reset();
           }
         });
       });
     }
   };
 
-  // 6. Magic Keyword Scroll-Reveal & Ambient Accent (Executive Focus)
+  // 6. Magic Keyword Focus on Career Lens Switch (Clean & Executive Presentation)
   const KeywordMagic = {
-    init() {
-      const candidates = document.querySelectorAll('p strong, li strong, td strong, blockquote strong');
-      const keywords = [];
-
-      // Curated list of hot trending tech keywords in modern software engineering & Toby's stack
-      const hotTrendingTech = [
-        // Languages & Core Runtimes
-        'rust', 'tokio', 'typescript', 'javascript', 'java', 'node.js', 'python', 'go', 'sql', 'html5', 'css3',
-        // Modern Web & Frameworks
-        'react', 'next.js', 'vue.js', 'nuxt', 'angular', 'rxjs', 'vite', 'electron js', 'electron',
-        'tailwind css', 'tailwind', 'spring boot', 'nestjs', 'express', 'laravel', 'react native',
-        // Architecture & Frontend Paradigms
-        'micro-frontends', 'micro-frontend', 'module federation', 'design system', 'design systems',
-        'server components', 'concurrent features', 'clean code', 'event-driven architecture', 'event-driven',
-        // Real-Time, Streaming & APIs
-        'websockets', 'websocket', 'sse', 'server-sent events', 'webrtc', 'grpc', 'graphql', 'rest',
-        'real-time telemetry', 'telemetry', 'data streaming', 'data pipelines',
-        // Caching, State & Storage
-        'redis', 'postgresql', 'postgres', 'clickhouse', 'supabase', 'ms sql server', 'ms sql', 'mysql',
-        'apache solr', 'solr', 'zustand', 'redux', 'tanstack query', 'react query', 'swr',
-        'virtual scrolling', 'virtualized', 'canvas data charting', 'canvas', 'echarts', 'highcharts',
-        // DevOps, Cloud & Systems
-        'docker', 'kubernetes', 'azure cloud', 'azure', 'aws', 'ci/cd', 'github actions',
-        'turborepo', 'monorepo', 'linux', 'win32 job objects', 'win32', 'scoop',
-        // AI & Modern Developer Toolchains (Top Industry Trend)
-        'model context protocol', 'mcp', 'llm', 'llms', 'ai-augmented', 'ai',
-        // Performance
-        'core web vitals', 'inp', 'lcp', 'fcp'
-      ];
-
-      const isLabel = (el) => {
+    triggerHighlighted() {
+      // Find strong keywords strictly inside highlighted sections
+      const candidates = document.querySelectorAll('.lens-highlight strong');
+      candidates.forEach((el, idx) => {
         const text = el.textContent.trim();
-        if (text.endsWith(':')) return true;
-
-        const next = el.nextSibling;
-        if (next && next.nodeType === Node.TEXT_NODE && next.textContent.trim().startsWith(':')) {
-          return true;
+        // Ignore labels, long sentences (> 4 words), and KPI metrics (<, >, s, ms)
+        if (text.endsWith(':') || text.split(/\s+/).length > 4 || /[<>]\s*\d/i.test(text)) {
+          return;
         }
 
-        const lower = text.toLowerCase().replace(/:$/, '').trim();
-        const commonLabels = [
-          'timeline', 'company', 'client', 'team size', 'project description',
-          'responsibilities', 'programming language', 'framework',
-          'platform, server and database', 'methodology', 'role', 'duration',
-          'phone', 'email', 'location', 'date of birth', 'github', 'linkedin',
-          'category', 'skill area', 'company name', 'position',
-          'thời gian', 'công ty', 'khách hàng', 'quy mô team', 'mô tả dự án',
-          'trách nhiệm chính', 'ngôn ngữ lập trình', 'nền tảng & cơ sở dữ liệu',
-          'nền tảng, máy chủ và csdl', 'phương pháp phát triển', 'vai trò',
-          'điện thoại', 'địa chỉ', 'ngày sinh', 'vị trí', 'kỹ năng'
-        ];
-        return commonLabels.includes(lower);
-      };
-
-      const isHotTech = (text) => {
-        const clean = text.toLowerCase().trim();
-        return hotTrendingTech.some(kw => {
-          const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          const regex = new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, 'i');
-          return regex.test(clean);
-        });
-      };
-
-      candidates.forEach(el => {
-        const text = el.textContent.trim();
-        if (!isLabel(el) && isHotTech(text)) {
-          el.classList.add('kw-magic', 'cursor-text');
-          el.style.setProperty('--kw-delay', `${(keywords.length % 6) * 0.6}s`);
-          keywords.push(el);
-        }
-      });
-
-      if (!keywords.length) return;
-
-      // 3-second dwell reading observer: loop highlight when user pauses and reads for 3s
-      const dwellTimers = new Map();
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const el = entry.target;
-
-          if (entry.isIntersecting) {
-            // Cancel existing timer if any
-            if (dwellTimers.has(el)) {
-              clearTimeout(dwellTimers.get(el));
-            }
-
-            // Dwell timer: wait 3 seconds of continuous reading before light beam loops
-            const timer = setTimeout(() => {
-              el.classList.add('kw-active');
-              dwellTimers.delete(el);
-            }, 3000);
-
-            dwellTimers.set(el, timer);
-          } else {
-            // Cancel timer and pause loop when scrolled out of view to save resources
-            if (dwellTimers.has(el)) {
-              clearTimeout(dwellTimers.get(el));
-              dwellTimers.delete(el);
-            }
-            el.classList.remove('kw-active');
-          }
-        });
-      }, {
-        root: null,
-        rootMargin: '0px 0px -8% 0px',
-        threshold: 0.15
-      });
-
-      keywords.forEach(kw => observer.observe(kw));
-
-      // Interactive subtle hover: restart light sweep on hover
-      keywords.forEach(kw => {
-        kw.addEventListener('mouseenter', () => {
-          if (!kw.closest('.lens-dim')) {
-            kw.classList.remove('kw-active');
-            void kw.offsetWidth;
-            kw.classList.add('kw-active');
-          }
-        });
+        const delay = Math.min(idx * 30, 250);
+        setTimeout(() => {
+          el.classList.add('kw-lens-sheen');
+          setTimeout(() => {
+            el.classList.remove('kw-lens-sheen');
+          }, 1000);
+        }, delay);
       });
     },
 
-    triggerHighlighted() {
-      const highlighted = document.querySelectorAll('.lens-highlight .kw-magic, .lens-highlight.kw-magic');
-      highlighted.forEach((el, idx) => {
-        const delay = Math.min(idx * 50, 300);
-        setTimeout(() => {
-          el.classList.remove('kw-active');
-          void el.offsetWidth;
-          el.classList.add('kw-active');
-        }, delay);
+    reset() {
+      document.querySelectorAll('.kw-lens-sheen').forEach(el => {
+        el.classList.remove('kw-lens-sheen');
       });
+    },
+
+    init() {
+      // Resting state is 100% clean, pure and static, respecting reader focus
     }
   };
 
