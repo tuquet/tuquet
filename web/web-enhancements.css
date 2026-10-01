@@ -339,63 +339,62 @@ h3.lens-highlight {
 .kw-magic {
   display: inline;
   font-weight: 600;
-  color: inherit;
+  color: inherit !important;
   text-decoration: none !important;
+  padding: 1px 5px;
+  margin: 0 1px;
+  border-radius: 4px;
+  background-color: var(--pill-bg);
   background-repeat: no-repeat;
+  background-size: 250% 100%;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+  box-shadow: inset 0 0 0 1px var(--border-color);
+  transition: box-shadow 0.2s ease;
 }
 
-/* Light Mode: Specular Silver/Platinum Light Beam on Dark Metallic Letters (Never a dark shadow) */
+/* Light Mode: Gleaming pure white light beam sweep across pill (No dark shadow, text 100% visible) */
 .kw-magic.kw-active {
   background-image: linear-gradient(
-    110deg,
-    #18181b 0%,
-    #18181b 35%,
-    #71717a 45%,
-    #94a3b8 50%,
-    #71717a 55%,
-    #18181b 65%,
-    #18181b 100%
+    105deg,
+    transparent 0%,
+    transparent 25%,
+    rgba(255, 255, 255, 0.45) 40%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.45) 60%,
+    transparent 75%,
+    transparent 100%
   );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: kw-beam-loop 4.5s ease-in-out infinite;
   animation-delay: var(--kw-delay, 0s);
 }
 
-/* Dark Mode: Pure Platinum Starlight Beam on Titanium Letters */
+/* Dark Mode: Radiant starlight beam sweep across pill (Razor-sharp ClearType, text 100% visible) */
 html.dark .kw-magic.kw-active,
 [data-theme="dark"] .kw-magic.kw-active {
   background-image: linear-gradient(
-    110deg,
-    #f4f4f5 0%,
-    #f4f4f5 35%,
-    #a1a1aa 45%,
-    #ffffff 50%,
-    #a1a1aa 55%,
-    #f4f4f5 65%,
-    #f4f4f5 100%
+    105deg,
+    transparent 0%,
+    transparent 25%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 75%,
+    transparent 100%
   );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: kw-beam-loop 4.5s ease-in-out infinite;
   animation-delay: var(--kw-delay, 0s);
 }
 
 @keyframes kw-beam-loop {
   0% {
-    background-position: 200% 0;
+    background-position: 180% 0;
   }
   28% {
-    background-position: -200% 0;
+    background-position: -180% 0;
   }
   100% {
-    background-position: -200% 0;
+    background-position: -180% 0;
   }
 }
 
@@ -415,11 +414,11 @@ html.dark .kw-magic.kw-active,
     display: inline !important;
     text-decoration: none !important;
     background: none !important;
-    -webkit-text-fill-color: initial !important;
     color: inherit !important;
-    animation: none !important;
+    box-shadow: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    animation: none !important;
   }
 
   .project-heading {
