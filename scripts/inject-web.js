@@ -486,7 +486,7 @@ function processTarget(target) {
 `;
 
   const copilotHtml = `
-\${footerHtml}
+${footerHtml}
 </main>
 
 <!-- Back to Top Floating Button -->
