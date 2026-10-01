@@ -304,25 +304,26 @@ pre code {
 
 
 
-<a href="#main-content" class="skip-to-content">Chuyển đến nội dung chính</a>
-<div id="reading-progress"></div>
-<header class="web-top-bar sticky top-0 md:static z-40 -mx-4 -mt-4 md:m-0 p-4 pb-2.5 md:p-0 mb-5 md:mb-6 bg-white dark:bg-zinc-900 md:bg-transparent md:dark:bg-transparent border-b border-transparent md:border-b-0 transition-all flex flex-wrap items-center justify-between gap-2.5 text-xs" role="banner">
-  <nav class="nav-left order-1 flex items-center md:!flex" aria-label="Language">
+
+<a href="#main-content" class="skip-to-content sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100000] focus:px-4 focus:py-2 focus:bg-zinc-900 focus:text-white dark:focus:bg-zinc-100 dark:focus:text-zinc-900 focus:rounded-lg focus:shadow-lg focus:text-xs focus:font-semibold focus:outline-none focus:ring-2 focus:ring-zinc-400 no-underline">Chuyển đến nội dung chính</a>
+<div id="reading-progress" class="fixed top-0 left-0 h-0.5 w-0 bg-zinc-900 dark:bg-zinc-100 z-[99999] transition-[width] duration-150 ease-out"></div>
+<header class="web-top-bar sticky top-0 md:static z-40 -mx-4 -mt-4 md:m-0 p-4 pb-2.5 md:p-0 mb-5 md:mb-6 bg-white dark:bg-zinc-900 md:bg-transparent md:dark:bg-transparent border-b border-transparent md:border-b-0 transition-all flex flex-wrap items-center justify-between gap-2.5 text-xs [&.is-scrolled]:bg-white/90 dark:[&.is-scrolled]:bg-zinc-900/90 [&.is-scrolled]:backdrop-blur-md [&.is-scrolled]:border-zinc-200 dark:[&.is-scrolled]:border-zinc-800 [&.is-scrolled]:shadow-sm md:[&.is-scrolled]:shadow-none [&.is-scrolled]:pt-1.5 [&.is-scrolled]:pb-1.5 [&.is-scrolled]:mb-4" role="banner">
+  <nav class="nav-left order-1 flex items-center md:!flex [.is-scrolled_&]:hidden md:[.is-scrolled_&]:!flex" aria-label="Language">
     <div class="lang-switch inline-flex items-center p-0.5 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 rounded-lg text-xs md:text-[13px] font-medium shadow-xs">
       <a href="../" class="px-2 py-0.5 rounded-md text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-all duration-200 no-underline" title="English">EN</a>
            <span class="px-2 py-0.5 rounded-md bg-white dark:bg-zinc-700 text-zinc-950 dark:text-white font-semibold shadow-xs">VI</span>
     </div>
   </nav>
-  <nav class="nav-center order-3 md:order-2 w-full md:w-auto mt-1.5 md:mt-0 flex justify-center overflow-x-auto md:overflow-x-visible no-scrollbar" aria-label="Lens Filter">
+  <nav class="nav-center order-3 md:order-2 w-full md:w-auto mt-1.5 md:mt-0 flex justify-center overflow-x-auto md:overflow-x-visible no-scrollbar [.is-scrolled_&]:mt-0" aria-label="Lens Filter">
     <div class="lens-group flex flex-nowrap md:flex-wrap items-center justify-center gap-1.5 md:gap-2 min-w-max md:min-w-0 px-1 py-0.5 md:p-0 mx-auto" role="group">
-      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap active" data-lens="all">Tất cả</button>
-      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="frontend">Frontend</button>
-      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="backend">Backend</button>
-      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="leadership">Lãnh đạo</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 md:px-3.5 md:py-1.5 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all duration-150 whitespace-nowrap shadow-xs bg-zinc-100 hover:bg-zinc-200 text-zinc-600 hover:text-zinc-950 border border-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100 dark:border-zinc-800 [&.active]:bg-zinc-900 [&.active]:text-white [&.active]:border-zinc-900 dark:[&.active]:bg-zinc-100 dark:[&.active]:text-zinc-900 dark:[&.active]:border-zinc-100 [&.active]:font-semibold [&.active]:shadow-sm active" data-lens="all">Tất cả</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 md:px-3.5 md:py-1.5 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all duration-150 whitespace-nowrap shadow-xs bg-zinc-100 hover:bg-zinc-200 text-zinc-600 hover:text-zinc-950 border border-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100 dark:border-zinc-800 [&.active]:bg-zinc-900 [&.active]:text-white [&.active]:border-zinc-900 dark:[&.active]:bg-zinc-100 dark:[&.active]:text-zinc-900 dark:[&.active]:border-zinc-100 [&.active]:font-semibold [&.active]:shadow-sm" data-lens="frontend">Frontend</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 md:px-3.5 md:py-1.5 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all duration-150 whitespace-nowrap shadow-xs bg-zinc-100 hover:bg-zinc-200 text-zinc-600 hover:text-zinc-950 border border-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100 dark:border-zinc-800 [&.active]:bg-zinc-900 [&.active]:text-white [&.active]:border-zinc-900 dark:[&.active]:bg-zinc-100 dark:[&.active]:text-zinc-900 dark:[&.active]:border-zinc-100 [&.active]:font-semibold [&.active]:shadow-sm" data-lens="backend">Backend</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 md:px-3.5 md:py-1.5 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all duration-150 whitespace-nowrap shadow-xs bg-zinc-100 hover:bg-zinc-200 text-zinc-600 hover:text-zinc-950 border border-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100 dark:border-zinc-800 [&.active]:bg-zinc-900 [&.active]:text-white [&.active]:border-zinc-900 dark:[&.active]:bg-zinc-100 dark:[&.active]:text-zinc-900 dark:[&.active]:border-zinc-100 [&.active]:font-semibold [&.active]:shadow-sm" data-lens="leadership">Lãnh đạo</button>
     </div>
   </nav>
-  <div class="nav-right order-2 md:order-3 flex items-center gap-2 md:!flex">
-    <button id="theme-toggle" class="btn-theme w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all cursor-pointer shadow-xs" aria-label="Chuyển đổi giao diện Sáng / Tối" title="Chuyển đổi giao diện Sáng / Tối">
+  <div class="nav-right order-2 md:order-3 flex items-center gap-2 md:!flex [.is-scrolled_&]:hidden md:[.is-scrolled_&]:!flex">
+    <button id="theme-toggle" class="btn-theme w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer shadow-xs" aria-label="Chuyển đổi giao diện Sáng / Tối" title="Chuyển đổi giao diện Sáng / Tối">
       <svg class="w-3.5 h-3.5 md:w-4 md:h-4 theme-icon-moon dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
@@ -339,14 +340,14 @@ pre code {
       </svg>
     </button>
     <div class="relative group inline-flex items-center" id="download-dropdown-container">
-      <button id="download-toggle" class="btn-download w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all cursor-pointer shadow-xs" aria-label="Tải CV / Hồ sơ" title="Tải CV / Hồ sơ" aria-haspopup="true" aria-expanded="false">
+      <button id="download-toggle" class="btn-download w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer shadow-xs" aria-label="Tải CV / Hồ sơ" title="Tải CV / Hồ sơ" aria-haspopup="true" aria-expanded="false">
         <svg class="w-3.5 h-3.5 md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>
           <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
       </button>
-      <div id="download-menu" class="download-menu absolute right-0 top-full mt-2 w-48 p-1.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 opacity-0 pointer-events-none -translate-y-1.5 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-200 ease-out">
+      <div id="download-menu" class="download-menu absolute right-0 top-full mt-2 w-48 p-1.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 opacity-0 pointer-events-none -translate-y-1.5 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 [&.menu-open]:opacity-100 [&.menu-open]:pointer-events-auto [&.menu-open]:translate-y-0 transition-all duration-200 ease-out">
         <div class="px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold text-zinc-400 dark:text-zinc-500 border-b border-zinc-100 dark:border-zinc-800/80 mb-1">
           Định dạng xuất
         </div>
@@ -365,6 +366,7 @@ pre code {
 <main id="main-content" role="main" class="main-content">
 
 
+
 <div align="center">
 	<div class="avatar-container flex justify-center my-3 md:my-4"><img src="https://avatars.githubusercontent.com/u/20990824?v=4" alt="Nguyễn Đình Tú (Toby Nguyen) Profile Avatar" width="96" height="96" loading="eager" decoding="async" class="profile-avatar w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-zinc-200 dark:border-zinc-800 shadow-md object-cover hover:scale-105 transition-transform duration-200"></div>
 	<h1 class="profile-name text-[26px] md:text-[32px] leading-tight font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Nguyễn Đình Tú (Toby Nguyen)</h1><br/>
@@ -380,7 +382,7 @@ pre code {
 <hr>
 <h2>NĂNG LỰC CỐT LÕI &amp; KỸ NĂNG CÔNG NGHỆ</h2>
 <div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible">
-<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table>
+<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table>
 <thead>
 <tr>
 <th style="text-align:left">Lĩnh vực</th>
@@ -425,12 +427,12 @@ pre code {
 <td style="text-align:left">Chiến lược kỹ thuật, Lãnh đạo 15+ kỹ sư, Lộ trình kiến trúc, Quản trị nợ kỹ thuật, Agile Scrum</td>
 </tr>
 </tbody>
-</table></div></div>
+</table></div></div></div>
 
 </div><hr>
 <h2>KINH NGHIỆM LÀM VIỆC (WORK EXPERIENCE)</h2>
 <div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible">
-<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table>
+<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table>
 <thead>
 <tr>
 <th style="text-align:left">Công ty</th>
@@ -465,7 +467,7 @@ pre code {
 <td style="text-align:left">12/2016 – 04/2018</td>
 </tr>
 </tbody>
-</table></div></div>
+</table></div></div></div>
 
 </div><hr>
 <h2>DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)</h2>
@@ -652,10 +654,11 @@ pre code {
 
 
 
+
 </main>
 
 <!-- Back to Top Floating Button -->
-<button id="back-to-top" class="back-to-top fixed bottom-5 left-5 md:bottom-6 md:left-6 z-40 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer opacity-0 pointer-events-none translate-y-3" aria-label="Về đầu trang" title="Về đầu trang">
+<button id="back-to-top" class="back-to-top fixed bottom-5 left-5 md:bottom-6 md:left-6 z-40 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer opacity-0 pointer-events-none translate-y-3 [&.visible]:opacity-100 [&.visible]:pointer-events-auto [&.visible]:translate-y-0 active:scale-95 hover:scale-105 hover:-translate-y-0.5" aria-label="Về đầu trang" title="Về đầu trang">
   <svg class="w-4 h-4 md:w-4.5 md:h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 19V5M5 12l7-7 7 7"/>
   </svg>
@@ -664,7 +667,7 @@ pre code {
 <!-- Ask Toby Copilot Widget -->
 <div id="copilot-widget-container" class="copilot-widget-container fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none">
   <!-- Trigger Button (shadcn button zinc) -->
-  <button id="copilot-trigger" class="copilot-trigger inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-900 dark:border-zinc-100 shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer pointer-events-auto" aria-label="Hỏi Toby AI">
+  <button id="copilot-trigger" class="copilot-trigger inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-900 dark:border-zinc-100 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 cursor-pointer pointer-events-auto" aria-label="Hỏi Toby AI">
     <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
     </svg>
@@ -673,7 +676,7 @@ pre code {
   </button>
 </div>
 
-<div id="copilot-panel" class="copilot-panel fixed bottom-[72px] md:bottom-20 right-4 md:right-6 w-[calc(100vw-32px)] md:w-[390px] h-[calc(100vh-90px)] md:h-[520px] max-h-[calc(100vh-90px)] md:max-h-[calc(100vh-100px)] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden opacity-0 pointer-events-none transition-all duration-150 scale-95 translate-y-2" role="dialog" aria-label="Trợ lý AI Toby">
+<div id="copilot-panel" class="copilot-panel fixed bottom-[72px] md:bottom-20 right-4 md:right-6 w-[calc(100vw-32px)] md:w-[390px] h-[calc(100vh-90px)] md:h-[520px] max-h-[calc(100vh-90px)] md:max-h-[calc(100vh-100px)] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden opacity-0 pointer-events-none transition-all duration-150 scale-95 translate-y-2 [&.open]:opacity-100 [&.open]:pointer-events-auto [&.open]:scale-100 [&.open]:translate-y-0" role="dialog" aria-label="Trợ lý AI Toby">
   <div class="copilot-header shrink-0 flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50">
     <div class="flex items-center gap-2">
       <svg class="w-4 h-4 text-zinc-700 dark:text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -693,11 +696,11 @@ pre code {
     </button>
   </div>
   <div id="copilot-body" class="copilot-body flex-1 min-h-0 overflow-y-auto p-4 flex flex-col gap-3 text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300">
-    <div id="copilot-welcome-msg" class="copilot-msg bot self-start max-w-[92%] p-3 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-[13px]">
+    <div id="copilot-welcome-msg" class="copilot-msg bot self-start max-w-[92%] p-3 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-[13px] leading-relaxed break-words [&_strong]:font-semibold [&_strong]:text-zinc-950 dark:[&_strong]:text-white [&_a]:underline [&_a]:underline-offset-2 [&_a]:font-medium">
       <span id="copilot-greeting-text">Xin chào.</span> Tôi là trợ lý AI của Toby Nguyen. Bạn có thể tra cứu nhanh về 8+ năm kinh nghiệm kiến trúc hệ thống phân tán, năng lực lãnh đạo kỹ thuật hoặc độ phù hợp vị trí.<br/><br/><strong>Các chủ đề gợi ý:</strong><br/>• <strong>Tóm tắt năng lực:</strong> Tổng quan thế mạnh và kinh nghiệm điều phối<br/>• <strong>Độ phù hợp vị trí:</strong> Đánh giá cho vai trò Tech Lead, Architect hoặc Senior Engineer<br/>• <strong>Telemetry thời gian thực (EV):</strong> Quản lý 15+ kỹ sư, streaming WebSockets<br/>• <strong>Nền tảng Web & Đặt vé Trực tuyến:</strong> Hệ thống Web Portal & WebView cho tập đoàn công viên giải trí quốc tế<br/>• <strong>Kiến trúc Tuquet:</strong> Giám sát tiến trình không rò rỉ bằng Rust & Win32<br/>• <strong>Kỹ năng & Liên hệ:</strong> Lên lịch phỏng vấn và trao đổi trực tiếp
     </div>
   </div>
-  <div class="copilot-chips shrink-0 flex flex-wrap gap-1.5 p-3 border-t border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/40 dark:bg-zinc-900/30">
+  <div class="copilot-chips shrink-0 flex flex-wrap gap-1.5 p-3 border-t border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/40 dark:bg-zinc-900/30 max-h-[110px] overflow-y-auto">
     <button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="summary">Tóm tắt năng lực</button>
 <button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="fit">Độ phù hợp vị trí</button>
 <button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="telemetry">Telemetry thời gian thực (EV)</button>
@@ -707,13 +710,14 @@ pre code {
 <button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="contact">Liên hệ phỏng vấn</button>
   </div>
   <div class="copilot-footer shrink-0 flex items-center gap-2 p-3 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
-    <input id="copilot-input" class="copilot-input flex-1 px-3 py-1.5 text-[13px] bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 dark:focus:ring-zinc-300 transition-colors placeholder:text-zinc-400" type="text" placeholder="Nhập câu hỏi...">
-    <button id="copilot-send" class="copilot-send px-3 py-1.5 text-[13px] font-medium text-zinc-50 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 rounded-md transition-colors cursor-pointer shadow-xs">Gửi</button>
+    <input id="copilot-input" class="copilot-input flex-1 h-[38px] min-h-[38px] px-3 py-2 text-[13px] bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 dark:focus:ring-zinc-300 transition-colors placeholder:text-zinc-400" type="text" placeholder="Nhập câu hỏi...">
+    <button id="copilot-send" class="copilot-send shrink-0 h-[38px] min-h-[38px] px-4 text-[13px] font-medium text-zinc-50 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 rounded-md transition-all active:scale-95 cursor-pointer shadow-xs inline-flex items-center justify-center">Gửi</button>
   </div>
 </div>
 
-<div id="toast-container"></div>
+<div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-24 opacity-0 pointer-events-none px-4 py-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 border border-zinc-800 dark:border-zinc-200 rounded-lg text-[13px] font-medium shadow-xl z-[100000] transition-all duration-200 [&.toast-visible]:translate-y-0 [&.toast-visible]:opacity-100"></div>
 <script src="../web/web-copilot.js" defer></script>
+
 
 
 </body>

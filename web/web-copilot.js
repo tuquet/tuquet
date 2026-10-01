@@ -153,6 +153,7 @@
       if (!toast) {
         toast = document.createElement('div');
         toast.id = 'toast-container';
+        toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-24 opacity-0 pointer-events-none px-4 py-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 border border-zinc-800 dark:border-zinc-200 rounded-lg text-[13px] font-medium shadow-xl z-[100000] transition-all duration-200 [&.toast-visible]:translate-y-0 [&.toast-visible]:opacity-100';
         document.body.appendChild(toast);
       }
       toast.textContent = message;
@@ -273,7 +274,6 @@
           });
 
           if (mode === 'all') {
-            Toast.show(isVi() ? 'Hiển thị toàn bộ nội dung' : 'Showing All Details');
             return;
           }
 
@@ -347,10 +347,6 @@
               h3.classList.add('lens-dim');
             }
           });
-
-          const label = btn.textContent.trim();
-          const msg = isVi() ? `Đã lọc theo: ${label}` : `Filtered by: ${label}`;
-          Toast.show(msg);
 
           if (mode !== 'all') {
             KeywordMagic.triggerHighlighted();
@@ -676,7 +672,11 @@
       const body = document.getElementById('copilot-body');
       if (!body) return;
       const msg = document.createElement('div');
-      msg.className = `copilot-msg ${role}`;
+      if (role === 'user') {
+        msg.className = 'copilot-msg user self-end max-w-[92%] p-3 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 text-[13px] leading-relaxed break-words';
+      } else {
+        msg.className = 'copilot-msg bot self-start max-w-[92%] p-3 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-[13px] leading-relaxed break-words';
+      }
       msg.textContent = text;
       body.appendChild(msg);
       body.scrollTop = body.scrollHeight;
@@ -686,7 +686,7 @@
       const body = document.getElementById('copilot-body');
       if (!body) return;
       const msg = document.createElement('div');
-      msg.className = 'copilot-msg bot';
+      msg.className = 'copilot-msg bot self-start max-w-[92%] p-3 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-[13px] leading-relaxed break-words [&_strong]:font-semibold [&_strong]:text-zinc-950 dark:[&_strong]:text-white [&_a]:underline [&_a]:underline-offset-2 [&_a]:font-medium';
 
       // Markdown formatting for bold, links, list items
       const formatted = markdownText
