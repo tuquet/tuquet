@@ -7,6 +7,7 @@
     "build:docs": "tuquet-md-pdf --dir . --styles style/pdf-export.css",
     "build:web": "node scripts/inject-web.js",
     "build": "tuquet-md-pdf --dir . --styles style/pdf-export.css && node scripts/inject-web.js",
+    "build:all": "tuquet-md-pdf --dir . --format all --styles style/pdf-export.css && node scripts/inject-web.js",
     "test:seo": "node scripts/test-seo.js",
     "test": "npm run test:seo",
     "check": "npm run build && npm run test"
