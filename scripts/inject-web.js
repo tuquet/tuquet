@@ -23,10 +23,10 @@ const TARGETS = [
     otherLangText: 'Tiếng Việt',
     otherLangLink: './vi/',
     currentLangText: 'English',
-    personName: 'Toby Nguyen (Nguyễn Đình Tú)',
-    title: 'Toby Nguyen (Nguyễn Đình Tú) | Technical Project Lead & Senior Software Engineer',
+    personName: 'Nguyen Dinh Tu (Toby Nguyen)',
+    title: 'Nguyen Dinh Tu (Toby Nguyen) | Technical Project Lead & Senior Software Engineer',
     desc: 'Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, high-scale web apps, and AI-augmented workflows.',
-    keywords: 'Toby Nguyen, Nguyen Dinh Tu, Technical Lead, Senior Software Engineer, Distributed Systems, Rust, Tokio, Java, Spring Boot, Node.js, React, Next.js, AI Workflows, EV Fleet Monitoring, Real-Time Telemetry, Tuquet',
+    keywords: 'Nguyen Dinh Tu, Toby Nguyen, Technical Lead, Senior Software Engineer, Distributed Systems, Rust, Tokio, Java, Spring Boot, Node.js, React, Next.js, AI Workflows, EV Fleet Monitoring, Real-Time Telemetry, Tuquet',
     skipText: 'Skip to main content',
     downloadLabel: 'Download Resume',
     downloadHeader: 'Export Formats',
@@ -422,8 +422,13 @@ function processTarget(target) {
   }
 
   // 4. Inject Semantic H1 Heading and Profile Avatar (Core Web Vitals & SEO)
-  // Convert strong name element into semantic H1
+  // Convert strong name element into semantic H1 (stripping trailing <br/> if followed by profile-nickname)
+  html = html.replace(/<strong style="font-size:1\.35em">(.*?)<\/strong>(?:\s*<br\/?>)?(?=\s*<span class="profile-nickname")/gi, '<h1 class="profile-name inline-block text-[26px] md:text-[32px] font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-100 m-0 p-0 border-b-0">$1</h1>');
   html = html.replace(/<strong style="font-size:1\.35em">(.*?)<\/strong>/gi, '<h1 class="profile-name inline-block text-[26px] md:text-[32px] font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-100 m-0 p-0 border-b-0">$1</h1>');
+
+  // Enhance profile nickname with responsive executive typography
+  html = html.replace(/<span class="profile-nickname"[^>]*>(.*?)<\/span>(?:\s*<br\/?>)?/gi, '<div class="profile-nickname text-sm md:text-[15px] font-medium text-zinc-500 dark:text-zinc-400 mt-0.5 mb-1.5 tracking-tight">$1</div>');
+  html = html.replace(/(<h1 class="profile-name\b[^>]*>.*?<\/h1>)\s*<br\/?>(\s*<div class="profile-nickname")/gi, '$1\n\t$2');
 
   const avatarHtml = `<div class="avatar-container flex justify-center my-3 md:my-4"><img src="https://avatars.githubusercontent.com/u/20990824?v=4" alt="${target.personName} Profile Avatar" width="96" height="96" loading="eager" decoding="async" class="profile-avatar w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-zinc-200 dark:border-zinc-800 shadow-md object-cover hover:scale-105 hover:border-zinc-500 dark:hover:border-zinc-400 hover:shadow-lg transition-all duration-300"></div>`;
   if (!html.includes('class="profile-avatar"')) {

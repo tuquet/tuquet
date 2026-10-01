@@ -4,7 +4,8 @@
 </div>
 
 <div align="center">
-	<strong style="font-size:1.35em">Toby Nguyen (Nguyễn Đình Tú)</strong><br/>
+	<strong style="font-size:1.35em">Nguyen Dinh Tu</strong><br/>
+	<span class="profile-nickname" style="font-size:0.9em;color:#71717a">Nickname: Toby Nguyen</span><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
 	<br/>
 	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com &nbsp;|&nbsp; <strong>Location:</strong> Ha Dong, Ha Noi, Vietnam<br/>

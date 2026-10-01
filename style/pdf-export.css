@@ -63,6 +63,15 @@ code, pre {
   font-family: 'Roboto Mono', Consolas, 'Courier New', monospace;
 }
 
+.profile-nickname {
+  display: block;
+  font-size: 0.9em;
+  color: #57606a;
+  margin-top: 1px;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
 /* 4. Web Responsive Container (GitHub Pages) */
 @media screen {
   html {
