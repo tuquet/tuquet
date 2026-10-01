@@ -1,420 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>README</title>
+
 <script>
 if (window.location.protocol.startsWith('http') && window.location.pathname.endsWith('README.html')) {
   window.location.replace(window.location.pathname.replace(/README\.html$/, 'index.html') + window.location.search);
 }
 </script>
-<title>README.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
 <style>
-/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+/* Modern clean typography & printable stylesheet */
+:root {
+  --text-main: #18181b;
+  --bg-main: #ffffff;
+  --border-color: #e4e4e7;
+  --code-bg: #f4f4f5;
+}
 
 body {
-	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
-	font-size: var(--vscode-markdown-font-size, 14px);
-	padding: 0 26px;
-	line-height: var(--vscode-markdown-line-height, 22px);
-	word-wrap: break-word;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-main);
+  padding: 0 24px;
+  margin: 0;
+  word-wrap: break-word;
 }
 
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: var(--text-main);
 }
 
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+h1 { font-size: 1.85em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
+h2 { font-size: 1.45em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.25em; }
+h3 { font-size: 1.2em; }
+h4 { font-size: 1.05em; }
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin-top: 0;
+  margin-bottom: 14px;
 }
 
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
+ul, ol {
+  padding-left: 2em;
 }
 
-body.showEditorSelection .code-line {
-	position: relative;
-}
-
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
-
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
-
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
-
-.vscode-light.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
-
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
-
-.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
+li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
 }
 
 hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
-
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
-
-h1, h2, h3 {
-	font-weight: normal;
+  height: 1px;
+  padding: 0;
+  margin: 24px 0;
+  background-color: var(--border-color);
+  border: 0;
 }
 
 table {
-	border-collapse: collapse;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+  display: table;
 }
 
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
+table th, table td {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
 }
 
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
-
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
-
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left-width: 5px;
-	border-left-style: solid;
+table th {
+  font-weight: 600;
+  background-color: var(--code-bg);
 }
 
 code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 1em;
-	line-height: 1.357em;
-}
-
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
-
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
-
-pre code {
-	color: var(--vscode-editor-foreground);
-	tab-size: 4;
-}
-
-/** Theming */
-
-.vscode-light pre {
-	background-color: rgba(220, 220, 220, 0.4);
-}
-
-.vscode-dark pre {
-	background-color: rgba(10, 10, 10, 0.4);
-}
-
-.vscode-high-contrast pre {
-	background-color: rgb(0, 0, 0);
-}
-
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
-
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
-
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
-
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
-
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
-
-</style>
-
-<style>
-pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em
-}
-code.hljs {
-  padding: 3px 5px
-}
-/*!
-  Theme: GitHub
-  Description: Light theme as seen on github.com
-  Author: github.com
-  Maintainer: @Hirse
-  Updated: 2021-05-15
-
-  Outdated base version: https://github.com/primer/github-syntax-light
-  Current colors taken from GitHub's CSS
-*/
-.hljs {
-  color: #24292e;
-  background: #ffffff
-}
-.hljs-doctag,
-.hljs-keyword,
-.hljs-meta .hljs-keyword,
-.hljs-template-tag,
-.hljs-template-variable,
-.hljs-type,
-.hljs-variable.language_ {
-  /* prettylights-syntax-keyword */
-  color: #d73a49
-}
-.hljs-title,
-.hljs-title.class_,
-.hljs-title.class_.inherited__,
-.hljs-title.function_ {
-  /* prettylights-syntax-entity */
-  color: #6f42c1
-}
-.hljs-attr,
-.hljs-attribute,
-.hljs-literal,
-.hljs-meta,
-.hljs-number,
-.hljs-operator,
-.hljs-variable,
-.hljs-selector-attr,
-.hljs-selector-class,
-.hljs-selector-id {
-  /* prettylights-syntax-constant */
-  color: #005cc5
-}
-.hljs-regexp,
-.hljs-string,
-.hljs-meta .hljs-string {
-  /* prettylights-syntax-string */
-  color: #032f62
-}
-.hljs-built_in,
-.hljs-symbol {
-  /* prettylights-syntax-variable */
-  color: #e36209
-}
-.hljs-comment,
-.hljs-code,
-.hljs-formula {
-  /* prettylights-syntax-comment */
-  color: #6a737d
-}
-.hljs-name,
-.hljs-quote,
-.hljs-selector-tag,
-.hljs-selector-pseudo {
-  /* prettylights-syntax-entity-tag */
-  color: #22863a
-}
-.hljs-subst {
-  /* prettylights-syntax-storage-modifier-import */
-  color: #24292e
-}
-.hljs-section {
-  /* prettylights-syntax-markup-heading */
-  color: #005cc5;
-  font-weight: bold
-}
-.hljs-bullet {
-  /* prettylights-syntax-markup-list */
-  color: #735c0f
-}
-.hljs-emphasis {
-  /* prettylights-syntax-markup-italic */
-  color: #24292e;
-  font-style: italic
-}
-.hljs-strong {
-  /* prettylights-syntax-markup-bold */
-  color: #24292e;
-  font-weight: bold
-}
-.hljs-addition {
-  /* prettylights-syntax-markup-inserted */
-  color: #22863a;
-  background-color: #f0fff4
-}
-.hljs-deletion {
-  /* prettylights-syntax-markup-deleted */
-  color: #b31d28;
-  background-color: #ffeef0
-}
-.hljs-char.escape_,
-.hljs-link,
-.hljs-params,
-.hljs-property,
-.hljs-punctuation,
-.hljs-tag {
-  /* purposely ignored */
-  
-}
-</style>
-
-<style>
-/*
- * Markdown PDF CSS
- */
-
- body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-	padding: 0 12px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 88%;
+  background-color: var(--code-bg);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
 }
 
 pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
+  background-color: var(--code-bg);
+  border-radius: 6px;
+  padding: 14px;
+  overflow: auto;
 }
 
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
+pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 90%;
 }
 
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
+.table-container {
+  overflow-x: auto;
+  margin: 16px 0;
 }
 
-.emoji {
-	height: 1.4em;
+/* Print Specific Rules */
+@media print {
+  body {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  .page-break {
+    page-break-after: always;
+  }
 }
-
-code {
-	font-size: 14px;
-	line-height: 19px;
-}
-
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
-
-/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
--------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
-
 </style>
-<link rel="stylesheet" href="file://c:\Users\ndtu6\Repository\tuquet-profile\style\pdf-export.css" type="text/css">
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<link rel="stylesheet" href="style/pdf-export.css">
+
 </head>
 <body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
-    });
-  </script>
 <div align="center" class="no-print">
 	<strong>English</strong> | <a href="./vi/README.md">Tiếng Việt</a>
 	<br/><br/>
@@ -428,11 +136,12 @@ code {
 	<strong>GitHub:</strong> <a href="https://github.com/tuquet">https://github.com/tuquet</a> &nbsp;|&nbsp; <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tuquet">https://www.linkedin.com/in/tuquet</a>
 </div>
 <p align="center"><em>Technical Lead & Senior Software Engineer with a <strong>Product-first mindset</strong>, specialized in <strong>distributed backend systems</strong>, <strong>high-scale web applications</strong>, and <strong>optimizing engineering productivity</strong> through <strong>AI-augmented workflows (MCP, LLMs)</strong>.</em></p>
-<h2 id="career-summary">CAREER SUMMARY</h2>
+<h2>CAREER SUMMARY</h2>
 <p>Accomplished Technical Lead &amp; Senior Software Engineer with over 8+ years of experience engineering high-scale distributed systems, resilient backend services, and world-class web applications. Deeply versatile across systems programming (Rust, Java/Spring Boot, Node.js) and modern web ecosystems (React, Next.js, Vue.js, Micro-frontends). Proven expertise in data pipelines, real-time telemetry streaming (WebSockets, SSE), distributed caching, and Core Web Vitals optimization.</p>
 <p>Pioneer in marrying a <strong>Product-Led Growth (PLG)</strong> mindset with <strong>AI-augmented engineering workflows (MCP, LLM toolchains)</strong> to drive technical excellence, deliver resilient software architectures, and scale cross-functional engineering teams.</p>
 <hr>
-<h2 id="core-competencies--technical-skills">CORE COMPETENCIES &amp; TECHNICAL SKILLS</h2>
+<h2>CORE COMPETENCIES &amp; TECHNICAL SKILLS</h2>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -479,8 +188,10 @@ code {
 </tr>
 </tbody>
 </table>
-<hr>
-<h2 id="professional-experience">PROFESSIONAL EXPERIENCE</h2>
+
+</div><hr>
+<h2>PROFESSIONAL EXPERIENCE</h2>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -517,9 +228,10 @@ code {
 </tr>
 </tbody>
 </table>
-<hr>
-<h2 id="featured-project-list">FEATURED PROJECT LIST</h2>
-<h3 id="092024--present-high-scale-web--booking-portals--theme-park-enterprise">(09/2024 – Present) High-Scale Web &amp; Booking Portals – Theme Park Enterprise</h3>
+
+</div><hr>
+<h2>FEATURED PROJECT LIST</h2>
+<h3>(09/2024 – Present) High-Scale Web &amp; Booking Portals – Theme Park Enterprise</h3>
 <ul>
 <li><strong>Timeline</strong>: 09/2024 – Present</li>
 <li><strong>Company</strong>: CMC GLOBAL</li>
@@ -539,7 +251,7 @@ code {
 <li><strong>Platform, server and database</strong>: Docker, Redis, MS SQL Server, Linux</li>
 <li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
-<h3 id="092024--present-digital-twin--electric-vehicle-ev-real-time-telemetry-dashboard">(09/2024 – Present) Digital Twin – Electric Vehicle (EV) Real-Time Telemetry Dashboard</h3>
+<h3>(09/2024 – Present) Digital Twin – Electric Vehicle (EV) Real-Time Telemetry Dashboard</h3>
 <ul>
 <li><strong>Timeline</strong>: 09/2024 – Present</li>
 <li><strong>Company</strong>: CMC GLOBAL</li>
@@ -560,7 +272,7 @@ code {
 <li><strong>Platform, server and database</strong>: Azure Cloud, Docker, Kubernetes, WebSockets, PostgreSQL, Redis</li>
 <li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
-<h3 id="052020--082024-big-data-analytics--interactive-intelligence-platform">(05/2020 – 08/2024) Big Data Analytics &amp; Interactive Intelligence Platform</h3>
+<h3>(05/2020 – 08/2024) Big Data Analytics &amp; Interactive Intelligence Platform</h3>
 <ul>
 <li><strong>Timeline</strong>: 05/2020 – 08/2024</li>
 <li><strong>Company</strong>: ICOMM TECH.JSC</li>
@@ -581,7 +293,7 @@ code {
 <li><strong>Platform, server and database</strong>: Docker, Kubernetes, Redis, Apache Solr, ClickHouse, Linux</li>
 <li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
-<h3 id="122018--042020-high-converting-e-commerce-storefront--merchant-suite">(12/2018 – 04/2020) High-Converting E-Commerce Storefront &amp; Merchant Suite</h3>
+<h3>(12/2018 – 04/2020) High-Converting E-Commerce Storefront &amp; Merchant Suite</h3>
 <ul>
 <li><strong>Timeline</strong>: 12/2018 – 04/2020</li>
 <li><strong>Company</strong>: OPEN COMMERCE GROUP</li>
@@ -601,7 +313,7 @@ code {
 <li><strong>Platform, server and database</strong>: AWS, Nginx, Redis, MySQL</li>
 <li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
-<h3 id="052018--122018-enterprise-japanese-business-management-portal">(05/2018 – 12/2018) Enterprise Japanese Business Management Portal</h3>
+<h3>(05/2018 – 12/2018) Enterprise Japanese Business Management Portal</h3>
 <ul>
 <li><strong>Timeline</strong>: 05/2018 – 12/2018</li>
 <li><strong>Company</strong>: TDT ASIA JSC</li>
@@ -620,7 +332,7 @@ code {
 <li><strong>Platform, server and database</strong>: Tomcat, Docker, MySQL, Linux</li>
 <li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
-<h3 id="122016--042018-responsive-real-time-telemedicine-web-application">(12/2016 – 04/2018) Responsive Real-time Telemedicine Web Application</h3>
+<h3>(12/2016 – 04/2018) Responsive Real-time Telemedicine Web Application</h3>
 <ul>
 <li><strong>Timeline</strong>: 12/2016 – 04/2018</li>
 <li><strong>Company</strong>: LUSH ERA LLC</li>
@@ -639,7 +351,7 @@ code {
 <li><strong>Platform, server and database</strong>: MySQL, Apache, Ubuntu Linux</li>
 <li><strong>Methodology</strong>: Agile</li>
 </ul>
-<h3 id="2024--present-tuquet--developer-cli--distributed-automation-ecosystem">(2024 – Present) Tuquet – Developer CLI &amp; Distributed Automation Ecosystem</h3>
+<h3>(2024 – Present) Tuquet – Developer CLI &amp; Distributed Automation Ecosystem</h3>
 <ul>
 <li><strong>Timeline</strong>: 2024 – Present</li>
 <li><strong>Company</strong>: Independent Product Labs (Open-Source R&amp;D)</li>
@@ -663,14 +375,14 @@ code {
 <li><strong>Methodology</strong>: Agile Kanban</li>
 </ul>
 <hr>
-<h2 id="achievements--awards">ACHIEVEMENTS &amp; AWARDS</h2>
+<h2>ACHIEVEMENTS &amp; AWARDS</h2>
 <ul>
 <li><strong>Q4/2025:</strong> <strong>Rising Star Award (CMC GLOBAL)</strong> – Recognized for exemplary technical leadership and high-impact delivery of the Digital Twin EV project.</li>
 <li><strong>2023:</strong> <strong>Team of the Year (ICOMM TECH.JSC)</strong> – Leading the engineering organization to exceed all product delivery targets.</li>
 <li><strong>2022:</strong> <strong>Outstanding Employee (ICOMM TECH.JSC)</strong> – Awarded for spearheading the flagship Big Data platform.</li>
 </ul>
 <hr>
-<h2 id="education">EDUCATION</h2>
+<h2>EDUCATION</h2>
 <p><strong>FPT University</strong> | Information Technology (1/2012 – 9/2014)</p>
 <ul>
 <li><strong>Focus:</strong> Full-Stack Web Development, Desktop Application Design &amp; Software Architecture.</li>

@@ -1,3 +1,6 @@
+# Dependencies
+node_modules/
+
 # Temporary files generated during markdown-pdf export
 *_tmp.html
 
