@@ -374,116 +374,88 @@ h3.lens-highlight {
 }
 
 /* ==========================================================================
-   5. Magic Keyword Scroll-Reveal (Metallic Zinc Highlighter System)
+   5. Magic Keyword Scroll-Reveal (Sophisticated Monochromatic Accent)
+   Zero Layout Shift (CLS = 0) & Gentle Low-Fatigue Contrast
    ========================================================================== */
 .kw-magic {
   display: inline;
   position: relative;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  padding: 1.5px 5px;
-  margin: 0 1px;
-  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 0 1px 1px 1px;
+  margin: 0;
   font-weight: 600;
-  background-color: rgba(244, 244, 245, 0.85); /* zinc-100 */
-  border: 1px solid rgba(228, 228, 231, 0.9);   /* zinc-200 */
-  color: #18181b;                              /* zinc-900 */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
-  cursor: default;
+  color: inherit;
+  background-color: transparent;
+  border-bottom: 1.5px solid rgba(161, 161, 170, 0.45); /* subtle zinc-400 underline */
+  border-radius: 2px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  cursor: text;
 }
 
 html.dark .kw-magic {
-  background-color: rgba(39, 39, 42, 0.7);     /* zinc-800 */
-  border: 1px solid rgba(63, 63, 70, 0.8);     /* zinc-700 */
-  color: #f4f4f5;                              /* zinc-100 */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: inherit;
+  border-bottom-color: rgba(113, 113, 122, 0.55); /* subtle zinc-500 underline in dark mode */
 }
 
-/* Light Mode: Radiant Highlighter Sweep & Zinc Halo Pop */
-.kw-magic.kw-active {
-  animation: kw-sweep-light 1.1s cubic-bezier(0.25, 1, 0.5, 1) both;
-}
-
-@keyframes kw-sweep-light {
-  0% {
-    background-color: rgba(244, 244, 245, 0.85);
-    border-color: rgba(228, 228, 231, 0.9);
-    box-shadow: 0 0 0 0 rgba(161, 161, 170, 0);
-  }
-  30% {
-    /* Peak highlighter sweep & metallic gleam */
-    background-color: #e4e4e7; /* zinc-200 */
-    border-color: #a1a1aa;     /* zinc-400 */
-    color: #09090b;            /* zinc-950 */
-    box-shadow: 0 0 0 3.5px rgba(212, 212, 216, 0.8), 0 2px 8px rgba(0, 0, 0, 0.08);
-  }
-  65% {
-    background-color: #f4f4f5;
-    border-color: #d4d4d8;
-    box-shadow: 0 0 0 1.5px rgba(212, 212, 216, 0.4);
-  }
-  100% {
-    background-color: rgba(244, 244, 245, 0.85);
-    border-color: rgba(228, 228, 231, 0.9);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  }
-}
-
-/* Dark Mode: Pure Crystalline Platinum Gleam */
-html.dark .kw-magic.kw-active {
-  animation: kw-sweep-dark 1.1s cubic-bezier(0.25, 1, 0.5, 1) both;
-}
-
-@keyframes kw-sweep-dark {
-  0% {
-    background-color: rgba(39, 39, 42, 0.7);
-    border-color: rgba(63, 63, 70, 0.8);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-  }
-  30% {
-    /* Peak starlight platinum gleam */
-    background-color: #3f3f46; /* zinc-700 */
-    border-color: #71717a;     /* zinc-500 */
-    color: #ffffff;
-    box-shadow: 0 0 0 3.5px rgba(113, 113, 122, 0.6), 0 2px 10px rgba(0, 0, 0, 0.35);
-  }
-  65% {
-    background-color: #27272a;
-    border-color: #52525b;
-    box-shadow: 0 0 0 1.5px rgba(113, 113, 122, 0.25);
-  }
-  100% {
-    background-color: rgba(39, 39, 42, 0.7);
-    border-color: rgba(63, 63, 70, 0.8);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  }
-}
-
-/* Hover Interaction: instant reactive feedback */
+/* Hover feedback: gentle, calm background tint, zero layout shift */
 .kw-magic:hover {
-  background-color: #e4e4e7;
-  border-color: #a1a1aa;
-  color: #09090b;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background-color: rgba(244, 244, 245, 0.9); /* zinc-100 */
+  border-bottom-color: #18181b;               /* zinc-900 */
 }
 
 html.dark .kw-magic:hover {
-  background-color: #3f3f46;
-  border-color: #71717a;
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  background-color: rgba(39, 39, 42, 0.8);     /* zinc-800 */
+  border-bottom-color: #f4f4f5;               /* zinc-100 */
+}
+
+/* Subtle, eye-friendly reveal sweep (NO layout shift, NO harsh flashing) */
+.kw-magic.kw-active {
+  animation: kw-gentle-sweep-light 0.85s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+@keyframes kw-gentle-sweep-light {
+  0% {
+    background-color: transparent;
+    border-bottom-color: rgba(161, 161, 170, 0.45);
+  }
+  35% {
+    /* Peak gentle wash: soft tone, zero layout shift, non-intrusive */
+    background-color: rgba(228, 228, 231, 0.65); /* zinc-200 */
+    border-bottom-color: #18181b;                 /* zinc-900 */
+  }
+  100% {
+    background-color: transparent;
+    border-bottom-color: rgba(161, 161, 170, 0.45);
+  }
+}
+
+/* Dark Mode gentle reveal */
+html.dark .kw-magic.kw-active {
+  animation: kw-gentle-sweep-dark 0.85s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+@keyframes kw-gentle-sweep-dark {
+  0% {
+    background-color: transparent;
+    border-bottom-color: rgba(113, 113, 122, 0.55);
+  }
+  35% {
+    background-color: rgba(63, 63, 70, 0.5);   /* zinc-700 */
+    border-bottom-color: #f4f4f5;              /* zinc-100 */
+  }
+  100% {
+    background-color: transparent;
+    border-bottom-color: rgba(113, 113, 122, 0.55);
+  }
 }
 
 /* Lens Dim Protection */
 .lens-dim .kw-magic,
 .lens-dim.kw-magic {
   animation: none !important;
-  background-image: none !important;
   background-color: transparent !important;
-  border-color: transparent !important;
+  border-bottom-color: transparent !important;
   box-shadow: none !important;
-  filter: none !important;
 }
 
 /* Accessibility: respect user preferences for reduced motion */
@@ -491,7 +463,6 @@ html.dark .kw-magic:hover {
   .kw-magic {
     animation: none !important;
     transition: none !important;
-    box-shadow: none !important;
   }
 }
 

@@ -356,11 +356,37 @@
     }
   };
 
-  // 6. Magic Keyword Scroll-Reveal & Ambient Gleam (Kiếm Phong Kim)
+  // 6. Magic Keyword Scroll-Reveal & Ambient Accent (Executive Focus)
   const KeywordMagic = {
     init() {
       const candidates = document.querySelectorAll('p strong, li strong, td strong, blockquote strong');
       const keywords = [];
+
+      // Curated list of hot trending tech keywords in modern software engineering & Toby's stack
+      const hotTrendingTech = [
+        // Languages & Core Runtimes
+        'rust', 'tokio', 'typescript', 'javascript', 'java', 'node.js', 'python', 'go', 'sql', 'html5', 'css3',
+        // Modern Web & Frameworks
+        'react', 'next.js', 'vue.js', 'nuxt', 'angular', 'rxjs', 'vite', 'electron js', 'electron',
+        'tailwind css', 'tailwind', 'spring boot', 'nestjs', 'express', 'laravel', 'react native',
+        // Architecture & Frontend Paradigms
+        'micro-frontends', 'micro-frontend', 'module federation', 'design system', 'design systems',
+        'server components', 'concurrent features', 'clean code', 'event-driven architecture', 'event-driven',
+        // Real-Time, Streaming & APIs
+        'websockets', 'websocket', 'sse', 'server-sent events', 'webrtc', 'grpc', 'graphql', 'rest',
+        'real-time telemetry', 'telemetry', 'data streaming', 'data pipelines',
+        // Caching, State & Storage
+        'redis', 'postgresql', 'postgres', 'clickhouse', 'supabase', 'ms sql server', 'ms sql', 'mysql',
+        'apache solr', 'solr', 'zustand', 'redux', 'tanstack query', 'react query', 'swr',
+        'virtual scrolling', 'virtualized', 'canvas data charting', 'canvas', 'echarts', 'highcharts',
+        // DevOps, Cloud & Systems
+        'docker', 'kubernetes', 'azure cloud', 'azure', 'aws', 'ci/cd', 'github actions',
+        'turborepo', 'monorepo', 'linux', 'win32 job objects', 'win32', 'scoop',
+        // AI & Modern Developer Toolchains (Top Industry Trend)
+        'model context protocol', 'mcp', 'llm', 'llms', 'ai-augmented', 'ai',
+        // Performance
+        'core web vitals', 'inp', 'lcp', 'fcp'
+      ];
 
       const isLabel = (el) => {
         const text = el.textContent.trim();
@@ -386,8 +412,18 @@
         return commonLabels.includes(lower);
       };
 
+      const isHotTech = (text) => {
+        const clean = text.toLowerCase().trim();
+        return hotTrendingTech.some(kw => {
+          const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const regex = new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, 'i');
+          return regex.test(clean);
+        });
+      };
+
       candidates.forEach(el => {
-        if (!isLabel(el)) {
+        const text = el.textContent.trim();
+        if (!isLabel(el) && isHotTech(text)) {
           el.classList.add('kw-magic');
           keywords.push(el);
         }
@@ -395,7 +431,7 @@
 
       if (!keywords.length) return;
 
-      // Intersection Observer with reading focus zone
+      // Single-pass Intersection Observer: gentle reveal without layout thrashing or repetitive loops
       const observer = new IntersectionObserver((entries) => {
         const intersecting = entries.filter(e => e.isIntersecting && !e.target.dataset.kwTriggered);
 
@@ -403,8 +439,8 @@
           const el = entry.target;
           el.dataset.kwTriggered = 'true';
 
-          // Stagger animation across multiple keywords appearing together
-          const delay = (idx % 5) * 140; // 0ms, 140ms, 280ms, 420ms, 560ms
+          // Mild staggered timing for words entering together
+          const delay = (idx % 4) * 90;
 
           setTimeout(() => {
             el.classList.add('kw-active');
@@ -416,25 +452,15 @@
             el.addEventListener('animationend', onEnd, { once: true });
           }, delay);
         });
-
-        // Re-arm keywords when they leave the viewport for a short while
-        entries.forEach(entry => {
-          if (!entry.isIntersecting && entry.target.dataset.kwTriggered) {
-            const el = entry.target;
-            setTimeout(() => {
-              delete el.dataset.kwTriggered;
-            }, 1200);
-          }
-        });
       }, {
         root: null,
-        rootMargin: '0px 0px -12% 0px', // Triggers when keyword reaches bottom 88% of screen
-        threshold: 0.15
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.1
       });
 
       keywords.forEach(kw => observer.observe(kw));
 
-      // Interactive hover gleam on mouse over
+      // Interactive subtle hover
       keywords.forEach(kw => {
         kw.addEventListener('mouseenter', () => {
           if (!kw.classList.contains('kw-active') && !kw.closest('.lens-dim')) {
@@ -452,16 +478,17 @@
     triggerHighlighted() {
       const highlighted = document.querySelectorAll('.lens-highlight .kw-magic, .lens-highlight.kw-magic');
       highlighted.forEach((el, idx) => {
-        const delay = Math.min(idx * 60, 500);
+        const delay = Math.min(idx * 50, 300);
         setTimeout(() => {
           el.classList.remove('kw-active');
-          void el.offsetWidth; // Force reflow
-          el.classList.add('kw-active');
-          const onEnd = () => {
-            el.classList.remove('kw-active');
-            el.removeEventListener('animationend', onEnd);
-          };
-          el.addEventListener('animationend', onEnd, { once: true });
+          requestAnimationFrame(() => {
+            el.classList.add('kw-active');
+            const onEnd = () => {
+              el.classList.remove('kw-active');
+              el.removeEventListener('animationend', onEnd);
+            };
+            el.addEventListener('animationend', onEnd, { once: true });
+          });
         }, delay);
       });
     }
