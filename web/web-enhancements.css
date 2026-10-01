@@ -205,19 +205,47 @@
   transform: translateY(-1px);
 }
 
-/* 4. Lens Filter Effects */
+/* 4. Lens Filter Effects (Clean Spotlight Focus - No Background Paint) */
 .lens-dim {
-  opacity: 0.28 !important;
-  filter: grayscale(80%) !important;
-  transition: opacity 0.25s ease, filter 0.25s ease;
+  opacity: 0.18 !important;
+  transition: opacity 0.25s ease;
+}
+
+.lens-dim:hover {
+  opacity: 0.55 !important;
 }
 
 .lens-highlight {
-  background-color: var(--highlight-bg) !important;
-  border-left: 3px solid var(--accent) !important;
-  padding-left: 10px !important;
-  border-radius: 4px !important;
-  transition: all 0.25s ease;
+  opacity: 1 !important;
+  transition: opacity 0.25s ease;
+}
+
+li.lens-highlight {
+  color: var(--text-primary) !important;
+}
+
+li.lens-highlight::marker {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+tr.lens-dim {
+  opacity: 0.18 !important;
+  transition: opacity 0.25s ease;
+}
+
+tr.lens-highlight td {
+  color: var(--text-primary) !important;
+}
+
+h3.lens-dim {
+  opacity: 0.25 !important;
+  transition: opacity 0.25s ease;
+}
+
+h3.lens-highlight {
+  opacity: 1 !important;
+  transition: opacity 0.25s ease;
 }
 
 /* 5. Click-to-Copy Links */

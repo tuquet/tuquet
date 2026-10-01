@@ -119,7 +119,7 @@
         'typescript', 'javascript', 'micro-frontends', 'module federation', 'vite',
         'core web vitals', 'webview', 'responsive', 'ui', 'ux', 'cro', 'fcp', 'lcp',
         'cls', 'design system', 'storybook', 'radix ui', 'css', 'html', 'giao diện',
-        'tương tác', 'storefront', 'theme park', 'visitor', 'cross-browser'
+        'tương tác', 'storefront', 'cross-browser'
       ];
 
       const backendKeywords = [
@@ -133,12 +133,20 @@
       ];
 
       const leadershipKeywords = [
-        'lead', 'leader', 'leadership', 'squad', 'team', 'cpo', 'tech lead',
+        'lead', 'leader', 'leading', 'leadership', 'squad', 'team', 'cpo', 'tech lead',
         'technical project lead', 'project leader', 'kỹ sư trưởng', 'quản lý', 'lãnh đạo',
         '15+', 'mentoring', 'mentored', 'rising star', 'chiến lược', 'plg', 'product-first',
         'competencies', 'năng lực', 'dẫn dắt', 'team of the year', 'outstanding employee',
         'cross-functional', 'điều phối', 'giao việc', 'định hướng', 'tổ chức', 'quy mô'
       ];
+
+      const matchesKeyword = (text, keywords) => {
+        return keywords.some(kw => {
+          const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const regex = new RegExp('(^|[^a-zA-Z0-9_À-ỹ])' + escaped + '([^a-zA-Z0-9_À-ỹ]|$)', 'i');
+          return regex.test(text);
+        });
+      };
 
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -146,33 +154,86 @@
           btn.classList.add('active');
           const mode = btn.getAttribute('data-lens');
 
-          const items = document.querySelectorAll('li, tr, p');
-          items.forEach(el => {
+          // Reset all lens classes
+          document.querySelectorAll('.lens-dim, .lens-highlight').forEach(el => {
             el.classList.remove('lens-dim', 'lens-highlight');
-            if (mode === 'all') return;
+          });
 
-            const text = (el.textContent || '').toLowerCase();
-            let match = false;
+          if (mode === 'all') {
+            Toast.show(isVi() ? 'Hiển thị toàn bộ nội dung' : 'Showing All Details');
+            return;
+          }
 
-            if (mode === 'frontend') {
-              match = frontendKeywords.some(k => text.includes(k));
-            } else if (mode === 'backend') {
-              match = backendKeywords.some(k => text.includes(k));
-            } else if (mode === 'leadership') {
-              match = leadershipKeywords.some(k => text.includes(k));
+          let kws = [];
+          if (mode === 'frontend') kws = frontendKeywords;
+          else if (mode === 'backend') kws = backendKeywords;
+          else if (mode === 'leadership') kws = leadershipKeywords;
+
+          // 1. Process leaf list items (bullet points)
+          const allLis = document.querySelectorAll('li');
+          allLis.forEach(li => {
+            const hasSubList = li.querySelector('ul, ol');
+            if (hasSubList) return; // Evaluated in step 2
+
+            const text = li.textContent || '';
+            if (matchesKeyword(text, kws)) {
+              li.classList.add('lens-highlight');
+            } else {
+              li.classList.add('lens-dim');
             }
+          });
 
-            if (match) {
-              el.classList.add('lens-highlight');
-            } else if (el.tagName === 'LI') {
-              el.classList.add('lens-dim');
+          // 2. Process parent list items that have child lists (e.g. Responsibilities *)
+          allLis.forEach(li => {
+            const hasSubList = li.querySelector('ul, ol');
+            if (!hasSubList) return;
+
+            const hasActiveChild = li.querySelector('li.lens-highlight');
+            if (hasActiveChild) {
+              li.classList.remove('lens-dim');
+            } else {
+              li.classList.add('lens-dim');
+            }
+          });
+
+          // 3. Process table rows in body
+          const rows = document.querySelectorAll('tbody tr');
+          rows.forEach(tr => {
+            const text = tr.textContent || '';
+            if (matchesKeyword(text, kws)) {
+              tr.classList.add('lens-highlight');
+            } else {
+              tr.classList.add('lens-dim');
+            }
+          });
+
+          // 4. Process career summary paragraphs (excluding centered bio headers)
+          const paragraphs = document.querySelectorAll('p:not([align="center"])');
+          paragraphs.forEach(p => {
+            const text = p.textContent || '';
+            if (matchesKeyword(text, kws)) {
+              p.classList.add('lens-highlight');
+            } else {
+              p.classList.add('lens-dim');
+            }
+          });
+
+          // 5. Process project headings (h3)
+          const projectHeadings = document.querySelectorAll('h3');
+          projectHeadings.forEach(h3 => {
+            const nextEl = h3.nextElementSibling;
+            if (nextEl && nextEl.tagName === 'UL') {
+              const hasMatchingItem = nextEl.querySelector('li.lens-highlight');
+              if (hasMatchingItem) {
+                h3.classList.add('lens-highlight');
+              } else {
+                h3.classList.add('lens-dim');
+              }
             }
           });
 
           const label = btn.textContent.trim();
-          const msg = mode === 'all'
-            ? (isVi() ? 'Hiển thị toàn bộ nội dung' : 'Showing All Details')
-            : (isVi() ? `Đã lọc theo: ${label}` : `Filtered by: ${label}`);
+          const msg = isVi() ? `Đã lọc theo: ${label}` : `Filtered by: ${label}`;
           Toast.show(msg);
         });
       });
