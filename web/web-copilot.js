@@ -78,6 +78,73 @@
     }
   };
 
+  // 3b. Back to Top Controller (Clean & Sophisticated)
+  const BackToTop = {
+    init() {
+      const btn = document.getElementById('back-to-top');
+      if (!btn) return;
+
+      const threshold = 350;
+      let ticking = false;
+
+      const update = () => {
+        const scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+        if (scrolled > threshold) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+        ticking = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const main = document.getElementById('main-content');
+        if (main) {
+          main.setAttribute('tabindex', '-1');
+          main.focus({ preventScroll: true });
+        }
+      });
+
+      update();
+    }
+  };
+
+  // 3c. Sticky Top Bar Elevation Controller
+  const StickyHeader = {
+    init() {
+      const header = document.querySelector('.web-top-bar');
+      if (!header) return;
+
+      let ticking = false;
+      const update = () => {
+        const scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+        if (scrolled > 15) {
+          header.classList.add('is-scrolled');
+        } else {
+          header.classList.remove('is-scrolled');
+        }
+        ticking = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      update();
+    }
+  };
+
   // 4. Toast Notifications & Quick Copy
   const Toast = {
     show(message) {
@@ -679,6 +746,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     ThemeManager.init();
     ProgressIndicator.init();
+    StickyHeader.init();
+    BackToTop.init();
     Toast.init();
     DownloadDropdown.init();
     LensFilter.init();

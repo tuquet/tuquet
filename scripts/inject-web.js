@@ -40,6 +40,7 @@ const TARGETS = [
     copilotTeaserDesc: "Ask about distributed systems, 15+ engineer leadership, or role suitability.",
     welcomeMsg: "<span id=\"copilot-greeting-text\">Hello.</span> I am Toby's AI assistant. Ask any question regarding his 8+ years leading distributed systems, technical architecture, or role suitability.<br/><br/><strong>Topics you can explore:</strong><br/>• <strong>Executive Summary:</strong> Core strengths & leadership overview<br/>• <strong>Role Fit Check:</strong> Suitability for Tech Lead, Architect, or Senior Engineer<br/>• <strong>Real-Time Telemetry (EV):</strong> 15+ engineers, real-time telemetry streaming<br/>• <strong>High-Scale Web & Booking:</strong> High-traffic web & webview portals for premier theme park enterprise<br/>• <strong>Tuquet Engine:</strong> Zero-leakage process supervision in Rust<br/>• <strong>Tech Stack & Contact:</strong> Direct interview scheduling",
     themeBtnTitle: 'Toggle Dark / Light Mode',
+    backToTopTitle: 'Back to top',
     lenses: [
       { key: 'all', text: 'All' },
       { key: 'frontend', text: 'Frontend' },
@@ -85,6 +86,7 @@ const TARGETS = [
     copilotTeaserDesc: "Tra cứu nhanh về hệ thống phân tán, lead 15+ kỹ sư và độ phù hợp vị trí.",
     welcomeMsg: "<span id=\"copilot-greeting-text\">Xin chào.</span> Tôi là trợ lý AI của Toby Nguyen. Bạn có thể tra cứu nhanh về 8+ năm kinh nghiệm kiến trúc hệ thống phân tán, năng lực lãnh đạo kỹ thuật hoặc độ phù hợp vị trí.<br/><br/><strong>Các chủ đề gợi ý:</strong><br/>• <strong>Tóm tắt năng lực:</strong> Tổng quan thế mạnh và kinh nghiệm điều phối<br/>• <strong>Độ phù hợp vị trí:</strong> Đánh giá cho vai trò Tech Lead, Architect hoặc Senior Engineer<br/>• <strong>Telemetry thời gian thực (EV):</strong> Quản lý 15+ kỹ sư, streaming WebSockets<br/>• <strong>Nền tảng Web & Đặt vé Trực tuyến:</strong> Hệ thống Web Portal & WebView cho tập đoàn công viên giải trí quốc tế<br/>• <strong>Kiến trúc Tuquet:</strong> Giám sát tiến trình không rò rỉ bằng Rust & Win32<br/>• <strong>Kỹ năng & Liên hệ:</strong> Lên lịch phỏng vấn và trao đổi trực tiếp",
     themeBtnTitle: 'Chuyển đổi giao diện Sáng / Tối',
+    backToTopTitle: 'Về đầu trang',
     lenses: [
       { key: 'all', text: 'Tất cả' },
       { key: 'frontend', text: 'Frontend' },
@@ -427,6 +429,13 @@ function processTarget(target) {
   const copilotHtml = `
 </main>
 
+<!-- Back to Top Floating Button -->
+<button id="back-to-top" class="back-to-top fixed bottom-5 left-5 md:bottom-6 md:left-6 z-40 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer opacity-0 pointer-events-none translate-y-3" aria-label="${target.backToTopTitle}" title="${target.backToTopTitle}">
+  <svg class="w-4 h-4 md:w-4.5 md:h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
 <!-- Ask Toby Copilot Widget -->
 <div id="copilot-widget-container" class="copilot-widget-container fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none">
   <!-- Proactive Teaser Callout (shadcn Popover) -->
@@ -496,7 +505,7 @@ function processTarget(target) {
     html = html.replace('</body>', `${copilotHtml}\n</body>`);
   } else {
     // Replace existing widget if already there
-    html = html.replace(/(?:<\/main>\s*)?<!-- (?:Toby's AI Copilot|Ask Toby|Ask Toby Copilot) Widget -->[\s\S]*?<script src="[^"]*web-copilot\.js"[^>]*><\/script>/i, copilotHtml);
+    html = html.replace(/(?:<\/main>\s*)?(?:<!-- Back to Top Floating Button -->[\s\S]*?<\/button>\s*)?<!-- (?:Toby's AI Copilot|Ask Toby|Ask Toby Copilot) Widget -->[\s\S]*?<script src="[^"]*web-copilot\.js"[^>]*><\/script>/i, copilotHtml);
   }
 
   // Write out to index.html

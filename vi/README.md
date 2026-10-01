@@ -52,7 +52,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ## DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)
 
-### (09/2024 – Hiện tại) Nền tảng Web & Đặt vé Trực tuyến – Công viên Giải trí Quốc tế
+### [09/2024 – Hiện tại] Nền tảng Web & Đặt vé Trực tuyến – Công viên Giải trí Quốc tế
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
 - **Công ty**: CMC GLOBAL
 - **Khách hàng (Client)**: Tập đoàn Vui chơi Giải trí & Du lịch Đa quốc gia (Hàn Quốc)
@@ -68,7 +68,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Docker, Redis, MS SQL Server, Linux
 - **Phương pháp phát triển (Methodology)**: Agile Scrum
 
-### (09/2024 – Hiện tại) Digital Twin – Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực
+### [09/2024 – Hiện tại] Digital Twin – Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
 - **Công ty**: CMC GLOBAL
 - **Khách hàng (Client)**: Tập đoàn sản xuất ô tô hàng đầu (Automotive Tech, IoT Integration)
@@ -85,7 +85,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Azure Cloud, Docker, Kubernetes, WebSockets, PostgreSQL, Redis
 - **Phương pháp phát triển (Methodology)**: Agile Scrum
 
-### (05/2020 – 08/2024) Nền tảng Báo cáo & Trực quan hóa Dữ liệu Lớn Thông minh
+### [05/2020 – 08/2024] Nền tảng Báo cáo & Trực quan hóa Dữ liệu Lớn Thông minh
 - **Thời gian thực hiện**: 05/2020 – 08/2024
 - **Công ty**: ICOMM TECH.JSC
 - **Khách hàng (Client)**: Khối cơ quan Chính phủ, Ngân hàng và Hàng không (Government, Banking & Aviation Sectors)
@@ -102,7 +102,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Docker, Kubernetes, Redis, Apache Solr, ClickHouse, Linux
 - **Phương pháp phát triển (Methodology)**: Agile Scrum
 
-### (12/2018 – 04/2020) Nền tảng Storefront Thương mại Điện tử Tốc độ cao & Bộ Công cụ Tăng trưởng Doanh số
+### [12/2018 – 04/2020] Nền tảng Storefront Thương mại Điện tử Tốc độ cao & Bộ Công cụ Tăng trưởng Doanh số
 - **Thời gian thực hiện**: 12/2018 – 04/2020
 - **Công ty**: OPEN COMMERCE GROUP
 - **Khách hàng (Client)**: Doanh nghiệp E-commerce quốc tế (Global E-commerce Merchants)
@@ -118,7 +118,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: AWS, Nginx, Redis, MySQL
 - **Phương pháp phát triển (Methodology)**: Agile Scrum
 
-### (05/2018 – 12/2018) Cổng Quản lý Vận hành Doanh nghiệp Nhật Bản
+### [05/2018 – 12/2018] Cổng Quản lý Vận hành Doanh nghiệp Nhật Bản
 - **Thời gian thực hiện**: 05/2018 – 12/2018
 - **Công ty**: TDT ASIA JSC
 - **Khách hàng (Client)**: Các doanh nghiệp vừa và nhỏ tại Nhật Bản (SMB Solutions – Japan Market)
@@ -133,7 +133,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Tomcat, Docker, MySQL, Linux
 - **Phương pháp phát triển (Methodology)**: Agile Scrum
 
-### (12/2016 – 04/2018) Ứng dụng Web Khám chữa Bệnh & Tư vấn Y tế Trực tuyến Thời gian thực
+### [12/2016 – 04/2018] Ứng dụng Web Khám chữa Bệnh & Tư vấn Y tế Trực tuyến Thời gian thực
 - **Thời gian thực hiện**: 12/2016 – 04/2018
 - **Công ty**: LUSH ERA LLC
 - **Khách hàng (Client)**: Các phòng khám đa khoa & Đơn vị dịch vụ y tế (Healthcare Sector)
@@ -148,7 +148,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: MySQL, Apache, Ubuntu Linux
 - **Phương pháp phát triển (Methodology)**: Agile
 
-### (2024 – Hiện tại) Tuquet – Hệ Sinh Thái CLI & Tự Động Hóa Phân Tán
+### [2024 – Hiện tại] Tuquet – Hệ Sinh Thái CLI & Tự Động Hóa Phân Tán
 - **Thời gian thực hiện**: 2024 – Hiện tại
 - **Công ty**: Dự án R&D độc lập
 - **Khách hàng (Client)**: Dự án công cụ lập trình mã nguồn mở & Kỹ sư tự động hóa toàn cầu

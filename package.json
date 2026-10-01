@@ -4,15 +4,15 @@
   "private": true,
   "description": "Toby Nguyen - Professional Engineering Resume and Profile Documentation",
   "scripts": {
-    "build:docs": "tuquet-md-pdf --dir . --styles style/pdf-export.css",
+    "build:docs": "tuquet-md-export --dir . --styles style/pdf-export.css",
     "build:web": "node scripts/inject-web.js",
-    "build": "tuquet-md-pdf --dir . --styles style/pdf-export.css && node scripts/inject-web.js",
-    "build:all": "tuquet-md-pdf --dir . --format all --styles style/pdf-export.css && node scripts/inject-web.js",
+    "build": "tuquet-md-export --dir . --styles style/pdf-export.css && node scripts/inject-web.js",
+    "build:all": "tuquet-md-export --dir . --format all --styles style/pdf-export.css && node scripts/inject-web.js",
     "test:seo": "node scripts/test-seo.js",
     "test": "npm run test:seo",
     "check": "npm run build && npm run test"
   },
   "devDependencies": {
-    "@tuquet/md-pdf": "file:../tuquet/lib/packages/md-pdf"
+    "@tuquet/md-export": "file:../tuquet/lib/packages/md-export"
   }
 }

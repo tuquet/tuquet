@@ -52,7 +52,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ## FEATURED PROJECT LIST
 
-### (09/2024 – Present) High-Scale Web & Booking Portals – Theme Park Enterprise
+### [09/2024 – Present] High-Scale Web & Booking Portals – Theme Park Enterprise
 - **Timeline**: 09/2024 – Present
 - **Company**: CMC GLOBAL
 - **Client**: Multinational Theme Park & Hospitality Enterprise (South Korea)
@@ -68,7 +68,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Platform, server and database**: Docker, Redis, MS SQL Server, Linux
 - **Methodology**: Agile Scrum
 
-### (09/2024 – Present) Digital Twin – Electric Vehicle (EV) Real-Time Telemetry Dashboard
+### [09/2024 – Present] Digital Twin – Electric Vehicle (EV) Real-Time Telemetry Dashboard
 - **Timeline**: 09/2024 – Present
 - **Company**: CMC GLOBAL
 - **Client**: Leading Automotive Manufacturer (Automotive Tech, IoT Integration)
@@ -85,7 +85,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Platform, server and database**: Azure Cloud, Docker, Kubernetes, WebSockets, PostgreSQL, Redis
 - **Methodology**: Agile Scrum
 
-### (05/2020 – 08/2024) Big Data Analytics & Interactive Intelligence Platform
+### [05/2020 – 08/2024] Big Data Analytics & Interactive Intelligence Platform
 - **Timeline**: 05/2020 – 08/2024
 - **Company**: ICOMM TECH.JSC
 - **Client**: Government, Banking & Aviation Sectors
@@ -102,7 +102,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Platform, server and database**: Docker, Kubernetes, Redis, Apache Solr, ClickHouse, Linux
 - **Methodology**: Agile Scrum
 
-### (12/2018 – 04/2020) High-Converting E-Commerce Storefront & Merchant Suite
+### [12/2018 – 04/2020] High-Converting E-Commerce Storefront & Merchant Suite
 - **Timeline**: 12/2018 – 04/2020
 - **Company**: OPEN COMMERCE GROUP
 - **Client**: Global E-commerce Merchants
@@ -118,7 +118,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Platform, server and database**: AWS, Nginx, Redis, MySQL
 - **Methodology**: Agile Scrum
 
-### (05/2018 – 12/2018) Enterprise Japanese Business Management Portal
+### [05/2018 – 12/2018] Enterprise Japanese Business Management Portal
 - **Timeline**: 05/2018 – 12/2018
 - **Company**: TDT ASIA JSC
 - **Client**: Japanese Small & Medium Enterprises (SMB Solutions – Japan Market)
@@ -133,7 +133,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Platform, server and database**: Tomcat, Docker, MySQL, Linux
 - **Methodology**: Agile Scrum
 
-### (12/2016 – 04/2018) Responsive Real-time Telemedicine Web Application
+### [12/2016 – 04/2018] Responsive Real-time Telemedicine Web Application
 - **Timeline**: 12/2016 – 04/2018
 - **Company**: LUSH ERA LLC
 - **Client**: Medical Clinics & Healthcare Service Providers
@@ -148,7 +148,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Platform, server and database**: MySQL, Apache, Ubuntu Linux
 - **Methodology**: Agile
 
-### (2024 – Present) Tuquet – Developer CLI & Distributed Automation Ecosystem
+### [2024 – Present] Tuquet – Developer CLI & Distributed Automation Ecosystem
 - **Timeline**: 2024 – Present
 - **Company**: Independent Product Labs (Open-Source R&D)
 - **Client**: Self-initiated Open-Source Developer Tooling & Global Automation Engineers

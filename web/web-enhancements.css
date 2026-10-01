@@ -808,6 +808,68 @@ html.dark .skip-to-content {
     border-radius: 10px !important;
   }
 
+  /* Sticky Mobile Action Header */
+  .web-top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: -16px;
+    padding: 8px 16px 10px 16px;
+    margin-bottom: 20px;
+    background-color: var(--bg-card);
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .web-top-bar.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom-color: var(--border-color);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 16px !important;
+  }
+
+  html.dark .web-top-bar.is-scrolled {
+    background-color: rgba(24, 24, 27, 0.88);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  }
+
+  /* When scrolled on mobile: hide tools row completely, ONLY keep tag chips sticky */
+  .web-top-bar.is-scrolled .nav-left,
+  .web-top-bar.is-scrolled .nav-right {
+    display: none !important;
+  }
+
+  .web-top-bar.is-scrolled .nav-center {
+    margin-top: 0 !important;
+  }
+
+  /* Compact Horizontal Lens Carousel */
+  .nav-center {
+    margin-top: 6px !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .nav-center::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .lens-group {
+    flex-wrap: nowrap !important;
+    justify-content: center;
+    min-width: max-content;
+    padding: 2px 4px;
+    margin: 0 auto;
+  }
+
   h1, h1.profile-name {
     font-size: 1.625rem !important; /* 26px */
     line-height: 1.25 !important;
@@ -835,7 +897,9 @@ html.dark .skip-to-content {
   .web-top-bar,
   .copilot-trigger,
   .copilot-panel,
-  #toast-container {
+  #toast-container,
+  #back-to-top,
+  .back-to-top {
     display: none !important;
   }
 
@@ -1060,3 +1124,74 @@ html.dark .copilot-body::-webkit-scrollbar-thumb:hover,
 html.dark pre::-webkit-scrollbar-thumb:hover {
   background-color: #52525b;
 }
+
+/* ==========================================================================
+   14. Back to Top Floating Action Button (Clean & Sophisticated Monochromatic)
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 40;
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #52525b;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.9);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+@media screen and (min-width: 768px) {
+  .back-to-top {
+    bottom: 24px;
+    left: 24px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+html.dark .back-to-top {
+  background-color: rgba(24, 24, 27, 0.9);
+  color: #a1a1aa;
+  border-color: #27272a;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+.back-to-top:hover {
+  color: #09090b;
+  background-color: #f4f4f5;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+html.dark .back-to-top:hover {
+  color: #ffffff;
+  background-color: #27272a;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6);
+}
+
+.back-to-top:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
