@@ -127,10 +127,20 @@ html {
     line-height: 1.4 !important;
   }
 
-  hr {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 24px 0;
+  /* Section Divider (<hr>) - Full-width alignment matching .project-heading */
+  hr, .hr-divider {
+    height: 0 !important;
+    background: none !important;
+    border: none !important;
+    border-top: 1px solid var(--border-color) !important;
+    margin: 28px -16px !important;
+    box-sizing: border-box !important;
+  }
+
+  @media (min-width: 768px) {
+    hr, .hr-divider {
+      margin: 32px -52px !important;
+    }
   }
 
   /* Button reset (since preflight is disabled) */
@@ -449,6 +459,11 @@ html.dark .project-heading,
     -webkit-backdrop-filter: none !important;
     border-bottom: none !important;
     box-shadow: none !important;
+  }
+
+  hr, .hr-divider {
+    margin: 20px 0 !important;
+    border-top: 1px solid #d4d4d8 !important;
   }
 }
 

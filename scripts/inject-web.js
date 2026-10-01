@@ -23,10 +23,10 @@ const TARGETS = [
     otherLangText: 'Tiếng Việt',
     otherLangLink: './vi/',
     currentLangText: 'English',
-    personName: 'Nguyen Dinh Tu (Toby Nguyen)',
-    title: 'Nguyen Dinh Tu (Toby Nguyen) | Technical Project Lead & Senior Software Engineer',
+    personName: 'Nguyen Dinh Tu (Tu Quet)',
+    title: 'Nguyen Dinh Tu (Tu Quet) | Technical Project Lead & Senior Software Engineer',
     desc: 'Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, high-scale web apps, and AI-augmented workflows.',
-    keywords: 'Nguyen Dinh Tu, Toby Nguyen, Technical Lead, Senior Software Engineer, Distributed Systems, Rust, Tokio, Java, Spring Boot, Node.js, React, Next.js, AI Workflows, EV Fleet Monitoring, Real-Time Telemetry, Tuquet',
+    keywords: 'Nguyen Dinh Tu, Tu Quet, Toby Nguyen, Technical Lead, Senior Software Engineer, Distributed Systems, Rust, Tokio, Java, Spring Boot, Node.js, React, Next.js, AI Workflows, EV Fleet Monitoring, Real-Time Telemetry, Tuquet',
     skipText: 'Skip to main content',
     downloadLabel: 'Download Resume',
     downloadHeader: 'Export Formats',
@@ -143,6 +143,9 @@ function processTarget(target) {
 <h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/65 dark:bg-zinc-900/65 backdrop-blur-md border-b border-zinc-200/75 dark:border-zinc-800/75 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="${cleanDate}">[${cleanDate}] ${title}</h3>${restOfContent}
 </section>\n`;
   });
+
+  // Enhance horizontal rules (<hr>) to bleed full-width matching .project-heading
+  html = html.replace(/<hr\b[^>]*>/gi, '<hr class="hr-divider border-0 border-t border-zinc-200 dark:border-zinc-800 my-7 -mx-4 md:-mx-[52px]">');
 
   // 2. Head Enhancements (SEO, Social, Viewport, Meta, Schema, Tailwind CDN, Stylesheet, Dark Mode Anti-FOUC)
   const headInject = `
@@ -280,7 +283,7 @@ function processTarget(target) {
       "@type": "Person",
       "@id": "https://tuquet.github.io/#person",
       "name": "Nguyen Dinh Tu",
-      "alternateName": ["Toby Nguyen", "Nguyen Dinh Tu (Toby Nguyen)", "tuquet"],
+      "alternateName": ["Tu Quet", "Toby Nguyen", "Nguyen Dinh Tu (Tu Quet)", "tuquet"],
       "givenName": "Tu",
       "familyName": "Nguyen",
       "jobTitle": "Technical Project Lead & Senior Software Engineer",
