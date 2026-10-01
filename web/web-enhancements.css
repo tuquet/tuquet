@@ -895,6 +895,7 @@ html.dark .skip-to-content {
 @media print {
   #reading-progress,
   .web-top-bar,
+  .sticky-timeline-pill,
   .copilot-trigger,
   .copilot-panel,
   #toast-container,
@@ -1194,4 +1195,124 @@ html.dark .back-to-top:hover {
   pointer-events: auto;
   transform: translateY(0) scale(1);
 }
+
+/* ==========================================================================
+   15. Sticky Floating Chat-Box Timeline Pill (Kiếm Phong Kim Monochromatic)
+   ========================================================================== */
+.sticky-timeline-pill {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  z-index: 35;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.88);
+  color: #27272a;
+  border: 1px solid rgba(228, 228, 231, 0.85);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 0.75rem; /* 12px */
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-14px) scale(0.96);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media screen and (max-width: 767.98px) {
+  .sticky-timeline-pill {
+    top: 50px; /* sits cleanly below mobile compact top bar when scrolled */
+    padding: 4px 11px;
+    font-size: 0.6875rem; /* 11px */
+  }
+}
+
+html.dark .sticky-timeline-pill {
+  background-color: rgba(24, 24, 27, 0.88);
+  color: #f4f4f5;
+  border-color: rgba(39, 39, 42, 0.85);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.sticky-timeline-pill:hover {
+  background-color: rgba(244, 244, 245, 0.98);
+  border-color: #d4d4d8;
+  transform: translateX(-50%) translateY(0) scale(1.02);
+}
+
+html.dark .sticky-timeline-pill:hover {
+  background-color: rgba(39, 39, 42, 0.98);
+  border-color: #52525b;
+}
+
+.sticky-timeline-pill.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.sticky-timeline-pill .timeline-pill-icon {
+  width: 12px;
+  height: 12px;
+  color: #71717a;
+  flex-shrink: 0;
+}
+
+html.dark .sticky-timeline-pill .timeline-pill-icon {
+  color: #a1a1aa;
+}
+
+/* Animated chat-box badge flip / pop when date changes */
+.sticky-timeline-pill.pill-pulse {
+  animation: timelinePillPulse 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes timelinePillPulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.07);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* In-heading date badge styling: [date] */
+.project-date-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  padding: 2px 7px;
+  margin-right: 6px;
+  border-radius: 6px;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  vertical-align: middle;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+html.dark .project-date-badge {
+  background-color: #27272a;
+  border-color: #3f3f46;
+  color: #f4f4f5;
+}
+
 

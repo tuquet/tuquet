@@ -145,6 +145,95 @@
     }
   };
 
+  // 3d. Sticky Chat-Box Timeline Controller
+  const StickyTimeline = {
+    init() {
+      const pill = document.getElementById('sticky-timeline-pill');
+      const textEl = document.getElementById('sticky-timeline-text');
+      if (!pill || !textEl) return;
+
+      const headings = Array.from(document.querySelectorAll('h3.project-heading[data-timeline]'));
+      if (!headings.length) return;
+
+      let activeHeading = null;
+      let activeDate = '';
+      let ticking = false;
+
+      const update = () => {
+        const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+        // Trigger threshold: 95px on mobile (below sticky header), 85px on desktop
+        const triggerOffset = scrollY + (window.innerWidth < 768 ? 95 : 85);
+
+        // Find the active project section currently in view
+        let current = null;
+        for (let i = 0; i < headings.length; i++) {
+          const h = headings[i];
+          const top = h.getBoundingClientRect().top + scrollY;
+          if (top <= triggerOffset) {
+            current = h;
+          } else {
+            break;
+          }
+        }
+
+        // Check if we scrolled past the last project section
+        if (current) {
+          const lastH = headings[headings.length - 1];
+          let nextSection = lastH.nextElementSibling;
+          while (nextSection && !['H2', 'HR'].includes(nextSection.tagName)) {
+            nextSection = nextSection.nextElementSibling;
+          }
+          const endTop = nextSection
+            ? nextSection.getBoundingClientRect().top + scrollY
+            : lastH.getBoundingClientRect().top + scrollY + 800;
+
+          if (scrollY > endTop - 40) {
+            current = null;
+          }
+        }
+
+        if (current) {
+          const date = current.getAttribute('data-timeline');
+          if (date !== activeDate) {
+            activeDate = date;
+            textEl.textContent = date;
+            pill.classList.remove('pill-pulse');
+            void pill.offsetWidth;
+            pill.classList.add('pill-pulse');
+          }
+          activeHeading = current;
+          pill.classList.add('is-visible');
+        } else {
+          pill.classList.remove('is-visible');
+          activeHeading = null;
+          activeDate = '';
+        }
+
+        ticking = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Click to scroll smoothly to active heading
+      pill.addEventListener('click', () => {
+        if (activeHeading) {
+          const top = activeHeading.getBoundingClientRect().top + window.scrollY - (window.innerWidth < 768 ? 65 : 35);
+          window.scrollTo({ top, behavior: 'smooth' });
+          activeHeading.classList.remove('pill-pulse');
+          void activeHeading.offsetWidth;
+          activeHeading.classList.add('pill-pulse');
+        }
+      });
+
+      update();
+    }
+  };
+
   // 4. Toast Notifications & Quick Copy
   const Toast = {
     show(message) {
@@ -747,6 +836,7 @@
     ThemeManager.init();
     ProgressIndicator.init();
     StickyHeader.init();
+    StickyTimeline.init();
     BackToTop.init();
     Toast.init();
     DownloadDropdown.init();

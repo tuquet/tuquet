@@ -136,6 +136,12 @@ function processTarget(target) {
     html = html.replace(/<\/table>/gi, '</table></div>');
   }
 
+  // Enhance project headings with semantic timeline attributes and badge styling
+  html = html.replace(/<h3>\s*\[(.*?)\]\s*(.*?)<\/h3>/gi, (match, date, title) => {
+    const cleanDate = date.trim();
+    return `<h3 class="project-heading" data-timeline="${cleanDate}"><span class="project-date-badge">[${cleanDate}]</span> <span class="project-title">${title}</span></h3>`;
+  });
+
   // 2. Head Enhancements (SEO, Social, Viewport, Meta, Schema, Tailwind CDN, Stylesheet, Dark Mode Anti-FOUC)
   const headInject = `
 <!-- Technical SEO & Meta Tags -->
@@ -437,6 +443,15 @@ function processTarget(target) {
   </svg>
 </button>
 
+<!-- Sticky Floating Chat-Box Timeline Pill -->
+<div id="sticky-timeline-pill" class="sticky-timeline-pill" role="status" aria-live="polite" aria-label="Timeline Indicator" title="${target.lang === 'en' ? 'Click to jump to active section' : 'Nhấp để cuộn đến phần hiện tại'}">
+  <svg class="timeline-pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <polyline points="12 6 12 12 16 14"></polyline>
+  </svg>
+  <span id="sticky-timeline-text" class="sticky-timeline-text"></span>
+</div>
+
 <!-- Ask Toby Copilot Widget -->
 <div id="copilot-widget-container" class="copilot-widget-container fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none">
   <!-- Proactive Teaser Callout (shadcn Popover) -->
@@ -506,7 +521,7 @@ function processTarget(target) {
     html = html.replace('</body>', `${copilotHtml}\n</body>`);
   } else {
     // Replace existing widget if already there
-    html = html.replace(/(?:<\/main>\s*)?(?:<!-- Back to Top Floating Button -->[\s\S]*?<\/button>\s*)?<!-- (?:Toby's AI Copilot|Ask Toby|Ask Toby Copilot) Widget -->[\s\S]*?<script src="[^"]*web-copilot\.js"[^>]*><\/script>/i, copilotHtml);
+    html = html.replace(/(?:<\/main>\s*)?(?:<!-- Back to Top Floating Button -->[\s\S]*?<\/button>\s*)?(?:<!-- Sticky Floating Chat-Box Timeline Pill -->[\s\S]*?<\/div>\s*)?<!-- (?:Toby's AI Copilot|Ask Toby|Ask Toby Copilot) Widget -->[\s\S]*?<script src="[^"]*web-copilot\.js"[^>]*><\/script>/i, copilotHtml);
   }
 
   // Write out to index.html
