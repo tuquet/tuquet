@@ -358,7 +358,6 @@ function processTarget(target) {
     .join('\n      ');
 
   const topBarHtml = `
-<a href="#main-content" class="skip-to-content sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100000] focus:px-4 focus:py-2 focus:bg-zinc-900 focus:text-white dark:focus:bg-zinc-100 dark:focus:text-zinc-900 focus:rounded-lg focus:shadow-lg focus:text-xs focus:font-semibold focus:outline-none focus:ring-2 focus:ring-zinc-400 no-underline">${target.skipText}</a>
 <div id="reading-progress" class="fixed top-0 left-0 h-0.5 w-0 bg-zinc-900 dark:bg-zinc-100 z-[99999] transition-[width] duration-150 ease-out"></div>
 <header class="web-top-bar sticky top-0 md:static z-40 -mx-4 -mt-4 md:m-0 p-4 pb-2.5 md:p-0 mb-5 md:mb-6 bg-white dark:bg-zinc-900 md:bg-transparent md:dark:bg-transparent border-b border-transparent md:border-b-0 transition-all flex flex-wrap items-center justify-between gap-2.5 text-xs [&.is-scrolled]:bg-white/90 dark:[&.is-scrolled]:bg-zinc-900/90 [&.is-scrolled]:backdrop-blur-md [&.is-scrolled]:border-zinc-200 dark:[&.is-scrolled]:border-zinc-800 [&.is-scrolled]:shadow-sm md:[&.is-scrolled]:shadow-none [&.is-scrolled]:pt-1.5 [&.is-scrolled]:pb-1.5 [&.is-scrolled]:mb-4" role="banner">
   <nav class="nav-left order-1 flex items-center md:!flex [.is-scrolled_&]:hidden md:[.is-scrolled_&]:!flex" aria-label="Language">
@@ -419,6 +418,9 @@ function processTarget(target) {
 </header>
 <main id="main-content" role="main" class="main-content">
 `;
+
+  // Remove skip-to-content link
+  html = html.replace(/<a\b[^>]*class="[^"]*skip-to-content[^"]*"[^>]*>[\s\S]*?<\/a>\s*/gi, '');
 
   // Replace existing nav-bar or initial centered switcher
   const navRegex = /<div class="nav-bar no-print">[\s\S]*?<\/div>|<div align="center" class="no-print">[\s\S]*?<\/div>/i;

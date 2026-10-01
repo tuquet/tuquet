@@ -156,7 +156,6 @@ function testHtmlFile(filePath, expected) {
   // Landmark tags
   assert(/<header\b[^>]*role=["']banner["']|<header\b/i.test(html), 'Has semantic <header> landmark');
   assert(/<main\b[^>]*id=["']main-content["']/i.test(html), 'Has semantic <main id="main-content"> landmark');
-  assert(/<a\b[^>]*href=["']#main-content["']/i.test(html), 'Has accessible "Skip to content" link targeting #main-content');
   assert(/<nav\b/i.test(html), 'Has semantic <nav> navigation landmark');
 
   // --- 8. Core Web Vitals & Image Optimization ---
