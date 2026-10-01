@@ -335,56 +335,67 @@ h3.lens-highlight {
   display: none;
 }
 
-/* 3b. Cinema Translucent Light Beam (Lớp Đèn Ánh Sáng Quét Qua Chữ) */
+/* 3b. Cinema Text Light Beam Sweep (Hot Trending Tech Keywords) */
 .kw-magic {
   display: inline;
   font-weight: 600;
   color: inherit;
   text-decoration: none !important;
-  padding: 1px 3px;
-  border-radius: 3px;
   background-repeat: no-repeat;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  transition: color 0.25s ease;
 }
 
-/* Light Mode: Soft ambient light sheen sweep */
+/* Light Mode: Specular Silver/Platinum Light Beam on Dark Metallic Letters (Never a dark shadow) */
 .kw-magic.kw-active {
   background-image: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(24, 24, 27, 0.03) 25%,
-    rgba(24, 24, 27, 0.10) 50%,
-    rgba(24, 24, 27, 0.03) 75%,
-    transparent 100%
+    110deg,
+    #18181b 0%,
+    #18181b 35%,
+    #71717a 45%,
+    #94a3b8 50%,
+    #71717a 55%,
+    #18181b 65%,
+    #18181b 100%
   );
   background-size: 250% 100%;
-  animation: kw-beam-sweep 1.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: kw-beam-loop 4.5s ease-in-out infinite;
+  animation-delay: var(--kw-delay, 0s);
 }
 
-/* Dark Mode: Clean translucent starlight sheen sweep (Zero chromatic fringing, perfect ClearType) */
+/* Dark Mode: Pure Platinum Starlight Beam on Titanium Letters */
 html.dark .kw-magic.kw-active,
 [data-theme="dark"] .kw-magic.kw-active {
   background-image: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.04) 25%,
-    rgba(255, 255, 255, 0.20) 50%,
-    rgba(255, 255, 255, 0.04) 75%,
-    transparent 100%
+    110deg,
+    #f4f4f5 0%,
+    #f4f4f5 35%,
+    #a1a1aa 45%,
+    #ffffff 50%,
+    #a1a1aa 55%,
+    #f4f4f5 65%,
+    #f4f4f5 100%
   );
   background-size: 250% 100%;
-  color: #ffffff;
-  animation: kw-beam-sweep 1.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: kw-beam-loop 4.5s ease-in-out infinite;
+  animation-delay: var(--kw-delay, 0s);
 }
 
-@keyframes kw-beam-sweep {
+@keyframes kw-beam-loop {
   0% {
-    background-position: 180% 0;
+    background-position: 200% 0;
+  }
+  28% {
+    background-position: -200% 0;
   }
   100% {
-    background-position: -180% 0;
+    background-position: -200% 0;
   }
 }
 
@@ -404,7 +415,9 @@ html.dark .kw-magic.kw-active,
     display: inline !important;
     text-decoration: none !important;
     background: none !important;
+    -webkit-text-fill-color: initial !important;
     color: inherit !important;
+    animation: none !important;
     padding: 0 !important;
     margin: 0 !important;
   }

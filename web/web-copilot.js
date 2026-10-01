@@ -425,44 +425,40 @@
         const text = el.textContent.trim();
         if (!isLabel(el) && isHotTech(text)) {
           el.classList.add('kw-magic', 'cursor-text');
+          el.style.setProperty('--kw-delay', `${(keywords.length % 6) * 0.6}s`);
           keywords.push(el);
         }
       });
 
       if (!keywords.length) return;
 
-      // 3-second dwell reading observer: only highlight when user pauses and reads for 3s
+      // 3-second dwell reading observer: loop highlight when user pauses and reads for 3s
       const dwellTimers = new Map();
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const el = entry.target;
 
-          if (entry.isIntersecting && !el.dataset.kwTriggered) {
+          if (entry.isIntersecting) {
             // Cancel existing timer if any
             if (dwellTimers.has(el)) {
               clearTimeout(dwellTimers.get(el));
             }
 
-            // Dwell timer: wait 3 seconds of continuous reading before light beam sweeps
+            // Dwell timer: wait 3 seconds of continuous reading before light beam loops
             const timer = setTimeout(() => {
-              el.dataset.kwTriggered = 'true';
               el.classList.add('kw-active');
               dwellTimers.delete(el);
-
-              // Remove active state after sweep completes
-              setTimeout(() => {
-                el.classList.remove('kw-active');
-              }, 1400);
             }, 3000);
 
             dwellTimers.set(el, timer);
-          } else if (!entry.isIntersecting) {
-            // Cancel timer if user scrolls past before 3s
+          } else {
+            // Cancel timer and pause loop when scrolled out of view to save resources
             if (dwellTimers.has(el)) {
               clearTimeout(dwellTimers.get(el));
               dwellTimers.delete(el);
             }
+            el.classList.remove('kw-active');
           }
         });
       }, {
@@ -473,14 +469,13 @@
 
       keywords.forEach(kw => observer.observe(kw));
 
-      // Interactive subtle hover: light beam sweeps on hover
+      // Interactive subtle hover: restart light sweep on hover
       keywords.forEach(kw => {
         kw.addEventListener('mouseenter', () => {
-          if (!kw.classList.contains('kw-active') && !kw.closest('.lens-dim')) {
+          if (!kw.closest('.lens-dim')) {
+            kw.classList.remove('kw-active');
+            void kw.offsetWidth;
             kw.classList.add('kw-active');
-            setTimeout(() => {
-              kw.classList.remove('kw-active');
-            }, 1400);
           }
         });
       });
@@ -489,12 +484,11 @@
     triggerHighlighted() {
       const highlighted = document.querySelectorAll('.lens-highlight .kw-magic, .lens-highlight.kw-magic');
       highlighted.forEach((el, idx) => {
-        const delay = Math.min(idx * 40, 250);
+        const delay = Math.min(idx * 50, 300);
         setTimeout(() => {
+          el.classList.remove('kw-active');
+          void el.offsetWidth;
           el.classList.add('kw-active');
-          setTimeout(() => {
-            el.classList.remove('kw-active');
-          }, 1400);
         }, delay);
       });
     }
