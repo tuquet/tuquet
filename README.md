@@ -16,7 +16,7 @@
 
 ## CAREER SUMMARY
 
-Accomplished Technical Lead & Senior Software Engineer with over 8+ years of experience engineering high-scale distributed systems, resilient backend services, and world-class web applications. Deeply versatile across systems programming (Rust, Java/Spring Boot, Node.js) and modern web ecosystems (React, Next.js, Vue.js, Micro-frontends). Proven expertise in data pipelines, real-time telemetry streaming (WebSockets, SSE), distributed caching, and Core Web Vitals optimization.
+Accomplished Technical Lead & Senior Software Engineer with over 8 years of experience engineering high-scale distributed systems, resilient backend services, and world-class web applications. Deeply versatile across systems programming (Rust, Java/Spring Boot, Node.js) and modern web ecosystems (React, Next.js, Vue.js, Micro-frontends). Proven expertise in data pipelines, real-time telemetry streaming (WebSockets, SSE), distributed caching, and Core Web Vitals optimization.
 
 Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented engineering workflows (MCP, LLM toolchains)** to drive technical excellence, deliver resilient software architectures, and scale cross-functional engineering teams.
 
@@ -56,8 +56,8 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Timeline**: 09/2024 – Present
 - **Company**: CMC Global
 - **Client**: Multinational Theme Park & Hospitality Enterprise (South Korea)
-- **Project description**: High-scale digital ecosystem for premier international amusement parks, encompassing high-traffic web portals & partner booking webviews, real-time attraction wait-time & reservation engines, and digital interactive park navigation.
 - **Team size**: 15+ engineers
+- **Project description**: High-scale digital ecosystem for premier international amusement parks, encompassing high-traffic web portals & partner booking webviews, real-time attraction wait-time & reservation engines, and digital interactive park navigation.
 - **Responsibilities**:
   - Served as **Lead Frontend Engineer**, steering the architectural refactoring, component modularity, and feature delivery for high-traffic Park Visitor Web Portals and Partner Booking WebViews adhering to client enterprise standards.
   - Implemented responsive Web and mobile-embedded WebView user interfaces using React, Vite, and Tailwind CSS, ensuring UI fidelity with design documentation and smooth interactions.
@@ -68,16 +68,16 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Platform, server and database**: Docker, Redis, MS SQL Server, Linux
 - **Methodology**: Agile Scrum
 
-### [09/2024 – Present] Electric Vehicle (EV) Real-Time Telemetry & Fleet Monitoring Platform
+### [09/2024 – Present] Electric Vehicle (EV) Telemetry & Fleet Monitoring Platform
 - **Timeline**: 09/2024 – Present
 - **Company**: CMC Global
 - **Client**: Leading Automotive Manufacturer (Automotive Tech, IoT Integration)
 - **Team size**: 15+ engineers (3 squads)
-- **Project description**: Large-scale real-time telemetry dashboard platform for aggregating, monitoring, and analyzing telemetry and operational status for fleets of electric vehicles (EVs).
+- **Project description**: Large-scale telemetry dashboard platform for aggregating, monitoring, and analyzing telemetry and operational status for fleets of electric vehicles (EVs).
 - **Responsibilities**:
-  - Served as **Technical Project Lead**, establishing overall technical architecture, engineering standards, and real-time telemetry streaming across 3 squads (15+ engineers) processing millions of daily EV operational events.
+  - Served as **Technical Project Lead**, establishing overall technical architecture, engineering standards, and high-throughput telemetry streaming across 3 squads (15+ engineers) processing millions of daily EV operational events.
   - Architected a **Micro-frontends** architecture and standardized a shared enterprise **Design System**, ensuring visual consistency and decoupled release cycles across squads.
-  - Optimized real-time telemetry streaming via WebSockets by implementing **Virtual Scrolling, Canvas Data Charting, and Debounced/Throttled State Updates**, while orchestrating high-throughput BFF aggregation services in **Rust** to sustain a continuous 60fps rendering rate under high telemetry volume without blocking the Main Thread.
+  - Optimized high-throughput telemetry streaming via WebSockets by implementing **Virtual Scrolling, Canvas Data Charting, and Debounced/Throttled State Updates**, while orchestrating high-throughput BFF aggregation services in **Rust** to sustain a continuous 60fps rendering rate under high data volume without blocking the Main Thread.
   - Formulated a comprehensive **Core Web Vitals** strategy: orchestrated route-based and component-based dynamic code splitting, reducing INP to < 150ms and maintaining LCP < 2.0s across all mission-critical monitor views.
   - Introduced **AI-augmented Frontend SDLC** practices (LLM UI generation, automated visual regression testing), elevating frontend feature delivery velocity by 25%.
 - **Programming Language**: TypeScript, JavaScript, HTML5, CSS3, Rust (BFF tooling)
@@ -106,7 +106,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Timeline**: 12/2018 – 04/2020
 - **Company**: OpenCommerce Group
 - **Client**: Global E-commerce Merchants
-- **Team size**: 8–10 members
+- **Team size**: 8–10 engineers
 - **Project description**: Ultra-fast e-commerce storefront platform and intelligent cross-selling engine integrated across Shopify, WooCommerce, and WordPress ecosystems.
 - **Responsibilities**:
   - Served as **Senior Software Engineer**, spearheading storefront user interface development and AI-driven cross-selling recommendation widgets geared toward Product-Led Growth (PLG).
@@ -122,7 +122,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Timeline**: 05/2018 – 12/2018
 - **Company**: TDT Asia
 - **Client**: Japanese Small & Medium Enterprises (SMB Solutions – Japan Market)
-- **Team size**: 6–8 members
+- **Team size**: 6–8 engineers
 - **Project description**: Enterprise Resource Planning (ERP) and business management web portal customized to meet the rigorous quality and UX standards of the Japanese corporate market.
 - **Responsibilities**:
   - Operated as **Fullstack Software Engineer**, taking primary ownership of the Single Page Application (SPA) client architecture.
@@ -137,7 +137,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Timeline**: 12/2016 – 04/2018
 - **Company**: Lush Era
 - **Client**: Medical Clinics & Healthcare Service Providers
-- **Team size**: 5 members
+- **Team size**: 5 engineers
 - **Project description**: Secure real-time telemedicine and remote healthcare consultation web application connecting patients with certified medical specialists via video and chat.
 - **Responsibilities**:
   - Acted as **Software Engineer**, building an intuitive, accessible, and fast-loading telemedicine web client.
@@ -172,7 +172,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ## ACHIEVEMENTS & AWARDS
 
-- **Q4/2025:** **Rising Star Award (CMC Global)** – Recognized for exemplary technical leadership and high-impact delivery of the EV Real-Time Telemetry platform.
+- **Q4/2025:** **Rising Star Award (CMC Global)** – Recognized for exemplary technical leadership and high-impact delivery of the EV Telemetry platform.
 - **2023:** **Team of the Year (ICOMM Tech)** – Leading the engineering organization to exceed all product delivery targets.
 - **2022:** **Outstanding Employee (ICOMM Tech)** – Awarded for spearheading the flagship Big Data platform.
 
@@ -180,7 +180,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 
 ## EDUCATION
 
-**FPT University** | Information Technology (1/2012 – 9/2014)  
+**FPT University** | Information Technology (01/2012 – 09/2014)  
 - **Focus:** Full-Stack Web Development, Desktop Application Design & Software Architecture.
 - **Academic Standing:** GPA 8.2/10
 - **English Proficiency:** TOEIC 650 (Fluent technical reading/writing & professional collaboration)

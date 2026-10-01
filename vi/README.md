@@ -4,7 +4,8 @@
 </div>
 
 <div align="center">
-	<strong style="font-size:1.35em">Nguyễn Đình Tú (Toby Nguyen)</strong><br/>
+	<strong style="font-size:1.35em">Nguyễn Đình Tú</strong><br/>
+	<span class="profile-nickname" style="font-size:0.9em;color:#71717a">Biệt danh: Tu Quet</span><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
 	<br/>
 	<strong>Số điện thoại:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com &nbsp;|&nbsp; <strong>Địa chỉ:</strong> Hà Đông, Hà Nội, Việt Nam<br/>
@@ -21,7 +22,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ---
 
-## NĂNG LỰC CỐT LÕI & KỸ NĂNG CÔNG NGHỆ
+## NĂNG LỰC CỐT LÕI & KỸ NĂNG CÔNG NGHỆ (CORE COMPETENCIES & TECHNICAL SKILLS)
 
 | Lĩnh vực | Kỹ năng & Công nghệ chính |
 | :--- | :--- |
@@ -49,7 +50,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ---
 
-## DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)
+## DANH SÁCH DỰ ÁN TIÊU BIỂU (FEATURED PROJECT LIST)
 
 ### [09/2024 – Hiện tại] Nền tảng Web & Đặt vé Trực tuyến – Công viên Giải trí Quốc tế
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
@@ -67,16 +68,16 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Docker, Redis, MS SQL Server, Linux
 - **Phương pháp phát triển (Methodology)**: Agile Scrum
 
-### [09/2024 – Hiện tại] Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực
+### [09/2024 – Hiện tại] Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV)
 - **Thời gian thực hiện**: 09/2024 – Hiện tại
 - **Công ty**: CMC Global
 - **Khách hàng (Client)**: Tập đoàn sản xuất ô tô hàng đầu (Automotive Tech, IoT Integration)
 - **Quy mô đội ngũ (Team size)**: 15+ kỹ sư (3 squads)
-- **Mô tả dự án (Project description)**: Nền tảng Dashboard quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành thời gian thực cho các đội xe điện (EV).
+- **Mô tả dự án (Project description)**: Nền tảng Dashboard quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành cho các đội xe điện (EV).
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
-  - Đảm nhiệm vai trò **Technical Project Lead**, thiết lập toàn diện kiến trúc kỹ thuật, chuẩn mực kỹ nghệ và luồng truyền phát dữ liệu đo xa thời gian thực trên 3 squads (15+ kỹ sư), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày.
+  - Đảm nhiệm vai trò **Technical Project Lead**, thiết lập toàn diện kiến trúc kỹ thuật, chuẩn mực kỹ nghệ và luồng truyền phát dữ liệu đo xa trên 3 squads (15+ kỹ sư), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày.
   - Thiết kế kiến trúc **Micro-frontends** và chuẩn hóa hệ thống **Design System** cấp doanh nghiệp, đảm bảo tính nhất quán giao diện và giải phóng chu kỳ phát hành độc lập giữa các squad.
-  - Tối ưu hóa luồng truyền phát dữ liệu đo xa thời gian thực qua WebSockets bằng kỹ thuật **Virtual Scrolling, Canvas Data Charting, và Debounced/Throttled State Updates**, kết hợp xây dựng công cụ tổng hợp ở tầng BFF bằng **Rust** giúp duy trì tốc độ hiển thị liên tục 60fps mượt mà dưới tải dữ liệu lớn mà không nghẽn Main Thread.
+  - Tối ưu hóa luồng truyền phát dữ liệu đo xa qua WebSockets bằng kỹ thuật **Virtual Scrolling, Canvas Data Charting, và Debounced/Throttled State Updates**, kết hợp xây dựng công cụ tổng hợp ở tầng BFF bằng **Rust** giúp duy trì tốc độ hiển thị liên tục 60fps mượt mà dưới tải dữ liệu lớn mà không nghẽn Main Thread.
   - Thiết lập chiến lược tối ưu hóa **Core Web Vitals** toàn diện: thực hiện dynamic code splitting theo route và component, hạ INP xuống < 150ms và giữ vững LCP < 2.0s trên tất cả các màn hình giám sát trọng yếu.
   - Tiên phong đưa quy trình **AI-augmented Frontend SDLC** vào thực tế (sinh UI qua LLM, kiểm thử hồi quy trực quan tự động), nâng cao 25% tốc độ bàn giao tính năng của đội ngũ frontend.
 - **Ngôn ngữ lập trình (Programming Language)**: TypeScript, JavaScript, HTML5, CSS3, Rust (công cụ hỗ trợ BFF)
@@ -105,7 +106,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Thời gian thực hiện**: 12/2018 – 04/2020
 - **Công ty**: OpenCommerce Group
 - **Khách hàng (Client)**: Doanh nghiệp E-commerce quốc tế (Global E-commerce Merchants)
-- **Quy mô đội ngũ (Team size)**: 8–10 thành viên
+- **Quy mô đội ngũ (Team size)**: 8–10 kỹ sư
 - **Mô tả dự án (Project description)**: Nền tảng Storefront thương mại điện tử siêu tốc và công cụ gợi ý bán chéo thông minh (Cross-selling Engine) tích hợp sâu vào hệ sinh thái Shopify, WooCommerce và WordPress.
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
   - Đảm nhiệm vị trí **Senior Software Engineer**, dẫn dắt phát triển giao diện Storefront và các widget gợi ý sản phẩm định hướng Product-Led Growth (PLG).
@@ -121,7 +122,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Thời gian thực hiện**: 05/2018 – 12/2018
 - **Công ty**: TDT Asia
 - **Khách hàng (Client)**: Các doanh nghiệp vừa và nhỏ tại Nhật Bản (SMB Solutions – Japan Market)
-- **Quy mô đội ngũ (Team size)**: 6–8 thành viên
+- **Quy mô đội ngũ (Team size)**: 6–8 kỹ sư
 - **Mô tả dự án (Project description)**: Cổng thông tin và phần mềm quản trị doanh nghiệp (ERP) tùy biến đáp ứng tiêu chuẩn khắt khe về chất lượng mã nguồn và trải nghiệm người dùng của thị trường Nhật Bản.
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
   - Đảm nhiệm vị trí **Fullstack Software Engineer**, chịu trách nhiệm chính về kiến trúc Single Page Application (SPA).
@@ -136,7 +137,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Thời gian thực hiện**: 12/2016 – 04/2018
 - **Công ty**: Lush Era
 - **Khách hàng (Client)**: Các phòng khám đa khoa & Đơn vị dịch vụ y tế (Healthcare Sector)
-- **Quy mô đội ngũ (Team size)**: 5 thành viên
+- **Quy mô đội ngũ (Team size)**: 5 kỹ sư
 - **Mô tả dự án (Project description)**: Ứng dụng web tư vấn y tế từ xa an toàn, bảo mật, kết nối trực tiếp bệnh nhân với đội ngũ bác sĩ chuyên khoa thông qua video và tin nhắn thời gian thực.
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
   - Đảm nhiệm vai trò **Software Engineer**, xây dựng giao diện ứng dụng trực quan, tải nhanh và dễ tiếp cận.
@@ -149,9 +150,9 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ### [2024 – Hiện tại] Tuquet – Hệ Sinh Thái CLI & Tự Động Hóa Phân Tán
 - **Thời gian thực hiện**: 2024 – Hiện tại
-- **Công ty**: Dự án R&D độc lập
+- **Công ty**: Independent Product Labs (Nghiên cứu & Phát triển Mã nguồn mở)
 - **Khách hàng (Client)**: Dự án công cụ lập trình mã nguồn mở & Kỹ sư tự động hóa toàn cầu
-- **Quy mô đội ngũ (Team size)**: Tác giả & Kiến trúc sư trưởng (Dự án độc lập)
+- **Quy mô đội ngũ (Team size)**: Kiến trúc sư trưởng (Dự án cá nhân)
 - **Mô tả dự án (Project description)**: Hệ sinh thái công cụ phát triển mã nguồn mở hiệu năng cao và bộ giải pháp tự động hóa trình duyệt phân tán gồm CLI điều phối chính (`tuquet`) viết bằng Rust, web studio & ứng dụng desktop thiết kế quy trình trực quan (Vue.js / Nuxt, Electron JS), tiến trình nền daemon giám sát tác vụ (`tuquet runner`), và dịch vụ điều phối đám mây (Cloud).
 - **Trách nhiệm đảm nhiệm (Responsibilities)**:
   - Đảm nhiệm vai trò **Creator & Principal Architect**, thiết kế toàn diện kiến trúc hệ sinh thái đa runtime từ lập trình hệ thống bằng Rust, web studio trực quan bằng Vue.js, đến giám sát tác vụ phân tán.
@@ -179,7 +180,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 
 ## HỌC VẤN (EDUCATION)
 
-**Đại học FPT (FPT University)** | Công nghệ thông tin (1/2012 – 9/2014)  
+**Đại học FPT (FPT University)** | Công nghệ thông tin (01/2012 – 09/2014)  
 - **Chuyên môn:** Phát triển Web Full-Stack, Thiết kế Ứng dụng Desktop & Kiến trúc phần mềm.
 - **Kết quả học tập:** GPA 8.2/10
 - **Chứng chỉ ngoại ngữ:** TOEIC 650 (Đọc hiểu tài liệu kỹ thuật & giao tiếp làm việc thành thạo)

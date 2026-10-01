@@ -416,7 +416,7 @@
       },
       {
         keys: ['telemetry', 'ev', 'websocket', 'sse', 'realtime', 'streaming', 'fleet'],
-        answer: '**Real-Time Telemetry & EV Fleet Monitoring Architecture (CMC Global):**\n- Toby served as **Technical Project Lead** across 3 squads (15+ engineers) for a leading automotive tech platform.\n- Architected a resilient telemetry streaming pipeline (WebSocket/SSE fallback over Redis pub/sub) handling millions of daily EV operational events with sub-100ms latency.\n- Engineered **Virtual Scrolling, Canvas Data Charting, and Debounced State Updates** maintaining 60fps rendering without blocking the Main Thread.\n- Established route & component code splitting keeping INP < 150ms and LCP < 2.0s.'
+        answer: '**EV Telemetry & Fleet Monitoring Architecture (CMC Global):**\n- Toby served as **Technical Project Lead** across 3 squads (15+ engineers) for a leading automotive tech platform.\n- Architected a resilient telemetry streaming pipeline (WebSocket/SSE fallback over Redis pub/sub) handling millions of daily EV operational events with sub-100ms latency.\n- Engineered **Virtual Scrolling, Canvas Data Charting, and Debounced State Updates** maintaining 60fps rendering without blocking the Main Thread.\n- Established route & component code splitting keeping INP < 150ms and LCP < 2.0s.'
       },
       {
         keys: ['tuquet', 'zombie', 'chromium', 'crawler', 'rust', 'medallion', 'job object', 'win32'],
@@ -428,7 +428,7 @@
       },
       {
         keys: ['team', 'squad', 'mentoring', 'management', 'culture', '15+'],
-        answer: '**Leadership Experience & Team Scaling:**\n- Scaled and led cross-functional teams: **Technical Project Lead** (CMC Global, 15+ engineers across 3 squads), **Chief Product Officer & Tech Lead** (ICOMM Tech, scaling SaaS products to thousands of businesses), **Senior Software Engineer** (OpenCommerce Group).\n- Mentored 15+ engineers in Component-Driven Architecture, JavaScript Clean Code, and performance profiling.\n- Recognized with the prestigious **Rising Star Award** at CMC Global (2024).'
+        answer: '**Leadership Experience & Team Scaling:**\n- Scaled and led cross-functional teams: **Technical Project Lead** (CMC Global, 15+ engineers across 3 squads), **Chief Product Officer & Tech Lead** (ICOMM Tech, scaling SaaS products to thousands of businesses), **Senior Software Engineer** (OpenCommerce Group).\n- Mentored 15+ engineers in Component-Driven Architecture, JavaScript Clean Code, and performance profiling.\n- Recognized with the prestigious **Rising Star Award** at CMC Global (Q4/2025).'
       },
       {
         keys: ['stack', 'tech', 'skill', 'skills', 'java', 'spring', 'react', 'rust', 'node', 'database'],
@@ -446,7 +446,7 @@
         getAnswer: () => {
           const hour = new Date().getHours();
           const g = (hour >= 5 && hour < 12) ? 'Chào buổi sáng!' : (hour >= 12 && hour < 18) ? 'Chào buổi chiều!' : 'Chào buổi tối!';
-          return `**${g}** Rất vui được hỗ trợ bạn. Bạn có thể tra cứu nhanh về **kiến trúc hệ thống phân tán**, **dự án telemetry thời gian thực**, **kinh nghiệm lead 15+ kỹ sư** hoặc **độ phù hợp vị trí** của Toby. Hãy chọn gợi ý bên dưới hoặc đặt câu hỏi trực tiếp!`;
+          return `**${g}** Rất vui được hỗ trợ bạn. Bạn có thể tra cứu nhanh về **kiến trúc hệ thống phân tán**, **nền tảng telemetry xe điện (EV)**, **kinh nghiệm lead 15+ kỹ sư** hoặc **độ phù hợp vị trí** của Toby. Hãy chọn gợi ý bên dưới hoặc đặt câu hỏi trực tiếp!`;
         }
       },
       {
@@ -455,15 +455,15 @@
       },
       {
         keys: ['tóm tắt', 'recruiter', 'thành tựu', 'ai là', 'giới thiệu', 'thế mạnh', 'overview', 'toby'],
-        answer: '**Tóm tắt Năng lực Cốt lõi (Dành cho Nhà tuyển dụng):**\n- **Kinh nghiệm thực chiến:** Hơn 8+ năm kiến trúc và phát triển hệ thống backend phân tán quy mô lớn, streaming dữ liệu đo xa (telemetry) thời gian thực và ứng dụng web chuẩn quốc tế.\n- **Năng lực Lãnh đạo:** Technical Project Lead tại CMC Global điều phối 3 squad (15+ kỹ sư) triển khai nền tảng đo xa xe điện thời gian thực; nguyên CPO & Tech Lead tại ICOMM Tech.\n- **Lập trình Hệ thống:** Nắm vững **Rust** (Win32 Job Objects, Tokio async) & **Java / Spring Boot**; tối ưu web hiện đại **React / Next.js / Vue** (Core Web Vitals LCP < 2s, INP < 150ms); luồng thời gian thực qua WebSockets, SSE, Redis.\n- **Tư duy Product & AI:** Kết hợp Product-Led Growth (PLG) với quy trình kỹ thuật tăng cường bởi AI (MCP, LLMs), gia tăng 25% tốc độ bàn giao tính năng.'
+        answer: '**Tóm tắt Năng lực Cốt lõi (Dành cho Nhà tuyển dụng):**\n- **Kinh nghiệm thực chiến:** Hơn 8+ năm kiến trúc và phát triển hệ thống backend phân tán quy mô lớn, nền tảng streaming dữ liệu đo xa (telemetry) và ứng dụng web chuẩn quốc tế.\n- **Năng lực Lãnh đạo:** Technical Project Lead tại CMC Global điều phối 3 squad (15+ kỹ sư) triển khai nền tảng đo xa xe điện; nguyên CPO & Tech Lead tại ICOMM Tech.\n- **Lập trình Hệ thống:** Nắm vững **Rust** (Win32 Job Objects, Tokio async) & **Java / Spring Boot**; tối ưu web hiện đại **React / Next.js / Vue** (Core Web Vitals LCP < 2s, INP < 150ms); luồng thời gian thực qua WebSockets, SSE, Redis.\n- **Tư duy Product & AI:** Kết hợp Product-Led Growth (PLG) với quy trình kỹ thuật tăng cường bởi AI (MCP, LLMs), gia tăng 25% tốc độ bàn giao tính năng.'
       },
       {
         keys: ['phù hợp', 'fit', 'vị trí', 'role', 'tuyển dụng', 'ứng tuyển', 'thích hợp', 'lead', 'architect'],
-        answer: '**Độ phù hợp vị trí & Vai trò lý tưởng:**\n- **Technical Project Lead / Tech Lead:** Dày dặn kinh nghiệm dẫn dắt 15+ kỹ sư, thiết lập chuẩn mực kiến trúc, quản trị nợ kỹ thuật và điều phối sprint bàn giao đúng hạn.\n- **Senior / Staff Software Engineer:** Chuyên sâu backend phân tán, lập trình hệ thống Rust/Java, tối ưu hiệu năng web và streaming dữ liệu thời gian thực.\n- **Solutions Architect:** Thiết kế kiến trúc đám mây (Azure/Docker/K8s), pipeline dữ liệu Medallion và mô hình Micro-frontends quy mô doanh nghiệp.\n- **Văn hóa làm việc:** Agile Scrum/Kanban, tư duy Product-first, đào tạo và phát triển đội ngũ vững vàng.'
+        answer: '**Độ phù hợp vị trí & Vai trò lý tưởng:**\n- **Technical Project Lead / Tech Lead:** Dày dặn kinh nghiệm dẫn dắt 15+ kỹ sư, thiết lập chuẩn mực kiến trúc, quản trị nợ kỹ thuật và điều phối sprint bàn giao đúng hạn.\n- **Senior / Staff Software Engineer:** Chuyên sâu backend phân tán, lập trình hệ thống Rust/Java, tối ưu hiệu năng web và streaming dữ liệu.\n- **Solutions Architect:** Thiết kế kiến trúc đám mây (Azure/Docker/K8s), pipeline dữ liệu Medallion và mô hình Micro-frontends quy mô doanh nghiệp.\n- **Văn hóa làm việc:** Agile Scrum/Kanban, tư duy Product-first, đào tạo và phát triển đội ngũ vững vàng.'
       },
       {
-        keys: ['telemetry', 'đo xa', 'ev', 'thời gian thực', 'xe điện', 'websocket', 'streaming', 'fleet'],
-        answer: '**Kiến trúc Giám sát Dữ liệu Đo xa (Telemetry) Xe điện Thời gian thực (CMC Global):**\n- Toby đảm nhiệm vai trò **Technical Project Lead** phụ trách 3 squad (15+ kỹ sư) cho nền tảng của tập đoàn sản xuất ô tô hàng đầu.\n- Kiến trúc pipeline streaming telemetry (WebSocket/SSE fallback trên Redis pub/sub), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày với độ trễ sub-100ms.\n- Áp dụng **Virtual Scrolling, Canvas Data Charting, và Debounced State Updates** duy trì tốc độ hiển thị 60fps mượt mà không nghẽn Main Thread.\n- Tối ưu Core Web Vitals toàn diện: dynamic code splitting, hạ INP xuống < 150ms và giữ vững LCP < 2.0s.'
+        keys: ['telemetry', 'đo xa', 'ev', 'xe điện', 'websocket', 'streaming', 'fleet'],
+        answer: '**Kiến trúc Nền tảng Đo xa & Giám sát Đội xe Điện EV (CMC Global):**\n- Toby đảm nhiệm vai trò **Technical Project Lead** phụ trách 3 squad (15+ kỹ sư) cho nền tảng của tập đoàn sản xuất ô tô hàng đầu.\n- Kiến trúc pipeline streaming telemetry (WebSocket/SSE fallback trên Redis pub/sub), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày với độ trễ sub-100ms.\n- Áp dụng **Virtual Scrolling, Canvas Data Charting, và Debounced State Updates** duy trì tốc độ hiển thị 60fps mượt mà không nghẽn Main Thread.\n- Tối ưu Core Web Vitals toàn diện: dynamic code splitting, hạ INP xuống < 150ms và giữ vững LCP < 2.0s.'
       },
       {
         keys: ['tuquet', 'zombie', 'chromium', 'crawler', 'rust', 'medallion', 'job object', 'win32'],
@@ -475,7 +475,7 @@
       },
       {
         keys: ['quản lý', 'team', 'squad', 'mentoring', 'lãnh đạo', 'kinh nghiệm', '15+', 'devs'],
-        answer: '**Kinh nghiệm Lãnh đạo & Phát triển Đội ngũ:**\n- Bề dày dẫn dắt đội ngũ kỹ thuật: **Technical Project Lead** (CMC Global, 15+ kỹ sư trên 3 squads), **CPO & Tech Lead** (ICOMM Tech, mở rộng sản phẩm SaaS phục vụ hàng nghìn doanh nghiệp), **Senior Software Engineer** (OpenCommerce Group).\n- Đào tạo và mentor 15+ kỹ sư về Component-Driven Architecture, JavaScript Clean Code và phân tích hiệu năng render.\n- Được vinh danh với giải thưởng **Rising Star Award** tại CMC Global (2024).'
+        answer: '**Kinh nghiệm Lãnh đạo & Phát triển Đội ngũ:**\n- Bề dày dẫn dắt đội ngũ kỹ thuật: **Technical Project Lead** (CMC Global, 15+ kỹ sư trên 3 squads), **CPO & Tech Lead** (ICOMM Tech, mở rộng sản phẩm SaaS phục vụ hàng nghìn doanh nghiệp), **Senior Software Engineer** (OpenCommerce Group).\n- Đào tạo và mentor 15+ kỹ sư về Component-Driven Architecture, JavaScript Clean Code và phân tích hiệu năng render.\n- Được vinh danh với giải thưởng **Rising Star Award** tại CMC Global (Q4/2025).'
       },
       {
         keys: ['stack', 'tech', 'ngôn ngữ', 'skill', 'kỹ năng', 'công nghệ', 'java', 'spring', 'react', 'rust'],
