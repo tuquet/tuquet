@@ -38,29 +38,8 @@ html.dark, [data-theme="dark"] {
     scroll-behavior: smooth;
   }
 
-  body {
-    font-size: 1rem !important; /* 16px base */
-    line-height: 1.68 !important;
-    letter-spacing: -0.011em !important;
-    max-width: 900px !important;
-    margin: 0 !important;
-    padding: 16px !important;
-    background-color: var(--bg-card) !important;
-    color: var(--text-primary) !important;
-    box-shadow: var(--card-shadow) !important;
-    border-radius: 10px !important;
-    border: 1px solid var(--border-color) !important;
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-  }
-
-  /* Desktop (>= md / 768px): Spacious Executive Layout */
+  /* Desktop (>= md / 768px): Table responsiveness */
   @media screen and (min-width: 768px) {
-    body {
-      margin: 36px auto !important;
-      padding: 44px 52px !important;
-      border-radius: 12px !important;
-    }
-
     .table-container {
       overflow-x: visible !important;
       overflow-y: visible !important;
@@ -552,30 +531,9 @@ html.dark #toast-container {
   border-color: #e4e4e7;
 }
 
-/* 8. Ask Toby AI Copilot Widget & Teaser Callout */
+/* 8. Ask Toby AI Copilot Widget */
 .copilot-widget-container {
   z-index: 10000;
-}
-
-.copilot-teaser {
-  animation: copilotTeaserIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes copilotTeaserIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.copilot-teaser.teaser-closing {
-  opacity: 0 !important;
-  transform: translateY(8px) scale(0.95) !important;
-  pointer-events: none !important;
 }
 
 .copilot-trigger {
@@ -802,12 +760,6 @@ html.dark .skip-to-content {
 
 /* 10. Mobile Responsiveness (< md / 768px) */
 @media screen and (max-width: 767.98px) {
-  body {
-    margin: 0 !important;
-    padding: 16px !important;
-    border-radius: 10px !important;
-  }
-
   /* Sticky Mobile Action Header */
   .web-top-bar {
     position: sticky;
@@ -895,7 +847,6 @@ html.dark .skip-to-content {
 @media print {
   #reading-progress,
   .web-top-bar,
-  .sticky-timeline-pill,
   .copilot-trigger,
   .copilot-panel,
   #toast-container,
@@ -1197,97 +1148,44 @@ html.dark .back-to-top:hover {
 }
 
 /* ==========================================================================
-   15. Sticky Floating Chat-Box Timeline Pill (Kiếm Phong Kim Monochromatic)
+   15. In-Stream Sticky Project Headings (Glassmorphism Backdrop Blur)
    ========================================================================== */
-.sticky-timeline-pill {
-  position: fixed;
-  top: 18px;
-  left: 50%;
-  z-index: 35;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 14px;
-  border-radius: 9999px;
+.project-section {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.project-heading {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-top: 20px !important;
+  margin-bottom: 12px !important;
+  padding: 10px 14px;
+  margin-left: -14px;
+  margin-right: -14px;
+  border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.88);
-  color: #27272a;
-  border: 1px solid rgba(228, 228, 231, 0.85);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  font-size: 0.75rem; /* 12px */
-  font-weight: 600;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  letter-spacing: 0.02em;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-50%) translateY(-14px) scale(0.96);
-  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.2s ease,
-              color 0.2s ease,
-              border-color 0.2s ease;
-  cursor: pointer;
-  user-select: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+html.dark .project-heading {
+  background-color: rgba(24, 24, 27, 0.88);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
 }
 
 @media screen and (max-width: 767.98px) {
-  .sticky-timeline-pill {
-    top: 50px; /* sits cleanly below mobile compact top bar when scrolled */
-    padding: 4px 11px;
-    font-size: 0.6875rem; /* 11px */
-  }
-}
-
-html.dark .sticky-timeline-pill {
-  background-color: rgba(24, 24, 27, 0.88);
-  color: #f4f4f5;
-  border-color: rgba(39, 39, 42, 0.85);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
-}
-
-.sticky-timeline-pill:hover {
-  background-color: rgba(244, 244, 245, 0.98);
-  border-color: #d4d4d8;
-  transform: translateX(-50%) translateY(0) scale(1.02);
-}
-
-html.dark .sticky-timeline-pill:hover {
-  background-color: rgba(39, 39, 42, 0.98);
-  border-color: #52525b;
-}
-
-.sticky-timeline-pill.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0) scale(1);
-}
-
-.sticky-timeline-pill .timeline-pill-icon {
-  width: 12px;
-  height: 12px;
-  color: #71717a;
-  flex-shrink: 0;
-}
-
-html.dark .sticky-timeline-pill .timeline-pill-icon {
-  color: #a1a1aa;
-}
-
-/* Animated chat-box badge flip / pop when date changes */
-.sticky-timeline-pill.pill-pulse {
-  animation: timelinePillPulse 0.32s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes timelinePillPulse {
-  0% {
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    transform: translateX(-50%) scale(1.07);
-  }
-  100% {
-    transform: translateX(-50%) scale(1);
+  .project-heading {
+    top: 38px; /* sits cleanly below mobile compact top bar when scrolled */
+    padding: 8px 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    font-size: 1rem !important; /* 16px */
   }
 }
 

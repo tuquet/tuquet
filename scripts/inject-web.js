@@ -36,8 +36,6 @@ const TARGETS = [
     copilotBadge: "AI",
     copilotHeaderTitle: "Toby AI Assistant",
     copilotSubtitle: "Distributed systems, architecture & role fit",
-    copilotTeaserTitle: "Toby AI Assistant",
-    copilotTeaserDesc: "Ask about distributed systems, 15+ engineer leadership, or role suitability.",
     welcomeMsg: "<span id=\"copilot-greeting-text\">Hello.</span> I am Toby's AI assistant. Ask any question regarding his 8+ years leading distributed systems, technical architecture, or role suitability.<br/><br/><strong>Topics you can explore:</strong><br/>• <strong>Executive Summary:</strong> Core strengths & leadership overview<br/>• <strong>Role Fit Check:</strong> Suitability for Tech Lead, Architect, or Senior Engineer<br/>• <strong>Real-Time Telemetry (EV):</strong> 15+ engineers, real-time telemetry streaming<br/>• <strong>High-Scale Web & Booking:</strong> High-traffic web & webview portals for premier theme park enterprise<br/>• <strong>Tuquet Engine:</strong> Zero-leakage process supervision in Rust<br/>• <strong>Tech Stack & Contact:</strong> Direct interview scheduling",
     themeBtnTitle: 'Toggle Dark / Light Mode',
     backToTopTitle: 'Back to top',
@@ -82,8 +80,6 @@ const TARGETS = [
     copilotBadge: "AI",
     copilotHeaderTitle: "Trợ lý AI Toby",
     copilotSubtitle: "Kiến trúc hệ thống, kinh nghiệm lead & độ phù hợp",
-    copilotTeaserTitle: "Trợ lý AI Toby",
-    copilotTeaserDesc: "Tra cứu nhanh về hệ thống phân tán, lead 15+ kỹ sư và độ phù hợp vị trí.",
     welcomeMsg: "<span id=\"copilot-greeting-text\">Xin chào.</span> Tôi là trợ lý AI của Toby Nguyen. Bạn có thể tra cứu nhanh về 8+ năm kinh nghiệm kiến trúc hệ thống phân tán, năng lực lãnh đạo kỹ thuật hoặc độ phù hợp vị trí.<br/><br/><strong>Các chủ đề gợi ý:</strong><br/>• <strong>Tóm tắt năng lực:</strong> Tổng quan thế mạnh và kinh nghiệm điều phối<br/>• <strong>Độ phù hợp vị trí:</strong> Đánh giá cho vai trò Tech Lead, Architect hoặc Senior Engineer<br/>• <strong>Telemetry thời gian thực (EV):</strong> Quản lý 15+ kỹ sư, streaming WebSockets<br/>• <strong>Nền tảng Web & Đặt vé Trực tuyến:</strong> Hệ thống Web Portal & WebView cho tập đoàn công viên giải trí quốc tế<br/>• <strong>Kiến trúc Tuquet:</strong> Giám sát tiến trình không rò rỉ bằng Rust & Win32<br/>• <strong>Kỹ năng & Liên hệ:</strong> Lên lịch phỏng vấn và trao đổi trực tiếp",
     themeBtnTitle: 'Chuyển đổi giao diện Sáng / Tối',
     backToTopTitle: 'Về đầu trang',
@@ -136,10 +132,10 @@ function processTarget(target) {
     html = html.replace(/<\/table>/gi, '</table></div>');
   }
 
-  // Enhance project headings with semantic timeline attributes and badge styling
-  html = html.replace(/<h3>\s*\[(.*?)\]\s*(.*?)<\/h3>/gi, (match, date, title) => {
+  // Enhance project headings and wrap each project in <section class="project-section"> for container-bounded sticky behavior
+  html = html.replace(/(<h3>\s*\[(.*?)\]\s*(.*?)<\/h3>)([\s\S]*?)(?=(?:<h3>|<hr\b|<h2>|$))/gi, (match, h3Tag, date, title, restOfContent) => {
     const cleanDate = date.trim();
-    return `<h3 class="project-heading" data-timeline="${cleanDate}"><span class="project-date-badge">[${cleanDate}]</span> <span class="project-title">${title}</span></h3>`;
+    return `<section class="project-section">\n<h3 class="project-heading" data-timeline="${cleanDate}"><span class="project-date-badge">[${cleanDate}]</span> <span class="project-title">${title}</span></h3>${restOfContent}\n</section>\n`;
   });
 
   // 2. Head Enhancements (SEO, Social, Viewport, Meta, Schema, Tailwind CDN, Stylesheet, Dark Mode Anti-FOUC)
@@ -325,8 +321,12 @@ function processTarget(target) {
 </script>
 `;
 
-  // Set HTML lang attribute
-  html = html.replace(/<html[^>]*>/i, `<html lang="${target.lang}">`);
+  // Set HTML lang attribute and canvas background
+  html = html.replace(/<html[^>]*>/i, `<html lang="${target.lang}" class="scroll-smooth bg-zinc-50 dark:bg-zinc-950">`);
+
+  // Set standard Tailwind classes on <body> to ensure unified breakpoints across the layout
+  const bodyClasses = "max-w-[900px] m-0 p-4 md:my-9 md:mx-auto md:py-[44px] md:px-[52px] rounded-[10px] md:rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-sm md:shadow-lg transition-colors duration-200 text-base leading-relaxed tracking-tight";
+  html = html.replace(/<body[^>]*>/i, `<body class="${bodyClasses}">`);
 
   // Remove old charset meta if any
   html = html.replace(/<meta http-equiv=["']Content-type["'][^>]*>\s*/i, '');
@@ -443,32 +443,8 @@ function processTarget(target) {
   </svg>
 </button>
 
-<!-- Sticky Floating Chat-Box Timeline Pill -->
-<div id="sticky-timeline-pill" class="sticky-timeline-pill" role="status" aria-live="polite" aria-label="Timeline Indicator" title="${target.lang === 'en' ? 'Click to jump to active section' : 'Nhấp để cuộn đến phần hiện tại'}">
-  <svg class="timeline-pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10"></circle>
-    <polyline points="12 6 12 12 16 14"></polyline>
-  </svg>
-  <span id="sticky-timeline-text" class="sticky-timeline-text"></span>
-</div>
-
 <!-- Ask Toby Copilot Widget -->
 <div id="copilot-widget-container" class="copilot-widget-container fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none">
-  <!-- Proactive Teaser Callout (shadcn Popover) -->
-  <div id="copilot-teaser" class="copilot-teaser hidden items-start gap-2.5 p-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-md max-w-[280px] pointer-events-auto">
-    <div class="flex-1 min-w-0 cursor-pointer" id="copilot-teaser-content">
-      <div class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
-        ${target.copilotTeaserTitle}
-      </div>
-      <div class="text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal mt-0.5">
-        ${target.copilotTeaserDesc}
-      </div>
-    </div>
-    <button id="copilot-teaser-close" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 p-0.5 rounded transition-colors cursor-pointer" aria-label="Close">
-      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-    </button>
-  </div>
-
   <!-- Trigger Button (shadcn button zinc) -->
   <button id="copilot-trigger" class="copilot-trigger inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-900 dark:border-zinc-100 shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer pointer-events-auto" aria-label="${target.copilotBtnText}">
     <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
