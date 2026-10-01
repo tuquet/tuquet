@@ -438,7 +438,7 @@
             '[&.kw-active]:bg-zinc-200/50',
             'dark:[&.kw-active]:bg-zinc-800/50',
             'transition-all',
-            'duration-300',
+            'duration-700',
             'cursor-text',
             'rounded-xs'
           );
@@ -448,28 +448,44 @@
 
       if (!keywords.length) return;
 
-      // Single-pass Intersection Observer: gentle reveal without layout thrashing or repetitive loops
+      // 3-second dwell reading observer: only highlight when user pauses and reads for 3s
+      const dwellTimers = new Map();
+
       const observer = new IntersectionObserver((entries) => {
-        const intersecting = entries.filter(e => e.isIntersecting && !e.target.dataset.kwTriggered);
-
-        intersecting.forEach((entry, idx) => {
+        entries.forEach((entry) => {
           const el = entry.target;
-          el.dataset.kwTriggered = 'true';
 
-          // Mild staggered timing for words entering together
-          const delay = (idx % 4) * 90;
+          if (entry.isIntersecting && !el.dataset.kwTriggered) {
+            // Cancel existing timer if any
+            if (dwellTimers.has(el)) {
+              clearTimeout(dwellTimers.get(el));
+            }
 
-          setTimeout(() => {
-            el.classList.add('kw-active');
-            setTimeout(() => {
-              el.classList.remove('kw-active');
-            }, 800);
-          }, delay);
+            // Dwell timer: wait 3 seconds of continuous reading before highlighting
+            const timer = setTimeout(() => {
+              el.dataset.kwTriggered = 'true';
+              el.classList.add('kw-active');
+              dwellTimers.delete(el);
+
+              // Maintain highlight comfortably, then smoothly fade back
+              setTimeout(() => {
+                el.classList.remove('kw-active');
+              }, 2500);
+            }, 3000);
+
+            dwellTimers.set(el, timer);
+          } else if (!entry.isIntersecting) {
+            // Cancel timer if user scrolls past before 3s
+            if (dwellTimers.has(el)) {
+              clearTimeout(dwellTimers.get(el));
+              dwellTimers.delete(el);
+            }
+          }
         });
       }, {
         root: null,
         rootMargin: '0px 0px -8% 0px',
-        threshold: 0.1
+        threshold: 0.15
       });
 
       keywords.forEach(kw => observer.observe(kw));
@@ -481,7 +497,7 @@
             kw.classList.add('kw-active');
             setTimeout(() => {
               kw.classList.remove('kw-active');
-            }, 800);
+            }, 1200);
           }
         });
       });
@@ -495,7 +511,7 @@
           el.classList.add('kw-active');
           setTimeout(() => {
             el.classList.remove('kw-active');
-          }, 800);
+          }, 2500);
         }, delay);
       });
     }
