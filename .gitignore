@@ -1,8 +1,10 @@
 # Dependencies
 node_modules/
 
-# Temporary files generated during markdown-pdf export
+# Temporary and intermediate build artifacts
 *_tmp.html
+README.html
+**/README.html
 
 # Images
 *.png

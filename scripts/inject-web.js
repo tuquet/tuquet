@@ -102,12 +102,17 @@ const TARGETS = [
 ];
 
 function processTarget(target) {
-  if (!fs.existsSync(target.inputFile)) {
-    console.warn(`[WARN] Input file not found: ${target.inputFile}`);
-    return;
+  let sourceFile = target.inputFile;
+  if (!fs.existsSync(sourceFile)) {
+    if (fs.existsSync(target.outputFile)) {
+      sourceFile = target.outputFile;
+    } else {
+      console.warn(`[WARN] Input file not found: ${target.inputFile}`);
+      return;
+    }
   }
 
-  let html = fs.readFileSync(target.inputFile, 'utf-8');
+  let html = fs.readFileSync(sourceFile, 'utf-8');
 
   // 1. Fix hardcoded file:// links if any
   html = html.replace(/href=["']file:\/\/[^"']*pdf-export\.css["']/gi, `href="${target.relPrefix}style/pdf-export.css"`);
@@ -504,7 +509,14 @@ function processTarget(target) {
 
   // Write out to index.html
   fs.writeFileSync(target.outputFile, html, 'utf-8');
-  console.log(`[SUCCESS] Processed: ${path.relative(ROOT_DIR, target.inputFile)} -> ${path.relative(ROOT_DIR, target.outputFile)}`);
+  console.log(`[SUCCESS] Processed: ${path.relative(ROOT_DIR, sourceFile)} -> ${path.relative(ROOT_DIR, target.outputFile)}`);
+
+  // Clean up intermediate raw README.html so only index.html remains as the clean web entry point
+  if (fs.existsSync(target.inputFile) && target.inputFile !== target.outputFile) {
+    try {
+      fs.unlinkSync(target.inputFile);
+    } catch (e) {}
+  }
 }
 
 TARGETS.forEach(processTarget);
