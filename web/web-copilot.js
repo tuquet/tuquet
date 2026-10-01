@@ -424,24 +424,7 @@
       candidates.forEach(el => {
         const text = el.textContent.trim();
         if (!isLabel(el) && isHotTech(text)) {
-          el.classList.add(
-            'kw-magic',
-            'underline',
-            'decoration-zinc-400/60',
-            'dark:decoration-zinc-600/60',
-            'underline-offset-4',
-            'decoration-[1.5px]',
-            'hover:decoration-zinc-950',
-            'dark:hover:decoration-zinc-100',
-            '[&.kw-active]:decoration-zinc-950',
-            'dark:[&.kw-active]:decoration-zinc-50',
-            '[&.kw-active]:bg-zinc-200/50',
-            'dark:[&.kw-active]:bg-zinc-800/50',
-            'transition-all',
-            'duration-700',
-            'cursor-text',
-            'rounded-xs'
-          );
+          el.classList.add('kw-magic', 'cursor-text');
           keywords.push(el);
         }
       });
@@ -461,16 +444,16 @@
               clearTimeout(dwellTimers.get(el));
             }
 
-            // Dwell timer: wait 3 seconds of continuous reading before highlighting
+            // Dwell timer: wait 3 seconds of continuous reading before light beam sweeps
             const timer = setTimeout(() => {
               el.dataset.kwTriggered = 'true';
               el.classList.add('kw-active');
               dwellTimers.delete(el);
 
-              // Maintain highlight comfortably, then smoothly fade back
+              // Remove active state after sweep completes
               setTimeout(() => {
                 el.classList.remove('kw-active');
-              }, 2500);
+              }, 1400);
             }, 3000);
 
             dwellTimers.set(el, timer);
@@ -490,14 +473,14 @@
 
       keywords.forEach(kw => observer.observe(kw));
 
-      // Interactive subtle hover
+      // Interactive subtle hover: light beam sweeps on hover
       keywords.forEach(kw => {
         kw.addEventListener('mouseenter', () => {
           if (!kw.classList.contains('kw-active') && !kw.closest('.lens-dim')) {
             kw.classList.add('kw-active');
             setTimeout(() => {
               kw.classList.remove('kw-active');
-            }, 1200);
+            }, 1400);
           }
         });
       });
@@ -511,7 +494,7 @@
           el.classList.add('kw-active');
           setTimeout(() => {
             el.classList.remove('kw-active');
-          }, 2500);
+          }, 1400);
         }, delay);
       });
     }

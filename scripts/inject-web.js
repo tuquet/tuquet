@@ -130,12 +130,11 @@ function processTarget(target) {
   html = html.replace(/\s*\*(\))<\/strong>/g, '$1</strong>');
   html = html.replace(/\s*\*<\/strong>/g, '</strong>');
 
-  // Wrap all tables in a responsive 100% width container if not already wrapped
-  html = html.replace(/<div class="table-container\b[^>]*>/gi, '<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible">');
-  if (!html.includes('class="table-container"')) {
-    html = html.replace(/<table\b([^>]*)>/gi, '<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table$1>');
-    html = html.replace(/<\/table>/gi, '</table></div>');
-  }
+  // Wrap all tables in a responsive 100% width container (clean up any previous wrappers first for idempotent builds)
+  html = html.replace(/(?:<div class="table-container\b[^>]*>\s*)+<table\b/gi, '<table');
+  html = html.replace(/<\/table>(?:\s*<\/div>)+/gi, '</table>');
+  html = html.replace(/<table\b([^>]*)>/gi, '<div class="table-container w-full my-4 overflow-x-auto md:overflow-x-visible"><table$1>');
+  html = html.replace(/<\/table>/gi, '</table></div>');
 
   // Enhance project headings and wrap each project in <section class="project-section"> for container-bounded sticky behavior (using Tailwind zinc utility classes)
   html = html.replace(/(<h3>\s*\[(.*?)\]\s*(.*?)<\/h3>)([\s\S]*?)(?=(?:<h3>|<hr\b|<h2>|$))/gi, (match, h3Tag, date, title, restOfContent) => {
