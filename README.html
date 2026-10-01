@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+if (window.location.protocol.startsWith('http') && window.location.pathname.endsWith('README.html')) {
+  window.location.replace(window.location.pathname.replace(/README\.html$/, 'index.html') + window.location.search);
+}
+</script>
 <title>README.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 

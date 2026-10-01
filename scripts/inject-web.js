@@ -114,6 +114,9 @@ function processTarget(target) {
   // 1. Fix hardcoded file:// links if any
   html = html.replace(/href=["']file:\/\/[^"']*pdf-export\.css["']/gi, `href="${target.relPrefix}style/pdf-export.css"`);
 
+  // Remove README redirect script if present in raw html
+  html = html.replace(/<script>\s*if\s*\(window\.location\.protocol\.startsWith\('http'\)[\s\S]*?<\/script>\s*/i, '');
+
   // Remove unused Mermaid script if no diagram exists (prevents file:// iframe sandbox warnings and saves 2MB)
   if (!html.includes('class="mermaid"')) {
     html = html.replace(/<script src="https:\/\/unpkg\.com\/mermaid[^"]*"><\/script>\s*/i, '');
