@@ -341,45 +341,51 @@ h3.lens-highlight {
   font-weight: 600;
   color: inherit !important;
   text-decoration: none !important;
-  padding: 1px 5px;
+  padding: 1.5px 6px;
   margin: 0 1px;
   border-radius: 4px;
-  background-color: var(--pill-bg);
+  background-color: #e4e4e7; /* Zinc-200: clearly defined against white canvas */
   background-repeat: no-repeat;
   background-size: 250% 100%;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  box-shadow: inset 0 0 0 1px var(--border-color);
+  box-shadow: inset 0 0 0 1px #d4d4d8, 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.2s ease;
 }
 
-/* Light Mode: Gleaming pure white light beam sweep across pill (No dark shadow, text 100% visible) */
+/* Light Mode: High-contrast pure white light beam sweep across titanium pill */
 .kw-magic.kw-active {
   background-image: linear-gradient(
     105deg,
     transparent 0%,
-    transparent 25%,
-    rgba(255, 255, 255, 0.45) 40%,
+    transparent 20%,
+    rgba(255, 255, 255, 0.7) 35%,
     #ffffff 50%,
-    rgba(255, 255, 255, 0.45) 60%,
-    transparent 75%,
+    rgba(255, 255, 255, 0.7) 65%,
+    transparent 80%,
     transparent 100%
   );
   animation: kw-beam-loop 4.5s ease-in-out infinite;
   animation-delay: var(--kw-delay, 0s);
 }
 
-/* Dark Mode: Radiant starlight beam sweep across pill (Razor-sharp ClearType, text 100% visible) */
+/* Dark Mode: Obsidian pill with radiant starlight beam */
+html.dark .kw-magic,
+[data-theme="dark"] .kw-magic {
+  background-color: #27272a;
+  box-shadow: inset 0 0 0 1px #3f3f46;
+}
+
 html.dark .kw-magic.kw-active,
 [data-theme="dark"] .kw-magic.kw-active {
   background-image: linear-gradient(
     105deg,
     transparent 0%,
-    transparent 25%,
-    rgba(255, 255, 255, 0.08) 40%,
-    rgba(255, 255, 255, 0.35) 50%,
-    rgba(255, 255, 255, 0.08) 60%,
-    transparent 75%,
+    transparent 20%,
+    rgba(255, 255, 255, 0.1) 35%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.1) 65%,
+    transparent 80%,
     transparent 100%
   );
   animation: kw-beam-loop 4.5s ease-in-out infinite;
