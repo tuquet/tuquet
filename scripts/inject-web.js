@@ -140,7 +140,7 @@ function processTarget(target) {
   html = html.replace(/(<h3>\s*\[(.*?)\]\s*(.*?)<\/h3>)([\s\S]*?)(?=(?:<h3>|<hr\b|<h2>|$))/gi, (match, h3Tag, date, title, restOfContent) => {
     const cleanDate = date.trim();
     return `<section class="project-section relative mb-6 md:mb-8">
-<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/85 dark:bg-zinc-900/85 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="${cleanDate}">[${cleanDate}] ${title}</h3>${restOfContent}
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-3 px-4 -mx-4 md:py-3.5 md:px-[52px] md:-mx-[52px] rounded-none md:rounded-t-lg bg-white/65 dark:bg-zinc-900/65 backdrop-blur-md border-b border-zinc-200/75 dark:border-zinc-800/75 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="${cleanDate}">[${cleanDate}] ${title}</h3>${restOfContent}
 </section>\n`;
   });
 
