@@ -184,3 +184,23 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
 - **Focus:** Full-Stack Web Development, Desktop Application Design & Software Architecture.
 - **Academic Standing:** GPA 8.2/10
 - **English Proficiency:** TOEIC 650 (Fluent technical reading/writing & professional collaboration)
+
+---
+
+## INTERACTIVE ARTIFACTS & ECOSYSTEM SHOWCASE
+
+Explore live interactive architecture visualizers, technical documentation, component showcases, and open-source distributions across the Tuquet ecosystem:
+
+| Resource / System | Description & Technical Scope | Live Link |
+| :--- | :--- | :--- |
+| **Interactive Architecture Visualizer** | Multi-repository closed-loop orchestration pipeline (Archify JSON-IR with trace motion, deep-linking, and presentation mode) | [View Architecture Diagram ↗](https://tuquet.github.io/automa/pipeline.html) |
+| **Core Daemon API Reference** | Scalar OpenAPI interactive documentation for compiled Rust Axum / Tokio daemon services | [Explore API Reference ↗](https://tuquet.github.io/automa/api/) |
+| **Enterprise UI Component Library** | Interactive Storybook component suite for `@tuquet/vue-table` (TanStack Table) and `@tuquet/vue-ui` | [Open Live Storybook ↗](https://tuquet.github.io/lib/) |
+| **Automation Studio Web Portal** | High-performance browser automation & OS orchestration engine portal with live video demo | [Visit Automa Portal ↗](https://tuquet.github.io/automa/) |
+| **Windows Package Distribution** | Official Windows Scoop bucket for zero-config CLI (`tuquet`) and background runner daemon | [GitHub Scoop Bucket ↗](https://github.com/tuquet/tuquet-scoop-bucket) |
+| **NPM Modular Libraries** | Published production packages under the `@tuquet` scope (`@tuquet/md-export`, `@tuquet/vue-ui`, etc.) | [Browse NPM Registry ↗](https://www.npmjs.com/org/tuquet) |
+| **GitHub Releases & Source Code** | Complete multi-repo open-source codebase, release changelogs, and binary distributions | [Ecosystem Releases ↗](https://github.com/tuquet) |
+
+### Active Research & Development Keywords
+`Win32 Job Objects (Zero-Zombie)` • `Rust Axum / Tokio Async` • `Archify Interactive JSON-IR` • `Enterprise Data Grids (TanStack / Vue 3)` • `Anti-Detect Chromium Isolation` • `Single Source of Truth (~/.tuquet/)` • `Medallion Data Pipeline` • `Windows Scoop Distribution` • `High-Throughput Telemetry Streaming` • `AI-Augmented Engineering (MCP)`
+

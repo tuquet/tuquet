@@ -184,3 +184,23 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
 - **Chuyên môn:** Phát triển Web Full-Stack, Thiết kế Ứng dụng Desktop & Kiến trúc phần mềm.
 - **Kết quả học tập:** GPA 8.2/10
 - **Chứng chỉ ngoại ngữ:** TOEIC 650 (Đọc hiểu tài liệu kỹ thuật & giao tiếp làm việc thành thạo)
+
+---
+
+## SẢN PHẨM THỰC TẾ & HỆ SINH THÁI TƯƠNG TÁC (INTERACTIVE ARTIFACTS & ECOSYSTEM SHOWCASE)
+
+Trải nghiệm trực tiếp các sản phẩm thực tế, sơ đồ kiến trúc động, tài liệu kỹ thuật, thư viện linh kiện và các bản phát hành mã nguồn mở:
+
+| Sản phẩm & Tài nguyên | Mô tả & Phạm vi Công nghệ | Trải nghiệm Trực tiếp |
+| :--- | :--- | :--- |
+| **Sơ đồ Kiến trúc Tương tác Động** | Pipeline điều phối đa repo khép kín (Archify JSON-IR với luồng trace motion, deep-linking & presentation mode) | [Xem Biểu đồ Kiến trúc ↗](https://tuquet.github.io/automa/pipeline.html) |
+| **Tài liệu API Engine Trực quan** | Scalar OpenAPI Reference tương tác trực tiếp cho các dịch vụ daemon viết bằng Rust (Axum / Tokio) | [Khám phá Tài liệu API ↗](https://tuquet.github.io/automa/api/) |
+| **Thư viện UI Component Doanh nghiệp** | Storybook tương tác trực quan cho `@tuquet/vue-table` (TanStack Table) và `@tuquet/vue-ui` | [Mở Live Storybook ↗](https://tuquet.github.io/lib/) |
+| **Cổng Thông tin Studio Tự động hóa** | Cổng giải pháp tự động hóa trình duyệt & điều phối hệ điều hành hiệu năng cao kèm video trace thực tế | [Truy cập Automa Portal ↗](https://tuquet.github.io/automa/) |
+| **Phân phối Gói Cài đặt Windows** | Official Windows Scoop bucket phân phối CLI chính (`tuquet`) và runner daemon chuẩn hóa | [Xem Scoop Bucket ↗](https://github.com/tuquet/tuquet-scoop-bucket) |
+| **Hệ sinh thái Thư viện NPM** | Các gói thư viện mã nguồn mở phát hành chính thức dưới scope `@tuquet` (`@tuquet/md-export`, `@tuquet/vue-ui`...) | [Xem Thư viện trên NPM ↗](https://www.npmjs.com/org/tuquet) |
+| **Mã nguồn & Bản Phát hành GitHub** | Toàn bộ mã nguồn mở đa repository, lịch sử phát hành và binary build | [Xem Bản Phát hành GitHub ↗](https://github.com/tuquet) |
+
+### Các Từ Khóa Công Nghệ Đang Tập Trung Phát Triển
+`Win32 Job Objects (Zero-Zombie)` • `Rust Axum / Tokio Async` • `Archify Interactive JSON-IR` • `Enterprise Data Grids (TanStack / Vue 3)` • `Anti-Detect Chromium Isolation` • `Nguồn Chân Lý Duy Nhất (~/.tuquet/)` • `Medallion Data Pipeline` • `Phân Phối Gói Windows Scoop` • `Streaming Dữ Liệu Đo Xa Tốc Độ Cao` • `Kỹ Thuật Tăng Cường Bởi AI (MCP)`
+

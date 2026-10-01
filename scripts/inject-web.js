@@ -48,6 +48,7 @@ const TARGETS = [
     chips: [
       { text: 'Executive Summary', q: 'summary' },
       { text: 'Role Fit & Scope', q: 'fit' },
+      { text: 'Architecture Diagram', q: 'diagram' },
       { text: 'EV Telemetry Platform', q: 'telemetry' },
       { text: 'High-Scale Web & Booking', q: 'portal' },
       { text: 'Rust Process Engine', q: 'tuquet' },
@@ -80,7 +81,7 @@ const TARGETS = [
     copilotBadge: "AI",
     copilotHeaderTitle: "Trợ lý AI Toby",
     copilotSubtitle: "Kiến trúc hệ thống, kinh nghiệm lead & độ phù hợp",
-    welcomeMsg: "<span id=\"copilot-greeting-text\">Xin chào.</span> Tôi là trợ lý AI của Toby Nguyen. Bạn có thể tra cứu nhanh về 8+ năm kinh nghiệm kiến trúc hệ thống phân tán, năng lực lãnh đạo kỹ thuật hoặc độ phù hợp vị trí.<br/><br/><strong>Các chủ đề gợi ý:</strong><br/>• <strong>Tóm tắt năng lực:</strong> Tổng quan thế mạnh và kinh nghiệm điều phối<br/>• <strong>Độ phù hợp vị trí:</strong> Đánh giá cho vai trò Tech Lead, Architect hoặc Senior Engineer<br/>• <strong>Nền tảng Đo xa Xe điện (EV):</strong> Quản lý 15+ kỹ sư, streaming WebSockets<br/>• <strong>Nền tảng Web & Đặt vé Trực tuyến:</strong> Hệ thống Web Portal & WebView cho tập đoàn công viên giải trí quốc tế<br/>• <strong>Kiến trúc Tuquet:</strong> Giám sát tiến trình không rò rỉ bằng Rust & Win32<br/>• <strong>Kỹ năng & Liên hệ:</strong> Lên lịch phỏng vấn và trao đổi trực tiếp",
+    welcomeMsg: "<span id=\"copilot-greeting-text\">Xin chào.</span> Tôi là trợ lý AI của Toby Nguyen. Bạn có thể tra cứu nhanh về 8+ năm kinh nghiệm kiến trúc hệ thống phân tán, năng lực lãnh đạo kỹ thuật hoặc độ phù hợp vị trí.<br/><br/><strong>Các chủ đề gợi ý:</strong><br/>• <strong>Tóm tắt năng lực:</strong> Tổng quan thế mạnh và kinh nghiệm điều phối<br/>• <strong>Độ phù hợp vị trí:</strong> Đánh giá cho vai trò Tech Lead, Architect hoặc Senior Engineer<br/>• <strong>Sơ đồ kiến trúc động:</strong> Khám phá pipeline Archify tương tác trực tiếp<br/>• <strong>Nền tảng Đo xa Xe điện (EV):</strong> Quản lý 15+ kỹ sư, streaming WebSockets<br/>• <strong>Nền tảng Web & Đặt vé Trực tuyến:</strong> Hệ thống Web Portal & WebView cho tập đoàn công viên giải trí quốc tế<br/>• <strong>Kiến trúc Tuquet:</strong> Giám sát tiến trình không rò rỉ bằng Rust & Win32<br/>• <strong>Kỹ năng & Liên hệ:</strong> Lên lịch phỏng vấn và trao đổi trực tiếp",
     themeBtnTitle: 'Chuyển đổi giao diện Sáng / Tối',
     backToTopTitle: 'Về đầu trang',
     lenses: [
@@ -92,6 +93,7 @@ const TARGETS = [
     chips: [
       { text: 'Tóm tắt năng lực', q: 'summary' },
       { text: 'Độ phù hợp vị trí', q: 'fit' },
+      { text: 'Sơ đồ Kiến trúc', q: 'diagram' },
       { text: 'Nền tảng Đo xa Xe điện (EV)', q: 'telemetry' },
       { text: 'Nền tảng Web & Đặt vé', q: 'portal' },
       { text: 'Kiến trúc Tuquet & Rust', q: 'tuquet' },
@@ -453,7 +455,38 @@ function processTarget(target) {
     .map(c => `<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="${c.q}">${c.text}</button>`)
     .join('\n');
 
+  const footerHtml = `
+<!-- Semantic Web Footer & Interactive Ecosystem Quick Links -->
+<footer class="web-footer mt-12 pt-8 pb-4 border-t border-zinc-200 dark:border-zinc-800 text-xs text-zinc-500 dark:text-zinc-400 no-print" role="contentinfo">
+  <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+    <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+      <span class="font-semibold text-zinc-800 dark:text-zinc-200">${target.personName}</span>
+      <span>•</span>
+      <span>${target.lang === 'en' ? 'Technical Project Lead & Systems Architect' : 'Kỹ sư Trưởng & Kiến trúc sư Hệ thống'}</span>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3 font-medium">
+      <a href="https://tuquet.github.io/automa/pipeline.html" target="_blank" rel="noopener" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors underline-offset-2 hover:underline">Diagrams ↗</a>
+      <span>•</span>
+      <a href="https://tuquet.github.io/lib/" target="_blank" rel="noopener" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors underline-offset-2 hover:underline">Storybook ↗</a>
+      <span>•</span>
+      <a href="https://tuquet.github.io/automa/api/" target="_blank" rel="noopener" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors underline-offset-2 hover:underline">API Docs ↗</a>
+      <span>•</span>
+      <a href="https://github.com/tuquet/tuquet-scoop-bucket" target="_blank" rel="noopener" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors underline-offset-2 hover:underline">Scoop ↗</a>
+      <span>•</span>
+      <a href="https://github.com/tuquet" target="_blank" rel="noopener" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors underline-offset-2 hover:underline">GitHub ↗</a>
+      <span>•</span>
+      <a href="${target.pdfFile}" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors underline-offset-2 hover:underline">PDF Resume</a>
+    </div>
+  </div>
+  <div class="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/50 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] text-zinc-400 dark:text-zinc-500">
+    <span>© 2026 Tuquet Ecosystem. Open-source under MIT License.</span>
+    <span>Single Source of Truth: <code class="font-mono text-[10px] bg-zinc-100 dark:bg-zinc-800 px-1 py-0.5 rounded">~/.tuquet/</code></span>
+  </div>
+</footer>
+`;
+
   const copilotHtml = `
+\${footerHtml}
 </main>
 
 <!-- Back to Top Floating Button -->

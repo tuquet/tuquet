@@ -423,6 +423,10 @@
         answer: '**Tuquet Distributed Automation & Crawler Pipeline:**\n- Toby engineered a zero-leakage process supervision core using **Windows Win32 Job Objects** with IO completion ports, completely eliminating zombie Chromium processes.\n- Designed a 3-tier **Medallion architecture** (Bronze raw BLOB gzip -> Silver Rust sanitizer & deduplicator -> Gold Supabase sync) with zero-cost local caching.\n- Authored the CLI (`tuquet`) in Rust with rustyline auto-completion, distributed via official Windows Scoop bucket.'
       },
       {
+        keys: ['diagram', 'architecture', 'diagrams', 'pipeline', 'storybook', 'archify', 'visual', 'demo', 'showcase', 'live'],
+        answer: '**Interactive Artifacts & Live Architecture Showcases:**\n- 🗺️ **Automa Architecture Visualizer:** Explore the multi-repo orchestration pipeline rendered with Archify (trace motion & deep linking) at [tuquet.github.io/automa/pipeline.html](https://tuquet.github.io/automa/pipeline.html)\n- 📖 **Core Daemon API Reference:** Interactive Scalar OpenAPI docs for Rust Axum daemons at [tuquet.github.io/automa/api/](https://tuquet.github.io/automa/api/)\n- 🎨 **Enterprise Storybook Showcase:** Live interactive data grid & UI components at [tuquet.github.io/lib/](https://tuquet.github.io/lib/)\n- 🛸 **Automa Studio Portal:** Closed-loop automation & OS orchestration hub at [tuquet.github.io/automa/](https://tuquet.github.io/automa/)\n- 📦 **Windows Scoop Distribution:** Official Scoop bucket at [github.com/tuquet/tuquet-scoop-bucket](https://github.com/tuquet/tuquet-scoop-bucket)'
+      },
+      {
         keys: ['portal', 'theme park', 'booking', 'webview', 'hospitality', 'high-scale web', 'high-traffic'],
         answer: '**High-Scale Web & Booking Portals – Theme Park Enterprise (CMC Global):**\n- Toby served as **Lead Frontend Engineer**, building, refactoring, and delivering feature enhancements for high-traffic Visitor Web Portals and Partner Booking WebViews for a premier international theme park enterprise.\n- Engineered responsive, pixel-perfect mobile-embedded WebViews in React, Vite, and Tailwind CSS adhering strictly to client design specs.\n- Established seamless local developer workflows and mock data synchronization between Spring Boot backend services and React/React Native clients.'
       },
@@ -468,6 +472,10 @@
       {
         keys: ['tuquet', 'zombie', 'chromium', 'crawler', 'rust', 'medallion', 'job object', 'win32'],
         answer: '**Dự án Tuquet & Sửa lỗi Zombie Process:**\n- Toby thiết kế lõi giám sát tiến trình zero-leakage sử dụng **Windows Win32 Job Objects** và IO completion ports, loại bỏ triệt để hiện tượng Chromium zombie process.\n- Xây dựng kiến trúc **Medallion 3 tầng** (Bronze raw BLOB gzip -> Silver Rust sanitizer & deduplicator -> Gold Supabase sync) với bộ nhớ đệm cục bộ zero-cost.\n- Viết CLI chính (`tuquet`) bằng Rust với auto-completion thông minh, phân phối qua Scoop bucket chính thức trên Windows.'
+      },
+      {
+        keys: ['sơ đồ', 'biểu đồ', 'kiến trúc', 'diagram', 'diagrams', 'pipeline', 'storybook', 'archify', 'demo', 'trực quan', 'live'],
+        answer: '**Sản phẩm Thực tế & Sơ đồ Kiến trúc Tương tác Động:**\n- 🗺️ **Biểu đồ Kiến trúc Pipeline (Archify):** Trực quan hóa điều phối đa kho lưu trữ với hiệu ứng trace motion tại [tuquet.github.io/automa/pipeline.html](https://tuquet.github.io/automa/pipeline.html)\n- 📖 **Tài liệu API Engine Trực quan (Scalar):** OpenAPI tương tác trực tiếp cho lõi Rust Axum daemon tại [tuquet.github.io/automa/api/](https://tuquet.github.io/automa/api/)\n- 🎨 **Live Storybook UI Showcase:** Bảng dữ liệu doanh nghiệp `@tuquet/vue-table` tại [tuquet.github.io/lib/](https://tuquet.github.io/lib/)\n- 🛸 **Cổng Studio Tự động hóa:** Nền tảng điều phối hệ điều hành và tự động hóa trình duyệt tại [tuquet.github.io/automa/](https://tuquet.github.io/automa/)\n- 📦 **Phân phối Scoop Windows:** Cài đặt nhanh qua [github.com/tuquet/tuquet-scoop-bucket](https://github.com/tuquet/tuquet-scoop-bucket)'
       },
       {
         keys: ['nền tảng web', 'đặt vé', 'web & đặt vé', 'portal', 'công viên', 'giải trí', 'webview', 'lưu lượng cao', 'bán vé'],
