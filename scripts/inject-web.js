@@ -132,10 +132,15 @@ function processTarget(target) {
     html = html.replace(/<\/table>/gi, '</table></div>');
   }
 
-  // Enhance project headings and wrap each project in <section class="project-section"> for container-bounded sticky behavior
+  // Enhance project headings and wrap each project in <section class="project-section"> for container-bounded sticky behavior (using Tailwind zinc utility classes)
   html = html.replace(/(<h3>\s*\[(.*?)\]\s*(.*?)<\/h3>)([\s\S]*?)(?=(?:<h3>|<hr\b|<h2>|$))/gi, (match, h3Tag, date, title, restOfContent) => {
     const cleanDate = date.trim();
-    return `<section class="project-section">\n<h3 class="project-heading" data-timeline="${cleanDate}"><span class="project-date-badge">[${cleanDate}]</span> <span class="project-title">${title}</span></h3>${restOfContent}\n</section>\n`;
+    return `<section class="project-section relative mb-6 md:mb-8">
+<h3 class="project-heading sticky top-[38px] md:top-0 z-20 mt-6 mb-3 py-2.5 px-3 -mx-3 md:px-3.5 md:-mx-3.5 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs text-zinc-900 dark:text-zinc-100 transition-colors" data-timeline="${cleanDate}">
+  <span class="project-date-badge inline-flex items-center font-mono text-xs font-semibold px-2 py-0.5 mr-2 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 align-middle tracking-tight">[${cleanDate}]</span>
+  <span class="project-title font-semibold text-zinc-900 dark:text-zinc-100">${title}</span>
+</h3>${restOfContent}
+</section>\n`;
   });
 
   // 2. Head Enhancements (SEO, Social, Viewport, Meta, Schema, Tailwind CDN, Stylesheet, Dark Mode Anti-FOUC)

@@ -1148,69 +1148,10 @@ html.dark .back-to-top:hover {
 }
 
 /* ==========================================================================
-   15. In-Stream Sticky Project Headings (Glassmorphism Backdrop Blur)
+   15. In-Stream Sticky Project Headings (Tailwind-Powered Zinc System)
    ========================================================================== */
-.project-section {
-  position: relative;
-  margin-bottom: 24px;
-}
-
 .project-heading {
   position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  margin-top: 20px !important;
-  margin-bottom: 12px !important;
-  padding: 10px 14px;
-  margin-left: -14px;
-  margin-right: -14px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
-  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-html.dark .project-heading {
-  background-color: rgba(24, 24, 27, 0.88);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-}
-
-@media screen and (max-width: 767.98px) {
-  .project-heading {
-    top: 38px; /* sits cleanly below mobile compact top bar when scrolled */
-    padding: 8px 10px;
-    margin-left: -10px;
-    margin-right: -10px;
-    font-size: 1rem !important; /* 16px */
-  }
-}
-
-/* In-heading date badge styling: [date] */
-.project-date-badge {
-  display: inline-flex;
-  align-items: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.8125rem; /* 13px */
-  font-weight: 600;
-  padding: 2px 7px;
-  margin-right: 6px;
-  border-radius: 6px;
-  background-color: var(--code-bg);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  vertical-align: middle;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-}
-
-html.dark .project-date-badge {
-  background-color: #27272a;
-  border-color: #3f3f46;
-  color: #f4f4f5;
 }
 
 
