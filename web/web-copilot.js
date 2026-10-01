@@ -515,7 +515,7 @@
       },
       {
         keys: ['contact', 'email', 'phone', 'location', 'interview', 'salary', 'connect'],
-        answer: '**Contact Information & Availability:**\n- Toby is open to high-impact technical leadership and senior engineering opportunities.\n- **Phone:** +84 936 683 088\n- **Email:** tunyk.93@gmail.com\n- **Location:** Ha Dong, Ha Noi, Vietnam\n- **GitHub:** [github.com/tuquet](https://github.com/tuquet)\n- **LinkedIn:** [linkedin.com/in/tuquet](https://www.linkedin.com/in/tuquet)'
+        answer: '**Contact Information & Availability:**\n- Toby is open to high-impact technical leadership and senior engineering opportunities.\n- **Phone:** +84 936 683 088\n- **Email:** tunyk.93@gmail.com\n- **Location:** Ha Dong, Ha Noi, Vietnam\n- **GitHub:** [github.com/tuquet](https://github.com/tuquet)\n- **LinkedIn:** [linkedin.com/in/tuquet](https://www.linkedin.com/in/tuquet)\n- **NPM Organization:** [npmjs.com/org/tuquet](https://www.npmjs.com/org/tuquet)'
       }
     ],
 
@@ -562,7 +562,7 @@
       },
       {
         keys: ['liên hệ', 'email', 'sđt', 'điện thoại', 'địa chỉ', 'ở đâu', 'phỏng vấn', 'lương', 'contact'],
-        answer: '**Thông tin Liên hệ & Sẵn sàng Phỏng vấn:**\n- Toby sẵn sàng trao đổi các cơ hội nghề nghiệp kỹ thuật giá trị cao (Full-time, Cố vấn Kiến trúc / Advisory).\n- **Điện thoại:** +84 936 683 088\n- **Email:** tunyk.93@gmail.com\n- **Địa chỉ:** Hà Đông, Hà Nội, Việt Nam\n- **GitHub:** [github.com/tuquet](https://github.com/tuquet)\n- **LinkedIn:** [linkedin.com/in/tuquet](https://www.linkedin.com/in/tuquet)'
+        answer: '**Thông tin Liên hệ & Sẵn sàng Phỏng vấn:**\n- Toby sẵn sàng trao đổi các cơ hội nghề nghiệp kỹ thuật giá trị cao (Full-time, Cố vấn Kiến trúc / Advisory).\n- **Điện thoại:** +84 936 683 088\n- **Email:** tunyk.93@gmail.com\n- **Địa chỉ:** Hà Đông, Hà Nội, Việt Nam\n- **GitHub:** [github.com/tuquet](https://github.com/tuquet)\n- **LinkedIn:** [linkedin.com/in/tuquet](https://www.linkedin.com/in/tuquet)\n- **Tổ chức NPM:** [npmjs.com/org/tuquet](https://www.npmjs.com/org/tuquet)'
       }
     ],
 

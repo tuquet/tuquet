@@ -7,9 +7,8 @@
 	<strong style="font-size:1.35em">Toby Nguyen (Nguyễn Đình Tú)</strong><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
 	<br/>
-	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
-	<strong>Location:</strong> Ha Dong, Ha Noi, Vietnam &nbsp;|&nbsp; <strong>Date of Birth:</strong> 03/1993<br/>
-	<strong>GitHub:</strong> <a href="https://github.com/tuquet">https://github.com/tuquet</a> &nbsp;|&nbsp; <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tuquet">https://www.linkedin.com/in/tuquet</a>
+	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com &nbsp;|&nbsp; <strong>Location:</strong> Ha Dong, Ha Noi, Vietnam<br/>
+	<strong>GitHub:</strong> <a href="https://github.com/tuquet">https://github.com/tuquet</a> &nbsp;|&nbsp; <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tuquet">https://www.linkedin.com/in/tuquet</a> &nbsp;|&nbsp; <strong>NPM:</strong> <a href="https://www.npmjs.com/org/tuquet">https://www.npmjs.com/org/tuquet</a>
 </div>
 
 <p align="center"><em>Technical Lead & Senior Software Engineer with a <strong>Product-first mindset</strong>, specialized in <strong>distributed backend systems</strong>, <strong>high-scale web applications</strong>, and <strong>optimizing engineering productivity</strong> through <strong>AI-augmented workflows (MCP, LLMs)</strong>.</em></p>
@@ -162,6 +161,7 @@ Pioneer in marrying a **Product-Led Growth (PLG)** mindset with **AI-augmented e
   - Engineered a high-throughput Medallion data crawler pipeline (Bronze gzip BLOB storage -> Silver Rust deduplication & HTML sanitizer -> Gold Supabase synchronization).
   - Standardized local workspace configurations into a Single Source of Truth (`~/.tuquet/`), eliminating configuration drift across CLI, extensions, and runner runtimes.
   - Automated binary builds, multi-platform packaging, and distribution through an official Windows Scoop bucket (`tuquet/scoop-bucket`).
+  - Published modular open-source ecosystem libraries to the official NPM registry under the `@tuquet` scope (`@tuquet/md-export`, `@tuquet/lunar`, `@tuquet/vue-ui`, `@tuquet/extension-runner`).
 - **Programming Language**: Rust, TypeScript, JavaScript, SQL
 - **Framework**: Vue.js Ecosystem (Nuxt, Drawflow), Electron JS, Tailwind CSS, Tokio (Rust Async), Node.js
 - **Platform, server and database**: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions

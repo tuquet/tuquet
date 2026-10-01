@@ -7,9 +7,8 @@
 	<strong style="font-size:1.35em">Nguyễn Đình Tú (Toby Nguyen)</strong><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
 	<br/>
-	<strong>Số điện thoại:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
-	<strong>Địa chỉ:</strong> Hà Đông, Hà Nội, Việt Nam &nbsp;|&nbsp; <strong>Năm sinh:</strong> 03/1993<br/>
-	<strong>GitHub:</strong> <a href="https://github.com/tuquet">https://github.com/tuquet</a> &nbsp;|&nbsp; <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tuquet">https://www.linkedin.com/in/tuquet</a>
+	<strong>Số điện thoại:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com &nbsp;|&nbsp; <strong>Địa chỉ:</strong> Hà Đông, Hà Nội, Việt Nam<br/>
+	<strong>GitHub:</strong> <a href="https://github.com/tuquet">https://github.com/tuquet</a> &nbsp;|&nbsp; <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tuquet">https://www.linkedin.com/in/tuquet</a> &nbsp;|&nbsp; <strong>NPM:</strong> <a href="https://www.npmjs.com/org/tuquet">https://www.npmjs.com/org/tuquet</a>
 </div>
 
 <p align="center"><em>Technical Lead & Senior Software Engineer với <strong>tư duy Product-first</strong>, chuyên sâu về <strong>hệ thống backend phân tán</strong>, <strong>ứng dụng Web quy mô lớn</strong>, và <strong>tối ưu hóa năng suất kỹ thuật</strong> thông qua <strong>quy trình tăng cường bởi AI (MCP, LLMs)</strong>.</em></p>
@@ -162,6 +161,7 @@ Tiên phong kết hợp tư duy **Product-Led Growth (PLG)** với **quy trình 
   - Xây dựng pipeline dữ liệu Medallion hiệu năng cao (Bronze raw BLOB gzip -> Silver Rust deduplicator & HTML sanitizer -> Gold Supabase sync).
   - Chuẩn hóa cấu trúc thư mục cấu hình cục bộ thành Nguồn Chân Lý Duy Nhất (Single Source of Truth: `~/.tuquet/`), loại bỏ hoàn toàn tình trạng phân mảnh cấu hình giữa CLI, extensions và runner runtime.
   - Tự động hóa quy trình đóng gói đa nền tảng và phân phối thông qua Scoop bucket chính thức trên Windows (`tuquet/scoop-bucket`).
+  - Đóng gói và phát hành các thư viện mở rộng lên NPM registry chính thức dưới scope tổ chức `@tuquet` (`@tuquet/md-export`, `@tuquet/lunar`, `@tuquet/vue-ui`, `@tuquet/extension-runner`).
 - **Ngôn ngữ lập trình (Programming Language)**: Rust, TypeScript, JavaScript, SQL
 - **Framework**: Vue.js Ecosystem (Nuxt, Drawflow), Electron JS, Tailwind CSS, Tokio (Rust Async), Node.js
 - **Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)**: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions

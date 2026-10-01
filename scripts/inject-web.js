@@ -292,7 +292,8 @@ function processTarget(target) {
       },
       "sameAs": [
         "https://github.com/tuquet",
-        "https://www.linkedin.com/in/tuquet"
+        "https://www.linkedin.com/in/tuquet",
+        "https://www.npmjs.com/org/tuquet"
       ],
       "knowsAbout": [
         "Distributed Systems",
