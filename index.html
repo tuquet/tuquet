@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
 <title>Toby Nguyen (Nguyễn Đình Tú) | Technical Project Lead & Senior Software Engineer</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
 <style>
 /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
@@ -400,50 +398,251 @@ code {
 </style>
 <link rel="stylesheet" href="./style/pdf-export.css" type="text/css">
 
+<!-- Technical SEO & Meta Tags -->
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, and AI-augmented workflows.">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, high-scale web apps, and AI-augmented workflows.">
+<meta name="keywords" content="Toby Nguyen, Nguyen Dinh Tu, Technical Lead, Senior Software Engineer, Distributed Systems, Rust, Tokio, Java, Spring Boot, Node.js, React, Next.js, AI Workflows, Digital Twin, Real-Time Telemetry, Tuquet">
+<meta name="author" content="Nguyen Dinh Tu (Toby Nguyen)">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- Canonical URL & Multilingual Hreflang Alternates -->
+<link rel="canonical" href="https://tuquet.github.io/">
+<link rel="alternate" hreflang="en" href="https://tuquet.github.io/">
+<link rel="alternate" hreflang="vi" href="https://tuquet.github.io/vi/">
+<link rel="alternate" hreflang="x-default" href="https://tuquet.github.io/">
+
+<!-- Favicon & Mobile Icons -->
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="alternate icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./favicon.svg">
+
+<!-- Adaptive Theme Color & Color Scheme -->
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b">
+<meta name="color-scheme" content="light dark">
+
+<!-- Open Graph Protocol (Facebook, LinkedIn, Zalo, Discord) -->
+<meta property="og:site_name" content="Toby Nguyen | Technical Lead & Senior Software Engineer">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Toby Nguyen (Nguyễn Đình Tú) | Technical Project Lead & Senior Software Engineer">
+<meta property="og:description" content="Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, high-scale web apps, and AI-augmented workflows.">
+<meta property="og:url" content="https://tuquet.github.io/">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/20990824?v=4">
+<meta property="og:image:secure_url" content="https://avatars.githubusercontent.com/u/20990824?v=4">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="460">
+<meta property="og:image:height" content="460">
+<meta property="og:image:alt" content="Toby Nguyen (Nguyễn Đình Tú) Profile Avatar">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="vi_VN">
+<meta property="profile:first_name" content="Tu">
+<meta property="profile:last_name" content="Nguyen">
+<meta property="profile:username" content="tuquet">
+<meta property="profile:gender" content="male">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@tuquet">
+<meta name="twitter:creator" content="@tuquet">
+<meta name="twitter:title" content="Toby Nguyen (Nguyễn Đình Tú) | Technical Project Lead & Senior Software Engineer">
+<meta name="twitter:description" content="Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, high-scale web apps, and AI-augmented workflows.">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/20990824?v=4">
+<meta name="twitter:image:alt" content="Toby Nguyen (Nguyễn Đình Tú) Profile Avatar">
+
+<!-- Resource Hints & Preconnect -->
+<link rel="preconnect" href="https://avatars.githubusercontent.com">
+<link rel="preconnect" href="https://cdn.tailwindcss.com">
+<link rel="dns-prefetch" href="https://avatars.githubusercontent.com">
+<link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+
+<!-- Theme Detection Anti-FOUC -->
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('tuquet-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch(e) {}
+  })();
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    corePlugins: {
+      preflight: false,
+    },
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            50: '#fafafa',
+            100: '#f4f4f5',
+            200: '#e4e4e7',
+            300: '#d4d4d8',
+            400: '#a1a1aa',
+            500: '#71717a',
+            600: '#52525b',
+            700: '#3f3f46',
+            800: '#27272a',
+            900: '#18181b',
+            950: '#09090b',
+          }
+        }
+      }
+    }
+  }
+</script>
 <link rel="stylesheet" href="./web/web-enhancements.css">
+
+<!-- Structured Data (Schema.org JSON-LD Rich Snippets) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Nguyen Dinh Tu (Toby Nguyen)",
-  "jobTitle": "Technical Project Lead & Senior Software Engineer",
-  "url": "https://tuquet.github.io/",
-  "sameAs": [
-    "https://github.com/tuquet",
-    "https://www.linkedin.com/in/tuquet"
-  ],
-  "knowsAbout": ["Distributed Systems", "Rust", "Java", "Spring Boot", "Node.js", "React", "Next.js", "AI-Augmented Workflows", "Telemetry Streaming", "System Architecture"]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://tuquet.github.io/#website",
+      "url": "https://tuquet.github.io/",
+      "name": "Toby Nguyen - Professional Profile & Engineering Portfolio",
+      "description": "Technical Project Lead & Senior Software Engineer portfolio specializing in distributed systems, real-time telemetry streaming, and AI-augmented workflows.",
+      "inLanguage": ["en", "vi"]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://tuquet.github.io/#webpage",
+      "url": "https://tuquet.github.io/",
+      "name": "Toby Nguyen (Nguyễn Đình Tú) | Technical Project Lead & Senior Software Engineer",
+      "description": "Technical Lead & Senior Software Engineer specializing in distributed systems, real-time data streaming, high-scale web apps, and AI-augmented workflows.",
+      "isPartOf": { "@id": "https://tuquet.github.io/#website" },
+      "mainEntity": { "@id": "https://tuquet.github.io/#person" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://tuquet.github.io/#person",
+      "name": "Nguyen Dinh Tu",
+      "alternateName": ["Toby Nguyen", "Nguyen Dinh Tu (Toby Nguyen)", "tuquet"],
+      "givenName": "Tu",
+      "familyName": "Nguyen",
+      "jobTitle": "Technical Project Lead & Senior Software Engineer",
+      "url": "https://tuquet.github.io/",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://avatars.githubusercontent.com/u/20990824?v=4",
+        "caption": "Toby Nguyen"
+      },
+      "email": "mailto:tunyk.93@gmail.com",
+      "telephone": "+84936683088",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ha Noi",
+        "addressRegion": "Ha Dong",
+        "addressCountry": "VN"
+      },
+      "sameAs": [
+        "https://github.com/tuquet",
+        "https://www.linkedin.com/in/tuquet"
+      ],
+      "knowsAbout": [
+        "Distributed Systems",
+        "Rust Programming",
+        "Tokio Async Concurrency",
+        "Java",
+        "Spring Boot Framework",
+        "Node.js",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Micro-frontends",
+        "Real-time Telemetry Streaming",
+        "WebSockets",
+        "Server-Sent Events",
+        "AI-Augmented Engineering Workflows",
+        "System Architecture",
+        "Core Web Vitals Optimization"
+      ]
+    }
+  ]
 }
 </script>
 
 </head>
 <body>
   
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
 <div id="reading-progress"></div>
-<header class="web-top-bar">
-  <div class="nav-left">
-    <span class="lang-switch">
-      <strong>English</strong> &nbsp;|&nbsp; <a href="./vi/">Tiếng Việt</a>
-    </span>
-  </div>
-  <div class="nav-center">
-    <div class="lens-group" role="group" aria-label="Lens Filter">
-      <button class="btn-lens active" data-lens="all">All</button>
-      <button class="btn-lens" data-lens="frontend">Frontend</button>
-      <button class="btn-lens" data-lens="backend">Backend</button>
-      <button class="btn-lens" data-lens="leadership">Leadership</button>
+<header class="web-top-bar flex flex-wrap items-center justify-between gap-2.5 mb-6 text-xs transition-colors" role="banner">
+  <nav class="nav-left order-1 flex items-center" aria-label="Language">
+    <div class="lang-switch inline-flex items-center p-0.5 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 rounded-lg text-xs md:text-[13px] font-medium shadow-xs">
+      <span class="px-2 py-0.5 rounded-md bg-white dark:bg-zinc-700 text-zinc-950 dark:text-white font-semibold shadow-xs">EN</span>
+           <a href="./vi/" class="px-2 py-0.5 rounded-md text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-all duration-200 no-underline" title="Tiếng Việt">VI</a>
+    </div>
+  </nav>
+  <nav class="nav-center order-3 md:order-2 w-full md:w-auto mt-2 md:mt-0 flex justify-center" aria-label="Lens Filter">
+    <div class="lens-group flex flex-wrap items-center justify-center gap-1.5 md:gap-2" role="group">
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap active" data-lens="all">All</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="frontend">Frontend</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="backend">Backend</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="leadership">Leadership</button>
+    </div>
+  </nav>
+  <div class="nav-right order-2 md:order-3 flex items-center gap-2">
+    <button id="theme-toggle" class="btn-theme w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all cursor-pointer shadow-xs" aria-label="Toggle Dark / Light Mode" title="Toggle Dark / Light Mode">
+      <svg class="w-3.5 h-3.5 md:w-4 md:h-4 theme-icon-moon dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="w-3.5 h-3.5 md:w-4 md:h-4 theme-icon-sun hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </button>
+    <div class="relative group inline-flex items-center" id="download-dropdown-container">
+      <button id="download-toggle" class="btn-download w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all cursor-pointer shadow-xs" aria-label="Download Resume" title="Download Resume" aria-haspopup="true" aria-expanded="false">
+        <svg class="w-3.5 h-3.5 md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </button>
+      <div id="download-menu" class="download-menu absolute right-0 top-full mt-2 w-48 p-1.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 opacity-0 pointer-events-none -translate-y-1.5 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-200 ease-out">
+        <div class="px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold text-zinc-400 dark:text-zinc-500 border-b border-zinc-100 dark:border-zinc-800/80 mb-1">
+          Export Formats
+        </div>
+        <a href="./README.pdf" download class="dropdown-item flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-950 dark:hover:text-white transition-colors no-underline !no-underline">
+          <span>PDF Document</span>
+          <span class="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">.pdf</span>
+        </a>
+        <button type="button" onclick="window.print()" class="dropdown-item w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-950 dark:hover:text-white transition-colors cursor-pointer text-left">
+          <span>Print / Save as PDF</span>
+          <span class="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">Ctrl+P</span>
+        </button>
+      </div>
     </div>
   </div>
-  <div class="nav-right">
-    <button id="theme-toggle" class="btn-theme" aria-label="Toggle Dark/Light Mode" title="Toggle theme">Dark</button>
-    <a href="./README.pdf" download class="btn-pdf">Download PDF</a>
-  </div>
 </header>
+<main id="main-content" role="main" class="main-content">
 
 <div align="center">
-	<strong style="font-size:1.35em">Toby Nguyen (Nguyễn Đình Tú)</strong><br/>
+	<div class="avatar-container flex justify-center my-3 md:my-4"><img src="https://avatars.githubusercontent.com/u/20990824?v=4" alt="Toby Nguyen (Nguyễn Đình Tú) Profile Avatar" width="96" height="96" loading="eager" decoding="async" class="profile-avatar w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-zinc-200 dark:border-zinc-800 shadow-md object-cover hover:scale-105 transition-transform duration-200"></div>
+	<h1 class="profile-name">Toby Nguyen (Nguyễn Đình Tú)</h1><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
 	<br/>
 	<strong>Phone:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
@@ -456,157 +655,100 @@ code {
 <p>Pioneer in marrying a <strong>Product-Led Growth (PLG)</strong> mindset with <strong>AI-augmented engineering workflows (MCP, LLM toolchains)</strong> to drive technical excellence, deliver resilient software architectures, and scale cross-functional engineering teams.</p>
 <hr>
 <h2 id="core-competencies--technical-skills">CORE COMPETENCIES &amp; TECHNICAL SKILLS</h2>
-<table>
+<div class="table-container w-full my-4"><table>
 <thead>
 <tr>
-<th style="text-align:left">Category</th>
-<th style="text-align:left">Key Expertise &amp; Technologies</th>
+<th style="text-align:left">Domain</th>
+<th style="text-align:left">Core Stack &amp; Capabilities</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left"><strong>Backend &amp; Systems Engineering</strong></td>
-<td style="text-align:left">Java, Spring Boot (Spring Data JPA, Spring Security), Rust (Tokio Async, Win32 Job Objects, Concurrency), Node.js (NestJS, Express), TypeScript server-side, Event-Driven Architecture</td>
+<td style="text-align:left">Java (Spring Boot, Security, JPA), Rust (Tokio, Win32 Jobs), Node.js (NestJS, Express), Event-Driven Architecture</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>API Design &amp; Real-Time Streaming</strong></td>
-<td style="text-align:left">RESTful APIs, GraphQL, gRPC Contracts, WebSockets, Server-Sent Events (SSE), API Gateways, Backend-for-Frontend (BFF), Distributed IPC</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Databases &amp; Distributed Caching</strong></td>
-<td style="text-align:left">PostgreSQL (Supabase), MS SQL Server, MySQL, Redis (Pub/Sub, Caching Strategies, Session Management), ClickHouse (OLAP), Apache Solr, SQLite, Schema Design &amp; Index Optimization</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Frontend Architecture &amp; Web</strong></td>
-<td style="text-align:left">React Ecosystem (Concurrent Features, Next.js, Server Components), Vue.js Ecosystem (Composition API, NuxtJS), TypeScript, Angular, Cross-Platform Desktop (Electron JS)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Scalability &amp; Performance</strong></td>
-<td style="text-align:left">Micro-frontends (Module Federation), Component-Driven Design Systems (Storybook, Radix UI), Core Web Vitals (LCP &lt; 2.0s, INP &lt; 150ms, CLS ≈ 0), Critical Rendering Path, Dynamic Code Splitting</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Real-time Data Visualization</strong></td>
-<td style="text-align:left">High-Density Canvas/SVG Charting, Virtual Scrolling / Grids, ECharts, Highcharts, Optimistic UI, Client-side Caching (TanStack Query, SWR)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Cloud, DevOps &amp; Infrastructure</strong></td>
-<td style="text-align:left">Docker, Docker Compose, Kubernetes fundamentals, Azure Cloud, Linux CLI, Bash/PowerShell, GitHub Actions CI/CD, Monorepo Orchestration (Turborepo, Nx)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>AI-Augmented Engineering</strong></td>
-<td style="text-align:left">Model Context Protocol (MCP), LLM-assisted Software Engineering, Prompt Engineering for Toolchains, Automated Testing Suites (Playwright, Cypress, Vitest, Jest)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Engineering Leadership</strong></td>
-<td style="text-align:left">Technical Strategy, Cross-Squad Engineering Leadership (15+ engineers), System Architecture Roadmap, Technical Debt Governance, Agile/Scrum Orchestration</td>
-</tr>
-</tbody>
-</table>
-<h3 id="skills-assessment-table">Skills Assessment Table</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Skill Area</th>
-<th style="text-align:left">Focus</th>
-<th style="text-align:left">Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong>Backend &amp; Systems Design</strong></td>
-<td style="text-align:left">Microservices, Runtimes</td>
-<td style="text-align:left">Java / Spring Boot, Rust async (Tokio), Node.js/NestJS, Win32 Job Objects, Event-Driven Architecture</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>APIs &amp; Streaming</strong></td>
-<td style="text-align:left">Real-time, Communication</td>
-<td style="text-align:left">WebSockets telemetry feeds, SSE streaming, RESTful, GraphQL, gRPC, BFF orchestration</td>
+<td style="text-align:left"><strong>API Design &amp; Streaming</strong></td>
+<td style="text-align:left">REST, GraphQL, gRPC, WebSockets, SSE, API Gateways, BFF, Distributed IPC</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Databases &amp; Caching</strong></td>
-<td style="text-align:left">Data Storage, Performance</td>
-<td style="text-align:left">PostgreSQL, MS SQL, Redis caching strategies, ClickHouse OLAP, query and index optimization</td>
+<td style="text-align:left">PostgreSQL, MS SQL Server, Redis (Pub/Sub, Caching), ClickHouse OLAP, Apache Solr, Schema &amp; Index Optimization</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Frontend Architecture</strong></td>
-<td style="text-align:left">Micro-frontends, Systems</td>
-<td style="text-align:left">Micro-frontends (Module Federation), Enterprise Design Systems, Monorepo (Turborepo), Clean Code</td>
+<td style="text-align:left">React (Next.js, Server Components), Vue.js (Nuxt), TypeScript, Electron JS</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>Web Performance Tuning</strong></td>
-<td style="text-align:left">Core Web Vitals, Rendering</td>
-<td style="text-align:left">Sub-2s LCP, INP &lt; 150ms, zero layout shifts, dynamic code splitting, bundle size minimization</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Modern Web Ecosystem</strong></td>
-<td style="text-align:left">TypeScript, React, Vue</td>
-<td style="text-align:left">Deep expertise in React Ecosystem, Next.js, Vue.js Composition API, NuxtJS, Tailwind CSS, Electron JS</td>
+<td style="text-align:left"><strong>Scalability &amp; Performance</strong></td>
+<td style="text-align:left">Micro-frontends (Module Federation), Design Systems (Storybook, Radix), Core Web Vitals (LCP &lt; 2s, INP &lt; 150ms)</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Real-time Data Visualization</strong></td>
-<td style="text-align:left">Streaming, High-Density Charts</td>
-<td style="text-align:left">Real-time WebSockets telemetry, Virtual Grids, ECharts, Canvas/SVG, Client-side Caching (SWR)</td>
+<td style="text-align:left">Canvas/SVG Charting, Virtual Grids, ECharts, Highcharts, TanStack Query, SWR</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>DevOps &amp; Cloud</strong></td>
-<td style="text-align:left">Containers, CI/CD</td>
-<td style="text-align:left">Docker, Azure Cloud, Linux CLI, GitHub Actions CI/CD, process supervision &amp; multi-runtime tools</td>
+<td style="text-align:left">Docker, Kubernetes fundamentals, Azure Cloud, Linux CLI, GitHub Actions CI/CD, Turborepo Monorepo</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>AI-Augmented Development</strong></td>
-<td style="text-align:left">Productivity, Automation</td>
-<td style="text-align:left">Model Context Protocol (MCP), GenAI-assisted engineering, LLM toolchains, Playwright E2E</td>
+<td style="text-align:left"><strong>AI-Augmented Engineering</strong></td>
+<td style="text-align:left">Model Context Protocol (MCP), LLM Toolchains, Playwright, Vitest, Jest</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Engineering Leadership</strong></td>
+<td style="text-align:left">Technical Strategy, 15+ Engineers Leadership, Architecture Roadmaps, Tech Debt Governance, Agile Scrum</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h2 id="professional-experience">PROFESSIONAL EXPERIENCE</h2>
-<table>
+<div class="table-container w-full my-4"><table>
 <thead>
 <tr>
-<th>Company Name</th>
-<th>Position</th>
-<th>Duration</th>
+<th style="text-align:left">Company</th>
+<th style="text-align:left">Role</th>
+<th style="text-align:left">Duration</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>CMC GLOBAL</td>
-<td>Technical Project Lead / Tech Lead</td>
-<td>9/2024 – Present</td>
+<td style="text-align:left"><strong>CMC Global</strong></td>
+<td style="text-align:left">Technical Project Lead</td>
+<td style="text-align:left">09/2024 – Present</td>
 </tr>
 <tr>
-<td>ICOMM TECH.JSC</td>
-<td>Chief Product Officer (CPO) / Tech Lead</td>
-<td>5/2020 – 8/2024</td>
+<td style="text-align:left"><strong>ICOMM Tech</strong></td>
+<td style="text-align:left">CPO &amp; Tech Lead</td>
+<td style="text-align:left">05/2020 – 08/2024</td>
 </tr>
 <tr>
-<td>OPEN COMMERCE GROUP</td>
-<td>Senior Software Engineer</td>
-<td>12/2018 – 4/2020</td>
+<td style="text-align:left"><strong>OpenCommerce Group</strong></td>
+<td style="text-align:left">Senior Software Engineer</td>
+<td style="text-align:left">12/2018 – 04/2020</td>
 </tr>
 <tr>
-<td>TDT ASIA JSC</td>
-<td>Fullstack Software Engineer</td>
-<td>5/2018 – 12/2018</td>
+<td style="text-align:left"><strong>TDT Asia</strong></td>
+<td style="text-align:left">Full-stack Engineer</td>
+<td style="text-align:left">05/2018 – 12/2018</td>
 </tr>
 <tr>
-<td>LUSH ERA LLC</td>
-<td>Software Engineer / Web Developer</td>
-<td>12/2016 – 4/2018</td>
+<td style="text-align:left"><strong>Lush Era</strong></td>
+<td style="text-align:left">Software Engineer</td>
+<td style="text-align:left">12/2016 – 04/2018</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
-<h2 id="-featured-project-list">FEATURED PROJECT LIST</h2>
-<h3 id="092024--present-lotte-world-ecosystem--theme-park-web--mobile-portals">(09/2024 – Present) Lotte World Ecosystem – Theme Park Web &amp; Mobile Portals</h3>
+<h2 id="featured-project-list">FEATURED PROJECT LIST</h2>
+<h3 id="092024--present-large-scale-theme-park--hospitality-ecosystem--high-traffic-web--mobile-portals">(09/2024 – Present) Large-Scale Theme Park &amp; Hospitality Ecosystem – High-Traffic Web &amp; Mobile Portals</h3>
 <ul>
 <li><strong>Timeline</strong>: 09/2024 – Present</li>
 <li><strong>Company</strong>: CMC GLOBAL</li>
-<li><strong>Client</strong>: Lotte World (Theme Parks, Entertainment &amp; Hospitality)</li>
-<li><strong>Project description *</strong>: Large-scale multi-runtime enterprise ecosystem for Lotte World amusement parks (Jamsil &amp; Busan), encompassing high-traffic web &amp; webview portals, real-time attraction wait-time &amp; reservation engines, and digital interactive park navigation.</li>
+<li><strong>Client</strong>: Multinational Theme Park &amp; Hospitality Enterprise (South Korea)</li>
+<li><strong>Project description</strong>: High-scale multi-runtime digital ecosystem for premier international amusement parks, encompassing high-traffic web &amp; webview portals, real-time attraction wait-time &amp; reservation engines, and digital interactive park navigation.</li>
 <li><strong>Team size</strong>: 15+ engineers</li>
-<li><strong>Responsibilities *</strong>:
+<li><strong>Responsibilities</strong>:
 <ul>
 <li>Participated as <strong>Core Frontend Maintainer</strong>, maintaining, refactoring, and delivering feature enhancements for Park Visitor Web Portals and Partner Booking WebViews strictly adhering to client functional specifications and technical docs.</li>
 <li>Implemented responsive Web and mobile-embedded WebView user interfaces using React, Vite, and Tailwind CSS, ensuring UI fidelity with design documentation and smooth interactions.</li>
@@ -614,10 +756,10 @@ code {
 <li>Performed continuous code maintenance, bug fixes, and performance tuning to guarantee cross-browser compatibility and responsive UX across mobile WebViews.</li>
 </ul>
 </li>
-<li><strong>Programming Language *</strong>: TypeScript, JavaScript, Java</li>
-<li><strong>Framework *</strong>: React, Vite, React Native, Tailwind CSS, Spring Boot</li>
-<li><strong>Platform, server and database *</strong>: Docker, Redis, MS SQL Server, Linux</li>
-<li><strong>Methodology</strong>: Agile / Scrum</li>
+<li><strong>Programming Language</strong>: TypeScript, JavaScript, Java</li>
+<li><strong>Framework</strong>: React, Vite, React Native, Tailwind CSS, Spring Boot</li>
+<li><strong>Platform, server and database</strong>: Docker, Redis, MS SQL Server, Linux</li>
+<li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
 <h3 id="092024--present-digital-twin--electric-vehicle-ev-real-time-telemetry-dashboard">(09/2024 – Present) Digital Twin – Electric Vehicle (EV) Real-Time Telemetry Dashboard</h3>
 <ul>
@@ -625,20 +767,20 @@ code {
 <li><strong>Company</strong>: CMC GLOBAL</li>
 <li><strong>Client</strong>: Leading Automotive Manufacturer (Automotive Tech, IoT Integration)</li>
 <li><strong>Team size</strong>: 15+ engineers (3 squads)</li>
-<li><strong>Project description *</strong>: Large-scale real-time Digital Twin telemetry dashboard platform for aggregating, monitoring, and analyzing telemetry and operational status for fleets of electric vehicles (EVs).</li>
-<li><strong>Responsibilities *</strong>:
+<li><strong>Project description</strong>: Large-scale real-time Digital Twin telemetry dashboard platform for aggregating, monitoring, and analyzing telemetry and operational status for fleets of electric vehicles (EVs).</li>
+<li><strong>Responsibilities</strong>:
 <ul>
-<li>Served as <strong>Technical Project Leader &amp; Tech Lead</strong>, establishing overall technical architecture, engineering standards, and real-time telemetry streaming across 3 squads (15+ engineers) processing millions of daily EV operational events.</li>
+<li>Served as <strong>Technical Project Lead</strong>, establishing overall technical architecture, engineering standards, and real-time telemetry streaming across 3 squads (15+ engineers) processing millions of daily EV operational events.</li>
 <li>Architected a <strong>Micro-frontends</strong> architecture and standardized a shared enterprise <strong>Design System</strong>, ensuring visual consistency and decoupled release cycles across squads.</li>
 <li>Optimized real-time telemetry streaming via WebSockets by implementing <strong>Virtual Scrolling, Canvas Data Charting, and Debounced/Throttled State Updates</strong>, sustaining a continuous 60fps rendering rate under high telemetry volume without blocking the Main Thread.</li>
-<li>Formulated a comprehensive <strong>Core Web Vitals</strong> strategy: orchestrated route-based and component-based dynamic code splitting, reducing First Input Delay / INP to &lt; 150ms and maintaining LCP &lt; 2.0s across all mission-critical monitor views.</li>
+<li>Formulated a comprehensive <strong>Core Web Vitals</strong> strategy: orchestrated route-based and component-based dynamic code splitting, reducing INP to &lt; 150ms and maintaining LCP &lt; 2.0s across all mission-critical monitor views.</li>
 <li>Introduced <strong>AI-augmented Frontend SDLC</strong> practices (LLM UI generation, automated visual regression testing), elevating frontend feature delivery velocity by 25%.</li>
 </ul>
 </li>
-<li><strong>Programming Language *</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (BFF tooling)</li>
-<li><strong>Framework *</strong>: React (Concurrent Features), Next.js, Tailwind CSS, Zustand, Node.js</li>
-<li><strong>Platform, server and database *</strong>: Azure Cloud, Docker, Kubernetes, WebSocket, PostgreSQL, Redis</li>
-<li><strong>Methodology</strong>: Agile / Scrum</li>
+<li><strong>Programming Language</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (BFF tooling)</li>
+<li><strong>Framework</strong>: React (Concurrent Features), Next.js, Tailwind CSS, Zustand, Node.js</li>
+<li><strong>Platform, server and database</strong>: Azure Cloud, Docker, Kubernetes, WebSocket, PostgreSQL, Redis</li>
+<li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
 <h3 id="052020--082024-big-data-analytics--interactive-intelligence-platform">(05/2020 – 08/2024) Big Data Analytics &amp; Interactive Intelligence Platform</h3>
 <ul>
@@ -646,8 +788,8 @@ code {
 <li><strong>Company</strong>: ICOMM TECH.JSC</li>
 <li><strong>Client</strong>: Government, Banking &amp; Aviation Sectors</li>
 <li><strong>Team size</strong>: 15+ engineers</li>
-<li><strong>Project description *</strong>: Multi-platform enterprise Big Data extraction and intelligence dashboard, delivering interactive data visualization, real-time reporting, and deep analytics under strict enterprise security constraints.</li>
-<li><strong>Responsibilities *</strong>:
+<li><strong>Project description</strong>: Multi-platform enterprise Big Data extraction and intelligence dashboard, delivering interactive data visualization, real-time reporting, and deep analytics under strict enterprise security constraints.</li>
+<li><strong>Responsibilities</strong>:
 <ul>
 <li>Directed product roadmap and technical architecture as <strong>Chief Product Officer (CPO) &amp; Technical Lead</strong>.</li>
 <li>Engineered an interactive <strong>Data Visualization Dashboard</strong> powered by ECharts and Highcharts, solving high-density data rendering challenges for 100,000+ complex visual data points without frame drops.</li>
@@ -656,10 +798,10 @@ code {
 <li>Mentored 15+ engineers in Component-Driven Architecture, JavaScript Clean Code principles, and runtime render profiling.</li>
 </ul>
 </li>
-<li><strong>Programming Language *</strong>: TypeScript, JavaScript, HTML5, SCSS/CSS3, Python</li>
-<li><strong>Framework *</strong>: React Ecosystem, Redux Toolkit, ECharts, .NET Core (Backend API)</li>
-<li><strong>Platform, server and database *</strong>: Docker, Kubernetes, Redis, Apache Solr, ClickHouse, Linux</li>
-<li><strong>Methodology</strong>: Agile / Scrum</li>
+<li><strong>Programming Language</strong>: TypeScript, JavaScript, HTML5, SCSS/CSS3, Python</li>
+<li><strong>Framework</strong>: React Ecosystem, Redux Toolkit, ECharts, .NET Core (Backend API)</li>
+<li><strong>Platform, server and database</strong>: Docker, Kubernetes, Redis, Apache Solr, ClickHouse, Linux</li>
+<li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
 <h3 id="122018--042020-high-converting-e-commerce-storefront--merchant-suite">(12/2018 – 04/2020) High-Converting E-Commerce Storefront &amp; Merchant Suite</h3>
 <ul>
@@ -667,8 +809,8 @@ code {
 <li><strong>Company</strong>: OPEN COMMERCE GROUP</li>
 <li><strong>Client</strong>: Global E-commerce Merchants</li>
 <li><strong>Team size</strong>: 8–10 members</li>
-<li><strong>Project description *</strong>: Ultra-fast e-commerce storefront platform and intelligent cross-selling engine integrated across Shopify, WooCommerce, and WordPress ecosystems.</li>
-<li><strong>Responsibilities *</strong>:
+<li><strong>Project description</strong>: Ultra-fast e-commerce storefront platform and intelligent cross-selling engine integrated across Shopify, WooCommerce, and WordPress ecosystems.</li>
+<li><strong>Responsibilities</strong>:
 <ul>
 <li>Served as <strong>Senior Software Engineer</strong>, spearheading storefront user interface development and AI-driven cross-selling recommendation widgets geared toward Product-Led Growth (PLG).</li>
 <li>Maximized conversion rate optimization (CRO) and checkout velocity: drove <strong>First Contentful Paint (FCP) to &lt; 1.2s</strong> and <strong>LCP to &lt; 1.8s</strong>, contributing to an estimated 15–20% increase in merchant revenue.</li>
@@ -676,10 +818,10 @@ code {
 <li>Delivered seamless Mobile-First responsive layouts and frictionless multi-gateway payment flows.</li>
 </ul>
 </li>
-<li><strong>Programming Language *</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (microservices)</li>
-<li><strong>Framework *</strong>: Vue.js (Vuex), React, Tailwind CSS, Laravel (Backend API)</li>
-<li><strong>Platform, server and database *</strong>: AWS, Nginx, Redis, MySQL</li>
-<li><strong>Methodology</strong>: Agile / Scrum</li>
+<li><strong>Programming Language</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (microservices)</li>
+<li><strong>Framework</strong>: Vue.js (Vuex), React, Tailwind CSS, Laravel (Backend API)</li>
+<li><strong>Platform, server and database</strong>: AWS, Nginx, Redis, MySQL</li>
+<li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
 <h3 id="052018--122018-enterprise-japanese-business-management-portal">(05/2018 – 12/2018) Enterprise Japanese Business Management Portal</h3>
 <ul>
@@ -687,18 +829,18 @@ code {
 <li><strong>Company</strong>: TDT ASIA JSC</li>
 <li><strong>Client</strong>: Japanese Small &amp; Medium Enterprises (SMB Solutions – Japan Market)</li>
 <li><strong>Team size</strong>: 6–8 members</li>
-<li><strong>Project description *</strong>: Enterprise Resource Planning (ERP) and business management web portal customized to meet the rigorous quality and UX standards of the Japanese corporate market.</li>
-<li><strong>Responsibilities *</strong>:
+<li><strong>Project description</strong>: Enterprise Resource Planning (ERP) and business management web portal customized to meet the rigorous quality and UX standards of the Japanese corporate market.</li>
+<li><strong>Responsibilities</strong>:
 <ul>
 <li>Operated as <strong>Fullstack Software Engineer</strong>, taking primary ownership of the Single Page Application (SPA) client architecture.</li>
 <li>Leveraged <strong>Angular with RxJS Observables</strong> for reactive state handling and orchestrated complex business workflows with Angular Reactive Forms.</li>
 <li>Ensured strict <strong>Cross-Browser Compatibility</strong> (Chrome, Firefox, Safari, Edge) and achieved pixel-perfect adherence to Japanese UX/UI specifications.</li>
 </ul>
 </li>
-<li><strong>Programming Language *</strong>: TypeScript, JavaScript, HTML5, SCSS</li>
-<li><strong>Framework *</strong>: Angular, Angular Material, RxJS, Spring Boot (Backend API)</li>
-<li><strong>Platform, server and database *</strong>: Tomcat, Docker, MySQL, Linux</li>
-<li><strong>Methodology</strong>: Agile / Scrum</li>
+<li><strong>Programming Language</strong>: TypeScript, JavaScript, HTML5, SCSS</li>
+<li><strong>Framework</strong>: Angular, Angular Material, RxJS, Spring Boot (Backend API)</li>
+<li><strong>Platform, server and database</strong>: Tomcat, Docker, MySQL, Linux</li>
+<li><strong>Methodology</strong>: Agile Scrum</li>
 </ul>
 <h3 id="122016--042018-responsive-real-time-telemedicine-web-application">(12/2016 – 04/2018) Responsive Real-time Telemedicine Web Application</h3>
 <ul>
@@ -706,17 +848,17 @@ code {
 <li><strong>Company</strong>: LUSH ERA LLC</li>
 <li><strong>Client</strong>: Medical Clinics &amp; Healthcare Service Providers</li>
 <li><strong>Team size</strong>: 5 members</li>
-<li><strong>Project description *</strong>: Secure real-time telemedicine and remote healthcare consultation web application connecting patients with certified medical specialists via video and chat.</li>
-<li><strong>Responsibilities *</strong>:
+<li><strong>Project description</strong>: Secure real-time telemedicine and remote healthcare consultation web application connecting patients with certified medical specialists via video and chat.</li>
+<li><strong>Responsibilities</strong>:
 <ul>
-<li>Acted as <strong>Software Engineer / Web Developer</strong>, building an intuitive, accessible, and fast-loading telemedicine web client.</li>
+<li>Acted as <strong>Software Engineer</strong>, building an intuitive, accessible, and fast-loading telemedicine web client.</li>
 <li>Engineered <strong>Mobile-First Responsive Layouts</strong>, prioritizing Web Accessibility (a11y) standards for elderly patients and individuals with visual impairments.</li>
 <li>Implemented interactive WebRTC video calling interfaces and low-latency real-time messaging UI.</li>
 </ul>
 </li>
-<li><strong>Programming Language *</strong>: JavaScript, HTML5, CSS3, PHP</li>
-<li><strong>Framework *</strong>: jQuery, Bootstrap, Laravel (Backend)</li>
-<li><strong>Platform, server and database *</strong>: MySQL, Apache, Ubuntu Linux</li>
+<li><strong>Programming Language</strong>: JavaScript, HTML5, CSS3, PHP</li>
+<li><strong>Framework</strong>: jQuery, Bootstrap, Laravel (Backend)</li>
+<li><strong>Platform, server and database</strong>: MySQL, Apache, Ubuntu Linux</li>
 <li><strong>Methodology</strong>: Agile</li>
 </ul>
 <h3 id="2024--present-tuquet--developer-cli--distributed-automation-ecosystem">(2024 – Present) Tuquet – Developer CLI &amp; Distributed Automation Ecosystem</h3>
@@ -724,9 +866,9 @@ code {
 <li><strong>Timeline</strong>: 2024 – Present</li>
 <li><strong>Company</strong>: Independent Product Labs (Open-Source R&amp;D)</li>
 <li><strong>Client</strong>: Self-initiated Open-Source Developer Tooling &amp; Global Automation Engineers</li>
-<li><strong>Team size</strong>: Creator &amp; Principal Architect (Solo / Core Team)</li>
-<li><strong>Project description *</strong>: High-performance open-source developer tooling ecosystem and distributed browser automation suite consisting of a unified master CLI (<code>tuquet</code>) in Rust, a visual workflow web studio in Vue.js, a supervised background runner daemon (<code>tuquet runner</code>), and cloud coordination services.</li>
-<li><strong>Responsibilities *</strong>:
+<li><strong>Team size</strong>: Principal Architect (Solo Project)</li>
+<li><strong>Project description</strong>: High-performance open-source developer tooling ecosystem and distributed browser automation suite consisting of a unified master CLI (<code>tuquet</code>) in Rust, a visual workflow web studio in Vue.js, a supervised background runner daemon (<code>tuquet runner</code>), and cloud coordination services.</li>
+<li><strong>Responsibilities</strong>:
 <ul>
 <li>Acted as <strong>Creator &amp; Principal Architect</strong>, architecting the end-to-end multi-runtime ecosystem spanning systems programming in Rust, visual web studio in Vue.js, and distributed task supervision.</li>
 <li>Engineered the master CLI (<code>tuquet</code>) in <strong>Rust</strong>: built an interactive scoped shell with hierarchical state management, rustyline-based smart tab-completion, ANSI color styling, and sub-command delegation (<code>automa</code>, <code>runner</code>, <code>cloud</code>, <code>browser</code>).</li>
@@ -737,10 +879,10 @@ code {
 <li>Automated binary builds, multi-platform packaging, and distribution through an official Windows Scoop bucket (<code>tuquet/scoop-bucket</code>).</li>
 </ul>
 </li>
-<li><strong>Programming Language *</strong>: Rust, TypeScript, JavaScript, SQL</li>
-<li><strong>Framework *</strong>: Vue.js Ecosystem, Tailwind CSS, Drawflow, Tokio (Rust Async), Node.js</li>
-<li><strong>Platform, server and database *</strong>: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions</li>
-<li><strong>Methodology</strong>: Agile / Kanban</li>
+<li><strong>Programming Language</strong>: Rust, TypeScript, JavaScript, SQL</li>
+<li><strong>Framework</strong>: Vue.js Ecosystem, Tailwind CSS, Drawflow, Tokio (Rust Async), Node.js</li>
+<li><strong>Platform, server and database</strong>: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions</li>
+<li><strong>Methodology</strong>: Agile Kanban</li>
 </ul>
 <hr>
 <h2 id="achievements--awards">ACHIEVEMENTS &amp; AWARDS</h2>
@@ -754,38 +896,76 @@ code {
 <p><strong>FPT University</strong> | Information Technology (1/2012 – 9/2014)</p>
 <ul>
 <li><strong>Focus:</strong> Full-Stack Web Development, Desktop Application Design &amp; Software Architecture.</li>
-<li><strong>Academic Standing:</strong> GPA 8.2 / 10</li>
+<li><strong>Academic Standing:</strong> GPA 8.2/10</li>
 <li><strong>English Proficiency:</strong> TOEIC 650 (Fluent technical reading/writing &amp; professional collaboration)</li>
 </ul>
 
 
-<!-- Ask Toby Widget -->
-<button id="copilot-trigger" class="copilot-trigger" aria-label="Ask Toby">
-  Ask Toby
-</button>
+</main>
 
-<div id="copilot-panel" class="copilot-panel" role="dialog" aria-label="Ask Toby">
-  <div class="copilot-header">
-    <div class="copilot-header-title">
-      Ask Toby
+<!-- Ask Toby Copilot Widget -->
+<div id="copilot-widget-container" class="copilot-widget-container fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none">
+  <!-- Proactive Teaser Callout (shadcn Popover) -->
+  <div id="copilot-teaser" class="copilot-teaser hidden items-start gap-2.5 p-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-md max-w-[280px] pointer-events-auto">
+    <div class="flex-1 min-w-0 cursor-pointer" id="copilot-teaser-content">
+      <div class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
+        Toby AI Assistant
+      </div>
+      <div class="text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal mt-0.5">
+        Ask about distributed systems, 15+ engineer leadership, or role suitability.
+      </div>
     </div>
-    <button id="copilot-close" class="copilot-close">Close</button>
+    <button id="copilot-teaser-close" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 p-0.5 rounded transition-colors cursor-pointer" aria-label="Close">
+      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
   </div>
-  <div id="copilot-body" class="copilot-body">
-    <div class="copilot-msg bot">
-      Hello! I am Toby's AI. Ask me anything about his 8+ years leading distributed systems, PLG achievements, or system architecture!
+
+  <!-- Trigger Button (shadcn button zinc) -->
+  <button id="copilot-trigger" class="copilot-trigger inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-900 dark:border-zinc-100 shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer pointer-events-auto" aria-label="Ask Toby AI">
+    <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+    </svg>
+    <span>Ask Toby AI</span>
+    <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-300 dark:bg-zinc-200 dark:text-zinc-800">AI</span>
+  </button>
+</div>
+
+<div id="copilot-panel" class="copilot-panel fixed bottom-16 md:bottom-20 right-4 md:right-6 w-[calc(100vw-32px)] md:w-[390px] h-[520px] max-h-[calc(100vh-100px)] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden opacity-0 pointer-events-none transition-all duration-150 scale-95 translate-y-2" role="dialog" aria-label="Toby AI Assistant">
+  <div class="copilot-header shrink-0 flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50">
+    <div class="flex items-center gap-2">
+      <svg class="w-4 h-4 text-zinc-700 dark:text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+      </svg>
+      <div>
+        <div class="copilot-header-title text-[13px] font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
+          Toby AI Assistant
+        </div>
+        <div class="text-xs text-zinc-500 dark:text-zinc-400">
+          Distributed systems, architecture & role fit
+        </div>
+      </div>
+    </div>
+    <button id="copilot-close" class="p-1 rounded-md text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer" aria-label="Close">
+      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+  <div id="copilot-body" class="copilot-body flex-1 min-h-0 overflow-y-auto p-4 flex flex-col gap-3 text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300">
+    <div id="copilot-welcome-msg" class="copilot-msg bot self-start max-w-[92%] p-3 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-[13px]">
+      <span id="copilot-greeting-text">Hello.</span> I am Toby's AI assistant. Ask any question regarding his 8+ years leading distributed systems, technical architecture, or role suitability.<br/><br/><strong>Topics you can explore:</strong><br/>• <strong>Executive Summary:</strong> Core strengths & leadership overview<br/>• <strong>Role Fit Check:</strong> Suitability for Tech Lead, Architect, or Senior Engineer<br/>• <strong>Real-Time Telemetry (EV):</strong> 15+ engineers, real-time telemetry streaming<br/>• <strong>High-Traffic Portals:</strong> Multi-runtime theme park web ecosystem<br/>• <strong>Tuquet Engine:</strong> Zero-leakage process supervision in Rust<br/>• <strong>Tech Stack & Contact:</strong> Direct interview scheduling
     </div>
   </div>
-  <div class="copilot-chips">
-    <button class="copilot-chip" data-q="summary">Top 3 Achievements</button>
-<button class="copilot-chip" data-q="digital twin">Digital Twin Architecture</button>
-<button class="copilot-chip" data-q="tuquet">Tuquet Zombie Process Fix</button>
-<button class="copilot-chip" data-q="lead">15+ Engineers Leadership</button>
-<button class="copilot-chip" data-q="stack">Core Tech Stack</button>
+  <div class="copilot-chips shrink-0 flex flex-wrap gap-1.5 p-3 border-t border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/40 dark:bg-zinc-900/30">
+    <button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="summary">Executive Summary</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="fit">Role Fit & Scope</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="telemetry">Real-Time Telemetry (EV)</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="portal">High-Traffic Web Portals</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="tuquet">Rust Process Engine</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="stack">Core Tech Stack</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="contact">Contact & Availability</button>
   </div>
-  <div class="copilot-footer">
-    <input id="copilot-input" class="copilot-input" type="text" placeholder="Ask a question...">
-    <button id="copilot-send" class="copilot-send">Send</button>
+  <div class="copilot-footer shrink-0 flex items-center gap-2 p-3 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+    <input id="copilot-input" class="copilot-input flex-1 px-3 py-1.5 text-[13px] bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 dark:focus:ring-zinc-300 transition-colors placeholder:text-zinc-400" type="text" placeholder="Ask a question...">
+    <button id="copilot-send" class="copilot-send px-3 py-1.5 text-[13px] font-medium text-zinc-50 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 rounded-md transition-colors cursor-pointer shadow-xs">Send</button>
   </div>
 </div>
 

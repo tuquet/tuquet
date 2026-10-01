@@ -2,8 +2,6 @@
 <html lang="vi">
 <head>
 <title>Nguyễn Đình Tú (Toby Nguyen) | Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
 <style>
 /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
@@ -400,50 +398,251 @@ code {
 </style>
 <link rel="stylesheet" href="../style/pdf-export.css" type="text/css">
 
+<!-- Technical SEO & Meta Tags -->
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Technical Lead & Senior Software Engineer với tư duy Product-first, chuyên sâu về hệ thống phân tán và quy trình AI.">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Hồ sơ năng lực của Nguyễn Đình Tú (Toby Nguyen) - Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp chuyên sâu về hệ thống phân tán, luồng dữ liệu thời gian thực và AI.">
+<meta name="keywords" content="Nguyễn Đình Tú, Toby Nguyen, Kỹ sư Trưởng, Kỹ sư Phần mềm Cao cấp, Hệ thống phân tán, Rust, Tokio, Java, Spring Boot, Node.js, React, Next.js, Tuquet">
+<meta name="author" content="Nguyen Dinh Tu (Toby Nguyen)">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- Canonical URL & Multilingual Hreflang Alternates -->
+<link rel="canonical" href="https://tuquet.github.io/vi/">
+<link rel="alternate" hreflang="en" href="https://tuquet.github.io/">
+<link rel="alternate" hreflang="vi" href="https://tuquet.github.io/vi/">
+<link rel="alternate" hreflang="x-default" href="https://tuquet.github.io/">
+
+<!-- Favicon & Mobile Icons -->
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="alternate icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../favicon.svg">
+
+<!-- Adaptive Theme Color & Color Scheme -->
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b">
+<meta name="color-scheme" content="light dark">
+
+<!-- Open Graph Protocol (Facebook, LinkedIn, Zalo, Discord) -->
+<meta property="og:site_name" content="Toby Nguyen | Technical Lead & Senior Software Engineer">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Nguyễn Đình Tú (Toby Nguyen) | Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp">
+<meta property="og:description" content="Hồ sơ năng lực của Nguyễn Đình Tú (Toby Nguyen) - Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp chuyên sâu về hệ thống phân tán, luồng dữ liệu thời gian thực và AI.">
+<meta property="og:url" content="https://tuquet.github.io/vi/">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/20990824?v=4">
+<meta property="og:image:secure_url" content="https://avatars.githubusercontent.com/u/20990824?v=4">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="460">
+<meta property="og:image:height" content="460">
+<meta property="og:image:alt" content="Nguyễn Đình Tú (Toby Nguyen) Profile Avatar">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="profile:first_name" content="Tu">
+<meta property="profile:last_name" content="Nguyen">
+<meta property="profile:username" content="tuquet">
+<meta property="profile:gender" content="male">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@tuquet">
+<meta name="twitter:creator" content="@tuquet">
+<meta name="twitter:title" content="Nguyễn Đình Tú (Toby Nguyen) | Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp">
+<meta name="twitter:description" content="Hồ sơ năng lực của Nguyễn Đình Tú (Toby Nguyen) - Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp chuyên sâu về hệ thống phân tán, luồng dữ liệu thời gian thực và AI.">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/20990824?v=4">
+<meta name="twitter:image:alt" content="Nguyễn Đình Tú (Toby Nguyen) Profile Avatar">
+
+<!-- Resource Hints & Preconnect -->
+<link rel="preconnect" href="https://avatars.githubusercontent.com">
+<link rel="preconnect" href="https://cdn.tailwindcss.com">
+<link rel="dns-prefetch" href="https://avatars.githubusercontent.com">
+<link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+
+<!-- Theme Detection Anti-FOUC -->
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('tuquet-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch(e) {}
+  })();
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    corePlugins: {
+      preflight: false,
+    },
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            50: '#fafafa',
+            100: '#f4f4f5',
+            200: '#e4e4e7',
+            300: '#d4d4d8',
+            400: '#a1a1aa',
+            500: '#71717a',
+            600: '#52525b',
+            700: '#3f3f46',
+            800: '#27272a',
+            900: '#18181b',
+            950: '#09090b',
+          }
+        }
+      }
+    }
+  }
+</script>
 <link rel="stylesheet" href="../web/web-enhancements.css">
+
+<!-- Structured Data (Schema.org JSON-LD Rich Snippets) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Nguyen Dinh Tu (Toby Nguyen)",
-  "jobTitle": "Technical Project Lead & Senior Software Engineer",
-  "url": "https://tuquet.github.io/",
-  "sameAs": [
-    "https://github.com/tuquet",
-    "https://www.linkedin.com/in/tuquet"
-  ],
-  "knowsAbout": ["Distributed Systems", "Rust", "Java", "Spring Boot", "Node.js", "React", "Next.js", "AI-Augmented Workflows", "Telemetry Streaming", "System Architecture"]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://tuquet.github.io/#website",
+      "url": "https://tuquet.github.io/",
+      "name": "Toby Nguyen - Professional Profile & Engineering Portfolio",
+      "description": "Technical Project Lead & Senior Software Engineer portfolio specializing in distributed systems, real-time telemetry streaming, and AI-augmented workflows.",
+      "inLanguage": ["en", "vi"]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://tuquet.github.io/vi/#webpage",
+      "url": "https://tuquet.github.io/vi/",
+      "name": "Nguyễn Đình Tú (Toby Nguyen) | Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp",
+      "description": "Hồ sơ năng lực của Nguyễn Đình Tú (Toby Nguyen) - Kỹ sư Trưởng & Kỹ sư Phần mềm Cao cấp chuyên sâu về hệ thống phân tán, luồng dữ liệu thời gian thực và AI.",
+      "isPartOf": { "@id": "https://tuquet.github.io/#website" },
+      "mainEntity": { "@id": "https://tuquet.github.io/#person" },
+      "inLanguage": "vi"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://tuquet.github.io/#person",
+      "name": "Nguyen Dinh Tu",
+      "alternateName": ["Toby Nguyen", "Nguyen Dinh Tu (Toby Nguyen)", "tuquet"],
+      "givenName": "Tu",
+      "familyName": "Nguyen",
+      "jobTitle": "Technical Project Lead & Senior Software Engineer",
+      "url": "https://tuquet.github.io/",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://avatars.githubusercontent.com/u/20990824?v=4",
+        "caption": "Toby Nguyen"
+      },
+      "email": "mailto:tunyk.93@gmail.com",
+      "telephone": "+84936683088",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ha Noi",
+        "addressRegion": "Ha Dong",
+        "addressCountry": "VN"
+      },
+      "sameAs": [
+        "https://github.com/tuquet",
+        "https://www.linkedin.com/in/tuquet"
+      ],
+      "knowsAbout": [
+        "Distributed Systems",
+        "Rust Programming",
+        "Tokio Async Concurrency",
+        "Java",
+        "Spring Boot Framework",
+        "Node.js",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Micro-frontends",
+        "Real-time Telemetry Streaming",
+        "WebSockets",
+        "Server-Sent Events",
+        "AI-Augmented Engineering Workflows",
+        "System Architecture",
+        "Core Web Vitals Optimization"
+      ]
+    }
+  ]
 }
 </script>
 
 </head>
 <body>
   
+<a href="#main-content" class="skip-to-content">Chuyển đến nội dung chính</a>
 <div id="reading-progress"></div>
-<header class="web-top-bar">
-  <div class="nav-left">
-    <span class="lang-switch">
-      <a href="../">English</a> &nbsp;|&nbsp; <strong>Tiếng Việt</strong>
-    </span>
-  </div>
-  <div class="nav-center">
-    <div class="lens-group" role="group" aria-label="Lens Filter">
-      <button class="btn-lens active" data-lens="all">Tất cả</button>
-      <button class="btn-lens" data-lens="frontend">Frontend</button>
-      <button class="btn-lens" data-lens="backend">Backend</button>
-      <button class="btn-lens" data-lens="leadership">Kĩ năng lãnh đạo</button>
+<header class="web-top-bar flex flex-wrap items-center justify-between gap-2.5 mb-6 text-xs transition-colors" role="banner">
+  <nav class="nav-left order-1 flex items-center" aria-label="Language">
+    <div class="lang-switch inline-flex items-center p-0.5 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 rounded-lg text-xs md:text-[13px] font-medium shadow-xs">
+      <a href="../" class="px-2 py-0.5 rounded-md text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-all duration-200 no-underline" title="English">EN</a>
+           <span class="px-2 py-0.5 rounded-md bg-white dark:bg-zinc-700 text-zinc-950 dark:text-white font-semibold shadow-xs">VI</span>
+    </div>
+  </nav>
+  <nav class="nav-center order-3 md:order-2 w-full md:w-auto mt-2 md:mt-0 flex justify-center" aria-label="Lens Filter">
+    <div class="lens-group flex flex-wrap items-center justify-center gap-1.5 md:gap-2" role="group">
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap active" data-lens="all">Tất cả</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="frontend">Frontend</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="backend">Backend</button>
+      <button class="btn-lens inline-flex items-center px-2.5 py-1 rounded-full text-xs md:text-[13px] font-medium cursor-pointer transition-all whitespace-nowrap" data-lens="leadership">Lãnh đạo</button>
+    </div>
+  </nav>
+  <div class="nav-right order-2 md:order-3 flex items-center gap-2">
+    <button id="theme-toggle" class="btn-theme w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all cursor-pointer shadow-xs" aria-label="Chuyển đổi giao diện Sáng / Tối" title="Chuyển đổi giao diện Sáng / Tối">
+      <svg class="w-3.5 h-3.5 md:w-4 md:h-4 theme-icon-moon dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="w-3.5 h-3.5 md:w-4 md:h-4 theme-icon-sun hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </button>
+    <div class="relative group inline-flex items-center" id="download-dropdown-container">
+      <button id="download-toggle" class="btn-download w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-lg text-zinc-700 dark:text-zinc-300 bg-zinc-200/70 dark:bg-zinc-800/80 border border-zinc-300/60 dark:border-zinc-700/60 hover:bg-zinc-300/70 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all cursor-pointer shadow-xs" aria-label="Tải CV / Hồ sơ" title="Tải CV / Hồ sơ" aria-haspopup="true" aria-expanded="false">
+        <svg class="w-3.5 h-3.5 md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </button>
+      <div id="download-menu" class="download-menu absolute right-0 top-full mt-2 w-48 p-1.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 opacity-0 pointer-events-none -translate-y-1.5 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-200 ease-out">
+        <div class="px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold text-zinc-400 dark:text-zinc-500 border-b border-zinc-100 dark:border-zinc-800/80 mb-1">
+          Định dạng xuất
+        </div>
+        <a href="./README.pdf" download class="dropdown-item flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-950 dark:hover:text-white transition-colors no-underline !no-underline">
+          <span>Bản PDF</span>
+          <span class="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">.pdf</span>
+        </a>
+        <button type="button" onclick="window.print()" class="dropdown-item w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-950 dark:hover:text-white transition-colors cursor-pointer text-left">
+          <span>In / Lưu PDF</span>
+          <span class="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">Ctrl+P</span>
+        </button>
+      </div>
     </div>
   </div>
-  <div class="nav-right">
-    <button id="theme-toggle" class="btn-theme" aria-label="Toggle Dark/Light Mode" title="Toggle theme">Tối</button>
-    <a href="./README.pdf" download class="btn-pdf">Tải CV (PDF)</a>
-  </div>
 </header>
+<main id="main-content" role="main" class="main-content">
 
 <div align="center">
-	<strong style="font-size:1.35em">Nguyễn Đình Tú (Toby Nguyen)</strong><br/>
+	<div class="avatar-container flex justify-center my-3 md:my-4"><img src="https://avatars.githubusercontent.com/u/20990824?v=4" alt="Nguyễn Đình Tú (Toby Nguyen) Profile Avatar" width="96" height="96" loading="eager" decoding="async" class="profile-avatar w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-zinc-200 dark:border-zinc-800 shadow-md object-cover hover:scale-105 transition-transform duration-200"></div>
+	<h1 class="profile-name">Nguyễn Đình Tú (Toby Nguyen)</h1><br/>
 	<em>Technical Lead | Senior Software Engineer | Product-Minded Technologist</em><br/>
 	<br/>
 	<strong>Số điện thoại:</strong> +84 936 683 088 &nbsp;|&nbsp; <strong>Email:</strong> tunyk.93@gmail.com<br/>
@@ -456,157 +655,100 @@ code {
 <p>Tiên phong kết hợp tư duy <strong>Product-Led Growth (PLG)</strong> với <strong>quy trình kỹ thuật tăng cường bởi AI (MCP, LLM toolchains)</strong> nhằm thúc đẩy sự chuẩn mực kỹ thuật, xây dựng các kiến trúc phần mềm linh hoạt, và phát triển các đội ngũ kỹ thuật liên chức năng.</p>
 <hr>
 <h2 id="năng-lực-cốt-lõi--kỹ-năng-công-nghệ">NĂNG LỰC CỐT LÕI &amp; KỸ NĂNG CÔNG NGHỆ</h2>
-<table>
+<div class="table-container w-full my-4"><table>
 <thead>
 <tr>
-<th style="text-align:left">Danh mục</th>
+<th style="text-align:left">Lĩnh vực</th>
 <th style="text-align:left">Kỹ năng &amp; Công nghệ chính</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left"><strong>Lập trình Hệ thống &amp; Backend</strong></td>
-<td style="text-align:left">Java, Spring Boot (Spring Data JPA, Spring Security), Rust (Tokio Async, Win32 Job Objects, Concurrency), Node.js (NestJS, Express), TypeScript server-side, Kiến trúc hướng sự kiện (Event-Driven Architecture)</td>
+<td style="text-align:left">Java (Spring Boot, Security, JPA), Rust (Tokio, Win32 Jobs), Node.js (NestJS, Express), Kiến trúc hướng sự kiện</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>Thiết kế API &amp; Streaming Real-Time</strong></td>
-<td style="text-align:left">RESTful APIs, GraphQL, gRPC Contracts, WebSockets, Server-Sent Events (SSE), API Gateways, Backend-for-Frontend (BFF), IPC phân tán</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Cơ sở Dữ liệu &amp; Caching Phân tán</strong></td>
-<td style="text-align:left">PostgreSQL (Supabase), MS SQL Server, MySQL, Redis (Pub/Sub, Caching Strategies, Session Management), ClickHouse (OLAP), Apache Solr, SQLite, Thiết kế Schema &amp; Tối ưu hóa Index</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Kiến trúc Frontend &amp; Web</strong></td>
-<td style="text-align:left">Hệ sinh thái React (Concurrent Features, Next.js, Server Components), Hệ sinh thái Vue.js (Composition API, NuxtJS), TypeScript, Angular, Desktop đa nền tảng (Electron JS)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Khả năng Mở rộng &amp; Hiệu năng</strong></td>
-<td style="text-align:left">Micro-frontends (Module Federation), Design System theo mô hình Component-Driven (Storybook, Radix UI), Core Web Vitals (LCP &lt; 2.0s, INP &lt; 150ms, CLS ≈ 0), Critical Rendering Path, Dynamic Code Splitting</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Trực quan hóa Dữ liệu Real-time</strong></td>
-<td style="text-align:left">Đồ thị Canvas/SVG mật độ cao, Virtual Scrolling / Grids, ECharts, Highcharts, Optimistic UI, Client-side Caching (TanStack Query, SWR)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Đám mây, DevOps &amp; Hạ tầng</strong></td>
-<td style="text-align:left">Docker, Docker Compose, Nền tảng Kubernetes, Azure Cloud, Linux CLI, Bash/PowerShell, GitHub Actions CI/CD, Điều phối Monorepo (Turborepo, Nx)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Kỹ thuật Tăng cường bởi AI</strong></td>
-<td style="text-align:left">Model Context Protocol (MCP), Kỹ thuật phần mềm hỗ trợ bởi LLM, Prompt Engineering cho Toolchains, Bộ kiểm thử tự động (Playwright, Cypress, Vitest, Jest)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Lãnh đạo &amp; Quản trị Kỹ thuật</strong></td>
-<td style="text-align:left">Chiến lược kỹ thuật (Technical Strategy), Lãnh đạo kỹ thuật liên squad (15+ kỹ sư), Lộ trình kiến trúc hệ thống, Quản trị nợ kỹ thuật, Điều phối Agile/Scrum</td>
-</tr>
-</tbody>
-</table>
-<h3 id="bảng-đánh-giá-kỹ-năng">Bảng Đánh Giá Kỹ Năng</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Lĩnh vực kỹ năng</th>
-<th style="text-align:left">Trọng tâm</th>
-<th style="text-align:left">Ghi chú &amp; Điểm nổi bật</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong>Thiết kế Backend &amp; Hệ thống</strong></td>
-<td style="text-align:left">Microservices, Runtimes</td>
-<td style="text-align:left">Java / Spring Boot, Rust async (Tokio), Node.js/NestJS, Win32 Job Objects, Kiến trúc hướng sự kiện</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>APIs &amp; Truyền phát Dữ liệu</strong></td>
-<td style="text-align:left">Thời gian thực, Kết nối</td>
-<td style="text-align:left">Luồng đo xa WebSockets, SSE streaming, RESTful, GraphQL, gRPC, điều phối BFF</td>
+<td style="text-align:left"><strong>Thiết kế API &amp; Streaming</strong></td>
+<td style="text-align:left">REST, GraphQL, gRPC, WebSockets, SSE, API Gateways, BFF, IPC phân tán</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Cơ sở Dữ liệu &amp; Caching</strong></td>
-<td style="text-align:left">Lưu trữ, Hiệu năng</td>
-<td style="text-align:left">PostgreSQL, MS SQL, chiến lược caching Redis, ClickHouse OLAP, tối ưu hóa truy vấn và index</td>
+<td style="text-align:left">PostgreSQL, MS SQL Server, Redis (Pub/Sub, Caching), ClickHouse OLAP, Apache Solr, Tối ưu Schema &amp; Index</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Kiến trúc Frontend</strong></td>
-<td style="text-align:left">Micro-frontends, Hệ thống</td>
-<td style="text-align:left">Micro-frontends (Module Federation), Design System doanh nghiệp, Monorepo (Turborepo), Clean Code</td>
+<td style="text-align:left">React (Next.js, Server Components), Vue.js (Nuxt), TypeScript, Electron JS</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>Tối ưu Hiệu năng Web</strong></td>
-<td style="text-align:left">Core Web Vitals, Rendering</td>
-<td style="text-align:left">LCP &lt; 2.0s, INP &lt; 150ms, triệt tiêu layout shifts, dynamic code splitting, tối ưu bundle size</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Hệ sinh thái Web Hiện đại</strong></td>
-<td style="text-align:left">TypeScript, React, Vue</td>
-<td style="text-align:left">Chuyên sâu React Ecosystem, Next.js, Vue.js Composition API, NuxtJS, Tailwind CSS, Electron JS</td>
+<td style="text-align:left"><strong>Khả năng Mở rộng &amp; Hiệu năng</strong></td>
+<td style="text-align:left">Micro-frontends (Module Federation), Design System (Storybook, Radix), Core Web Vitals (LCP &lt; 2s, INP &lt; 150ms)</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Trực quan hóa Dữ liệu Real-time</strong></td>
-<td style="text-align:left">Streaming, Đồ thị mật độ cao</td>
-<td style="text-align:left">Telemetry thời gian thực qua WebSockets, Virtual Grids, ECharts, Canvas/SVG, Client-side Caching (SWR)</td>
+<td style="text-align:left">Đồ thị Canvas/SVG, Virtual Grids, ECharts, Highcharts, TanStack Query, SWR</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>DevOps &amp; Đám mây</strong></td>
-<td style="text-align:left">Containers, CI/CD</td>
-<td style="text-align:left">Docker, Azure Cloud, Linux CLI, GitHub Actions CI/CD, giám sát tiến trình &amp; công cụ multi-runtime</td>
+<td style="text-align:left"><strong>Đám mây &amp; DevOps</strong></td>
+<td style="text-align:left">Docker, Kubernetes, Azure Cloud, Linux CLI, GitHub Actions CI/CD, Turborepo Monorepo</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>Phát triển Tăng cường bởi AI</strong></td>
-<td style="text-align:left">Năng suất, Tự động hóa</td>
-<td style="text-align:left">Model Context Protocol (MCP), sinh mã qua GenAI, LLM toolchains, Playwright E2E</td>
+<td style="text-align:left"><strong>Kỹ thuật Tăng cường bởi AI</strong></td>
+<td style="text-align:left">Model Context Protocol (MCP), LLM Toolchains, Playwright, Vitest, Jest</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Lãnh đạo &amp; Quản trị Kỹ thuật</strong></td>
+<td style="text-align:left">Chiến lược kỹ thuật, Lãnh đạo 15+ kỹ sư, Lộ trình kiến trúc, Quản trị nợ kỹ thuật, Agile Scrum</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h2 id="kinh-nghiệm-làm-việc-work-experience">KINH NGHIỆM LÀM VIỆC (WORK EXPERIENCE)</h2>
-<table>
+<div class="table-container w-full my-4"><table>
 <thead>
 <tr>
-<th>Tên công ty</th>
-<th>Vị trí đảm nhiệm</th>
-<th>Thời gian</th>
+<th style="text-align:left">Công ty</th>
+<th style="text-align:left">Vị trí</th>
+<th style="text-align:left">Thời gian</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>CMC GLOBAL</td>
-<td>Technical Project Lead / Tech Lead</td>
-<td>9/2024 – Hiện tại</td>
+<td style="text-align:left"><strong>CMC Global</strong></td>
+<td style="text-align:left">Technical Project Lead</td>
+<td style="text-align:left">09/2024 – Hiện tại</td>
 </tr>
 <tr>
-<td>ICOMM TECH.JSC</td>
-<td>Chief Product Officer (CPO) / Tech Lead</td>
-<td>5/2020 – 8/2024</td>
+<td style="text-align:left"><strong>ICOMM Tech</strong></td>
+<td style="text-align:left">CPO &amp; Tech Lead</td>
+<td style="text-align:left">05/2020 – 08/2024</td>
 </tr>
 <tr>
-<td>OPEN COMMERCE GROUP</td>
-<td>Senior Software Engineer</td>
-<td>12/2018 – 4/2020</td>
+<td style="text-align:left"><strong>OpenCommerce Group</strong></td>
+<td style="text-align:left">Senior Software Engineer</td>
+<td style="text-align:left">12/2018 – 04/2020</td>
 </tr>
 <tr>
-<td>TDT ASIA JSC</td>
-<td>Fullstack Software Engineer</td>
-<td>5/2018 – 12/2018</td>
+<td style="text-align:left"><strong>TDT Asia</strong></td>
+<td style="text-align:left">Full-stack Engineer</td>
+<td style="text-align:left">05/2018 – 12/2018</td>
 </tr>
 <tr>
-<td>LUSH ERA LLC</td>
-<td>Software Engineer / Web Developer</td>
-<td>12/2016 – 4/2018</td>
+<td style="text-align:left"><strong>Lush Era</strong></td>
+<td style="text-align:left">Software Engineer</td>
+<td style="text-align:left">12/2016 – 04/2018</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
-<h2 id="-danh-sách-dự-án-chi-tiết-project-list">DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)</h2>
-<h3 id="092024--hiện-tại-hệ-sinh-thái-lotte-world--cổng-thông-tin-web--mobile-công-viên-giải-trí">(09/2024 – Hiện tại) Hệ sinh thái Lotte World – Cổng thông tin Web &amp; Mobile Công viên Giải trí</h3>
+<h2 id="danh-sách-dự-án-chi-tiết-project-list">DANH SÁCH DỰ ÁN CHI TIẾT (PROJECT LIST)</h2>
+<h3 id="092024--hiện-tại-hệ-sinh-thái-cổng-dịch-vụ-công-viên-giải-trí-đa-quốc-gia">(09/2024 – Hiện tại) Hệ sinh thái Cổng dịch vụ Công viên Giải trí Đa quốc gia</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 09/2024 – Hiện tại</li>
 <li><strong>Công ty</strong>: CMC GLOBAL</li>
-<li><strong>Khách hàng (Client)</strong>: Tập đoàn Lotte World (Hàn Quốc / Vui chơi giải trí &amp; Du lịch)</li>
+<li><strong>Khách hàng (Client)</strong>: Tập đoàn Vui chơi Giải trí &amp; Du lịch Đa quốc gia (Hàn Quốc)</li>
 <li><strong>Quy mô đội ngũ (Team size)</strong>: 15+ kỹ sư</li>
-<li><strong>Mô tả dự án (Project description *)</strong>: Hệ sinh thái đa nền tảng quy mô lớn phục vụ các công viên giải trí Lotte World (Jamsil &amp; Busan), bao gồm các cổng web &amp; webview portal lưu lượng truy cập cao, hệ thống tra cứu thời gian chờ (wait times), đặt chỗ (reservations) thời gian thực và bản đồ số tương tác.</li>
-<li><strong>Trách nhiệm đảm nhiệm (Responsibilities *)</strong>:
+<li><strong>Mô tả dự án (Project description)</strong>: Hệ sinh thái đa nền tảng quy mô lớn phục vụ các đại công viên giải trí quốc tế, bao gồm các cổng web &amp; webview portal lưu lượng truy cập cao, hệ thống tra cứu thời gian chờ (wait times), đặt chỗ (reservations) thời gian thực và bản đồ số tương tác.</li>
+<li><strong>Trách nhiệm đảm nhiệm (Responsibilities)</strong>:
 <ul>
 <li>Tham gia với vai trò <strong>Core Frontend Maintainer</strong>, bảo trì, tái cấu trúc (refactor) và phát triển các tính năng nâng cấp cho Cổng dịch vụ Web Khách tham quan &amp; WebView Đặt vé Đối tác, bám sát nghiêm ngặt tài liệu đặc tả kỹ thuật và yêu cầu chức năng của khách hàng.</li>
 <li>Xây dựng giao diện Web và WebView nhúng di động đáp ứng (RWD) bằng React, Vite và Tailwind CSS, bảo đảm độ chính xác thiết kế pixel-perfect và trải nghiệm tương tác mượt mà.</li>
@@ -614,10 +756,10 @@ code {
 <li>Thực hiện bảo trì mã nguồn liên tục, xử lý các lỗi UI/UX trọng yếu và tinh chỉnh hiệu năng để bảo đảm khả năng tương thích mượt mà trên các WebView iOS và Android.</li>
 </ul>
 </li>
-<li><strong>Ngôn ngữ lập trình (Programming Language *)</strong>: TypeScript, JavaScript, Java</li>
-<li><strong>Framework *</strong>: React, Vite, React Native, Tailwind CSS, Spring Boot</li>
-<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database *)</strong>: Docker, Redis, MS SQL Server, Linux</li>
-<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile / Scrum</li>
+<li><strong>Ngôn ngữ lập trình (Programming Language)</strong>: TypeScript, JavaScript, Java</li>
+<li><strong>Framework</strong>: React, Vite, React Native, Tailwind CSS, Spring Boot</li>
+<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)</strong>: Docker, Redis, MS SQL Server, Linux</li>
+<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile Scrum</li>
 </ul>
 <h3 id="092024--hiện-tại-digital-twin--dashboard-giám-sát-dữ-liệu-đo-xa-xe-điện-ev-thời-gian-thực">(09/2024 – Hiện tại) Digital Twin – Dashboard Giám sát Dữ liệu Đo xa Xe điện (EV) Thời gian thực</h3>
 <ul>
@@ -625,20 +767,20 @@ code {
 <li><strong>Công ty</strong>: CMC GLOBAL</li>
 <li><strong>Khách hàng (Client)</strong>: Tập đoàn sản xuất ô tô hàng đầu (Automotive Tech, IoT Integration)</li>
 <li><strong>Quy mô đội ngũ (Team size)</strong>: 15+ kỹ sư (3 squads)</li>
-<li><strong>Mô tả dự án (Project description *)</strong>: Nền tảng Dashboard Digital Twin quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành thời gian thực cho các đội xe điện (EV).</li>
-<li><strong>Trách nhiệm đảm nhiệm (Responsibilities *)</strong>:
+<li><strong>Mô tả dự án (Project description)</strong>: Nền tảng Dashboard Digital Twin quy mô lớn phục vụ tổng hợp, giám sát và phân tích dữ liệu đo xa (telemetry) cũng như trạng thái vận hành thời gian thực cho các đội xe điện (EV).</li>
+<li><strong>Trách nhiệm đảm nhiệm (Responsibilities)</strong>:
 <ul>
-<li>Đảm nhiệm vai trò <strong>Technical Project Leader &amp; Tech Lead</strong>, thiết lập toàn diện kiến trúc kỹ thuật, chuẩn mực kỹ nghệ và luồng truyền phát dữ liệu đo xa thời gian thực trên 3 squads (15+ kỹ sư), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày.</li>
+<li>Đảm nhiệm vai trò <strong>Technical Project Lead</strong>, thiết lập toàn diện kiến trúc kỹ thuật, chuẩn mực kỹ nghệ và luồng truyền phát dữ liệu đo xa thời gian thực trên 3 squads (15+ kỹ sư), xử lý hàng triệu sự kiện vận hành xe điện mỗi ngày.</li>
 <li>Thiết kế kiến trúc <strong>Micro-frontends</strong> và chuẩn hóa hệ thống <strong>Design System</strong> cấp doanh nghiệp, đảm bảo tính nhất quán giao diện và giải phóng chu kỳ phát hành độc lập giữa các squad.</li>
 <li>Tối ưu hóa luồng truyền phát dữ liệu đo xa thời gian thực qua WebSockets bằng kỹ thuật <strong>Virtual Scrolling, Canvas Data Charting, và Debounced/Throttled State Updates</strong>, duy trì tốc độ hiển thị liên tục 60fps mượt mà dưới tải dữ liệu lớn mà không nghẽn Main Thread.</li>
-<li>Thiết lập chiến lược tối ưu hóa <strong>Core Web Vitals</strong> toàn diện: thực hiện dynamic code splitting theo route và component, hạ First Input Delay / INP xuống &lt; 150ms và giữ vững LCP &lt; 2.0s trên tất cả các màn hình giám sát trọng yếu.</li>
+<li>Thiết lập chiến lược tối ưu hóa <strong>Core Web Vitals</strong> toàn diện: thực hiện dynamic code splitting theo route và component, hạ INP xuống &lt; 150ms và giữ vững LCP &lt; 2.0s trên tất cả các màn hình giám sát trọng yếu.</li>
 <li>Tiên phong đưa quy trình <strong>AI-augmented Frontend SDLC</strong> vào thực tế (sinh UI qua LLM, kiểm thử hồi quy trực quan tự động), nâng cao 25% tốc độ bàn giao tính năng của đội ngũ frontend.</li>
 </ul>
 </li>
-<li><strong>Ngôn ngữ lập trình (Programming Language *)</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (công cụ hỗ trợ BFF)</li>
-<li><strong>Framework *</strong>: React (Concurrent Features), Next.js, Tailwind CSS, Zustand, Node.js</li>
-<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database *)</strong>: Azure Cloud, Docker, Kubernetes, WebSocket, PostgreSQL, Redis</li>
-<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile / Scrum</li>
+<li><strong>Ngôn ngữ lập trình (Programming Language)</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (công cụ hỗ trợ BFF)</li>
+<li><strong>Framework</strong>: React (Concurrent Features), Next.js, Tailwind CSS, Zustand, Node.js</li>
+<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)</strong>: Azure Cloud, Docker, Kubernetes, WebSocket, PostgreSQL, Redis</li>
+<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile Scrum</li>
 </ul>
 <h3 id="052020--082024-nền-tảng-báo-cáo--trực-quan-hóa-dữ-liệu-lớn-thông-minh">(05/2020 – 08/2024) Nền tảng Báo cáo &amp; Trực quan hóa Dữ liệu Lớn Thông minh</h3>
 <ul>
@@ -646,8 +788,8 @@ code {
 <li><strong>Công ty</strong>: ICOMM TECH.JSC</li>
 <li><strong>Khách hàng (Client)</strong>: Khối cơ quan Chính phủ, Ngân hàng và Hàng không (Government, Banking &amp; Aviation Sectors)</li>
 <li><strong>Quy mô đội ngũ (Team size)</strong>: 15+ kỹ sư</li>
-<li><strong>Mô tả dự án (Project description *)</strong>: Nền tảng trích xuất và phân tích dữ liệu lớn đa nền tảng, cung cấp hệ thống báo cáo phân tích thông minh, bảng biểu tương tác cao phục vụ khách hàng khối chính phủ và tài chính ngân hàng với yêu cầu bảo mật khắt khe.</li>
-<li><strong>Trách nhiệm đảm nhiệm (Responsibilities *)</strong>:
+<li><strong>Mô tả dự án (Project description)</strong>: Nền tảng trích xuất và phân tích dữ liệu lớn đa nền tảng, cung cấp hệ thống báo cáo phân tích thông minh, bảng biểu tương tác cao phục vụ khách hàng khối chính phủ và tài chính ngân hàng với yêu cầu bảo mật khắt khe.</li>
+<li><strong>Trách nhiệm đảm nhiệm (Responsibilities)</strong>:
 <ul>
 <li>Định hướng chiến lược trải nghiệm người dùng (UX Strategy) và lộ trình sản phẩm với vai trò <strong>Chief Product Officer (CPO) &amp; Technical Lead</strong>.</li>
 <li>Xây dựng hệ thống <strong>Data Visualization Dashboard</strong> tương tác cao với ECharts và Highcharts, giải quyết thách thức render đồ thị cho hơn 100.000 điểm dữ liệu phức tạp mà không bị sụt giảm khung hình.</li>
@@ -656,10 +798,10 @@ code {
 <li>Đào tạo và mentor 15+ kỹ sư về kiến trúc Component-Driven, nguyên lý JavaScript Clean Code và phân tích hiệu năng render thực tế.</li>
 </ul>
 </li>
-<li><strong>Ngôn ngữ lập trình (Programming Language *)</strong>: TypeScript, JavaScript, HTML5, SCSS/CSS3, Python</li>
-<li><strong>Framework *</strong>: React Ecosystem, Redux Toolkit, ECharts, .NET Core (Backend API)</li>
-<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database *)</strong>: Docker, Kubernetes, Redis, Apache Solr, ClickHouse, Linux</li>
-<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile / Scrum</li>
+<li><strong>Ngôn ngữ lập trình (Programming Language)</strong>: TypeScript, JavaScript, HTML5, SCSS/CSS3, Python</li>
+<li><strong>Framework</strong>: React Ecosystem, Redux Toolkit, ECharts, .NET Core (Backend API)</li>
+<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)</strong>: Docker, Kubernetes, Redis, Apache Solr, ClickHouse, Linux</li>
+<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile Scrum</li>
 </ul>
 <h3 id="122018--042020-nền-tảng-storefront-thương-mại-điện-tử-tốc-độ-cao--bộ-công-cụ-tăng-trưởng-doanh-số">(12/2018 – 04/2020) Nền tảng Storefront Thương mại Điện tử Tốc độ cao &amp; Bộ Công cụ Tăng trưởng Doanh số</h3>
 <ul>
@@ -667,8 +809,8 @@ code {
 <li><strong>Công ty</strong>: OPEN COMMERCE GROUP</li>
 <li><strong>Khách hàng (Client)</strong>: Doanh nghiệp E-commerce quốc tế (Global E-commerce Merchants)</li>
 <li><strong>Quy mô đội ngũ (Team size)</strong>: 8–10 thành viên</li>
-<li><strong>Mô tả dự án (Project description *)</strong>: Nền tảng Storefront thương mại điện tử siêu tốc và công cụ gợi ý bán chéo thông minh (Cross-selling Engine) tích hợp sâu vào hệ sinh thái Shopify, WooCommerce và WordPress.</li>
-<li><strong>Trách nhiệm đảm nhiệm (Responsibilities *)</strong>:
+<li><strong>Mô tả dự án (Project description)</strong>: Nền tảng Storefront thương mại điện tử siêu tốc và công cụ gợi ý bán chéo thông minh (Cross-selling Engine) tích hợp sâu vào hệ sinh thái Shopify, WooCommerce và WordPress.</li>
+<li><strong>Trách nhiệm đảm nhiệm (Responsibilities)</strong>:
 <ul>
 <li>Đảm nhiệm vị trí <strong>Senior Software Engineer</strong>, dẫn dắt phát triển giao diện Storefront và các widget gợi ý sản phẩm định hướng Product-Led Growth (PLG).</li>
 <li>Tối ưu hóa toàn diện tỷ lệ chuyển đổi (CRO) và tốc độ thanh toán: đưa <strong>First Contentful Paint (FCP) xuống &lt; 1.2s</strong> và <strong>LCP xuống &lt; 1.8s</strong>, đóng góp vào mức tăng trưởng 15–20% doanh thu cho người bán.</li>
@@ -676,10 +818,10 @@ code {
 <li>Phát triển trải nghiệm người dùng tối ưu trên thiết bị di động (Mobile-First) và luồng thanh toán mượt mà trên đa cổng thanh toán quốc tế.</li>
 </ul>
 </li>
-<li><strong>Ngôn ngữ lập trình (Programming Language *)</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (microservices)</li>
-<li><strong>Framework *</strong>: Vue.js (Vuex), React, Tailwind CSS, Laravel (Backend API)</li>
-<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database *)</strong>: AWS, Nginx, Redis, MySQL</li>
-<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile / Scrum</li>
+<li><strong>Ngôn ngữ lập trình (Programming Language)</strong>: TypeScript, JavaScript, HTML5, CSS3, Rust (microservices)</li>
+<li><strong>Framework</strong>: Vue.js (Vuex), React, Tailwind CSS, Laravel (Backend API)</li>
+<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)</strong>: AWS, Nginx, Redis, MySQL</li>
+<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile Scrum</li>
 </ul>
 <h3 id="052018--122018-cổng-quản-lý-vận-hành-doanh-nghiệp-nhật-bản">(05/2018 – 12/2018) Cổng Quản lý Vận hành Doanh nghiệp Nhật Bản</h3>
 <ul>
@@ -687,18 +829,18 @@ code {
 <li><strong>Công ty</strong>: TDT ASIA JSC</li>
 <li><strong>Khách hàng (Client)</strong>: Các doanh nghiệp vừa và nhỏ tại Nhật Bản (SMB Solutions – Japan Market)</li>
 <li><strong>Quy mô đội ngũ (Team size)</strong>: 6–8 thành viên</li>
-<li><strong>Mô tả dự án (Project description *)</strong>: Cổng thông tin và phần mềm quản trị doanh nghiệp (ERP) tùy biến đáp ứng tiêu chuẩn khắt khe về chất lượng mã nguồn và trải nghiệm người dùng của thị trường Nhật Bản.</li>
-<li><strong>Trách nhiệm đảm nhiệm (Responsibilities *)</strong>:
+<li><strong>Mô tả dự án (Project description)</strong>: Cổng thông tin và phần mềm quản trị doanh nghiệp (ERP) tùy biến đáp ứng tiêu chuẩn khắt khe về chất lượng mã nguồn và trải nghiệm người dùng của thị trường Nhật Bản.</li>
+<li><strong>Trách nhiệm đảm nhiệm (Responsibilities)</strong>:
 <ul>
 <li>Đảm nhiệm vị trí <strong>Fullstack Software Engineer</strong>, chịu trách nhiệm chính về kiến trúc Single Page Application (SPA).</li>
 <li>Khai thác sức mạnh của <strong>Angular với RxJS Observables</strong> để quản lý trạng thái phản ứng (reactive state) và điều phối các biểu mẫu nghiệp vụ phức tạp với Angular Reactive Forms.</li>
 <li>Bảo đảm nghiêm ngặt khả năng tương thích đa trình duyệt (<strong>Cross-Browser Compatibility</strong>: Chrome, Firefox, Safari, Edge) và đạt độ chính xác pixel-perfect theo tài liệu thiết kế chi tiết của Nhật Bản.</li>
 </ul>
 </li>
-<li><strong>Ngôn ngữ lập trình (Programming Language *)</strong>: TypeScript, JavaScript, HTML5, SCSS</li>
-<li><strong>Framework *</strong>: Angular, Angular Material, RxJS, Spring Boot (Backend API)</li>
-<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database *)</strong>: Tomcat, Docker, MySQL, Linux</li>
-<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile / Scrum</li>
+<li><strong>Ngôn ngữ lập trình (Programming Language)</strong>: TypeScript, JavaScript, HTML5, SCSS</li>
+<li><strong>Framework</strong>: Angular, Angular Material, RxJS, Spring Boot (Backend API)</li>
+<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)</strong>: Tomcat, Docker, MySQL, Linux</li>
+<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile Scrum</li>
 </ul>
 <h3 id="122016--042018-ứng-dụng-web-khám-chữa-bệnh--tư-vấn-y-tế-trực-tuyến-thời-gian-thực">(12/2016 – 04/2018) Ứng dụng Web Khám chữa Bệnh &amp; Tư vấn Y tế Trực tuyến Thời gian thực</h3>
 <ul>
@@ -706,27 +848,27 @@ code {
 <li><strong>Công ty</strong>: LUSH ERA LLC</li>
 <li><strong>Khách hàng (Client)</strong>: Các phòng khám đa khoa &amp; Đơn vị dịch vụ y tế (Healthcare Sector)</li>
 <li><strong>Quy mô đội ngũ (Team size)</strong>: 5 thành viên</li>
-<li><strong>Mô tả dự án (Project description *)</strong>: Ứng dụng web tư vấn y tế từ xa an toàn, bảo mật, kết nối trực tiếp bệnh nhân với đội ngũ bác sĩ chuyên khoa thông qua video và tin nhắn thời gian thực.</li>
-<li><strong>Trách nhiệm đảm nhiệm (Responsibilities *)</strong>:
+<li><strong>Mô tả dự án (Project description)</strong>: Ứng dụng web tư vấn y tế từ xa an toàn, bảo mật, kết nối trực tiếp bệnh nhân với đội ngũ bác sĩ chuyên khoa thông qua video và tin nhắn thời gian thực.</li>
+<li><strong>Trách nhiệm đảm nhiệm (Responsibilities)</strong>:
 <ul>
-<li>Đảm nhiệm vai trò <strong>Software Engineer / Web Developer</strong>, xây dựng giao diện ứng dụng trực quan, tải nhanh và dễ tiếp cận.</li>
+<li>Đảm nhiệm vai trò <strong>Software Engineer</strong>, xây dựng giao diện ứng dụng trực quan, tải nhanh và dễ tiếp cận.</li>
 <li>Thiết kế bố cục đáp ứng ưu tiên thiết bị di động (<strong>Mobile-First Responsive Layouts</strong>), tuân thủ các tiêu chuẩn trợ năng Web Accessibility (a11y) cho bệnh nhân và người cao tuổi.</li>
 <li>Phát triển giao diện gọi video WebRTC tương tác trực tiếp và giao diện chat độ trễ thấp thời gian thực.</li>
 </ul>
 </li>
-<li><strong>Ngôn ngữ lập trình (Programming Language *)</strong>: JavaScript, HTML5, CSS3, PHP</li>
-<li><strong>Framework *</strong>: jQuery, Bootstrap, Laravel (Backend)</li>
-<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database *)</strong>: MySQL, Apache, Ubuntu Linux</li>
+<li><strong>Ngôn ngữ lập trình (Programming Language)</strong>: JavaScript, HTML5, CSS3, PHP</li>
+<li><strong>Framework</strong>: jQuery, Bootstrap, Laravel (Backend)</li>
+<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)</strong>: MySQL, Apache, Ubuntu Linux</li>
 <li><strong>Phương pháp phát triển (Methodology)</strong>: Agile</li>
 </ul>
 <h3 id="2024--hiện-tại-tuquet--hệ-sinh-thái-cli--tự-động-hóa-phân-tán">(2024 – Hiện tại) Tuquet – Hệ Sinh Thái CLI &amp; Tự Động Hóa Phân Tán</h3>
 <ul>
 <li><strong>Thời gian thực hiện</strong>: 2024 – Hiện tại</li>
-<li><strong>Công ty</strong>: Sản phẩm độc lập / Dự án R&amp;D cá nhân</li>
+<li><strong>Công ty</strong>: Dự án R&amp;D độc lập</li>
 <li><strong>Khách hàng (Client)</strong>: Dự án công cụ lập trình mã nguồn mở &amp; Kỹ sư tự động hóa toàn cầu</li>
-<li><strong>Quy mô đội ngũ (Team size)</strong>: Creator &amp; Principal Architect (Solo / Core Team)</li>
-<li><strong>Mô tả dự án (Project description *)</strong>: Hệ sinh thái công cụ phát triển mã nguồn mở hiệu năng cao và bộ giải pháp tự động hóa trình duyệt phân tán gồm CLI điều phối chính (<code>tuquet</code>) viết bằng Rust, web studio thiết kế quy trình trực quan bằng Vue.js, tiến trình nền daemon giám sát tác vụ (<code>tuquet runner</code>), và dịch vụ điều phối đám mây (Cloud).</li>
-<li><strong>Trách nhiệm đảm nhiệm (Responsibilities *)</strong>:
+<li><strong>Quy mô đội ngũ (Team size)</strong>: Tác giả &amp; Kiến trúc sư trưởng (Dự án độc lập)</li>
+<li><strong>Mô tả dự án (Project description)</strong>: Hệ sinh thái công cụ phát triển mã nguồn mở hiệu năng cao và bộ giải pháp tự động hóa trình duyệt phân tán gồm CLI điều phối chính (<code>tuquet</code>) viết bằng Rust, web studio thiết kế quy trình trực quan bằng Vue.js, tiến trình nền daemon giám sát tác vụ (<code>tuquet runner</code>), và dịch vụ điều phối đám mây (Cloud).</li>
+<li><strong>Trách nhiệm đảm nhiệm (Responsibilities)</strong>:
 <ul>
 <li>Đảm nhiệm vai trò <strong>Creator &amp; Principal Architect</strong>, thiết kế toàn diện kiến trúc hệ sinh thái đa runtime từ lập trình hệ thống bằng Rust, web studio trực quan bằng Vue.js, đến giám sát tác vụ phân tán.</li>
 <li>Phát triển CLI chính (<code>tuquet</code>) bằng <strong>Rust</strong>: xây dựng interactive shell phân cấp với rustyline tự động hoàn thành thông minh, định dạng màu sắc ANSI, và điều phối các lệnh con (<code>automa</code>, <code>runner</code>, <code>cloud</code>, <code>browser</code>).</li>
@@ -737,10 +879,10 @@ code {
 <li>Tự động hóa quy trình đóng gói đa nền tảng và phân phối thông qua Scoop bucket chính thức trên Windows (<code>tuquet/scoop-bucket</code>).</li>
 </ul>
 </li>
-<li><strong>Ngôn ngữ lập trình (Programming Language *)</strong>: Rust, TypeScript, JavaScript, SQL</li>
-<li><strong>Framework *</strong>: Vue.js Ecosystem, Tailwind CSS, Drawflow, Tokio (Rust Async), Node.js</li>
-<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database *)</strong>: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions</li>
-<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile / Kanban</li>
+<li><strong>Ngôn ngữ lập trình (Programming Language)</strong>: Rust, TypeScript, JavaScript, SQL</li>
+<li><strong>Framework</strong>: Vue.js Ecosystem, Tailwind CSS, Drawflow, Tokio (Rust Async), Node.js</li>
+<li><strong>Nền tảng, máy chủ và cơ sở dữ liệu (Platform, server and database)</strong>: Supabase, PostgreSQL, WebSockets, Win32 Job Objects, Docker, Scoop, GitHub Actions</li>
+<li><strong>Phương pháp phát triển (Methodology)</strong>: Agile Kanban</li>
 </ul>
 <hr>
 <h2 id="giải-thưởng--thành-tích-achievements--awards">GIẢI THƯỞNG &amp; THÀNH TÍCH (ACHIEVEMENTS &amp; AWARDS)</h2>
@@ -754,38 +896,76 @@ code {
 <p><strong>Đại học FPT (FPT University)</strong> | Công nghệ thông tin (1/2012 – 9/2014)</p>
 <ul>
 <li><strong>Chuyên môn:</strong> Phát triển Web Full-Stack, Thiết kế Ứng dụng Desktop &amp; Kiến trúc phần mềm.</li>
-<li><strong>Kết quả học tập:</strong> GPA 8.2 / 10</li>
+<li><strong>Kết quả học tập:</strong> GPA 8.2/10</li>
 <li><strong>Chứng chỉ ngoại ngữ:</strong> TOEIC 650 (Đọc hiểu tài liệu kỹ thuật &amp; giao tiếp làm việc thành thạo)</li>
 </ul>
 
 
-<!-- Ask Toby Widget -->
-<button id="copilot-trigger" class="copilot-trigger" aria-label="Hỏi Toby">
-  Hỏi Toby
-</button>
+</main>
 
-<div id="copilot-panel" class="copilot-panel" role="dialog" aria-label="Hỏi Toby">
-  <div class="copilot-header">
-    <div class="copilot-header-title">
-      Hỏi Toby
+<!-- Ask Toby Copilot Widget -->
+<div id="copilot-widget-container" class="copilot-widget-container fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none">
+  <!-- Proactive Teaser Callout (shadcn Popover) -->
+  <div id="copilot-teaser" class="copilot-teaser hidden items-start gap-2.5 p-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-md max-w-[280px] pointer-events-auto">
+    <div class="flex-1 min-w-0 cursor-pointer" id="copilot-teaser-content">
+      <div class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
+        Trợ lý AI Toby
+      </div>
+      <div class="text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal mt-0.5">
+        Tra cứu nhanh về hệ thống phân tán, lead 15+ kỹ sư và độ phù hợp vị trí.
+      </div>
     </div>
-    <button id="copilot-close" class="copilot-close">Đóng</button>
+    <button id="copilot-teaser-close" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 p-0.5 rounded transition-colors cursor-pointer" aria-label="Close">
+      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
   </div>
-  <div id="copilot-body" class="copilot-body">
-    <div class="copilot-msg bot">
-      Xin chào! Tôi là AI của Toby. Bạn có thể hỏi tôi bất cứ điều gì về năng lực kỹ thuật, kinh nghiệm lead 15+ kỹ sư hay kiến trúc hệ thống!
+
+  <!-- Trigger Button (shadcn button zinc) -->
+  <button id="copilot-trigger" class="copilot-trigger inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 border border-zinc-900 dark:border-zinc-100 shadow-md hover:shadow-lg transition-all duration-150 cursor-pointer pointer-events-auto" aria-label="Hỏi Toby AI">
+    <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+    </svg>
+    <span>Hỏi Toby AI</span>
+    <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-300 dark:bg-zinc-200 dark:text-zinc-800">AI</span>
+  </button>
+</div>
+
+<div id="copilot-panel" class="copilot-panel fixed bottom-16 md:bottom-20 right-4 md:right-6 w-[calc(100vw-32px)] md:w-[390px] h-[520px] max-h-[calc(100vh-100px)] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden opacity-0 pointer-events-none transition-all duration-150 scale-95 translate-y-2" role="dialog" aria-label="Trợ lý AI Toby">
+  <div class="copilot-header shrink-0 flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50">
+    <div class="flex items-center gap-2">
+      <svg class="w-4 h-4 text-zinc-700 dark:text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+      </svg>
+      <div>
+        <div class="copilot-header-title text-[13px] font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
+          Trợ lý AI Toby
+        </div>
+        <div class="text-xs text-zinc-500 dark:text-zinc-400">
+          Kiến trúc hệ thống, kinh nghiệm lead & độ phù hợp
+        </div>
+      </div>
+    </div>
+    <button id="copilot-close" class="p-1 rounded-md text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer" aria-label="Close">
+      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+  <div id="copilot-body" class="copilot-body flex-1 min-h-0 overflow-y-auto p-4 flex flex-col gap-3 text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300">
+    <div id="copilot-welcome-msg" class="copilot-msg bot self-start max-w-[92%] p-3 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-[13px]">
+      <span id="copilot-greeting-text">Xin chào.</span> Tôi là trợ lý AI của Toby Nguyen. Bạn có thể tra cứu nhanh về 8+ năm kinh nghiệm kiến trúc hệ thống phân tán, năng lực lãnh đạo kỹ thuật hoặc độ phù hợp vị trí.<br/><br/><strong>Các chủ đề gợi ý:</strong><br/>• <strong>Tóm tắt năng lực:</strong> Tổng quan thế mạnh và kinh nghiệm điều phối<br/>• <strong>Độ phù hợp vị trí:</strong> Đánh giá cho vai trò Tech Lead, Architect hoặc Senior Engineer<br/>• <strong>Telemetry thời gian thực (EV):</strong> Quản lý 15+ kỹ sư, streaming WebSockets<br/>• <strong>Cổng thông tin lưu lượng cao:</strong> Hệ sinh thái giải trí đa runtime<br/>• <strong>Kiến trúc Tuquet:</strong> Giám sát tiến trình không rò rỉ bằng Rust & Win32<br/>• <strong>Kỹ năng & Liên hệ:</strong> Lên lịch phỏng vấn và trao đổi trực tiếp
     </div>
   </div>
-  <div class="copilot-chips">
-    <button class="copilot-chip" data-q="summary">Thế mạnh & Thành tựu</button>
-<button class="copilot-chip" data-q="digital twin">Kiến trúc Digital Twin</button>
-<button class="copilot-chip" data-q="tuquet">Xử lý Zombie Process Tuquet</button>
-<button class="copilot-chip" data-q="lead">Quản lý team 15+ devs</button>
-<button class="copilot-chip" data-q="stack">Kỹ năng công nghệ</button>
+  <div class="copilot-chips shrink-0 flex flex-wrap gap-1.5 p-3 border-t border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/40 dark:bg-zinc-900/30">
+    <button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="summary">Tóm tắt năng lực</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="fit">Độ phù hợp vị trí</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="telemetry">Telemetry thời gian thực (EV)</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="portal">Cổng thông tin lưu lượng cao</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="tuquet">Kiến trúc Tuquet & Rust</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="stack">Hệ thống công nghệ</button>
+<button class="copilot-chip px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200/80 dark:border-zinc-700/80 rounded-md transition-colors cursor-pointer" data-q="contact">Liên hệ phỏng vấn</button>
   </div>
-  <div class="copilot-footer">
-    <input id="copilot-input" class="copilot-input" type="text" placeholder="Nhập câu hỏi...">
-    <button id="copilot-send" class="copilot-send">Gửi</button>
+  <div class="copilot-footer shrink-0 flex items-center gap-2 p-3 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+    <input id="copilot-input" class="copilot-input flex-1 px-3 py-1.5 text-[13px] bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-zinc-950 dark:focus:ring-zinc-300 transition-colors placeholder:text-zinc-400" type="text" placeholder="Nhập câu hỏi...">
+    <button id="copilot-send" class="copilot-send px-3 py-1.5 text-[13px] font-medium text-zinc-50 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 rounded-md transition-colors cursor-pointer shadow-xs">Gửi</button>
   </div>
 </div>
 
