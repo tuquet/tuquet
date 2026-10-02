@@ -1,8 +1,4 @@
 <div align="center">
-  <img src="./assets/logo.svg" width="96" height="96" alt="Tuquet Logo" />
-  <h1>Tuquet</h1>
-  <p><strong>Systems Architect &amp; Open Source Automation Ecosystem</strong></p>
-
   <p>
     <a href="https://tuquet.github.io">Portfolio</a> •
     <a href="https://tuquet.github.io/cv">CV &amp; Resume</a> •
