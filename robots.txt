@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://tuquet.github.io/sitemap.xml

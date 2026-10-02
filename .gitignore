@@ -1,17 +1,2 @@
-# Dependencies
-node_modules/
-
-# Temporary and intermediate build artifacts
-*_tmp.html
-README.html
-**/README.html
-
-# Images
-*.png
-*.jpg
-*.jpeg
-
-# Stylesheets (keep custom export styling and web enhancements)
-*.css
-!style/pdf-export.css
-!web/*.css
+.DS_Store
+Thumbs.db
