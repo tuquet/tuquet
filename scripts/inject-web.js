@@ -523,9 +523,17 @@ ${footerHtml}
         </div>
       </div>
     </div>
-    <button id="copilot-close" class="p-1 rounded-md text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer" aria-label="Close">
-      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-    </button>
+    <div class="flex items-center gap-1">
+      <button id="copilot-expand" class="p-1 rounded-md text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer" aria-label="Expand or Collapse">
+        <svg id="copilot-expand-icon" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path class="icon-expand" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+          <path class="icon-collapse hidden" d="M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7"/>
+        </svg>
+      </button>
+      <button id="copilot-close" class="p-1 rounded-md text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer" aria-label="Close">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
   </div>
   <div id="copilot-body" class="copilot-body flex-1 min-h-0 overflow-y-auto p-4 flex flex-col gap-3 text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300">
     <div id="copilot-welcome-msg" class="copilot-msg bot self-start max-w-[92%] p-3 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 text-[13px] leading-relaxed break-words [&_strong]:font-semibold [&_strong]:text-zinc-950 dark:[&_strong]:text-white [&_a]:underline [&_a]:underline-offset-2 [&_a]:font-medium">

@@ -535,17 +535,57 @@
         }
       }
 
+      const expandBtn = document.getElementById('copilot-expand');
+      const expandIcon = document.getElementById('copilot-expand-icon');
+
+      const setExpandedState = (expanded) => {
+        if (expanded) {
+          panel.classList.add('expanded');
+        } else {
+          panel.classList.remove('expanded');
+        }
+        if (expandIcon) {
+          const expPath = expandIcon.querySelector('.icon-expand');
+          const colPath = expandIcon.querySelector('.icon-collapse');
+          if (expPath && colPath) {
+            if (expanded) {
+              expPath.classList.add('hidden');
+              colPath.classList.remove('hidden');
+            } else {
+              expPath.classList.remove('hidden');
+              colPath.classList.add('hidden');
+            }
+          }
+        }
+      };
+
+      if (expandBtn) {
+        expandBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const willExpand = !panel.classList.contains('expanded');
+          setExpandedState(willExpand);
+        });
+      }
+
       trigger.addEventListener('click', () => {
         const isOpen = panel.classList.toggle('open');
         if (isOpen) {
+          setExpandedState(false);
           const g = this.getTimeGreeting(isVi());
           const gEl = document.getElementById('copilot-greeting-text');
           if (gEl) gEl.textContent = g;
           if (input) setTimeout(() => input.focus(), 150);
+        } else {
+          setExpandedState(false);
         }
       });
 
-      if (closeBtn) closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          panel.classList.remove('open');
+          setExpandedState(false);
+        });
+      }
 
       const handleSend = (text) => {
         const query = (text || (input ? input.value : '')).trim();
