@@ -13,6 +13,6 @@
     "check": "npm run build && npm run test"
   },
   "devDependencies": {
-    "@tuquet/md-export": "latest"
+    "@tuquet/md-export": "file:../lib/packages/md-export"
   }
 }
