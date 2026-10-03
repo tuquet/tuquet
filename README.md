@@ -1,4 +1,8 @@
 <div align="center">
+  <img src="https://tuquet.github.io/icons/tuquet.svg" width="76" height="76" alt="Tuquet Logo" />
+  <h1>Tuquet</h1>
+  <p><strong>Automation Ecosystem, High-Performance Systems &amp; Developer Tooling</strong></p>
+
   <p>
     <a href="https://tuquet.github.io">Portfolio</a> •
     <a href="https://tuquet.github.io/cv">CV &amp; Resume</a> •
