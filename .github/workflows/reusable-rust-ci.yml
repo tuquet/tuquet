@@ -1,0 +1,87 @@
+name: 'Reusable Rust CI'
+
+on:
+  workflow_call:
+    inputs:
+      os:
+        description: 'Runner operating system'
+        required: false
+        type: string
+        default: 'ubuntu-latest'
+      target:
+        description: 'Rust target triple'
+        required: false
+        type: string
+        default: 'x86_64-unknown-linux-gnu'
+      run-clippy:
+        description: 'Run cargo clippy linter'
+        required: false
+        type: boolean
+        default: true
+      run-tests:
+        description: 'Run cargo test suite'
+        required: false
+        type: boolean
+        default: true
+      run-release-build:
+        description: 'Run cargo build --release'
+        required: false
+        type: boolean
+        default: false
+      notify:
+        description: 'Send Telegram notification on completion'
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      TELEGRAM_BOT_TOKEN:
+        required: false
+      TELEGRAM_CHAT_ID:
+        required: false
+
+jobs:
+  test:
+    name: Test & Lint (${{ inputs.os }})
+    runs-on: ${{ inputs.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ inputs.target }}
+          components: clippy
+
+      - name: Cache Cargo dependencies
+        uses: swatinem/rust-cache@v2
+        with:
+          key: ${{ inputs.target }}
+
+      - name: Cargo Check
+        run: cargo check --verbose --target ${{ inputs.target }}
+
+      - name: Cargo Clippy
+        if: inputs.run-clippy
+        run: cargo clippy --all-targets --target ${{ inputs.target }} -- -D warnings
+
+      - name: Run Tests
+        if: inputs.run-tests
+        run: cargo test --verbose --target ${{ inputs.target }}
+
+      - name: Cargo Build Release
+        if: inputs.run-release-build
+        run: cargo build --release --target ${{ inputs.target }}
+
+  notify:
+    name: Notify Telegram
+    needs: [test]
+    if: always() && inputs.notify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram Notification
+        uses: tuquet/bot@main
+        with:
+          bot-token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          chat-id: ${{ secrets.TELEGRAM_CHAT_ID }}
+          status: ${{ needs.test.result }}
