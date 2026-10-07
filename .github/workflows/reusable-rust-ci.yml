@@ -37,12 +37,14 @@ on:
       TELEGRAM_BOT_TOKEN:
         required: false
       TELEGRAM_CHAT_ID:
-        required: false
+permissions:
+  contents: read
 
 jobs:
   test:
     name: Test & Lint (${{ inputs.os }})
     runs-on: ${{ inputs.os }}
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -78,6 +80,7 @@ jobs:
     needs: [test]
     if: always() && inputs.notify
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Send Telegram Notification
         uses: tuquet/bot@main
