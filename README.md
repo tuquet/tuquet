@@ -6,7 +6,7 @@
         &nbsp;&bull;&nbsp;
         <a href="https://tuquet.github.io/projects">Products &amp; SaaS</a>
         &nbsp;&bull;&nbsp;
-        <a href="https://tuquet.github.io/software">Software &amp; Tools</a>
+        <a href="https://tuquet.github.io/docs">Documentation &amp; Software</a>
         &nbsp;&bull;&nbsp;
         <a href="https://tuquet.github.io/posts">Engineering Blog</a>
         &nbsp;&bull;&nbsp;
