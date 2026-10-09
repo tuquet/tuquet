@@ -6,7 +6,7 @@
         &nbsp;&bull;&nbsp;
         <a href="https://tuquet.com/projects">Products &amp; SaaS</a>
         &nbsp;&bull;&nbsp;
-        <a href="https://tuquet.com/docs">Documentation &amp; Software</a>
+        <a href="https://specter.tuquet.com">Documentation &amp; Software</a>
         &nbsp;&bull;&nbsp;
         <a href="https://tuquet.com/posts">Engineering Blog</a>
         &nbsp;&bull;&nbsp;
