@@ -6,7 +6,7 @@
         &nbsp;&bull;&nbsp;
         <a href="https://tuquet.com/posts">Engineering Blog</a>
         &nbsp;&bull;&nbsp;
-        <a href="https://specter.tuquet.com">Documentation (Specter)</a>
+        <a href="https://docs.tuquet.com">Documentation (Specter)</a>
         &nbsp;&bull;&nbsp;
         <a href="https://storybook.tuquet.com">Component Library</a>
         &nbsp;&bull;&nbsp;
