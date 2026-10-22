@@ -10,7 +10,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": ["$rustc"],
+      "problemMatcher": [],
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -28,7 +28,7 @@
         "kind": "test",
         "isDefault": true
       },
-      "problemMatcher": ["$rustc"],
+      "problemMatcher": [],
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -40,6 +40,7 @@
       "detail": "Khởi động local Supabase stack (PostgreSQL, Auth, Storage, Edge Runtime).",
       "type": "shell",
       "command": "supabase start",
+      "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}/cloud"
       },
@@ -54,6 +55,7 @@
       "detail": "Dừng toàn bộ container Supabase local đang chạy.",
       "type": "shell",
       "command": "supabase stop",
+      "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}/cloud"
       },
@@ -68,6 +70,7 @@
       "detail": "Reset database local và migrate lại toàn bộ schema từ đầu.",
       "type": "shell",
       "command": "supabase db reset",
+      "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}/cloud"
       },
@@ -82,6 +85,7 @@
       "detail": "Khởi động Vite/Nuxt dev server cho ứng dụng Admin.",
       "type": "shell",
       "command": "pnpm dev",
+      "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}/admin"
       },
@@ -97,6 +101,7 @@
       "detail": "Khởi động VitePress dev server cho cổng tài liệu docs.tuquet.com.",
       "type": "shell",
       "command": "pnpm dev",
+      "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}/docs"
       },
@@ -112,6 +117,7 @@
       "detail": "Đồng bộ và khởi tạo đệ quy toàn bộ các git submodule trong workspace.",
       "type": "shell",
       "command": "git submodule update --init --recursive",
+      "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}"
       },
