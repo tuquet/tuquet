@@ -1,0 +1,72 @@
+{
+  "folders": [
+    {
+      "name": "⚡ Workspace Root",
+      "path": "."
+    },
+    {
+      "name": "💻 CLI Core (tq)",
+      "path": "cli"
+    },
+    {
+      "name": "☁️ Cloud Control Plane",
+      "path": "cloud"
+    },
+    {
+      "name": "🖥️ Admin Desktop & Web",
+      "path": "admin"
+    },
+    {
+      "name": "🌐 Browser Runtime",
+      "path": "browser"
+    },
+    {
+      "name": "⚙️ Worker Engine",
+      "path": "worker"
+    },
+    {
+      "name": "📖 Documentation Hub",
+      "path": "docs"
+    },
+    {
+      "name": "🎨 UI Component Library",
+      "path": "lib"
+    },
+    {
+      "name": "🧠 AI Skills",
+      "path": "skills"
+    },
+    {
+      "name": "🤖 Telegram ChatOps",
+      "path": "bot"
+    },
+    {
+      "name": "📦 Scoop Bucket",
+      "path": "scoop-bucket"
+    },
+    {
+      "name": "🚀 Landing Page",
+      "path": "tuquet.com"
+    },
+    {
+      "name": "🗺️ Yak Shaving Map",
+      "path": "yak-map"
+    }
+  ],
+  "settings": {
+    "git.autorefresh": true,
+    "git.autoStash": true,
+    "typescript.tsdk": "admin/node_modules/typescript/lib",
+    "search.exclude": {
+      "**/target": true,
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.git": true
+    },
+    "files.watcherExclude": {
+      "**/target/**": true,
+      "**/node_modules/**": true,
+      "**/dist/**": true
+    }
+  }
+}
