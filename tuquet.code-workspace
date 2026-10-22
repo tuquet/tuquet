@@ -52,7 +52,6 @@
   "settings": {
     "git.autorefresh": true,
     "git.autoStash": true,
-    "typescript.tsdk": "admin/node_modules/typescript/lib",
     "search.exclude": {
       "**/target": true,
       "**/node_modules": true,
