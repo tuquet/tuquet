@@ -9,6 +9,7 @@ desktop.ini
 scratch/
 .idea/
 .cache/
+node_modules/
 
 # Sensitive Environment Configurations (Protected Vault)
 *.local.env
