@@ -13,9 +13,6 @@
 [submodule "admin"]
 	path = admin
 	url = https://github.com/tuquet/admin.git
-[submodule "faker"]
-	path = faker
-	url = https://github.com/tuquet/faker.git
 [submodule "docs"]
 	path = docs
 	url = https://github.com/tuquet/docs.git
@@ -34,6 +31,3 @@
 [submodule "yak-map"]
 	path = yak-map
 	url = https://github.com/tuquet/yak-map.git
-[submodule "scoop-bucket"]
-	path = scoop-bucket
-	url = https://github.com/tuquet/scoop-bucket.git

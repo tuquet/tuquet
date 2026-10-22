@@ -1,4 +1,22 @@
+# Operating System Files
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Temporary & Cache Directories
+*.log
+*.tmp
+scratch/
+.idea/
+.cache/
+
+# Sensitive Environment Configurations (Protected Vault)
+*.local.env
+.env.local
+.env
+
 # Antigravity agent skills
 .agents/
+
+# Standalone Excavator Distribution Bucket (Automated CI/CD)
+scoop-bucket/
