@@ -272,10 +272,11 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 - [x] RPC (device-authenticated qua `device_token` SHA-256): `set_secret`/`list_secrets`/`fetch_secrets`/`rotate_secret_dek` (+ wrapper `public.*`); RLS deny-by-default + revoke anon/authenticated trên bảng.
 - [x] CLI `tq secret push/pull/remote` — `fetch_secrets` trả value cho device hợp lệ.
 - [x] **Đã verify device-portable**: xoá local store → `tq secret pull` → secrets trở lại → `tq automation run` chạy 9 bước (không nhập lại credential).
-- [ ] Mã hoá `.identity.json` + `tq auth login` sinh **device keypair** (bọc DEK per-device) — **hardening v2**.
-- [ ] Rotate mật khẩu HRMS.
+- [x] **Hardening v2 ✅** — `tq secret init` sinh **device keypair X25519**; DEK **sealed per-device** (`crypto_box_seal`); value **mã hoá client-side** (XChaCha20-Poly1305) → server KHÔNG nhận plaintext; **`.identity.json` mã hoá at-rest**; `tq secret rotate`.
+- [ ] **v3** — key trong OS keyring/TPM + audit trail truy cập secret.
+- [ ] **Rotate mật khẩu HRMS** — cần user đổi tại CMC Global (không tự đổi được từ VPS); sau đó `tq secret set hrms_password <mới>` + `tq secret push` trên máy đã enroll.
 
-**Design as-built khác plan gốc (§5.2):** DEK **giữ ở server**; device hợp lệ nhận **value đã giải mã** qua TLS (không nhận DEK). Đơn giản hơn per-device key wrapping mà vẫn đạt portability. **Per-device key wrapping (X25519 sealed box) = hardening v2** — revoke device mạnh hơn (không cần rotate DEK).
+**Design as-built (cập nhật v2 — khớp plan gốc §5.2):** DEK bọc KEK ở server; **DEK được seal (X25519 `crypto_box_seal`) tới từng device**; device mở bằng private key; **value mã hoá client-side** (XChaCha20-Poly1305) nên **server không bao giờ nhận plaintext**. Đã verify tương thích crypto Rust ↔ pgsodium **2 chiều** (lưu ý: pgsodium chỉ grant `crypto_box_seal*` cho role `postgres`, nonce seal = `BLAKE2b-192(epk‖pk)`, layout `epk‖ct‖tag`; `encode(...,'base64')` của Postgres chèn newline → plugin strip).
 
 **Verify:** `graph_data`/payload/log không chứa password/JWT ✅; máy mới `tq secret pull` chạy được job ✅; token sai bị từ chối ✅.
 
