@@ -11,7 +11,7 @@
 	path = cloud
 	url = https://github.com/tuquet/cloud.git
 [submodule "admin"]
-	path = admin
+	path = console
 	url = https://github.com/tuquet/admin.git
 [submodule "docs"]
 	path = docs
