@@ -110,6 +110,7 @@ Một profile = một danh tính phần cứng **deterministic** + sandbox + sna
 | 6 | Submit | **Dry-run trước**, bật submit sau khi owner duyệt |
 | 7 | `tools/hrms` | **Viết lại** adapter từ snippet + mock test |
 | 8 | Target | Tenant admin `e0f30395-…`, workstation `HNDW-NDTU6`, profile `hrms-cmc` |
+| 9 | Dispatch queue→worker | **(a) Worker claim trực tiếp Supabase** — vòng poll `rpc/claim_next_job` trong worker Rust (không thêm service; outbound-only qua NAT) |
 
 ## 6. Phạm vi
 
@@ -149,9 +150,11 @@ Một profile = một danh tính phần cứng **deterministic** + sandbox + sna
 **Verify:** `tq automation inspect hrms-timesheet-review` pass; chạy local với profile `hrms-cmc`; dry-run không mutate; submit tắt được bằng policy.
 
 ### Phase 3 — Workstation browser & worker
-- [ ] **Xây cầu nối queue → worker (CHƯA CÓ — việc mới, bắt buộc):** chọn 1 trong 2 hướng
-  - **(a) Claim trong worker (Rust):** vòng poll gọi REST `rpc/claim_next_job` → `engine.execute_job` → ghi `automation.execution_logs` + cập nhật `automation.jobs.status/result_summary`.
-  - **(b) Control-plane service:** poll `automation.jobs` rồi đẩy `ControlMessage::DispatchJob` qua WS (protocol phía worker **đã có sẵn**) và nhận `JobStarted/JobLog/JobFinished`.
+- [ ] **Xây cầu nối queue → worker — hướng (a) ĐÃ CHỐT (CHƯA CÓ, việc mới, bắt buộc):**
+  - Vòng claim trong daemon (`worker/src/commands/worker.rs`): mỗi N giây gọi REST `POST {cloud_url}/rest/v1/rpc/claim_next_job` với `{ p_worker_id, p_batch_size }` (device token + apikey).
+  - Khi claim được: dựng `Job` từ `automation.jobs.parameters` + fetch `automation.workflows.graph_data` → `engine.execute_job`.
+  - Stream log → `automation.execution_logs`; kết thúc → cập nhật `automation.jobs.status/result_summary/ended_at` (RPC hoặc REST PATCH).
+  - Tôn trọng `idempotency_key` + `reap_stale_jobs` (không claim lại job chết); heartbeat cập nhật `workers.devices.active_jobs`.
 - [ ] Tài liệu setup workstation bằng `tq auth login` + profile antidetect.
 - [ ] Cài `tq` + chạy worker daemon **fleet mode** (`tq worker start --cloud`).
 - [ ] Vòng đời profile trong job: acquire lease → unpack → execute → pack delta → release.
@@ -266,5 +269,5 @@ tq worker logs -f
 5. Đồng bộ workflow cloud (`a27093ce-…`) về máy để chạy local (CLI đọc SQLite local).
 6. **Profile `hrms-cmc`: dùng proxy hay không?** (HRMS nội bộ CMC — nếu IP công ty ổn định có thể không cần proxy).
 7. **`browsers.profiles.id` cloud của `hrms-cmc`** — xác nhận sau khi tạo (để điền `--cloud-profile`).
-8. **Hướng dispatch queue→worker (blocker P0):** chọn (a) worker claim trực tiếp `automation.claim_next_job`, hay (b) dựng control-plane service đẩy `DispatchJob` qua WS. Hiện **cả hai đều chưa tồn tại**.
+8. ~~**Hướng dispatch queue→worker (blocker P0)**~~ — **RESOLVED: (a)** worker claim trực tiếp `automation.claim_next_job` (xem Phase 3).
 9. **Cài đặt & chạy worker trên máy nào?** VPS này chưa có `tq`; thiết bị enroll `HNDW-NDTU6` là máy Windows.
