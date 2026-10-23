@@ -13,8 +13,8 @@
       "path": "cloud"
     },
     {
-      "name": "🖥️ Admin Desktop & Web",
-      "path": "admin"
+      "name": "🖥️ Console Desktop & Web",
+      "path": "console"
     },
     {
       "name": "🌐 Browser Runtime",
