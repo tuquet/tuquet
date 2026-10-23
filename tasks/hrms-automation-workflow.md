@@ -24,6 +24,50 @@ Cloud Cron must not run the HRMS Node CLI directly and must not depend on a nati
 - `tq browser`: isolated browser profiles, cookies, local storage and CDP
 - Supabase job API and Cloud Cron infrastructure
 
+## Source of truth and audit references
+
+Use these files when you define, validate, or change the HRMS workflow. Do not infer a runtime parameter from a locale label alone.
+
+### Tuquet workflow contract
+
+| Concern | Reference | Use it for |
+| --- | --- | --- |
+| Workflow model | [cli/src/core/models/workflow.rs](../cli/src/core/models/workflow.rs) | Rust serialization shape for workflows, nodes, edges, settings, and tables. |
+| Workflow schema | [cli/schema/workflow.schema.json](../cli/schema/workflow.schema.json) | JSON Schema for persisted Tuquet and Automa-compatible workflow graphs. |
+| Structural validation | [cli/src/core/engine/workflow_resolver/validator.rs](../cli/src/core/engine/workflow_resolver/validator.rs) | Runtime acceptance rules for `nodes` and `drawflow`. |
+| Compatibility normalization | [cli/src/core/engine/sanitizer.rs](../cli/src/core/engine/sanitizer.rs) | Legacy graph conversion and default edge handles. |
+| Workflow fixture | [cli/fixtures/google_search.workflow.json](../cli/fixtures/google_search.workflow.json) | A working example of the persisted graph format. |
+| Job request types | [cli/src/api/handlers/jobs/types.rs](../cli/src/api/handlers/jobs/types.rs) | `SubmitJobPayload`, runtime options, variables, and browser selection. |
+| Job endpoint | [cli/src/api/handlers/jobs/crud.rs](../cli/src/api/handlers/jobs/crud.rs) | Job creation behavior and response contract. |
+| Browser executor | [worker/src/drivers/cdp/workflow.rs](../worker/src/drivers/cdp/workflow.rs) | Supported block labels, interpolation, branching, loops, cancellation, and error handling. |
+| Execution output | [worker/src/protocol/schema.rs](../worker/src/protocol/schema.rs) | Worker result, variables, tables, logs, and artifacts. |
+
+### Automa parameter audit
+
+| Concern | Reference | Use it for |
+| --- | --- | --- |
+| Block registry and defaults | [automa/src/utils/shared.js](../automa/src/utils/shared.js) | Active block labels, UI defaults, block categories, input/output counts, and persisted data keys. |
+| Workflow export shape | [automa/src/utils/workflowData.js](../automa/src/utils/workflowData.js) | Exported workflow envelope, settings, table, global data, and included workflows. |
+| Legacy conversion | [automa/src/utils/convertWorkflowData.js](../automa/src/utils/convertWorkflowData.js) | Conversion from legacy Drawflow nodes and connections. |
+| Workflow runtime | [automa/src/workflowEngine/WorkflowEngine.js](../automa/src/workflowEngine/WorkflowEngine.js) | Trigger resolution, connection lookup, table access, and workflow execution state. |
+| Block dispatch | [automa/src/workflowEngine/WorkflowWorker.js](../automa/src/workflowEngine/WorkflowWorker.js) | Block data consumption, loops, fallback paths, breakpoints, and runtime-only fields. |
+| Workflow block handlers | [automa/src/workflowEngine/blocksHandler](../automa/src/workflowEngine/blocksHandler) | Background block parameters such as webhook, conditions, loops, JavaScript, and workflow control. |
+| Browser content handlers | [automa/src/content/blocksHandler](../automa/src/content/blocksHandler) | Selector, form, extraction, event, scroll, upload, download, and DOM interaction parameters. |
+| Selector resolution | [automa/src/content/handleSelector.js](../automa/src/content/handleSelector.js) | `selector`, `findBy`, iframe/frame selector, multiple matches, and wait behavior. |
+| String interpolation | [automa/src/workflowEngine/templating/renderString.js](../automa/src/workflowEngine/templating/renderString.js) | `variables`, `table`, `loopData`, `globalData`, `secrets`, and expression replacement. |
+| Template replacement | [automa/src/workflowEngine/templating/mustacheReplacer.js](../automa/src/workflowEngine/templating/mustacheReplacer.js) | Mustache and runtime value substitution rules. |
+| Condition evaluation | [automa/src/workflowEngine/utils/testConditions.js](../automa/src/workflowEngine/utils/testConditions.js) | Comparison operators and condition value semantics. |
+| UI labels only | [automa/src/locales/en/blocks.json](../automa/src/locales/en/blocks.json) | Display names, help text, labels, and option captions. Do not treat it as the persisted data schema. |
+
+### Audit rules
+
+1. Treat the Automa handlers as the behavioral source of truth. A field is part of the runtime contract only when a handler reads or writes it.
+2. Use `shared.js` to identify active blocks and defaults, but do not make defaults mandatory in the workflow schema.
+3. Keep block-specific data optional and allow extension fields for `block-package`, custom blocks, and forward compatibility.
+4. Keep handler-only fields such as `activeTabId`, `refData`, `$frameRect`, `nextBlockId`, and `prevBlockData` out of persisted workflow input and output contracts.
+5. Treat interpolation as runtime behavior for string fields. Do not add secrets, JWTs, passwords, or authorization headers to workflow variables.
+6. When a schema change affects a block parameter, compare the change against the handler directory, `shared.js`, the fixture, and the CLI schema contract test.
+
 ## Scope
 
 ### In scope
