@@ -81,6 +81,21 @@
       }
     },
     {
+      "label": "[cloud] supabase db reset (linked)",
+      "detail": "Reset remote Supabase linked database via Gateway proxy và migrate toàn bộ schema/plugins.",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/cloud/scripts/reset_db.ps1 -Target linked",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}/cloud"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
       "label": "[console] pnpm dev",
       "detail": "Khởi động Vite dev server cho ứng dụng Tuquet Console / Workstation.",
       "type": "shell",
