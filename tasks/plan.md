@@ -1,6 +1,6 @@
 # Kế hoạch: HRMS Automation Workflow trên Tuquet
 
-> Nguồn: [`hrms-automation-workflow.md`](./hrms-automation-workflow.md) — task gốc đã được audit & chốt thiết kế.
+> Nguồn: [`hrms-automation-workflow.md`](./hrms-automation-workflow.md) — task gốc đã audit & chốt thiết kế.
 > Trạng thái tổng: **Design locked / Ready for implementation** (v0 workflow đã tạo trên cloud).
 
 ## 1. Trạng thái
@@ -9,9 +9,9 @@
 | --- | --- |
 | Độ ưu tiên | P1 (tự động hoá nghiệp vụ HRMS, chạy trên workstation đã enroll) |
 | Category | feature / automation |
-| Effort dự kiến | 6 phase, ~5–8 ngày công |
-| Depends on | `tq auth login` (đã có) · tenant admin `e0f30395-…` · workstation `HNDW-NDTU6` |
-| Risk | Trung bình–cao (ghi dữ liệu thật lên HRMS; phụ thuộc session/browser profile) |
+| Effort dự kiến | 6 phase, ~6–9 ngày công |
+| Depends on | `tq auth login` (đã có) · tenant admin `e0f30395-…` · workstation `HNDW-NDTU6` · **engine antidetect + profile `hrms-cmc`** |
+| Risk | Trung bình–cao (ghi dữ liệu thật lên HRMS; phụ thuộc session antidetect + lease) |
 | Gate an toàn | Dry-run mặc định; **submit chỉ bật sau khi owner duyệt** |
 
 ## 2. Vì sao
@@ -27,8 +27,9 @@ Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thi�
 | Job queue + claim | `cloud/supabase/plugins/automation/install.sql` | `automation.jobs`, `claim_next_job` (SKIP LOCKED), `reap_stale_jobs`, `notify_job_queued` |
 | Schedules | `automation.schedules` | có `cron_expression` + `timezone` + `next_run_at`; **nhưng chưa có gì materialize** |
 | Worker enrollment | `cloud/supabase/plugins/workers/install.sql` | `workers.devices`, `enroll_device`, `heartbeat` |
+| **Antidetect browser** | `cloud/supabase/plugins/browsers/install.sql` | `browsers.profiles`, `browsers.fingerprint_templates`, `browsers.releases`, `acquire/release_profile` |
 | Worker fleet transport | `worker/src/transport/ws_client.rs` | WS outbound tới control plane |
-| CLI subcommands | `tq auth login` · `tq worker start/status/logs` · `tq automation run/inspect` · `tq browser profile *` | tất cả tồn tại |
+| CLI subcommands | `tq auth login` · `tq worker start/status/logs` · `tq automation run/inspect` · `tq browser *` | tất cả tồn tại |
 | Block engine | `worker/src/drivers/cdp/workflow.rs` | label: `trigger, delay, new-tab, javascript-code, webhook, conditions/while-loop, loop-data, insert-data, get-text, attribute-value, …`; interpolate `{{variables.x}}`; edge handle `{id}-output-{branch}` |
 | Payload contract | `cli/src/api/handlers/jobs/types.rs` | `SubmitJobPayload`/`SubmitJobOptions` (local) |
 | Automa source | `/root/automa/` (checkout riêng) | 6/6 file audit spot-check tồn tại |
@@ -44,7 +45,57 @@ Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thi�
 3. Không có `pg_cron`/edge fn materialize schedule → phải thêm.
 4. Lệnh verify `tq automation run <id>` **sai** (positional là đường dẫn file).
 
-## 4. Quyết định đã chốt
+## 4. Entity: Browser anti-detect (bổ sung — trọng tâm)
+
+HRMS yêu cầu một **danh tính trình duyệt ổn định, tách biệt và chống phát hiện** để giữ session đăng nhập bền vững. Đây là entity hạng nhất trong kế hoạch, không phải chi tiết phụ.
+
+### 4.1 Engine (fingerprint-chromium)
+
+- Engine nền: **`adryfish/fingerprint-chromium`** (`browser_type='ungoogled-chromium'`, `engine_version='148.0.7778.215'`).
+- Fingerprint áp ở tầng **C++ engine** (Canvas 2D noise, WebGL params, AudioContext DSP, font metrics, `Math.random` PRNG) — **không** dùng extension shim JS (dễ bị `Function.toString`/`getOwnPropertyDescriptor` phát hiện).
+- Catalog release tải từ `browsers.releases` (Supabase / GitHub), verify SHA-256 → provision qua `tq browser runtime`.
+
+### 4.2 Profile entity — `browsers.profiles`
+
+Một profile = một danh tính phần cứng **deterministic** + sandbox + snapshot session:
+
+| Nhóm | Trường | Ý nghĩa |
+| --- | --- | --- |
+| Định danh | `id`, `tenant_id`, `name`, `group_name`, `tags` | `hrms-cmc` thuộc tenant admin |
+| Fingerprint lõi | **`fingerprint_seed`** (BIGINT) | Một seed duy nhất, tất định, chi phối toàn bộ Canvas/WebGL/Audio/font/PRNG |
+| Nền tảng | `os_platform`, `os_version`, `browser_brand`, `cpu_cores`, `ram_gb` | spoof phần cứng (mặc định windows/10.0.0/Chrome/8/16) |
+| Hiển thị | `screen_width`, `screen_height`, `device_pixel_ratio` | hình học + HiDPI scale |
+| Ngôn ngữ & headers | `timezone`, `locale`, `accept_languages`, `user_agent`, `sec_ch_ua`, `sec_ch_ua_platform`, `sec_ch_ua_mobile` | khớp `Asia/Ho_Chi_Minh` + `vi-VN` như cổng HRMS |
+| Mạng | `proxy_id`, `custom_proxy`, `change_ip_url`, `auto_timezone`, `auto_locale`, **`webrtc_mode='proxy_shielded'`** | chống rò IP qua WebRTC STUN |
+| Snapshot phiên | `storage_path`, `storage_size_bytes`, `storage_hash`, `cookies_count`, `last_synced_at` | đồng bộ `localStorage`/cookie/JWT |
+| **Lease** | `status` (idle/running/syncing/error), **`locked_by_device_id`**, `locked_at`, `last_launched_at` | khóa độc quyền 1 thiết bị |
+| Khởi động | `startup_flags`, `extensions`, `metadata` | stealth default = `[]` |
+
+- Preset fingerprint: `browsers.fingerprint_templates` (`is_system` hoặc theo tenant) → tạo profile 1-click.
+- Sandbox local: `~/.tq/browser/profiles/<profile_id>/` gồm `profile.json` (seed phần cứng), `Default/` (Cookies, Local Storage, IndexedDB, Network), `extensions/`.
+
+### 4.3 Lease độc quyền (bắt buộc cho HRMS)
+
+- RPC: `browsers.acquire_profile` / `browsers.release_profile` / `browsers.reap_stale_profile_locks` (public wrapper: `acquire_browser_profile`, `release_browser_profile`).
+- CLI: `tq browser profile cloud acquire <id>` / `release <id>`.
+- **Bảo đảm chỉ MỘT workstation dùng `hrms-cmc` tại một thời điểm** → không có hai phiên HRMS song song (nguồn gốc của submit trùng / session bị đá).
+- Stale lock được dọn tự động (`reap_stale_profile_locks`, default 10 phút) — khớp với `reap_stale_jobs`.
+
+### 4.4 Đồng bộ snapshot phiên (session reuse)
+
+- Pack `tq browser profile pack <id>` → `.tar.zst` (lọc cache, < ~15 MB); `unpack` khôi phục.
+- `push` / `pull` qua Supabase Storage bucket `browser-profiles` → **resume session trên máy/worker khác mà không cần login lại**.
+- `tq automation run --cloud-profile <id>` tự động: **acquire lease → unpack snapshot → verify proxy → execute → pack delta → release lease**.
+- `tq browser profile verify` chạy CreepJS để xác nhận fingerprint không bị lộ (trước khi tin tưởng profile `hrms-cmc`).
+
+### 4.5 Áp vào HRMS
+
+- Tạo profile **`hrms-cmc`** (tenant admin): `os=windows`, `timezone=Asia/Ho_Chi_Minh`, `locale=vi-VN`, `accept_languages=vi-VN,vi,en-US,en`, `webrtc_mode=proxy_shielded`; **login tay 1 lần** để lưu cookie/JWT vào snapshot.
+- Workflow dùng profile qua `browserId: hrms-cmc` (job `options`) hoặc `--cloud-profile`.
+- Liên kết local ↔ cloud: `profile.json.cloud_id` trỏ tới `browsers.profiles.id`.
+- **Bảo mật:** snapshot chứa cookie/JWT → **không commit, không log, không đưa vào payload job** (nhất quán quyết định #4).
+
+## 5. Quyết định đã chốt
 
 | # | Hạng mục | Chốt |
 | --- | --- | --- |
@@ -57,47 +108,57 @@ Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thi�
 | 7 | `tools/hrms` | **Viết lại** adapter từ snippet + mock test |
 | 8 | Target | Tenant admin `e0f30395-…`, workstation `HNDW-NDTU6`, profile `hrms-cmc` |
 
-## 5. Phạm vi
+## 6. Phạm vi
 
-**Trong phạm vi:** contract I/O của workflow · workflow template tái sử dụng · adapter HRMS fetch-based + mock test · chạy trên workstation fleet · enqueue + scheduler trên cloud · dry-run/submit/idempotency/audit · lưu status + logs · zero-secret.
+**Trong phạm vi:** contract I/O của workflow · workflow template tái sử dụng · adapter HRMS fetch-based + mock test · **engine antidetect + profile `hrms-cmc` + lease + snapshot sync** · chạy trên workstation fleet · enqueue + scheduler trên cloud · dry-run/submit/idempotency/audit · lưu status + logs · zero-secret.
 
 **Ngoài phạm vi:** Chromium trong scheduler · thay `tq auth login` · engine browser mới · đa nhà cung cấp HRMS · submit trước khi dry-run được xác minh · lưu password plaintext.
 
-## 6. Lộ trình
+## 7. Lộ trình
+
+### Phase 0 — Provision antidetect browser (mới)
+- [ ] Provision engine `fingerprint-chromium v148` từ `browsers.releases` (`tq browser runtime`), verify SHA-256.
+- [ ] Tạo profile **`hrms-cmc`** với fingerprint VN (`timezone=Asia/Ho_Chi_Minh`, `locale=vi-VN`, windows, webrtc shield).
+- [ ] **Login tay 1 lần** vào HRMS → lưu cookie/JWT vào snapshot profile.
+- [ ] `tq browser profile verify` (CreepJS) — fingerprint không bị lộ.
+- [ ] Pack + `push` snapshot lên bucket `browser-profiles`; liên kết `cloud_id`.
+- [ ] Kiểm tra lease: `acquire`/`release` + `reap_stale_profile_locks`.
+
+**Verify:** `tq browser profile inspect hrms-cmc` hiển thị đầy đủ hardware/seed; CreepJS pass; `tq browser profile cloud acquire hrms-cmc` lấy được lease và `release` trả lại; session HRMS còn sống sau unpack trên máy khác.
 
 ### Phase 1 — Adapter HRMS (domain contract)
 - [ ] Model typed cho request/response HRMS API.
 - [ ] Viết lại `tools/hrms/src/api.js` thành adapter **fetch-based**, worker-compatible (không dùng fs).
-- [ ] Token inject qua auth provider; không đọc `~/.hrms/config.json`.
+- [ ] Token inject qua auth provider (đọc từ profile qua CDP); không đọc `~/.hrms/config.json`.
 - [ ] Typed errors: auth / rate-limit / invalid-period / API-failure / duplicate.
 - [ ] Mock test: employee detail, period, timesheet, submit.
 
-**Verify:** adapter chạy được ở Node + runtime worker; không log password/JWT; lỗi API kèm status + message an toàn; mock test pass.
+**Verify:** adapter chạy ở Node + runtime worker; không log password/JWT; lỗi API kèm status + message an toàn; mock test pass.
 
 ### Phase 2 — Workflow Automation
-- [ ] Workflow `hrms-timesheet-review` (đã có v0 draft trên cloud — tinh chỉnh).
+- [ ] Workflow `hrms-timesheet-review` (v0 draft đã có — tinh chỉnh; bổ sung bước acquire lease đầu workflow).
 - [ ] Validate biến đầu vào (`period`, `mode`, `minLateMinutes`, `maxLateMinutes`, `excludeDates`).
-- [ ] Session check → lấy period + timesheet → phân tích `absent_time` → filter existing/excluded.
+- [ ] Session check (qua profile `hrms-cmc`) → lấy period + timesheet → phân tích `absent_time` → filter existing/excluded.
 - [ ] Guard current workday (bỏ `date >= today`).
 - [ ] Nhánh `dry-run` + nhánh `submit` (policy-gated).
 - [ ] Timeout + cancellation.
 
-**Verify:** `tq automation inspect hrms-timesheet-review` pass; chạy local với profile test; dry-run không mutate; submit tắt được bằng policy.
+**Verify:** `tq automation inspect hrms-timesheet-review` pass; chạy local với profile `hrms-cmc`; dry-run không mutate; submit tắt được bằng policy.
 
 ### Phase 3 — Workstation browser & worker
-- [ ] Tài liệu setup workstation bằng `tq auth login`.
-- [ ] Tạo/import profile `hrms-cmc` + **login tay 1 lần**.
+- [ ] Tài liệu setup workstation bằng `tq auth login` + profile antidetect.
 - [ ] Worker chạy **fleet mode** (`tq worker start --cloud`) claim qua `claim_next_job`.
+- [ ] Vòng đời profile trong job: acquire lease → unpack → execute → pack delta → release.
 - [ ] Stream log → `automation.execution_logs`; result → `job.result_summary`.
 
-**Verify:** workstation nhận job không cần tương tác; chạy đúng profile; restart worker không tạo đơn trùng; cancel dừng an toàn.
+**Verify:** workstation nhận job không cần tương tác; chạy đúng profile `hrms-cmc`; restart worker không tạo đơn trùng; cancel dừng an toàn; lease luôn được trả (không kẹt lock).
 
 ### Phase 4 — Auth & secret
 - [ ] Tách Cloud auth khỏi HRMS auth.
-- [ ] HRMS auth = browser profile đã login (không lưu password).
+- [ ] HRMS auth = profile antidetect đã login (không lưu password).
 - [ ] JWT đọc từ profile (in-memory) → truyền cho adapter.
-- [ ] Headless re-login = recovery path thủ công.
-- [ ] Không đưa password/JWT/Authorization vào payload/log/audit.
+- [ ] Headless re-login = recovery path thủ công (chỉ khi snapshot mất session).
+- [ ] Không đưa password/JWT/cookie vào payload/log/audit.
 - [ ] Xử lý token hết hạn (fail an toàn, thông báo rõ).
 
 **Verify:** payload job không chứa password/JWT; session hết hạn → fail an toàn; re-auth được ghi lại không lộ token.
@@ -122,58 +183,80 @@ Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thi�
 
 **Verify:** mỗi lần chạy có job id + idempotency key; operator xem được plan trước khi bật submit; không trùng đơn cho cùng employee/date/type.
 
-## 7. First slice (làm trước, không phụ thuộc Phase 5)
+## 8. First slice (làm trước, không phụ thuộc Phase 5)
 
-1. Workstation `tq auth login` đã chạy.
-2. Thêm `hrms-timesheet-review` ở chế độ **dry-run**.
-3. Chạy **local** trên workstation + profile `hrms-cmc`.
-4. Trả plan có cấu trúc (eligible/skipped).
-5. **Chưa** submit.
-6. **Chưa** thêm Cloud scheduler cho tới khi job local chạy được.
+1. **Phase 0**: engine + profile `hrms-cmc` + login tay + verify CreepJS + lease.
+2. Workstation `tq auth login` đã chạy.
+3. Thêm `hrms-timesheet-review` ở chế độ **dry-run**.
+4. Chạy **local** trên workstation + profile `hrms-cmc`.
+5. Trả plan có cấu trúc (eligible/skipped).
+6. **Chưa** submit. **Chưa** thêm Cloud scheduler cho tới khi job local chạy được.
 
-## 8. Lệnh cần dùng
+## 9. Lệnh cần dùng
 
 ```powershell
+# Phase 0 — antidetect browser
+tq browser runtime                       # provision engine fingerprint-chromium
+tq browser profile create hrms-cmc --os windows --timezone Asia/Ho_Chi_Minh --locale vi-VN
+tq browser profile inspect hrms-cmc
+tq browser profile cloud acquire hrms-cmc
+tq browser profile cloud release hrms-cmc
+tq browser profile verify hrms-cmc       # CreepJS stealth check
+tq browser profile pack hrms-cmc
+tq browser profile push hrms-cmc         # snapshot -> bucket browser-profiles
+
+# Workstation
 tq auth login
-tq browser profile list
 tq worker status
+
+# Automation
 tq automation inspect hrms-timesheet-review
 # LƯU Ý: `run` nhận ĐƯỜNG DẪN FILE làm positional đầu, không phải id workflow.
-#         Xác nhận flag chạy workflow đã lưu theo id trước khi dùng.
 tq automation run <path>.workflow.json --headless --timeout 300
-tq worker start --cloud      # fleet mode
+tq automation run --cloud-profile hrms-cmc   # acquire lease -> unpack -> execute -> pack -> release
+
+# Cloud (sau Phase 5)
+tq worker start --cloud
 tq worker logs -f
 ```
 
-## 9. Done criteria
+## 10. Done criteria
 
-- Workflow chạy được end-to-end trên workstation đã enroll, dry-run không mutate HRMS.
+- Engine antidetect provisioned; profile `hrms-cmc` deterministic, CreepJS pass, session HRMS còn sống qua pack/pull.
+- Lease acquire/release hoạt động; không có hai phiên HRMS song song; không kẹt lock.
+- Workflow chạy end-to-end trên workstation đã enroll, dry-run không mutate HRMS.
 - Cron tạo job qua `automation.jobs`, không chạy browser/Node trong scheduler.
-- Zero secret trong payload/log/audit; idempotent trước mọi request mutate.
-- Có audit + alert; submit bật được/tắt được bằng policy.
+- Zero secret (password/JWT/cookie/profile) trong payload/log/audit/git.
+- Idempotent trước mọi request mutate; có audit + alert; submit bật/tắt bằng policy.
 - `cargo check`/`cargo test` sạch; không `cargo build --release` trên VPS.
 
-## 10. STOP conditions
+## 11. STOP conditions
 
 - Nếu thao tác HRMS cần DOM flow mà API không đủ → dừng, chốt lại Q1 (hybrid vs CDP).
 - Nếu schema change `automation.jobs` bị từ chối → không tự ý sửa; chờ duyệt.
-- Nếu session profile không tái sử dụng được → dừng, xin quyết định credential.
+- Nếu fingerprint `hrms-cmc` bị HRMS/anti-bot nghi ngờ (CreepJS fail, challenge lặp) → dừng, xem lại seed/proxy.
+- Nếu session snapshot không tái sử dụng được → dừng, xin quyết định credential.
 - Không `git push` / không trigger CI/CD trừ khi được yêu cầu (invariant #5).
 
-## 11. Rủi ro
+## 12. Rủi ro
 
 | Rủi ro | Mức | Giảm thiểu |
 | --- | --- | --- |
 | Ghi đơn trùng lên HRMS | Cao | idempotency key + check `Pending/Approved` + dry-run trước |
+| Hai phiên HRMS song song (đá session) | Cao | **lease `browsers.profiles`** + reap stale lock |
+| Session/JWT mất khi đổi máy | Trung bình | snapshot pack/push/pull (bucket `browser-profiles`) |
+| Fingerprint bị phát hiện | Trung bình | engine C++ fingerprint-chromium + CreepJS verify + webrtc shield |
 | JWT hết hạn giữa chừng | Trung bình | Detect expiry, fail an toàn, re-login thủ công |
 | Vỡ khi HRMS đổi API | Trung bình | Typed adapter + mock test; fail-fast |
 | Hiểu sai `absent_time` vs lateness | Trung bình | Chỉ dùng `absent_time` server |
 | Bật submit quá sớm | Cao | Policy gate + owner approval |
 
-## 12. Open items
+## 13. Open items
 
 1. Cột `idempotency_key` trên `automation.jobs` — **cần owner duyệt schema change**.
 2. Flag CLI chạy workflow đã lưu theo id — cần xác nhận.
 3. Mapping `reason_type` (mặc định `LOA_CORP_4`, có cần thêm?).
 4. Kênh alert "không có ngày đủ điều kiện".
 5. Đồng bộ workflow cloud (`a27093ce-…`) về máy để chạy local (CLI đọc SQLite local).
+6. **Profile `hrms-cmc`: dùng proxy hay không?** (HRMS nội bộ CMC — nếu IP công ty ổn định có thể không cần proxy).
+7. **`browsers.profiles.id` cloud của `hrms-cmc`** — xác nhận sau khi tạo (để điền `--cloud-profile`).
