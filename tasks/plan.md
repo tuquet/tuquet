@@ -256,7 +256,7 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 
 **Verify:** workstation nhận job không tương tác; restart không tạo đơn trùng; cancel an toàn; lease luôn trả.
 
-### Phase 4 — Secret Store (§5) — Tuquet-native, device-portable ✅ (4A + 4B shipped)
+### Phase 4 — Secret Store (§5) — Tuquet-native, device-portable ✅ (4A + 4B + UI shipped)
 
 **4A — Engine + local ✅**
 - [x] `resolve_expression` thêm nhánh `secrets.<name>`; `ExecutionState.secrets` + `set_secret()`.
@@ -273,6 +273,7 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 - [x] CLI `tq secret push/pull/remote` — `fetch_secrets` trả value cho device hợp lệ.
 - [x] **Đã verify device-portable**: xoá local store → `tq secret pull` → secrets trở lại → `tq automation run` chạy 9 bước (không nhập lại credential).
 - [x] **Hardening v2 ✅** — `tq secret init` sinh **device keypair X25519**; DEK **sealed per-device** (`crypto_box_seal`); value **mã hoá client-side** (XChaCha20-Poly1305) → server KHÔNG nhận plaintext; **`.identity.json` mã hoá at-rest**; `tq secret rotate`.
+- [x] **Workstation UI ✅** — console `apps/workstation` page **`SystemSecrets`** (`/system/secrets`) + CLI daemon API `/api/v1/secrets*`; permissions `secrets:credentials:read|manage` + `secrets:store:rotate` đã đăng ký vào `public.permissions`/`role_permissions`; term SSOT cập nhật (`term.json`, `terminology.md` §3.7 + lexicon + checklist #11).
 - [ ] **v3** — key trong OS keyring/TPM + audit trail truy cập secret.
 - [ ] **Rotate mật khẩu HRMS** — cần user đổi tại CMC Global (không tự đổi được từ VPS); sau đó `tq secret set hrms_password <mới>` + `tq secret push` trên máy đã enroll.
 
