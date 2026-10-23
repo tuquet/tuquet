@@ -12,7 +12,7 @@
 	url = https://github.com/tuquet/cloud.git
 [submodule "admin"]
 	path = console
-	url = https://github.com/tuquet/admin.git
+	url = https://github.com/tuquet/console.git
 [submodule "docs"]
 	path = docs
 	url = https://github.com/tuquet/docs.git
