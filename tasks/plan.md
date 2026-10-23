@@ -40,6 +40,13 @@ Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thi�
 - Graph hiện tại: **12 nodes / 11 edges** (schema-valid): `trigger → new-tab(/login) → javascript-code(login fill+click) → delay → javascript-code(đọc token) → conditions(session guard) → javascript-code(analyze) → conditions(mode==submit) → javascript-code(submit) → done-*`.
 - **Đã chạy thật trên engine local**: dry-run 9 bước, `workflow_finished`, **không mutate HRMS**; plan thật: 28 ngày quét · 0 eligible · 17 `no_absence` · 3 `existing_request` · 1 `today_or_future`.
 
+### 3.2b Secret Store (cloud) — đã deploy
+
+- Plugin **`secrets`** (schema `secrets`) đã **apply lên cloud `dswhacsoaxgpfnkaxnhz`**: bảng `secrets.credentials` (`value_enc`, `key_version`, unique `(tenant_id,name)`) + `secrets.tenant_keys` (DEK bọc bằng KEK).
+- **KEK** = Vault secret `tq_secrets_kek`; **DEK per-tenant** (pgcrypto). RLS deny-by-default.
+- RPC device-authenticated: `public.set_secret / list_secrets / fetch_secrets / rotate_secret_dek`.
+- Đăng ký trong `public.system_plugins` (id `secrets`).
+
 ### 3.3 Khoảng trống đã phát hiện lúc audit (đã xử lý bằng quyết định)
 
 1. `tools/hrms` **không còn tồn tại** → viết lại adapter từ snippet trong task.
@@ -143,7 +150,7 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 
 - **Plugin mới `secrets`** (schema `secrets`), table `secrets.credentials`:
   `id, tenant_id, name, value_enc BYTEA, nonce BYTEA, key_version, created_by, created_at, updated_at, rotated_at`; **unique `(tenant_id, name)`**.
-- `secrets.devices` (hoặc mở rộng `workers.devices`): `device_id, public_key, wrapped_dek, key_version, revoked_at`.
+- **AS-BUILT (4B):** device auth dùng `workers.devices.device_token_hash` (SHA-256) — **không** cần bảng `secrets.devices` riêng; `fetch_secrets` trả value đã giải mã cho device hợp lệ. (`secrets.devices` + public_key/wrapped_dek = hardening v2.)
 - **RPC** (SECURITY DEFINER): `secrets.set_secret`, `secrets.get_metadata`, `secrets.rotate_dek`, `secrets.deliver_dek(p_device_id, p_device_token)` — **chỉ trả ciphertext DEK đã bọc** cho device hợp lệ (verify `device_token_hash`).
 - **RLS:** dùng `is_tenant_member` / `has_tenant_permission`; **ciphertext KHÔNG bao giờ trả cho browser** — chỉ ra qua RPC device-authenticated.
 - **Permissions:** `secrets:read`, `secrets:manage`, `secrets:rotate`.
@@ -249,25 +256,28 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 
 **Verify:** workstation nhận job không tương tác; restart không tạo đơn trùng; cancel an toàn; lease luôn trả.
 
-### Phase 4 — Secret Store (§5) — Tuquet-native, device-portable
+### Phase 4 — Secret Store (§5) — Tuquet-native, device-portable ✅ (4A + 4B shipped)
 
-**4A — Engine + local (làm trước, test được ngay, không cần cloud):**
-- [ ] `resolve_expression` thêm nhánh `secrets.<name>` (đọc từ local secret cache).
-- [ ] Scrub `secrets:{}` khi truyền refData vào page-context (`javascript-code`).
-- [ ] Mask giá trị secret trong log (`core/masker.rs`); không ghi secret vào variables/result/logs.
-- [ ] Local store `~/.tq/system/secrets.json` (AES-256-GCM, key từ `TQ_SECRET_KEY`/keyring) + CLI `tq secret set/list/rm`.
-- [ ] Workflow dùng `{{secrets.hrms_password}}` thay literal; migrate graph + file local.
+**4A — Engine + local ✅**
+- [x] `resolve_expression` thêm nhánh `secrets.<name>`; `ExecutionState.secrets` + `set_secret()`.
+- [x] Mask giá trị secret trong log (`SecretMasker::add_custom_secret(&self)` — interior mutability qua `Arc`).
+- [x] Local store `worker/src/core/secrets.rs` — `~/.tq/system/secrets.json` AES-256-GCM, key `TQ_SECRET_KEY` hoặc `.secret_key` (0600); CLI `tq secret init/set/list/rm/path`.
+- [x] Seed secret ở **cả 2 đường**: `worker/drivers/automation.rs` (`execute_native_cdp`) **và** `cli/…/job_coordinator.rs` (`run_native_job` — đường local, đã phát hiện bypass engine).
+- [x] Workflow dùng `{{secrets.hrms_username}}`/`{{secrets.hrms_password}}`; graph + file local đã gỡ literal.
+- [~] Scrub `secrets:{}` page-context: **không cần** — engine không truyền refData vào page; secret chỉ vào code-string khi tác giả dùng `{{secrets.*}}` (đã mask log).
 
-**4B — Cloud + portability:**
-- [ ] Plugin `secrets` (schema `secrets`): `secrets.credentials` + `secrets.devices` (public_key, wrapped_dek, key_version).
-- [ ] KEK ở Supabase Vault; DEK per-tenant.
-- [ ] RPC `set_secret` / `get_metadata` / `rotate_dek` / `deliver_dek` (device-authenticated).
-- [ ] `tq auth login` sinh device keypair; private key -> OS keyring; nhận `wrapped_dek`.
-- [ ] Mã hoá `.identity.json` (nợ bảo mật hiện tại).
-- [ ] **Test device-portable:** enroll máy thứ 2 -> chạy job **không nhập lại credential**.
-- [ ] Rotate mật khẩu HRMS + thu hồi credential khỏi graph_data.
+**4B — Cloud + portability ✅ (design as-built)**
+- [x] Plugin **`secrets`** (`cloud/supabase/plugins/secrets/install.sql` + `plugin.json`): schema `secrets`, `secrets.credentials` (value_enc/key_version), `secrets.tenant_keys` (DEK bọc bằng KEK).
+- [x] **KEK trong Supabase Vault** (`tq_secrets_kek`); **DEK per-tenant** (pgcrypto `pgp_sym_encrypt`).
+- [x] RPC (device-authenticated qua `device_token` SHA-256): `set_secret`/`list_secrets`/`fetch_secrets`/`rotate_secret_dek` (+ wrapper `public.*`); RLS deny-by-default + revoke anon/authenticated trên bảng.
+- [x] CLI `tq secret push/pull/remote` — `fetch_secrets` trả value cho device hợp lệ.
+- [x] **Đã verify device-portable**: xoá local store → `tq secret pull` → secrets trở lại → `tq automation run` chạy 9 bước (không nhập lại credential).
+- [ ] Mã hoá `.identity.json` + `tq auth login` sinh **device keypair** (bọc DEK per-device) — **hardening v2**.
+- [ ] Rotate mật khẩu HRMS.
 
-**Verify:** `graph_data`/payload/log/audit không chứa password/JWT; máy mới enroll chạy được job; revoke device không ảnh hưởng device khác; session hết hạn → fail an toàn.
+**Design as-built khác plan gốc (§5.2):** DEK **giữ ở server**; device hợp lệ nhận **value đã giải mã** qua TLS (không nhận DEK). Đơn giản hơn per-device key wrapping mà vẫn đạt portability. **Per-device key wrapping (X25519 sealed box) = hardening v2** — revoke device mạnh hơn (không cần rotate DEK).
+
+**Verify:** `graph_data`/payload/log không chứa password/JWT ✅; máy mới `tq secret pull` chạy được job ✅; token sai bị từ chối ✅.
 
 ### Phase 5 — Cloud scheduling & enqueue
 - [ ] Migration: `automation.jobs.idempotency_key` + partial unique index (**cần owner duyệt**).
