@@ -115,28 +115,79 @@ HRMS yêu cầu một **danh tính trình duyệt ổn định, tách biệt và
 - Liên kết local ↔ cloud: `profile.json.cloud_id`.
 - **Bảo mật:** snapshot chứa cookie/JWT → **không commit, không log, không payload**.
 
-## 5. Credential storage — Automa pattern → thiết kế Tuquet
+## 5. Secret Store — thiết kế Tuquet-native, device-portable
 
-### 5.1 Automa làm thế nào (đọc tại `/root/automa`)
+### 5.1 Mục tiêu & ràng buộc
 
-| Khía cạnh | Cách Automa làm |
+- **Không** plaintext credential trong workflow `graph_data` / job payload / log / git.
+- **Máy mới chạy job KHÔNG phải nhập lại credential** (yêu cầu gốc của owner).
+- Tuân thủ kiến trúc Tuquet: multi-tenant + RLS (`is_tenant_member`/`has_tenant_permission`) + device enrollment (`workers.devices`) + SSOT `~/.tq/`.
+- Tương thích Automa: workflow dùng `{{secrets.*}}` (học ý tưởng, **không copy** cơ chế).
+
+### 5.2 Nguyên lý: envelope encryption + device key wrapping
+
+```text
+KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
+  -> wrap -> DEK (1 per tenant)            <- mã hoá mọi secret value
+       -> wrap lại -> DeviceKeypair.public (mỗi device 1 bản)
+            -> device mở bằng private key (OS keyring)
+```
+
+- **KEK**: chỉ ở server; dùng để bọc DEK của tenant.
+- **DEK**: một khoá dữ liệu mỗi tenant, mã hoá toàn bộ giá trị secret.
+- **Device keypair**: sinh **local** khi `tq auth login`/enroll; public key đăng ký cloud.
+- Cloud **bọc DEK** bằng public key của từng device -> device giải mã bằng private key -> có DEK -> decrypt mọi secret của tenant.
+- => **Máy mới chỉ cần enroll là có ngay credential** — bảo đảm yêu cầu "không nhập lại".
+
+### 5.3 Phía Cloud (SSOT)
+
+- **Plugin mới `secrets`** (schema `secrets`), table `secrets.credentials`:
+  `id, tenant_id, name, value_enc BYTEA, nonce BYTEA, key_version, created_by, created_at, updated_at, rotated_at`; **unique `(tenant_id, name)`**.
+- `secrets.devices` (hoặc mở rộng `workers.devices`): `device_id, public_key, wrapped_dek, key_version, revoked_at`.
+- **RPC** (SECURITY DEFINER): `secrets.set_secret`, `secrets.get_metadata`, `secrets.rotate_dek`, `secrets.deliver_dek(p_device_id, p_device_token)` — **chỉ trả ciphertext DEK đã bọc** cho device hợp lệ (verify `device_token_hash`).
+- **RLS:** dùng `is_tenant_member` / `has_tenant_permission`; **ciphertext KHÔNG bao giờ trả cho browser** — chỉ ra qua RPC device-authenticated.
+- **Permissions:** `secrets:read`, `secrets:manage`, `secrets:rotate`.
+- **KEK** ở Supabase Vault (`[db.vault]` đã có trong `config.toml`) hoặc env server — không commit.
+
+### 5.4 Phía Device / Local
+
+- **Enroll** (`tq auth login`): sinh device keypair -> đăng ký public key -> nhận `wrapped_dek` -> private key vào **OS keyring**, `wrapped_dek` vào `~/.tq/system/`.
+- **Cache:** `~/.tq/system/secrets.enc` (mã hoá bằng device key) -> chạy lại không cần gì; offline vẫn chạy.
+- **Sửa luôn nợ bảo mật hiện tại:** `~/.tq/system/.identity.json` đang **plaintext** (chứa raw `device_token` + Supabase `access/refresh_token` — `cli/src/infrastructure/cloud/credential_store.rs`) -> **mã hoá bằng device key**.
+- **Thu hồi device:** ngừng bọc DEK cho device đó (secret device khác không đổi). **Rotate DEK:** bọc lại cho device active.
+
+### 5.5 Engine (worker)
+
+- `resolve_expression` (`worker/src/drivers/cdp/workflow.rs`) **thêm nhánh `secrets.<name>`** (hiện chỉ có `variables|table|loopData|prevBlockData|globalData`).
+- **Scrub:** khi truyền `refData` vào page-context (`javascript-code`), set `secrets:{}` — page-JS **không** thấy secret (theo Automa).
+- **Mask** giá trị secret trong log qua `worker/src/core/masker.rs` (đã có `Masker`).
+- **Không** ghi giá trị secret vào `variables` / `result_summary` / `execution_logs`.
+
+### 5.6 Chế độ local-only (dev / chưa lên cloud)
+
+- `~/.tq/system/secrets.json` mã hoá AES-256-GCM bằng key từ env `TQ_SECRET_KEY` hoặc OS keyring (tương đương `getPassKey` của Automa).
+- Dùng cho dev + fallback; production dùng DEK cloud. Không commit `secrets.json`/key.
+
+### 5.7 Workflow
+
+- Thay plaintext bằng `{{secrets.hrms_username}}` / `{{secrets.hrms_password}}`.
+- Graph chỉ giữ **tham chiếu** -> an toàn khi nằm trong cloud `automation.workflows.graph_data`.
+
+### 5.8 Vì sao KHÔNG copy nguyên Automa
+
+| Automa | Tuquet (lý do đổi) |
 | --- | --- |
-| Nơi lưu | IndexedDB table `credentials: '++id, &name'` — record `{id, name (unique), value, createdAt}` (`db/storage.js`, `StorageCredentials.vue`) |
-| Mã hoá | `value = HMAC_SHA256(cipher, SHA256(pass)) (64 hex) + AES_encrypt(value, pass)` (crypto-js) — `utils/credentialUtil.js` |
-| Key | `pass = getPassKey('credential')` — hàm ở file **`src/utils/getPassKey.js` (gitignored, build-time secret)**, KHÔNG nằm trong DB |
-| Tham chiếu | Workflow **không chứa secret** — chỉ giữ `{{ secrets@name }}` (editor regex `/\{\{\s*secrets@(.*?)\}\}/`); engine map `secrets@`→`secrets.` |
-| Lúc chạy | `WorkflowEngine` nạp `credentials` → `referenceData.secrets[name] = value`; decrypt khi interpolate (`templating/mustacheReplacer.js` → `credentialUtil.decrypt`) |
-| **Scrub** | `blocksHandler/handlerJavascriptCode.js` truyền `refData = {...newRefData, secrets: {}}` → **JS trong page KHÔNG nhận secrets** |
-| Dùng chung | Key còn dùng cho "protected workflow" (`WorkflowProtect.vue`, `utils/decryptFlow.js`) |
+| Key hằng trong bundle (`getPassKey.js`) | Bundle client là public -> **không** an toàn. Tuquet dùng KEK server (Vault) + DEK bọc per-device. |
+| Chỉ 1 máy (extension local) | Tuquet **đa device** -> cần **device key wrapping** để port credential. |
+| Không multi-tenant | Tuquet **tenant-scoped** + RLS + RBAC. |
+| IndexedDB (browser) | Tuquet SSOT `~/.tq/system/` + engine Rust. |
+| Giữ điểm hay | `{{secrets.*}}` reference · AES+HMAC · **scrub page-context** · không secret trong workflow. |
 
-### 5.2 Bài học & thiết kế đề xuất cho Tuquet
+### 5.9 Migration & rotate
 
-**Nguyên tắc (học từ Automa):** secret ở **store mã hoá riêng**; workflow chỉ giữ **tham chiếu**; key **out-of-band** (không trong DB, không trong git); **scrub khỏi log + page-context**.
-
-- **Store:** `~/.tq/system/credentials.json` (SSOT) — mỗi entry `{name, ciphertext}` (AES-GCM + HMAC), key từ OS keyring hoặc env `TQ_CREDENTIAL_KEY` (không commit).
-- **Tham chiếu:** workflow dùng `{{secrets.hrms_username}}` / `{{secrets.hrms_password}}` — **không plaintext trong `graph_data`**.
-- **CẦN BỔ SUNG ENGINE:** `resolve_expression` hiện chỉ hỗ trợ `variables|table|loopData|prevBlockData|globalData` — **thiếu `secrets.*`**. Phải thêm nhánh `secrets.` đọc từ credential store, và **scrub `secrets:{}` khi truyền vào page-context** (theo Automa) + che trong log (`worker/src/core/masker.rs` đã có Masker).
-- **Migration:** gỡ plaintext khỏi `automation.workflows.graph_data` (`a27093ce`) + file local; thay bằng tham chiếu `{{secrets.*}}`; **rotate mật khẩu HRMS** sau khi test xong.
+1. Chuyển credential HRMS từ `automation.workflows.graph_data` (`a27093ce`) -> secret store (`name='hrms-cmc'`).
+2. Cập nhật graph + file local -> tham chiếu `{{secrets.*}}` (hết plaintext).
+3. **Rotate mật khẩu HRMS** sau khi test xong.
 
 ## 6. Quyết định đã chốt
 
@@ -145,13 +196,13 @@ HRMS yêu cầu một **danh tính trình duyệt ổn định, tách biệt và
 | 1 | Cách chạy | **Hybrid** — REST API cho đọc/tính/submit; CDP chỉ login + lấy JWT |
 | 2 | Dispatch | **Supabase `automation.jobs`** + `claim_next_job`; worker fleet mode |
 | 3 | Scheduler | **pg_cron + Edge Function scheduled** materialize schedules → jobs |
-| 4 | Credential | **KHÔNG plaintext trong workflow** — secret store mã hoá + tham chiếu `{{secrets.*}}` (§5). ⚠️ Tạm thời (dev) creds đang là default param trong graph → **phải migrate** |
+| 4 | Credential | **KHÔNG plaintext trong workflow** — Secret Store mã hoá + tham chiếu `{{secrets.*}}`, **device-portable** (§5). ⚠️ Hiện (dev) creds đang là literal trong graph → **phải migrate + rotate** |
 | 5 | Lịch | **08:00 Asia/Ho_Chi_Minh, T2–T6**; cutoff = hết ngày hôm trước |
 | 6 | Submit | **Dry-run trước**, bật submit sau khi owner duyệt |
 | 7 | `tools/hrms` | **Viết lại** adapter từ snippet + mock test |
 | 8 | Target | Tenant admin `e0f30395-…`, workstation `HNDW-NDTU6`, profile `hrms-cmc` |
 | 9 | Dispatch queue→worker | **(a) Worker claim trực tiếp Supabase** — vòng poll `rpc/claim_next_job` (không thêm service) |
-| 10 | Lưu credential | **Theo pattern Automa** (§5): store mã hoá + tham chiếu `secrets.*` + key out-of-band + scrub log/page |
+| 10 | Lưu credential | **Secret Store Tuquet-native** (§5): KEK server (Vault) + DEK per-tenant bọc per-device + `{{secrets.*}}` + scrub log/page. Học Automa nhưng KHÔNG copy (Automa key nằm trong bundle client) |
 
 ## 7. Phạm vi
 
@@ -198,14 +249,25 @@ HRMS yêu cầu một **danh tính trình duyệt ổn định, tách biệt và
 
 **Verify:** workstation nhận job không tương tác; restart không tạo đơn trùng; cancel an toàn; lease luôn trả.
 
-### Phase 4 — Auth & secret (§5)
-- [ ] Thêm engine hỗ trợ `{{secrets.*}}` (`resolve_expression`) + scrub `secrets:{}` khỏi page-context + mask trong log.
-- [ ] Credential store `~/.tq/system/credentials.json` (AES-GCM + HMAC), key out-of-band.
-- [ ] Workflow dùng `{{secrets.hrms_username}}`/`{{secrets.hrms_password}}` thay plaintext.
-- [ ] Migration gỡ plaintext khỏi `graph_data` + file local; rotate mật khẩu.
-- [ ] Xử lý token hết hạn (fail an toàn, re-login recovery).
+### Phase 4 — Secret Store (§5) — Tuquet-native, device-portable
 
-**Verify:** `graph_data` + log + job payload không chứa password/JWT; session hết hạn → fail an toàn.
+**4A — Engine + local (làm trước, test được ngay, không cần cloud):**
+- [ ] `resolve_expression` thêm nhánh `secrets.<name>` (đọc từ local secret cache).
+- [ ] Scrub `secrets:{}` khi truyền refData vào page-context (`javascript-code`).
+- [ ] Mask giá trị secret trong log (`core/masker.rs`); không ghi secret vào variables/result/logs.
+- [ ] Local store `~/.tq/system/secrets.json` (AES-256-GCM, key từ `TQ_SECRET_KEY`/keyring) + CLI `tq secret set/list/rm`.
+- [ ] Workflow dùng `{{secrets.hrms_password}}` thay literal; migrate graph + file local.
+
+**4B — Cloud + portability:**
+- [ ] Plugin `secrets` (schema `secrets`): `secrets.credentials` + `secrets.devices` (public_key, wrapped_dek, key_version).
+- [ ] KEK ở Supabase Vault; DEK per-tenant.
+- [ ] RPC `set_secret` / `get_metadata` / `rotate_dek` / `deliver_dek` (device-authenticated).
+- [ ] `tq auth login` sinh device keypair; private key -> OS keyring; nhận `wrapped_dek`.
+- [ ] Mã hoá `.identity.json` (nợ bảo mật hiện tại).
+- [ ] **Test device-portable:** enroll máy thứ 2 -> chạy job **không nhập lại credential**.
+- [ ] Rotate mật khẩu HRMS + thu hồi credential khỏi graph_data.
+
+**Verify:** `graph_data`/payload/log/audit không chứa password/JWT; máy mới enroll chạy được job; revoke device không ảnh hưởng device khác; session hết hạn → fail an toàn.
 
 ### Phase 5 — Cloud scheduling & enqueue
 - [ ] Migration: `automation.jobs.idempotency_key` + partial unique index (**cần owner duyệt**).
@@ -298,4 +360,5 @@ tq worker logs -f
 7. `browsers.profiles.id` cloud của `hrms-cmc` — xác nhận sau khi tạo.
 8. ~~Hướng dispatch queue→worker~~ — **RESOLVED: (a)**.
 9. Cài & chạy worker trên máy nào? (VPS chưa có `tq`; thiết bị enroll là máy Windows).
-10. Engine chưa hỗ trợ `secrets.*` — cần thêm nhánh resolve + scrub (§5.2).
+10. Engine chưa hỗ trợ `secrets.*` — cần thêm nhánh resolve + scrub (§5.5).
+11. **Port credential sang máy khác** — chốt cơ chế device keypair + Vault KEK (§5.2-5.4); cần owner duyệt plugin `secrets` mới.
