@@ -426,3 +426,18 @@ tq worker logs -f
 | Bonus: `strip_nulls` (pipeline tự vi phạm schema) · test suite CLI/worker compile lại · `automa`→`automation` serde | ✅ | — |
 
 Còn lại: P1 (cloud publish check block labels) · `includedWorkflows` · `table`/`dataColumns` · Phase 3 (worker claim + lease) · Phase 5 (schedule/enqueue).
+
+### 17.1 Bổ sung (implement block + parity document)
+
+| Việc | Trạng thái | Bằng chứng |
+| --- | --- | --- |
+| `export-data` (csv/json/plain-text, BOM, delimiter, onConflict, `TQ_EXPORT_DIR`) | ✅ | chạy thật: `sites.csv` 46B, BOM `EF BB BF`, header theo `table`, 2 cột **cùng 1 row** |
+| `execute-workflow` (subflow từ `includedWorkflows`, `{{workflow.<key>.variables.*}}`, `insertAllVars`, guard loop/depth) | ✅ | 3 test worker |
+| `table` / `dataColumns` (tên + type cột) | ✅ | `export-data` dùng đúng thứ tự cột |
+| **Bug parity `insert-data`**: nhiều cột bị tách thành nhiều row | ✅ fixed | cursor per-column theo `WorkflowData.addDataToColumn` |
+| **Type coercion** theo cột (`convertData`) | ✅ | `"200"`→200, `"ℹ301 extra"`→301 |
+| `note` → canvas-only · `delay` string|number (khớp export thật) · coverage check đọc cả `drawflow.nodes` | ✅ | 5 fixture export Automa thật |
+| Export Automa **nguyên bản** chạy end-to-end | ✅ | `automa-export-google-search.json` → 4 bước, browser thật |
+| Còn lại | ⏳ | `google-sheets` / `google-drive` / `ai-workflow` (cần credential Google) |
+
+Docs: `docs/en/automation/blocks.md` (+ sidebar) — block coverage, quy tắc *declared ⇒ satisfied*, `export-data`, `execute-workflow`, data table.
