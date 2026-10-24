@@ -1,7 +1,7 @@
 # Kế hoạch: HRMS Automation Workflow trên Tuquet
 
 > Nguồn: [`hrms-automation-workflow.md`](./hrms-automation-workflow.md) — task gốc đã audit & chốt thiết kế.
-> Trạng thái tổng: **Dry-run đã chạy thật end-to-end trên engine local** (xem §8). Còn lại: dispatch cloud + chuyển secret sang store mã hoá.
+> Trạng thái tổng (**kiểm tra lại 2026-10-24**): **Dry-run đã chạy thật end-to-end trên engine local** (§8) · **Secret Store ✅** (Phase 4A/4B/UI + hardening v2) · **workflow store đã cloud-first** (§3.2c). Còn lại: **Phase 3** (worker claim + workstation) · **Phase 5** (schedule/enqueue) · **Phase 6** (rollout).
 
 ## 1. Trạng thái
 
@@ -45,7 +45,15 @@ Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thi�
 - Plugin **`secrets`** (schema `secrets`) đã **apply lên cloud `dswhacsoaxgpfnkaxnhz`**: bảng `secrets.credentials` (`value_enc`, `key_version`, unique `(tenant_id,name)`) + `secrets.tenant_keys` (DEK bọc bằng KEK).
 - **KEK** = Vault secret `tq_secrets_kek`; **DEK per-tenant** (pgcrypto). RLS deny-by-default.
 - RPC device-authenticated: `public.set_secret / list_secrets / fetch_secrets / rotate_secret_dek`.
-- Đăng ký trong `public.system_plugins` (id `secrets`).
+- Đăng ký trong `public.system_plugins` (id `secrets`) + `cloud/supabase/seed.sql`.
+- **As-built v2 (zero-knowledge over wire)**: value mã hoá **client-side** (XChaCha20-Poly1305); DEK **sealed per-device** bằng `crypto_box_seal` (X25519) → server **chỉ giữ ciphertext**; `.identity.json` mã hoá at-rest; `tq secret rotate`; plugin bump **v2.0.0**. SPEC: `docs/en/cloud/specs/SPEC-secret-store.md`.
+
+### 3.2c Workflow store đã **cloud-first** (verified)
+
+- PostgREST production **chỉ expose schema `public`** → `Accept-Profile: automation` trả `PGRST106`; console trước đây **nuốt lỗi** nên hiện danh sách rỗng.
+- Giải pháp: RPC `public.workflow_list / workflow_get / workflow_upsert / workflow_delete` (SECURITY INVOKER, giữ RLS) trong `cloud/supabase/plugins/automation/install.sql` — **đã verify tồn tại trên cloud**.
+- CLI: `cli/src/infrastructure/cloud/workflow_store.rs`; **7 callsite** (`automation store/table/inspector`, `status`, `tui`, MCP tools, engine `workflow_resolver`) đọc/ghi cloud; **local sqlite workflow store đã xoá** (23 files, −1.324 dòng).
+- Console: `api/core/automation.ts::listWorkflows()` → `POST /rest/v1/rpc/workflow_list` (bỏ nhánh nuốt lỗi `Invalid schema`).
 
 ### 3.3 Khoảng trống đã phát hiện lúc audit (đã xử lý bằng quyết định)
 
@@ -273,7 +281,7 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 - [x] CLI `tq secret push/pull/remote` — `fetch_secrets` trả value cho device hợp lệ.
 - [x] **Đã verify device-portable**: xoá local store → `tq secret pull` → secrets trở lại → `tq automation run` chạy 9 bước (không nhập lại credential).
 - [x] **Hardening v2 ✅** — `tq secret init` sinh **device keypair X25519**; DEK **sealed per-device** (`crypto_box_seal`); value **mã hoá client-side** (XChaCha20-Poly1305) → server KHÔNG nhận plaintext; **`.identity.json` mã hoá at-rest**; `tq secret rotate`.
-- [x] **Workstation UI ✅** — console `apps/workstation` page **`SystemSecrets`** (`/system/secrets`) + CLI daemon API `/api/v1/secrets*`; permissions `secrets:credentials:read|manage` + `secrets:store:rotate` đã đăng ký vào `public.permissions`/`role_permissions`; term SSOT cập nhật (`term.json`, `terminology.md` §3.7 + lexicon + checklist #11).
+- [x] **Workstation UI ✅** — console `apps/workstation` page **`SecretsCredentials`** (`/secrets/credentials`) — route phản chiếu **schema+table** (`secrets.credentials`), KHÔNG dùng `/system/secrets` + CLI daemon API `/api/v1/secrets*`; permissions `secrets:credentials:read|manage` + `secrets:store:rotate` đã đăng ký vào `public.permissions`/`role_permissions`; term SSOT cập nhật (`term.json`, `terminology.md` §3.7 + lexicon + checklist #11).
 - [ ] **v3** — key trong OS keyring/TPM + audit trail truy cập secret.
 - [ ] **Rotate mật khẩu HRMS** — cần user đổi tại CMC Global (không tự đổi được từ VPS); sau đó `tq secret set hrms_password <mới>` + `tq secret push` trên máy đã enroll.
 
@@ -353,7 +361,7 @@ tq worker logs -f
 | --- | --- | --- |
 | Ghi đơn trùng lên HRMS | Cao | idempotency key + check Pending/Approved + dry-run |
 | Hai phiên HRMS song song | Cao | lease `browsers.profiles` + reap stale lock |
-| **Credential plaintext trong graph (hiện trạng)** | Cao | migrate sang `{{secrets.*}}` + store mã hoá + rotate (§5) |
+| ~~Credential plaintext trong graph~~ ✅ **đã xử lý** | — | migrate sang `{{secrets.*}}` + store mã hoá; **verify cloud `has_cred=false`** (2026-10-24). Còn nợ: **rotate mật khẩu HRMS** tại CMC |
 | Session/JWT mất khi đổi máy | Trung bình | snapshot pack/push/pull |
 | Fingerprint bị phát hiện | Trung bình | engine C++ fingerprint-chromium + CreepJS + webrtc shield |
 | JWT hết hạn giữa chừng | Trung bình | detect expiry, fail an toàn |
@@ -367,10 +375,18 @@ tq worker logs -f
 2. Flag CLI chạy workflow đã lưu theo id — cần xác nhận.
 3. Mapping `reason_type` (mặc định `LOA_CORP_4`).
 4. Kênh alert "không có ngày đủ điều kiện".
-5. **Migrate credential khỏi `graph_data` → `{{secrets.*}}`; rotate mật khẩu HRMS** (§5).
+5. ✅ **DONE** (2026-10-24) — credential đã migrate khỏi `graph_data` → `{{secrets.*}}`; verify cloud `has_cred=false`. **Còn nợ: rotate mật khẩu HRMS** (owner tự đổi tại CMC).
 6. Profile `hrms-cmc`: dùng proxy hay không?
 7. `browsers.profiles.id` cloud của `hrms-cmc` — xác nhận sau khi tạo.
 8. ~~Hướng dispatch queue→worker~~ — **RESOLVED: (a)**.
 9. Cài & chạy worker trên máy nào? (VPS chưa có `tq`; thiết bị enroll là máy Windows).
-10. Engine chưa hỗ trợ `secrets.*` — cần thêm nhánh resolve + scrub (§5.5).
-11. **Port credential sang máy khác** — chốt cơ chế device keypair + Vault KEK (§5.2-5.4); cần owner duyệt plugin `secrets` mới.
+10. ✅ **DONE** — engine đã hỗ trợ `secrets.*` (`worker/src/drivers/cdp/workflow.rs`: resolve + masker scrub).
+11. ✅ **DONE** — plugin `secrets` **v2** đã apply + đăng ký `seed.sql`; device keypair X25519 + DEK sealed per-device (§5.2-5.4); E2E 2-device đã test.
+
+## 15. Nhật ký kiểm tra (2026-10-24)
+
+- Verify lại cloud + code: workflow `a27093ce…` = **12 nodes**, **`has_cred=false`** (0 plaintext), `status=draft`, `v1.0.0` ✔ khớp §3.2.
+- RPC `public.workflow_*` **tồn tại** trên cloud ✔ → ghi nhận §3.2c (trước đây plan không nhắc).
+- `automation.jobs.idempotency_key` **vẫn chưa có** → open item #1 còn nguyên (cần owner duyệt schema change).
+- `tools/hrms` **vẫn không tồn tại** → Phase 1 chưa làm.
+- Ngoài phạm vi plan này (ghi để khỏi lẫn khi handoff): (a) console hardening observability — render error handler + i18n interpolation guard (`docs/.../SPEC-cross-error-observability.md` §Render-Safety v1.1); (b) repo infra **`tuquet/relay`** (Cloudflare Worker error relay → Telegram group).
