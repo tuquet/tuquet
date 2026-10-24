@@ -457,3 +457,16 @@ Docs: `docs/en/automation/blocks.md` (+ sidebar) — block coverage, quy tắc *
 
 Key đã lưu mã hoá trong Secret Store (`google_service_account`), bản plaintext đã shred khỏi đĩa.
 ⚠️ Key từng được gửi qua chat ⇒ **nên rotate** (tạo key mới trong GCP, xoá key cũ, `tq secret set` lại).
+
+### 17.3 Sửa CI (2026-10-24, tối)
+
+| Repo | Lỗi | Sửa | Kết quả |
+| --- | --- | --- | --- |
+| `runner`/`browser`/`faker` | gọi reusable workflow `tuquet/tuquet/.github/workflows/reusable-rust-ci.yml` **không tồn tại (404)** ⇒ CI chết | tạo reusable workflow | ✅ browser, faker xanh |
+| `faker`, `browser` | `cargo fmt --check` fail | chạy `cargo fmt` | ✅ |
+| `cli` | `Cargo Check`: `no matching package named 'faker'` (thiếu submodule `crates/faker`) | `actions/checkout` + `submodules: recursive` | ✅ |
+| `cli` | `Checkout runner dependency`: repo private ⇒ clone ẩn danh fail | **deploy key read-only** trên `tuquet/runner` + secret `RUNNER_DEPLOY_KEY` | ✅ cli CI xanh (ubuntu+windows) |
+| `cloud` | `column "variables" of relation "workflows" does not exist` (còn ref ở seed + plugin `commerce`) | xoá hết tham chiếu `workflows.variables` | ✅ |
+| `tuquet` | Pages legacy build không clone được submodule private | chuyển `build_type=workflow` + workflow Pages `submodules: false` | ✅ status `built` |
+| `runner` (private) | **billing**: "job was not started because recent account payments have failed or your spending limit needs to be increased" | cần user xử lý (repo private = phút trả phí) | ⛔ chờ quyết định |
+| `runner` (code) | clippy `-D warnings`: 8 cảnh báo | sửa hết (try_fold, needless return, sort_by_key, as_bytes, test lock) | ✅ local: 58 test + clippy + fmt đều sạch |
