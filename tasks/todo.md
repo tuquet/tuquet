@@ -24,6 +24,8 @@
 
 ## ✅ Đã xong (không làm lại)
 
+- **Phase 0b engine parity** + **P0 (block fail-fast, schema enforce)** + **P1 (isDisabled/restartTimes/saveLog/root trigger/global_data)** — 2026-10-24, verify bằng chạy thật + 171 test.
+
 - **Phase 0** — antidetect browser + profile `hrms-cmc-03e6b9` + login HRMS thật.
 - **Phase 2** — workflow `HRMS Timesheet Review` (`a27093ce…`, 12 nodes) **dry-run chạy thật**: 28 ngày quét · 0 eligible · 17 `no_absence` · 3 `existing_request` · 1 `today_or_future`.
 - **Phase 4** — Secret Store: 4A (engine + local) · 4B (cloud + device-portable) · UI console (`/secrets/credentials`) · hardening v2 (sealed DEK X25519 + client-side crypto + encrypted `.identity.json` + `tq secret rotate`).

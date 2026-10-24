@@ -411,3 +411,18 @@ tq worker logs -f
 - **Bỏ fallback trong block** → thay bằng publish-time validation + fail-fast.
 - **Task IG DM booking đã xoá** khỏi `tasks/` (viết lại sau, dựa trên mô hình đã chốt + Phase 0b).
 - Cột `automation.workflows.variables` → **xoá** (trùng chức năng trigger params, đang chết).
+
+## 17. Nhật ký thực thi (2026-10-24, tối)
+
+| Việc | Trạng thái | Bằng chứng |
+| --- | --- | --- |
+| Phase 0b — engine honour `trigger.data.parameters` | ✅ | chạy HRMS **không `-p`**: `mode=dry-run`, `minLateMinutes=1`, `maxLateMinutes=60`, `reasonType=LOA_CORP_4` |
+| Phase 0b — dialect `{{secrets@name}}` | ✅ | login bằng Secret Store, `options.variables=null` |
+| Publish-time validation (SQL) | ✅ | thiếu `defaultValue` / trùng tên / plaintext ⇒ **REJECT** |
+| Drop `workflows.variables` | ✅ | cột đã xoá trên cloud; workflow `a27093ce` migrate **v1.1.1** |
+| **P0** — block không hỗ trợ ⇒ fail rõ ràng | ✅ | `google-sheets` ⇒ *"refusing to run (declared => satisfied)"* |
+| **P0** — schema `workflow.schema.json` enforce thật | ✅ | `jsonschema` + `include_str!` trong `resolve`; 130 test CLI PASS |
+| **P1** — `isDisabled` / `restartTimes` / `saveLog` / root `trigger` / `global_data` | ✅ | 41 test worker PASS |
+| Bonus: `strip_nulls` (pipeline tự vi phạm schema) · test suite CLI/worker compile lại · `automa`→`automation` serde | ✅ | — |
+
+Còn lại: P1 (cloud publish check block labels) · `includedWorkflows` · `table`/`dataColumns` · Phase 3 (worker claim + lease) · Phase 5 (schedule/enqueue).
