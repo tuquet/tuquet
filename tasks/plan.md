@@ -1,7 +1,8 @@
 # Kế hoạch: HRMS Automation Workflow trên Tuquet
 
-> Nguồn: [`hrms-automation-workflow.md`](./hrms-automation-workflow.md) — task gốc đã audit & chốt thiết kế.
-> Trạng thái tổng (**kiểm tra lại 2026-10-24**): **Dry-run đã chạy thật end-to-end trên engine local** (§8) · **Secret Store ✅** (Phase 4A/4B/UI + hardening v2) · **workflow store đã cloud-first** (§3.2c). Còn lại: **Phase 3** (worker claim + workstation) · **Phase 5** (schedule/enqueue) · **Phase 6** (rollout).
+> Nguồn: [`hrms-automation-workflow.md`](./hrms-automation-workflow.md) — task đã re-lock theo **doctrine Automa schema** (đọc §0 của task trước khi sửa bất cứ thứ gì).
+> **Doctrine (chốt 2026-10-24):** *Workflow document = Automa schema = SSOT duy nhất.* Không định nghĩa lại params/secrets/variables. Canvas khai báo mà engine bỏ qua = bug P0. `declared ⇒ satisfied` (thiếu ⇒ fail-fast).
+> Trạng thái tổng (**kiểm tra lại 2026-10-24**): **Dry-run đã chạy thật end-to-end trên engine local** (§8) · **Secret Store ✅** (Phase 4A/4B/UI + hardening v2) · **workflow store đã cloud-first** (§3.2c). **Phải làm TRƯỚC: Phase 0b — Automa schema parity** (engine honour `trigger.data.parameters` + `{{secrets@name}}`). Còn lại: **Phase 3** (worker claim + workstation) · **Phase 5** (schedule/enqueue) · **Phase 6** (rollout).
 
 ## 1. Trạng thái
 
@@ -137,7 +138,7 @@ HRMS yêu cầu một **danh tính trình duyệt ổn định, tách biệt và
 - **Không** plaintext credential trong workflow `graph_data` / job payload / log / git.
 - **Máy mới chạy job KHÔNG phải nhập lại credential** (yêu cầu gốc của owner).
 - Tuân thủ kiến trúc Tuquet: multi-tenant + RLS (`is_tenant_member`/`has_tenant_permission`) + device enrollment (`workers.devices`) + SSOT `~/.tq/`.
-- Tương thích Automa: workflow dùng `{{secrets.*}}` (học ý tưởng, **không copy** cơ chế).
+- Tương thích Automa: workflow dùng `{{secrets@name}}` (học ý tưởng, **không copy** cơ chế).
 
 ### 5.2 Nguyên lý: envelope encryption + device key wrapping
 
@@ -196,12 +197,12 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 | Chỉ 1 máy (extension local) | Tuquet **đa device** -> cần **device key wrapping** để port credential. |
 | Không multi-tenant | Tuquet **tenant-scoped** + RLS + RBAC. |
 | IndexedDB (browser) | Tuquet SSOT `~/.tq/system/` + engine Rust. |
-| Giữ điểm hay | `{{secrets.*}}` reference · AES+HMAC · **scrub page-context** · không secret trong workflow. |
+| Giữ điểm hay | `{{secrets@name}}` reference · AES+HMAC · **scrub page-context** · không secret trong workflow. |
 
 ### 5.9 Migration & rotate
 
 1. Chuyển credential HRMS từ `automation.workflows.graph_data` (`a27093ce`) -> secret store (`name='hrms-cmc'`).
-2. Cập nhật graph + file local -> tham chiếu `{{secrets.*}}` (hết plaintext).
+2. Cập nhật graph + file local -> tham chiếu `{{secrets@name}}` (hết plaintext).
 3. **Rotate mật khẩu HRMS** sau khi test xong.
 
 ## 6. Quyết định đã chốt
@@ -211,17 +212,17 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 | 1 | Cách chạy | **Hybrid** — REST API cho đọc/tính/submit; CDP chỉ login + lấy JWT |
 | 2 | Dispatch | **Supabase `automation.jobs`** + `claim_next_job`; worker fleet mode |
 | 3 | Scheduler | **pg_cron + Edge Function scheduled** materialize schedules → jobs |
-| 4 | Credential | **KHÔNG plaintext trong workflow** — Secret Store mã hoá + tham chiếu `{{secrets.*}}`, **device-portable** (§5). ⚠️ Hiện (dev) creds đang là literal trong graph → **phải migrate + rotate** |
+| 4 | Credential | **KHÔNG plaintext trong workflow** — Secret Store mã hoá + tham chiếu `{{secrets@name}}`, **device-portable** (§5). ⚠️ Hiện (dev) creds đang là literal trong graph → **phải migrate + rotate** |
 | 5 | Lịch | **08:00 Asia/Ho_Chi_Minh, T2–T6**; cutoff = hết ngày hôm trước |
 | 6 | Submit | **Dry-run trước**, bật submit sau khi owner duyệt |
 | 7 | `tools/hrms` | **Viết lại** adapter từ snippet + mock test |
 | 8 | Target | Tenant admin `e0f30395-…`, workstation `HNDW-NDTU6`, profile `hrms-cmc` |
 | 9 | Dispatch queue→worker | **(a) Worker claim trực tiếp Supabase** — vòng poll `rpc/claim_next_job` (không thêm service) |
-| 10 | Lưu credential | **Secret Store Tuquet-native** (§5): KEK server (Vault) + DEK per-tenant bọc per-device + `{{secrets.*}}` + scrub log/page. Học Automa nhưng KHÔNG copy (Automa key nằm trong bundle client) |
+| 10 | Lưu credential | **Secret Store Tuquet-native** (§5): KEK server (Vault) + DEK per-tenant bọc per-device + `{{secrets@name}}` + scrub log/page. Học Automa nhưng KHÔNG copy (Automa key nằm trong bundle client) |
 
 ## 7. Phạm vi
 
-**Trong phạm vi:** contract I/O của workflow · workflow template tái sử dụng · adapter HRMS fetch-based + mock test · **engine antidetect + profile `hrms-cmc` + lease + snapshot sync** · **CẦU NỐI queue→worker (claim loop)** · **credential store + `{{secrets.*}}` (engine change)** · chạy trên workstation fleet · enqueue + scheduler · dry-run/submit/idempotency/audit · zero-secret.
+**Trong phạm vi:** contract I/O của workflow · workflow template tái sử dụng · adapter HRMS fetch-based + mock test · **engine antidetect + profile `hrms-cmc` + lease + snapshot sync** · **CẦU NỐI queue→worker (claim loop)** · **credential store + `{{secrets@name}}` (engine change)** · chạy trên workstation fleet · enqueue + scheduler · dry-run/submit/idempotency/audit · zero-secret.
 
 **Ngoài phạm vi:** Chromium trong scheduler · thay `tq auth login` · engine browser mới · đa nhà cung cấp HRMS · submit trước khi dry-run xác minh · lưu password plaintext.
 
@@ -235,6 +236,17 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 - [ ] Pack + `push` snapshot lên bucket `browser-profiles` (chưa — cloud chưa tạo profile).
 
 **Verify:** `tq browser ps` thấy profile + pid/port; CDP `/json/version` OK; session sống.
+
+### Phase 0b — Automa schema parity (engine) ⬜ **làm TRƯỚC tiên**
+
+- [ ] Engine đọc **`trigger.data.parameters`** (contract do canvas khai báo) → seed default + type.
+- [ ] Resolve **`{{secrets@name}}`** (dialect Automa) + scrub qua masker; giữ `{{variables.*}}`, `{{table.*}}`, `{{loopData.*}}`.
+- [ ] Map `trigger.type` ⇄ nguồn kích hoạt; **fleet cấm `type = manual`**.
+- [ ] Honour `settings{onError, blockDelay, concurrency}`; field chưa hỗ trợ ⇒ **cảnh báo**, không im lặng.
+- [ ] **Publish-time validation** trong `public.workflow_upsert` (thiếu default / manual ở fleet / plaintext ⇒ reject).
+- [ ] Xoá cột chết `automation.workflows.variables`.
+
+**Verify:** chạy workflow HRMS **không** truyền `-p` ⇒ lấy default từ trigger (không cần fallback trong block).
 
 ### Phase 1 — Adapter HRMS (domain contract)
 - [ ] Model typed cho request/response HRMS (theo §3.4).
@@ -272,7 +284,7 @@ KEK (server-only, Supabase Vault/env)      <- không bao giờ rời server
 - [x] Local store `worker/src/core/secrets.rs` — `~/.tq/system/secrets.json` AES-256-GCM, key `TQ_SECRET_KEY` hoặc `.secret_key` (0600); CLI `tq secret init/set/list/rm/path`.
 - [x] Seed secret ở **cả 2 đường**: `worker/drivers/automation.rs` (`execute_native_cdp`) **và** `cli/…/job_coordinator.rs` (`run_native_job` — đường local, đã phát hiện bypass engine).
 - [x] Workflow dùng `{{secrets.hrms_username}}`/`{{secrets.hrms_password}}`; graph + file local đã gỡ literal.
-- [~] Scrub `secrets:{}` page-context: **không cần** — engine không truyền refData vào page; secret chỉ vào code-string khi tác giả dùng `{{secrets.*}}` (đã mask log).
+- [~] Scrub `secrets:{}` page-context: **không cần** — engine không truyền refData vào page; secret chỉ vào code-string khi tác giả dùng `{{secrets@name}}` (đã mask log).
 
 **4B — Cloud + portability ✅ (design as-built)**
 - [x] Plugin **`secrets`** (`cloud/supabase/plugins/secrets/install.sql` + `plugin.json`): schema `secrets`, `secrets.credentials` (value_enc/key_version), `secrets.tenant_keys` (DEK bọc bằng KEK).
@@ -343,7 +355,7 @@ tq worker logs -f
 - Lease acquire/release hoạt động; không hai phiên song song; không kẹt lock.
 - Workflow chạy end-to-end trên workstation đã enroll, dry-run không mutate.
 - Cron tạo job qua `automation.jobs`, không chạy browser/Node trong scheduler.
-- **Zero secret trong `graph_data`/payload/log/audit/git** (dùng `{{secrets.*}}`).
+- **Zero secret trong `graph_data`/payload/log/audit/git** (dùng `{{secrets@name}}`).
 - Idempotent trước mọi request mutate; audit + alert; submit bật/tắt bằng policy.
 - `cargo check`/`cargo test` sạch; không `cargo build --release` trên VPS.
 
@@ -361,7 +373,7 @@ tq worker logs -f
 | --- | --- | --- |
 | Ghi đơn trùng lên HRMS | Cao | idempotency key + check Pending/Approved + dry-run |
 | Hai phiên HRMS song song | Cao | lease `browsers.profiles` + reap stale lock |
-| ~~Credential plaintext trong graph~~ ✅ **đã xử lý** | — | migrate sang `{{secrets.*}}` + store mã hoá; **verify cloud `has_cred=false`** (2026-10-24). Còn nợ: **rotate mật khẩu HRMS** tại CMC |
+| ~~Credential plaintext trong graph~~ ✅ **đã xử lý** | — | migrate sang `{{secrets@name}}` + store mã hoá; **verify cloud `has_cred=false`** (2026-10-24). Còn nợ: **rotate mật khẩu HRMS** tại CMC |
 | Session/JWT mất khi đổi máy | Trung bình | snapshot pack/push/pull |
 | Fingerprint bị phát hiện | Trung bình | engine C++ fingerprint-chromium + CreepJS + webrtc shield |
 | JWT hết hạn giữa chừng | Trung bình | detect expiry, fail an toàn |
@@ -371,16 +383,16 @@ tq worker logs -f
 
 ## 14. Open items
 
-1. Cột `idempotency_key` trên `automation.jobs` — **cần owner duyệt schema change**.
+1. **Schema change (cần owner duyệt):** `jobs.idempotency_key` + `jobs.schedule_id` + `jobs.params_snapshot` · `schedules.parameters` · bảng `automation.workflow_state` · `enqueue_job()` + `tick_schedules()` · **drop `automation.workflows.variables`**.
 2. Flag CLI chạy workflow đã lưu theo id — cần xác nhận.
 3. Mapping `reason_type` (mặc định `LOA_CORP_4`).
 4. Kênh alert "không có ngày đủ điều kiện".
-5. ✅ **DONE** (2026-10-24) — credential đã migrate khỏi `graph_data` → `{{secrets.*}}`; verify cloud `has_cred=false`. **Còn nợ: rotate mật khẩu HRMS** (owner tự đổi tại CMC).
+5. ✅ **DONE** (2026-10-24) — credential đã migrate khỏi `graph_data` → `{{secrets@name}}` (dialect Automa); verify cloud `has_cred=false`. **Còn nợ: rotate mật khẩu HRMS** (owner tự đổi tại CMC).
 6. Profile `hrms-cmc`: dùng proxy hay không?
 7. `browsers.profiles.id` cloud của `hrms-cmc` — xác nhận sau khi tạo.
 8. ~~Hướng dispatch queue→worker~~ — **RESOLVED: (a)**.
 9. Cài & chạy worker trên máy nào? (VPS chưa có `tq`; thiết bị enroll là máy Windows).
-10. ✅ **DONE** — engine đã hỗ trợ `secrets.*` (`worker/src/drivers/cdp/workflow.rs`: resolve + masker scrub).
+10. ✅ **DONE** (nhưng **phải đổi dialect** `secrets.*` → `{{secrets@name}}` — Phase 0b/4).
 11. ✅ **DONE** — plugin `secrets` **v2** đã apply + đăng ký `seed.sql`; device keypair X25519 + DEK sealed per-device (§5.2-5.4); E2E 2-device đã test.
 
 ## 15. Nhật ký kiểm tra (2026-10-24)
@@ -390,3 +402,12 @@ tq worker logs -f
 - `automation.jobs.idempotency_key` **vẫn chưa có** → open item #1 còn nguyên (cần owner duyệt schema change).
 - `tools/hrms` **vẫn không tồn tại** → Phase 1 chưa làm.
 - Ngoài phạm vi plan này (ghi để khỏi lẫn khi handoff): (a) console hardening observability — render error handler + i18n interpolation guard (`docs/.../SPEC-cross-error-observability.md` §Render-Safety v1.1); (b) repo infra **`tuquet/relay`** (Cloudflare Worker error relay → Telegram group).
+
+## 16. Nhật ký quyết định (2026-10-24, chiều)
+
+- **Doctrine chốt:** xây workflow **trên schema Automa** để dùng lại canvas kéo-thả ⇒ không định nghĩa lại params/secrets.
+- **Đổi dialect:** `{{secrets.*}}` → **`{{secrets@name}}`** (phải migrate workflow `a27093ce` + engine + CLI + docs).
+- **Contract tham số = `trigger.data.parameters[]`** (đã có trong schema) — rút lại đề xuất thêm `param_schema`.
+- **Bỏ fallback trong block** → thay bằng publish-time validation + fail-fast.
+- **Task IG DM booking đã xoá** khỏi `tasks/` (viết lại sau, dựa trên mô hình đã chốt + Phase 0b).
+- Cột `automation.workflows.variables` → **xoá** (trùng chức năng trigger params, đang chết).

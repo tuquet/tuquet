@@ -1,545 +1,456 @@
-# Task: HRMS Automation Workflow on Tuquet
+# Task: Workflow HRMS Automation trên Tuquet (re-lock theo doctrine Automa schema)
 
-## Status
+> **Bản này thay thế hoàn toàn bản tiếng Anh trước đó** (còn trong git history). Lý do re-lock: hệ thống
+> đang xây workflow **trên schema của Automa** để dùng lại canvas kéo-thả của nó. Mọi thứ trước đây tự
+> định nghĩa song song (params, secrets, variables) đều bị bỏ.
 
-- **Design locked** (decisions resolved in the interview — see *Locked design decisions*).
-- Ready for implementation. Do not `git push` or trigger CI/CD (invariant #5).
-- Blocked only on one runtime input: the first **tenant / workstation / browser profile** (see *Open items*).
+## 0. Doctrine nền tảng — Automa schema là SSOT
 
-## Locked design decisions
+> **Workflow document = Automa schema = SSOT duy nhất. Tuquet KHÔNG định nghĩa lại bất cứ thứ gì đã có trong document.**
 
-| # | Question | Decision |
+### 0.1 Bốn nguyên tắc
+
+| # | Nguyên tắc |
+| --- | --- |
+| (a) | Mọi thứ **thuộc về tác giả workflow** (tham số, trigger, settings, globalData, table, tham chiếu secret, composition) → nằm **trong document**, theo đúng **dialect Automa**. |
+| (b) | Mọi thứ **thuộc vận hành Tuquet** (tenant, thiết bị, queue, lịch cloud, ciphertext, device key) → nằm **ngoài document** (job params / bảng cloud / Secret Store). |
+| (c) | Cầu nối duy nhất giữa hai thế giới = **giá trị truyền vào** + **secret**. Không nhét cấu hình vận hành vào graph. |
+| (d) | **Canvas khai báo mà engine bỏ qua = bug P0.** Nếu không honour thì canvas chỉ là authoring giả. |
+
+### 0.2 Parity checklist — dialect bắt buộc
+
+| Khái niệm | Automa dialect | Tuquet hiện tại | Việc phải làm |
+| --- | --- | --- | --- |
+| Contract tham số | `trigger.data.parameters[]` = `{name*, type, defaultValue, placeholder, description}` — đã có trong `cli/schema/workflow.schema.json` (`$defs.blockData.properties.parameters`, `$defs.parameter`; `additionalProperties: true`) | ❌ engine bỏ qua | **honour + fail-fast** (Phase 1) |
+| Giá trị tham số | prompt UI (`/root/automa/src/params/App.vue`) → `workflow.params` | — | headless: lấy từ schedule/job (§8.2) |
+| Secrets | **`{{secrets@name}}`** — regex `/\{\{\s*secrets@(.*?)\}\}/` (`EditorUsedCredentials.vue`); engine nạp `referenceData.secrets[name]` | ❌ đang dùng `{{secrets.*}}` | **đổi sang `{{secrets@name}}`** (Phase 4) |
+| Biến runtime | `{{variables.x}}` | ✅ | giữ |
+| Global data / table | `globalData`/`global_data`, `table`, `dataColumns` | ❓ | verify ở Phase 1 |
+| Composition (tái sử dụng) | **`includedWorkflows`** (`/root/automa/src/utils/workflowData.js` — export nhúng workflow con) + block execute-workflow | ❌ | **dùng lại**, không tự chế subflow |
+| Trigger | **top-level `trigger`** + node `trigger`; canvas có `TriggerCronJob`, `TriggerInterval`, `TriggerDate`, `TriggerSpecificDay`, `TriggerContextMenu`, `TriggerKeyboardShortcut`, `TriggerVisitWeb`, `TriggerElementChange` | engine chỉ nhận job push | map ⇄ `automation.schedules` (§8.5) |
+| Flags | `isDisabled`, `testingMode`, `hostId`, `teamId`, `settings{onError, blockDelay, concurrency}` | một phần | honour; map tenant ↔ `hostId`/`teamId` |
+| Mở rộng | `$defs.parameter.additionalProperties: true` | — | thêm field Tuquet **bên trong** parameter (vd `"secret": true`), **không** thêm cột mới |
+
+### 0.3 Nguyên tắc chống "im lặng": **declared ⇒ satisfied**
+
+- **Publish-time validation**: khi `workflow_upsert` → mọi param declared phải có `defaultValue` **hoặc** có nguồn giá trị; `trigger.type` phải tương thích chế độ chạy (fleet + `type = manual` ⇒ **invalid**).
+- **Runtime**: thiếu giá trị ⇒ **fail-fast**. **Cấm** fallback nằm trong block (hack cũ của bản trước).
+- **Cấm** cấu hình vận hành trong graph: credential, mã tenant, URL môi trường, link cọc…
+
+### 0.4 Hai host, một document
+
+| | Automa host (extension) | Tuquet host (fleet) |
 | --- | --- | --- |
-| 1 | Execution strategy | **Hybrid** — HRMS REST API (`fetch` + JWT) for read / analysis / submit; browser (CDP) only for login + session/token acquisition. |
-| 2 | Job dispatch path | **Cloud `automation.jobs`** (Supabase). Cloud scheduler enqueues into `automation.jobs`; the enrolled workstation runs in **fleet mode** and claims via `automation.claim_next_job`. The local CLI gateway (`POST /api/v1/jobs`, i.e. `127.0.0.1:8765`) is **local-only** and MUST NOT be the cloud entrypoint. |
-| 3 | Scheduler host | **Supabase `pg_cron` + an Edge Function (scheduled)** that materializes due rows of `automation.schedules` into `automation.jobs`. |
-| 4 | HRMS credentials | **None stored.** Auth relies on an already-authenticated browser profile (`hrms-cmc`). The JWT is read out of that profile's session. No password anywhere (not in DB, not in job payload, not in logs). Headless re-login is a **manual recovery step only**. |
-| 5 | Schedule + cutoff | **08:00 Asia/Ho_Chi_Minh, Mon–Fri.** Cutoff = end of the previous day; only dates strictly `< today` are eligible (never today/future). |
-| 6 | Submit rollout | **Dry-run first** for several full workdays. `submit` mode is enabled **only after explicit owner approval**; policy-gated. |
-| 7 | `tools/hrms` source | The directory **no longer exists**. The adapter is **rewritten from the snippets in this task** (they are the source of truth), with mock tests. |
-| 8 | First target | **Admin tenant** — `Nguyen Dinh Tu (Superadmin)'s Workspace` (`e0f30395-3d42-41f6-a4ca-c11411e4f24b`); enrolled workstation **`HNDW-NDTU6`** (`24cf97b1-ee98-4f1f-b6c8-b8e5d63fc48d`, status `idle`). Browser profile: `hrms-cmc` (login once, manually). |
+| Định nghĩa | canvas editor (authoring) | console read-only + RPC `public.workflow_*` |
+| Giá trị tham số | prompt UI | schedule/job params (headless) |
+| Secrets | IndexedDB (AES+HMAC) | Secret Store cloud (envelope, DEK sealed per-device) — **cùng cú pháp `{{secrets@name}}`** |
+| Trigger | browser triggers | `automation.schedules` (pg_cron) |
+| Thực thi | `WorkflowEngine` (browser API) | engine Rust + CDP |
+| Lưu trữ | IndexedDB | `automation.workflows` (cloud-first) |
 
-### Cloud objects created
+## 1. Trạng thái
 
-- **`automation.workflows`** row: `HRMS Timesheet Review` — id `a27093ce-a768-4e3a-bcc1-e4d87da6157c`, tenant admin, `status = draft`, version `1.0.0`. Hybrid v0 graph: 10 nodes / 9 edges (schema-valid). Flow: `trigger → new-tab(HRMS) → javascript-code(read JWT from profile) → conditions(session guard) → javascript-code(scan + absent_time analysis) → conditions(mode==submit) → javascript-code(submit) → done`. Pending: `tq automation inspect` validation + iteration.
+- **Đã chốt doctrine + quyết định** (mục §2). Sẵn sàng triển khai.
+- **Không** `git push` / CI/CD nếu không được yêu cầu (invariant #5).
+- Chặn bởi: **Phase 1 (engine parity)** — phải làm trước, cả task IG sau này cũng phụ thuộc.
+- Chặn bởi 1 input runtime: máy chạy worker (open item #9).
 
-### What this changes vs. the original draft
+## 2. Quyết định đã chốt
 
-- The original "Target Flow" implied `Cloud Cron → POST /api/v1/jobs`. That endpoint is the **localhost daemon gateway** and is unreachable from a cloud scheduler. Replaced with the Supabase `automation.jobs` queue + fleet claim.
-- The original Cloud Cron pseudocode (`fetch(.../api/v1/jobs)`) is superseded by `automation.enqueue_job(...)` (new) + `automation.tick_schedules()` (new, driven by pg_cron).
-- The Supabase queue **already exists** (`automation.jobs`, `claim_next_job`, `reap_stale_jobs`, `notify_job_queued`, `automation.schedules`). Phase 5 becomes *"add the enqueue + scheduler glue"*, not *"build a queue"*.
-
-## Objective
-
-Turn the existing HRMS client logic into a Tuquet Automation workflow executed by an enrolled workstation.
-
-A Supabase scheduler materializes a due `automation.schedules` row into a job in `automation.jobs`. An enrolled workstation running in fleet mode (`tq worker start --cloud`) claims the job, runs the `hrms-timesheet-review` workflow through the native automation + browser engines (CDP for session, API for HRMS calls), and reports status and logs back to Cloud.
-
-Cloud must **never** run the HRMS Node CLI directly and **never** depend on a native Chromium process inside the scheduler.
-
-## Existing building blocks (verified)
-
-Verified against the real tree on 2026-10-23:
-
-- `tq auth login` — Cloud operator auth + workstation enrollment (`cli/src/commands/cloud.rs`).
-- `tq worker` — `start` (incl. `--cloud` fleet mode), `status`, `logs` (`cli/src/commands/worker/`).
-- Worker fleet transport — outbound WS client (`worker/src/transport/ws_client.rs`) + enrollment via Supabase RPC (`worker/src/core/enrollment.rs` → `workers.enroll_device`, `workers.heartbeat`).
-- `tq automation` — `run`, `inspect`, `workflow list/import/export/info/delete` (`cli/src/commands/automation/`).
-- `tq browser` — `profile list/create/inspect/pack/unpack/push/pull/cloud`, CDP runtime (`cli/src/commands/browser/`).
-- Worker CDP workflow engine — supported labels include `trigger`, `conditions`/`while-loop`, `javascript-code`, `webhook`, `attribute-value`; interpolation of `{{variables.*}}`, `{{table.*}}`, `{{loopData.*}}` (`worker/src/drivers/cdp/workflow.rs`).
-- **Cloud queue (already exists)** — `automation.workflows`, `automation.jobs`, `automation.execution_logs`, `automation.schedules`, `automation.packages`; `automation.claim_next_job(p_worker_id, p_batch_size)` (FOR UPDATE SKIP LOCKED), `automation.reap_stale_jobs(interval)`, `automation.notify_job_queued()` → `pg_notify('automation_job_dispatch', …)`; enum `automation.job_status = pending|queued|running|paused|completed|failed|cancelled` (`cloud/supabase/plugins/automation/install.sql`).
-- `workers.devices` — `device_status = offline|idle|busy|maintenance|disabled`, `enroll_device`, `heartbeat` (`cloud/supabase/plugins/workers/install.sql`).
-
-### NOT present (must be created / located)
-
-- **`tools/hrms` does not exist** anywhere in the workspace or on disk. Adapter must be rewritten from the snippets in this task.
-- The **Automa upstream source** referenced in the audit table lives at **`/root/automa/`** (a separate checkout), *not* under `/root/tuquet/`. Spot-checked 6/6 referenced files exist there.
-- There is **no** `automation.enqueue_job`, **no** schedule-materializer function, **no** `pg_cron` usage, and **no** automation edge function yet.
-
-## Source of truth and audit references
-
-Use these files when you define, validate, or change the HRMS workflow. Do not infer a runtime parameter from a locale label alone.
-
-### Tuquet workflow contract
-
-| Concern | Reference | Use it for |
+| # | Câu hỏi | Quyết định |
 | --- | --- | --- |
-| Workflow model | `cli/src/core/models/workflow.rs` | Rust serialization shape for workflows, nodes, edges, settings, tables. |
-| Workflow schema | `cli/schema/workflow.schema.json` | JSON Schema for persisted workflow graphs. |
-| Structural validation | `cli/src/core/engine/workflow_resolver/validator.rs` | Runtime acceptance rules for `nodes` and `drawflow`. |
-| Compatibility normalization | `cli/src/core/engine/sanitizer.rs` | Legacy graph conversion and default edge handles. |
-| Workflow fixture | `cli/fixtures/google_search.workflow.json` | Working example of the persisted graph format. |
-| Job request types | `cli/src/api/handlers/jobs/types.rs` | `SubmitJobPayload`, runtime options, variables, browser selection. |
-| Job endpoint (local only) | `cli/src/api/handlers/jobs/crud.rs` | Local daemon job API behavior (`POST /api/v1/jobs`). |
-| Browser executor | `worker/src/drivers/cdp/workflow.rs` | Supported block labels, interpolation, branching, loops, cancellation, error handling. |
-| Execution output | `worker/src/protocol/schema.rs` | Worker result, variables, tables, logs, artifacts. |
-| **Cloud queue / claim** | `cloud/supabase/plugins/automation/install.sql` | `automation.jobs`, `claim_next_job`, `reap_stale_jobs`, `schedules`, notify trigger. |
-| **Worker enrollment** | `cloud/supabase/plugins/workers/install.sql` | `workers.devices`, `enroll_device`, `heartbeat`. |
+| 1 | Chiến lược thực thi | **Hybrid** — logic qua REST API của HRMS (`fetch` + JWT) từ **trong page context**; browser (CDP) chỉ để giữ session + lấy token. |
+| 2 | Đường dispatch job | **`automation.jobs` (cloud)** + fleet claim (`automation.claim_next_job`). Gateway local `127.0.0.1:8765` là **local-only**, không phải entrypoint cloud. |
+| 3 | Host scheduler | **`pg_cron` + Edge Function** materialize `automation.schedules` → `automation.jobs`. |
+| 4 | Credential HRMS | **`{{secrets@name}}`** (dialect Automa) trỏ vào **Secret Store** cloud (mã hoá client-side, DEK sealed per-device). Không plaintext ở bất kỳ đâu (graph/payload/log/git/DB). **Không** fallback trong block. |
+| 5 | Lịch + cutoff | **08:00 Asia/Ho_Chi_Minh, T2–T6** (`0 8 * * 1-5`). Cutoff = hết ngày trước; chỉ ngày `< today`. |
+| 6 | Rollout submit | **Dry-run trước** nhiều ngày công; `mode=submit` chỉ bật sau **owner duyệt**, có policy gate. |
+| 7 | Vị trí adapter | Logic nằm trong block `javascript-code` (option A). Tham số **khai báo ở `trigger.data.parameters` trên canvas**, không có cơ chế riêng. |
+| 8 | Target đầu tiên | Tenant admin `e0f30395-3d42-41f6-a4ca-c11411e4f24b`; workstation `HNDW-NDTU6` (`24cf97b1-ee98-4f1f-b6c8-b8e5d63fc48d`); profile `hrms-cmc-03e6b9`. |
+| 9 | **Contract tham số** | **`trigger.data.parameters[]`** (schema Automa) là SSOT. Giá trị resolve theo §8.2. |
+| 10 | **Tái sử dụng** | Dùng **`includedWorkflows`** của Automa. Không tự chế subflow. |
+| 11 | **Cấu hình vận hành** | Không bao giờ nằm trong graph. Chỉ vào qua job/schedule params + Secret Store. |
+| 12 | Fleet + trigger | Fleet **cấm** `trigger.type = manual` (phải có nguồn schedule/job). |
 
-### Automa parameter audit (source checkout at `/root/automa/`)
+### Đối tượng cloud
 
-| Concern | Reference | Use it for |
+**Đã có:** `automation.workflows` → `HRMS Timesheet Review` (`a27093ce-a768-4e3a-bcc1-e4d87da6157c`, `draft`, v1.0.0, **12 nodes**, `has_cred = false` — đã verify 2026-10-24).
+
+**Cần tạo/sửa:**
+- `automation.schedules` — thêm cột `parameters jsonb not null default '{}'`.
+- `automation.jobs` — thêm `schedule_id`, `idempotency_key` (+ unique), `params_snapshot`.
+- Bảng `automation.workflow_state` — cursor/state cho workflow incremental.
+- Hàm `automation.enqueue_job(...)` (idempotent) + `automation.tick_schedules()`.
+- Validation trong `public.workflow_upsert` (publish-time).
+
+### Khác gì so với bản trước
+
+- `{{secrets.*}}` → **`{{secrets@name}}`** (dialect Automa). Phải migrate workflow `a27093ce`.
+- Bỏ đề xuất thêm `workflows.param_schema` — **contract đã có** ở `trigger.data.parameters`.
+- Bỏ fallback credential trong block; thay bằng **publish-time validation** + fail-fast.
+- Thêm **Phase 1 (engine parity)** làm trước mọi thứ.
+- Thêm `workflows.variables` vào danh sách **xoá** (trùng chức năng, đang chết).
+
+## 3. Mục tiêu
+
+Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thiếu giờ → gửi đơn `TIME_OFF`) thành workflow Automation của Tuquet, chạy bởi workstation đã enroll.
+
+Scheduler Supabase materialize `automation.schedules` → job; workstation (fleet mode) claim, chạy workflow qua engine native + browser (CDP cho session, API cho HRMS), báo cáo trạng thái + log về Cloud.
+
+Cloud **không bao giờ** chạy Node CLI trực tiếp và **không** mở Chromium trong scheduler.
+
+## 4. Khối đã có (verified)
+
+- `tq auth login` — auth + enrollment (`cli/src/commands/cloud.rs`).
+- `tq worker` — `start` (gồm `--cloud`), `status`, `logs`.
+- Worker fleet transport — WS outbound (`worker/src/transport/ws_client.rs`) + `workers.enroll_device` / `heartbeat`.
+- `tq automation` — `run`, `inspect`, `workflow list/import/export/info/delete`.
+- `tq browser` — `profile list/create/inspect/pack/unpack/push/pull/cloud` + runtime CDP (`~/.tq/browser/runtimes/v148.0.7778.215/chrome`).
+- **Workflow store cloud-first** — CLI/console qua RPC `public.workflow_list/get/upsert/delete` (PostgREST chỉ expose `public`, nếu không sẽ `PGRST106`); `cli/src/infrastructure/cloud/workflow_store.rs`.
+- **Secret Store v2** — `tq secret init/set/list/rm/path/push/pull/remote/rotate`; local `~/.tq/system/secrets.json` (AES-256-GCM) + device keypair X25519 (`~/.tq/system/.device_key`); plugin `secrets` v2 (`secrets.credentials`, `secrets.tenant_keys`, `secrets.devices.wrapped_dek`).
+- **Cloud queue** — `automation.workflows` / `jobs` / `execution_logs` / `schedules` / `packages`; hàm hiện có **chỉ 3**: `claim_next_job(p_worker_id, p_batch_size)` (FOR UPDATE SKIP LOCKED), `reap_stale_jobs(p_stale_interval)`, `notify_job_queued()`. `jobs.parameters` là `jsonb` và **đã có GIN index** (`idx_automation_jobs_params_gin`).
+- **Antidetect profile + lease** — `browsers.profiles`, `browsers.fingerprint_templates`, `browsers.releases`, `acquire_profile` / `release_profile`.
+- **Block engine** (`worker/src/drivers/cdp/workflow.rs`) — nhãn đã verify: `trigger`, `delay`, `new-tab`, `javascript-code`, `webhook`, `conditions`, `while-loop`, `loop-data`, `insert-data`, `get-text`, `attribute-value`, `event-click`, `forms`, `tab-url`. Interpolation: `{{variables.*}}`, `{{table.*}}`, `{{loopData.*}}`.
+- **CDP surface engine thực dùng** — `Runtime.evaluate`, `Page.navigate/reload/enable/getFrameTree/createIsolatedWorld/captureScreenshot`, `Network.setCookie/getCookies/deleteCookies`, `Input.dispatchMouseEvent/dispatchKeyEvent`. → **không có `Network.responseReceived` / `Fetch`** ⇒ mọi đọc dữ liệu phải qua `fetch` **trong page** (đúng decision #1).
+
+### Chưa có (phải tạo)
+
+- **Engine KHÔNG đọc `trigger.data.parameters`** — grep `parameters` trong `worker/src/drivers/cdp/*.rs` và `workflow_resolver/*.rs` = **0**. (Đây là P0 của Phase 1.)
+- Engine chưa resolve **`{{secrets@name}}`** (đang là `{{secrets.*}}`).
+- Không có `automation.enqueue_job`, `tick_schedules`, `pg_cron` usage, Edge Function.
+- `automation.schedules` **không có cột `parameters`**; `automation.jobs` **không có `schedule_id`**, **không có `idempotency_key`**.
+- `tools/hrms` **không tồn tại** → adapter viết lại từ §16.
+
+## 5. Nguồn sự thật / tham chiếu audit
+
+### 5.1 Contract workflow (Tuquet)
+
+| Concern | Tham chiếu | Dùng để |
 | --- | --- | --- |
-| Block registry and defaults | `/root/automa/src/utils/shared.js` | Active block labels, UI defaults, categories, I/O counts, persisted data keys. |
-| Workflow export shape | `/root/automa/src/utils/workflowData.js` | Exported workflow envelope, settings, table, global data. |
-| Legacy conversion | `/root/automa/src/utils/convertWorkflowData.js` | Conversion from legacy Drawflow nodes/connections. |
-| Workflow runtime | `/root/automa/src/workflowEngine/WorkflowEngine.js` | Trigger resolution, connection lookup, table access, execution state. |
-| Block dispatch | `/root/automa/src/workflowEngine/WorkflowWorker.js` | Block data consumption, loops, fallbacks, runtime-only fields. |
-| Workflow block handlers | `/root/automa/src/workflowEngine/blocksHandler` | Background block params (webhook, conditions, loops, JavaScript). |
-| Browser content handlers | `/root/automa/src/content/blocksHandler` | Selector, form, extraction, event, scroll, upload, download params. |
-| Selector resolution | `/root/automa/src/content/handleSelector.js` | `selector`, `findBy`, iframe/frame selector, multiple matches, wait behavior. |
-| String interpolation | `/root/automa/src/workflowEngine/templating/renderString.js` | `variables`, `table`, `loopData`, `globalData`, `secrets`, expressions. |
-| Template replacement | `/root/automa/src/workflowEngine/templating/mustacheReplacer.js` | Mustache and runtime value substitution. |
-| Condition evaluation | `/root/automa/src/workflowEngine/utils/testConditions.js` | Comparison operators and condition value semantics. |
-| UI labels only | `/root/automa/src/locales/en/blocks.json` | Display names/help text only. **Not** the persisted data schema. |
+| Workflow model | `cli/src/core/models/workflow.rs` | shape serialize |
+| Workflow schema | `cli/schema/workflow.schema.json` | JSON Schema của graph + `$defs.parameter` |
+| Validation cấu trúc | `cli/src/core/engine/workflow_resolver/validator.rs` | luật chấp nhận `nodes`/`drawflow` |
+| Fixture | `cli/fixtures/google_search.workflow.json` | ví dụ graph hợp lệ |
+| Browser executor | `worker/src/drivers/cdp/workflow.rs` | nhãn block, interpolation, loop, cancel |
+| Output | `worker/src/protocol/schema.rs` | result, variables, tables, logs |
+| Queue/claim | `cloud/supabase/plugins/automation/install.sql` | jobs, claim, reap, schedules |
+| Workflow store RPC | cùng file (`public.workflow_*`) | CRUD cloud-first |
+| Secret Store | `cloud/supabase/plugins/secrets/install.sql` (v2) · `docs/en/cloud/specs/SPEC-secret-store.md` | credential |
+| Browser profile + lease | `cloud/supabase/plugins/browsers/install.sql` | profiles, acquire/release |
 
-### Audit rules
+### 5.2 Dialect Automa (bắt buộc tuân)
 
-1. Treat the Automa handlers as the behavioral source of truth. A field is part of the runtime contract only when a handler reads or writes it.
-2. Use `shared.js` to identify active blocks and defaults, but do not make defaults mandatory in the workflow schema.
-3. Keep block-specific data optional and allow extension fields for `block-package`, custom blocks, and forward compatibility.
-4. Keep handler-only fields such as `activeTabId`, `refData`, `$frameRect`, `nextBlockId`, `prevBlockData` out of persisted input/output contracts.
-5. Treat interpolation as runtime behavior for string fields. Never add secrets, JWTs, passwords, or auth headers to workflow variables.
-6. When a schema change affects a block parameter, compare against the handler directory, `shared.js`, the fixture, and the CLI schema contract test.
+| Concern | Tham chiếu | Dùng để |
+| --- | --- | --- |
+| Contract tham số + UI tác giả | `/root/automa/src/components/newtab/workflow/edit/EditWorkflowParameters.vue` | cột Name/Type/Placeholder/DefaultValue |
+| Prompt giá trị tham số | `/root/automa/src/params/App.vue` (+ `workflow:params`) | form nhập khi chạy tay |
+| Engine honour params | `/root/automa/src/workflowEngine/WorkflowEngine.js:157-230` | `checkParams`, `preferParamsInTab` |
+| Cú pháp secret | `/root/automa/src/components/newtab/workflow/editor/EditorUsedCredentials.vue` | regex `{{secrets@…}}` |
+| Nạp secret | `/root/automa/src/workflowEngine/WorkflowEngine.js:323` | `referenceData.secrets[name]` |
+| Composition | `/root/automa/src/utils/workflowData.js` (`includedWorkflows`) | tái sử dụng workflow con |
+| Trigger types | `/root/automa/src/components/newtab/workflow/edit/Trigger/*.vue` | cron/interval/date/… |
+| Đăng ký trigger | `/root/automa/src/utils/workflowTrigger.js` | map sang lịch cloud |
+| Xuất/nhập document | `/root/automa/src/utils/workflowData.js` | envelope export |
 
-## Scope
+### 5.3 Quy tắc audit
 
-### In scope
+1. Không hard-code selector, app id, CSRF token — đọc runtime từ page.
+2. Không gửi request mutate khi `mode = dry-run`.
+3. Không ghi PII (mã NV, email) vào log.
+4. Claim nào không có file/hành vi thật chứng minh ⇒ đánh dấu `ASSUMPTION`.
 
-- Define the HRMS workflow input and output contract.
-- Create a reusable `hrms-timesheet-review` workflow template.
-- Rewrite the HRMS API adapter (fetch-based, worker-compatible) from the snippets + mock tests.
-- Run the workflow on an enrolled workstation in fleet mode.
-- Add Cloud enqueue (`automation.enqueue_job`) + scheduler materialization (`automation.tick_schedules` on pg_cron) for `automation.schedules`.
-- Add dry-run, submit, idempotency and audit behavior.
-- Persist execution status (`automation.jobs`) and logs (`automation.execution_logs`).
-- Keep HRMS credentials/tokens out of workflow payloads, job payloads and logs.
+## 6. Phạm vi
 
-### Out of scope (first implementation)
+### Trong phạm vi (v1)
 
-- Running Chromium inside a Cloudflare Worker / Supabase scheduler.
-- Replacing `tq auth login`.
-- Building a new browser engine.
-- Supporting multiple HRMS vendors.
-- Auto-submitting before dry-run behavior is verified.
-- Storing plaintext HRMS passwords anywhere.
+- Đọc timesheet kỳ hiện tại qua API HRMS (từ page context).
+- Phân tích ngày thiếu giờ theo `absent_time` server trả về.
+- Sinh đề xuất `TIME_OFF` (`reason_type` mặc định `LOA_CORP_4`).
+- Dry-run mặc định; submit chỉ khi policy cho phép + owner duyệt.
+- Output có cấu trúc cho console + `automation.execution_logs`.
 
-## Target flow
+### Ngoài phạm vi (v1)
 
-```text
-pg_cron (08:00 Asia/Ho_Chi_Minh, Mon–Fri)
-  -> Edge Function (scheduled) calls automation.tick_schedules()
-  -> tick_schedules scans due automation.schedules
-     and INSERTs one automation.jobs row (status='queued') per
-     tenant / workstation-profile / business date (idempotency key)
-  -> notify_job_queued() -> pg_notify('automation_job_dispatch')
-  -> enrolled workstation (tq worker start --cloud) sees the dispatch
-  -> automation.claim_next_job(worker_id)  (FOR UPDATE SKIP LOCKED)
-  -> Tuquet Automation executes the HRMS workflow
-  -> CDP opens hrms-cmc profile, extracts session JWT
-  -> HRMS REST API: scan + policy evaluation (dry-run | submit)
-  -> worker reports to automation.execution_logs + job.result_summary
+- Tự login headless (login RSA client-side → bắt buộc qua form browser; re-login là bước recovery thủ công).
+- Sửa/duyệt đơn trên HRMS UI.
+- Nhiều tenant / nhiều nhân viên một lần chạy.
+- LLM/classifier — v1 chỉ rule-based.
+
+## 7. Luồng đích
+
+```
+[pg_cron 0 8 * * 1-5 Asia/Ho_Chi_Minh]
+        │
+        ▼
+automation.tick_schedules() ──► automation.enqueue_job(workflow='HRMS Timesheet Review')
+        │                                   │
+        │                                   ▼
+        │                        automation.jobs (status=queued, schedule_id, idempotency_key)
+        ▼                                   │ pg_notify
+   (tick kế tiếp)                 workstation đã enroll (fleet)
+                                            │ claim_next_job
+                                            ▼
+                            acquire_profile('hrms-cmc-03e6b9')   ← lease 1 session
+                                            │
+                            new-tab(hrms.cmcglobal.com.vn) → javascript-code(session guard)
+                                 ├─ không có JWT → fail-fast, release lease, alert
+                                 └─ có → JS fetch API timesheet (trong page)
+                                            │
+                            phân tích absent_time → buckets
+                                 (no_absence / existing_request / today_or_future / eligible)
+                                            │
+                            mode == submit? (policy + owner approved)
+                                 ├─ không → ghi kết quả, release lease, done
+                                 └─ có → POST đơn TIME_OFF (idempotent), ghi nhận, release lease
 ```
 
-## Contracts
+## 8. Contracts
 
-### Workflow job parameters (stored in `automation.jobs.parameters`)
+### 8.1 Contract tham số — SSOT = `trigger.data.parameters[]`
 
-```json
+Khai báo trên canvas, lưu trong `graph_data`, validate bởi `workflow.schema.json`:
+
+```jsonc
+// graph_data.nodes[label=trigger].data
 {
-  "workflowId": "hrms-timesheet-review",
-  "browserProfileId": "hrms-cmc",
-  "mode": "dry-run",
-  "businessDate": "2026-10-23",
-  "variables": {
-    "period": "current",
-    "minLateMinutes": 1,
-    "maxLateMinutes": 60,
-    "excludeDates": []
-  },
-  "idempotencyKey": "hrms-timesheet-review:<tenant-id>:2026-10-23"
+  "type": "manual",                 // ⚠ fleet: KHÔNG được manual (§0.3) → phải là cron/schedule-driven
+  "parameters": [
+    { "name": "mode",            "type": "select", "defaultValue": "dry-run", "description": "dry-run | submit" },
+    { "name": "minLateMinutes",  "type": "number", "defaultValue": 1 },
+    { "name": "maxLateMinutes",  "type": "number", "defaultValue": 60 },
+    { "name": "reasonType",      "type": "text",   "defaultValue": "LOA_CORP_4" }
+  ]
 }
 ```
 
-> `browserId` is injected into the workflow runtime options, not the HRMS payload. `mode` ∈ `dry-run | submit`; default `dry-run`.
+### 8.2 Thứ tự resolve giá trị (headless)
 
-### Cloud enqueue contract (new SQL helper)
+```
+trigger.data.parameters[].defaultValue      ← contract + default (canvas)
+        ↓ override bởi
+automation.schedules.parameters             ← giá trị theo LỊCH   (cột cần thêm)
+        ↓ override bởi
+automation.jobs.parameters                  ← giá trị theo LẦN CHẠY (đã có, GIN)
+──────────────────────────────────────────
+{{secrets@name}}                            ← credential, kênh RIÊNG, không bao giờ trong params
+settings{onError, blockDelay, concurrency}  ← hành vi runtime, KHÔNG phải param
+```
+
+Quy tắc:
+- Chạy tay (canvas/CLI) ⇒ **prompt** (như Automa).
+- Chạy fleet/cloud ⇒ prompt **tắt** (`checkParams = false`), resolve theo 3 tầng trên.
+- Thiếu giá trị **và** không có default ⇒ **fail-fast**, không dùng fallback trong block.
+
+### 8.3 Publish-time validation (mới)
+
+`public.workflow_upsert` phải chặn:
+- param declared không có `defaultValue` **và** không có nguồn giá trị ⇒ reject.
+- fleet chạy mà `trigger.type = manual` ⇒ reject.
+- graph chứa credential/plaintext (heuristic) ⇒ reject.
+- `trigger.data.parameters` trùng tên ⇒ reject.
+
+### 8.4 Enqueue (SQL helper mới)
 
 ```sql
--- New. Insert one queued job per (tenant, workflow, business date); idempotent.
-CREATE OR REPLACE FUNCTION automation.enqueue_job(
-    p_tenant_id      UUID,
-    p_workflow_id    UUID,
-    p_name           TEXT,
-    p_parameters     JSONB,
-    p_idempotency_key TEXT
-) RETURNS automation.jobs;
+-- automation.enqueue_job(p_workflow_id uuid, p_tenant_id uuid, p_schedule_id uuid,
+--                        p_parameters jsonb, p_idempotency_key text)
+-- Insert automation.jobs (status='queued'), set params_snapshot, fire notify_job_queued().
+-- IDEMPOTENT trên (workflow_id, idempotency_key): tick lặp KHÔNG tạo job thứ hai.
 ```
 
-Requirements:
-
-- Insert with `status = 'queued'` (table default is `'pending'`; `claim_next_job` only selects `'queued'`).
-- Enforce idempotency with a **dedicated column + partial unique index** (do not rely on `parameters` equality):
-  ```sql
-  ALTER TABLE automation.jobs ADD COLUMN IF NOT EXISTS idempotency_key TEXT;
-  CREATE UNIQUE INDEX IF NOT EXISTS uq_automation_jobs_idem
-      ON automation.jobs (tenant_id, idempotency_key)
-      WHERE idempotency_key IS NOT NULL;
-  ```
-  On duplicate, return the existing row (no second job).
-- Existing claim path is unchanged: a worker in `workers.devices` with `status IN ('idle','running')` calls `automation.claim_next_job(worker_id)`.
-
-### Scheduler contract (new SQL helper + pg_cron)
+### 8.5 Scheduler (SQL helper mới + pg_cron)
 
 ```sql
--- New. Materialize due schedules into jobs. Idempotent per business date.
-CREATE OR REPLACE FUNCTION automation.tick_schedules()
-RETURNS INT  -- number of jobs enqueued
-LANGUAGE plpgsql SECURITY DEFINER AS $$ … $$;
+-- automation.tick_schedules() → materialize automation.schedules đã tới hạn thành jobs.
+-- pg_cron: '0 1 * * 1-5' (UTC)  ⇒ 08:00 Asia/Ho_Chi_Minh, T2–T6
+-- idempotency_key = 'hrms:' || date_trunc('day', now() AT TIME ZONE 'Asia/Ho_Chi_Minh')
 ```
 
-- Select `automation.schedules WHERE is_active AND next_run_at <= now()`.
-- For each, compute the Vietnam business date, build the idempotency key, call `automation.enqueue_job(...)`, then advance `last_run_at` / `next_run_at`.
-- Schedule registration: `automation.schedules` row with `cron_expression = '0 8 * * 1-5'`, `timezone = 'Asia/Ho_Chi_Minh'`.
-- Drive `tick_schedules()` from **pg_cron** (enable extension; `cron.schedule('hrms-tick', '*/5 * * * *', 'SELECT automation.tick_schedules();')`) and/or a scheduled Edge Function. The scheduler itself launches no browser and holds no HRMS secret.
+### 8.6 Output job (`automation.jobs.result_summary`)
 
-### Job output (`automation.jobs.result_summary`)
-
-```json
+```jsonc
 {
-  "status": "succeeded",
-  "mode": "dry-run",
-  "period": "2026-10",
-  "scannedDates": 23,
-  "eligibleDates": [
-    { "date": "2026-10-07", "minutes": 35, "reasonType": "LOA_CORP_4", "action": "would_submit" }
-  ],
-  "skippedDates": [],
-  "submittedRequestIds": [],
-  "warnings": []
+  "period": { "from": "2026-09-26", "to": "2026-10-25" },
+  "scanned_days": 28,
+  "eligible": 0,
+  "skipped": { "no_absence": 17, "existing_request": 3, "today_or_future": 1 },
+  "submitted": 0,          // = 0 khi dry-run — KHÔNG được khác cho tới khi rollout
+  "errors": []
 }
 ```
 
-## Implementation tasks
+### 8.7 Schema bổ sung
 
-### Phase 1 — Extract the HRMS domain contract
+```sql
+alter table automation.jobs      add column schedule_id uuid references automation.schedules(id);
+alter table automation.jobs      add column idempotency_key text;
+create unique index on automation.jobs (workflow_id, idempotency_key) where idempotency_key is not null;
+alter table automation.jobs      add column params_snapshot jsonb;   -- params + workflow version đã chạy
+alter table automation.schedules add column parameters jsonb not null default '{}';
 
-- [ ] Define typed HRMS API request/response models.
-- [ ] Rewrite `tools/hrms/src/api.js` logic as a **fetch-based** worker-compatible adapter (source snippets below are authoritative).
-- [ ] Inject the token via an auth provider; never read `~/.hrms/config.json`.
-- [ ] Typed errors: authentication, rate limiting, invalid period, API failure, duplicate request.
-- [ ] Mock tests for employee detail, period, timesheet, submit responses.
-
-**Acceptance:** adapter runs in Node and the target worker runtime; no password/JWT written to logs; API errors carry status + safe message; existing endpoint behavior preserved.
-
-### Phase 2 — Define the Automation workflow
-
-- [ ] Create workflow ID `hrms-timesheet-review`.
-- [ ] Input variable validation (`period`, `mode`, `minLateMinutes`, `maxLateMinutes`, `excludeDates`).
-- [ ] HRMS session check (CDP: profile has a live session?).
-- [ ] Current period + timesheet retrieval (via adapter).
-- [ ] Late/absent analysis using `absent_time` (never check-in lateness).
-- [ ] Guards for the current unfinished workday (skip `date >= today`).
-- [ ] Existing-request + excluded-date filters (`Pending`/`Approved` → skip).
-- [ ] `dry-run` output branch.
-- [ ] Explicit `submit` branch (policy-gated).
-- [ ] Timeout + cancellation handling.
-
-**Acceptance:** `tq automation inspect hrms-timesheet-review` validates; local run works with a test profile; dry-run performs no HRMS mutation; submit can be disabled by policy.
-
-### Phase 3 — Workstation browser and worker execution
-
-- [ ] Document workstation setup via `tq auth login`.
-- [ ] Create the `hrms-cmc` browser profile and log in **once, manually**.
-- [ ] Define how the HRMS session is established/reused (CDP reads the JWT from the profile).
-- [ ] Ensure the worker runs in **fleet mode** (`tq worker start --cloud`) and claims via `claim_next_job`.
-- [ ] Stream step logs to `automation.execution_logs` and the final result to `job.result_summary`.
-- [ ] Verify profile isolation + session persistence.
-
-**Acceptance:** enrolled workstation receives the job with no manual CLI interaction; runs against the selected profile; worker restart creates no duplicate submission; cancellation stops the active workflow safely.
-
-### Phase 4 — Authentication and secret handling
-
-- [ ] Keep Tuquet Cloud auth separate from HRMS auth.
-- [ ] Cloud enrollment stays on `tq auth login`.
-- [ ] HRMS auth = a logged-in browser profile only. **No stored password.**
-- [ ] Read the JWT from the profile session (CDP) and pass it to the API adapter in memory only.
-- [ ] Headless re-login is a manual recovery path only.
-- [ ] Never include password/JWT/Authorization headers in job payloads, logs or audit records.
-- [ ] Define token-expiry detection + re-auth behavior (fail safe with actionable message).
-
-**Acceptance:** job payload holds no password/JWT; expired session → safe actionable failure; re-auth recorded without exposing the token.
-
-### Phase 5 — Cloud scheduling and job creation
-
-- [ ] Migration: add `automation.jobs.idempotency_key` + partial unique index.
-- [ ] Add `automation.enqueue_job(...)` (idempotent).
-- [ ] Add `automation.tick_schedules()`.
-- [ ] Enable `pg_cron` + register the tick schedule (UTC-aware; VN 08:00 = 01:00 UTC).
-- [ ] Add the scheduled Edge Function (thin wrapper calling `tick_schedules()`), if used.
-- [ ] Seed one `automation.schedules` row: `cron_expression='0 8 * * 1-5'`, `timezone='Asia/Ho_Chi_Minh'`.
-- [ ] Reject duplicate jobs by idempotency key.
-- [ ] Allow `dry-run` / `submit` as separate policy-controlled modes.
-- [ ] Retry rules for transient queue/API failures.
-
-**Acceptance:** cron creates a job without running a browser; retry creates no duplicate submission; jobs visible in existing worker-queue/status APIs; schedule auditable by tenant + date.
-
-### Phase 6 — Observability and safe rollout
-
-- [ ] Metrics: queued / running / succeeded / failed.
-- [ ] Error categories: auth, browser, HRMS API, policy.
-- [ ] Audit record for every proposed/submitted date.
-- [ ] Alert/visible failure when no eligible dates found unexpectedly.
-- [ ] Run dry-run several full workdays.
-- [ ] Enable submit only after owner approval.
-
-**Acceptance:** every execution has a traceable job id + idempotency key; operators inspect the plan before submit; no duplicate request for the same employee/date/type; failure + retry documented.
-
-## Recommended first slice
-
-Implement **only** this vertical slice first (unaffected by the cloud-scheduling work):
-
-1. `tq auth login` workstation already works.
-2. Add `hrms-timesheet-review` as a **dry-run** workflow.
-3. Execute it **locally** on the enrolled workstation + `hrms-cmc` profile.
-4. Return a structured plan with eligible/skipped dates.
-5. Do not submit requests yet.
-6. Do not add the Cloud scheduler until the local worker job is proven.
-
-## Verification commands
-
-> Confirm exact flags against `tq <cmd> --help` before relying on them — the CLI contract may differ from these examples.
-
-```powershell
-# Workstation authentication
-tq auth login
-
-# Browser + worker readiness
-tq browser profile list            # verify --format flag for JSON
-tq worker status                   # local daemon status
-
-# Workflow validation + local execution
-tq automation inspect hrms-timesheet-review
-# NOTE: `tq automation run` takes a WORKFLOW FILE path as its first positional
-# arg, not a stored workflow id. Confirm the flag that runs a STORED workflow by id
-# (e.g. --workflow / the interactive picker) before use.
-tq automation run <path-to>.workflow.json --headless --timeout 300
-
-# Cloud job verification (after Phase 5)
-tq worker logs -f
-tq worker start --cloud            # fleet mode: claim from automation.jobs
-```
-
-## Security requirements
-
-- Never commit HRMS credentials, JWTs, cookies, browser profiles or local `.hrms` files.
-- Never log Authorization headers or credential-bearing request bodies.
-- Do not place secrets in workflow variables.
-- Use idempotency before every mutating HRMS request.
-- Require explicit policy approval before enabling submit mode.
-- Keep dry-run as the default mode.
-
-## Open items
-
-1. ~~**First target**~~ — **RESOLVED**: admin tenant `e0f30395-…`, workstation `HNDW-NDTU6`, profile `hrms-cmc`. First login into `hrms-cmc` is still a manual step.
-2. **`reason_type` mapping** — confirm default `LOA_CORP_4` and whether others are needed.
-3. **`idempotency_key` column** — approve the schema change on `automation.jobs`.
-4. **Exact stored-workflow run flag** — confirm the CLI invocation for running by id (see Verification commands).
-5. **Alert channel** — where the "no eligible dates unexpectedly" alert should fire.
-
-## Reference code (rewrite from these — `tools/hrms` no longer exists)
-
-Preserve behavior while moving the code behind typed Tuquet interfaces. Do not copy local filesystem/config persistence into a Worker.
-
-### HRMS API adapter source (`tools/hrms/src/api.js`)
-
-```js
-export async function apiFetch(endpoint, options = {}, token) {
-  const url = endpoint.startsWith('http') ? endpoint : `${BASE_URL}${endpoint}`;
-  const headers = {
-    Accept: '*/*',
-    'Accept-Language': 'vi,en-US;q=0.9,en;q=0.8',
-    Authorization: `Bearer ${token}`,
-    Origin: HRMS_WEB_URL,
-    'User-Agent':
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36',
-    ...options.headers,
-  };
-
-  const response = await fetch(url, { ...options, headers });
-  const text = await response.text();
-
-  try {
-    return { ok: response.ok, status: response.status, data: JSON.parse(text) };
-  } catch {
-    return { ok: response.ok, status: response.status, rawText: text };
-  }
-}
-
-export async function getUserDetail(username, token) {
-  return apiFetch(`/user/detail?username=${encodeURIComponent(username)}`, {}, token);
-}
-
-export async function getCurrentPeriod(token) {
-  const response = await apiFetch('/filters/periods', {}, token);
-  if (!response.ok || !Array.isArray(response.data?.data)) {
-    throw new Error('Unable to load HRMS periods');
-  }
-  return response.data.data.find((period) => period.is_current_timesheet) ?? response.data.data[0];
-}
-
-export async function getFlexibleTimesheet(timesheetId, employeeId, token) {
-  return apiFetch(`/timesheets/flexible/${timesheetId}/employee/${employeeId}`, {}, token);
-}
-
-export async function submitLateRequest({ employeeId, dates, description, reasonType, token }) {
-  const payload = {
-    request_type: 'TIME_OFF',
-    reason_type: reasonType ?? 'LOA_CORP_4',
-    description,
-    mail_cc: [],
-    employee: employeeId,
-    request_dates: dates,
-    time_leave: null,
-  };
-
-  const response = await apiFetch(
-    '/request-management/create-common-request',
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    },
-    token
-  );
-
-  return { payload, response };
-}
-```
-
-Constants (`tools/hrms/src/constants.js`):
-
-```js
-const HRMS_WEB_URL = 'https://hrms.cmcglobal.com.vn';
-const BASE_URL = 'https://hrms-be.cmcglobal.com.vn/api/tms';
-```
-
-The adapter must inject the token through an auth provider. It must not read `~/.hrms/config.json` inside a Worker.
-
-### HRMS analysis logic source (`tools/hrms/src/timesheet.js`)
-
-```js
-const today = new Intl.DateTimeFormat('sv-SE', {
-  timeZone: 'Asia/Ho_Chi_Minh',
-}).format(new Date());
-
-for (const item of timesheets) {
-  if (!item.check_in_time) continue;
-
-  const [date] = item.date_of_issue.split(' ');
-  const absentMinutes = Number(item.absent_time ?? 0);
-  const existingRequests = item.request_detail ?? [];
-  const hasPendingOrApproved = existingRequests.some(
-    (request) => request.status_type === 'Pending' || request.status_type === 'Approved'
-  );
-
-  // Today and future dates are never auto-submitted.
-  if (date >= today) {
-    continue;
-  }
-
-  if (absentMinutes <= 0 || hasPendingOrApproved) {
-    continue;
-  }
-
-  if (excludeDates.has(date)) continue;
-  if (minMinutes !== null && absentMinutes < minMinutes) continue;
-  if (maxMinutes !== null && absentMinutes > maxMinutes) continue;
-
-  eligibleDates.push({
-    date,
-    minutes: absentMinutes,
-    existingRequests,
-  });
-}
-```
-
-Do not replace `absent_time` with check-in lateness. The HRMS server value is the authoritative total missing time after the workday is closed.
-
-### Headless login reference (`tools/hrms/src/browser.js`) — recovery path only
-
-```js
-page.on('request', (request) => {
-  const authorization = request.headers().authorization;
-  if (authorization?.startsWith('Bearer ') && !capturedToken) {
-    capturedToken = authorization.slice('Bearer '.length).trim();
-  }
-});
-
-page.on('response', async (response) => {
-  if (!response.url().includes('/auth/login')) return;
-
-  const json = await response.json().catch(() => null);
-  capturedToken = json?.token ?? json?.access_token ?? capturedToken;
-});
-
-const storageToken = await page.evaluate(() =>
-  ['token', 'accessToken', 'jwt', 'auth_token', 'access_token']
-    .map((key) => localStorage.getItem(key))
-    .find(Boolean)
+create table automation.workflow_state (        -- cursor/state cho workflow incremental
+  tenant_id uuid, workflow_id uuid, schedule_id uuid,
+  key text, value jsonb, updated_at timestamptz default now(),
+  primary key (tenant_id, workflow_id, coalesce(schedule_id, '00000000-0000-0000-0000-000000000000'::uuid), key)
 );
+
+alter table automation.workflows drop column variables;   -- cột chết, trùng chức năng trigger params
 ```
 
-For the first Tuquet implementation, prefer the existing authenticated profile. Use headless login only as an explicit recovery step on the workstation. Never place the password in a Cloud job payload.
+## 9. Các phase
 
-### Local daemon job contract (`cli/src/api/handlers/jobs/types.rs`, `crud.rs`) — for local runs only
+### Phase 1 — Automa schema parity (engine) ← **làm trước tiên**
 
-`POST /api/v1/jobs` on the **local** daemon (`127.0.0.1:8765`):
+1. Engine đọc `trigger.data.parameters` → seed vào scope (default + type), tôn trọng namespace interpolation.
+2. Resolve **`{{secrets@name}}`** (+ scrub qua masker). Giữ `{{variables.*}}`, `{{table.*}}`, `{{loopData.*}}`.
+3. Map `trigger.type` ⇄ nguồn kích hoạt (fleet: từ `automation.jobs`; manual ⇒ reject ở fleet).
+4. Honour `settings{onError, blockDelay, concurrency}`; log cảnh báo cho field chưa hỗ trợ (không im lặng).
+5. Test: workflow có param declared + chạy headless ⇒ giá trị vào đúng block; thiếu giá trị ⇒ fail-fast.
 
-```json
-{
-  "workflowId": "hrms-timesheet-review",
-  "options": {
-    "variables": {
-      "period": "current",
-      "mode": "dry-run",
-      "minLateMinutes": 1,
-      "maxLateMinutes": 60,
-      "excludeDates": [],
-      "idempotencyKey": "hrms-timesheet-review:tenant-123:2026-10-23"
-    },
-    "browserId": "hrms-cmc",
-    "headless": true,
-    "debug": false,
-    "closeBrowserOnFinish": false
-  }
-}
+**Verify:** chạy workflow HRMS không truyền `-p` ⇒ dùng **default từ trigger** (không cần fallback trong block).
+
+### Phase 2 — Re-author workflow trên canvas
+
+1. Khai báo `mode/minLateMinutes/maxLateMinutes/reasonType` ở **`trigger.data.parameters`** (canvas).
+2. Xoá mọi credential/plaintext/default nhét trong block; login dùng `{{secrets@name}}`.
+3. Đặt `trigger.type` phù hợp chế độ fleet (không `manual`).
+4. Upsert qua `workflow_upsert` (đi qua publish-time validation).
+
+**Verify:** `tq automation inspect` pass; `workflow_get` trả `has_cred=false`; validation chặn được graph cố tình để thiếu default.
+
+### Phase 3 — Workstation browser & worker
+
+1. Chạy local dry-run với profile `hrms-cmc-03e6b9`.
+2. Lease acquire/release kể cả khi fail (không kẹt lock).
+3. Claim đúng ở fleet mode.
+
+**Verify:** 2 run đồng thời không cùng giữ profile; sau run fail không còn `locked_by`.
+
+### Phase 4 — Secrets (`{{secrets@name}}`) + session
+
+1. `tq secret set hrms_username` / `hrms_password` (Secret Store, mã hoá).
+2. **Migrate** workflow `a27093ce`: `{{secrets.hrms_*}}` → **`{{secrets@hrms_*}}`**.
+3. Session reuse từ snapshot profile — password **không** dùng lúc chạy.
+4. `tq secret push` → máy khác `pull` chạy được cùng job.
+
+**Verify:** payload + log không plaintext; máy mới chỉ với `tq secret pull` chạy được; token sai bị từ chối.
+
+### Phase 5 — Cloud scheduling & enqueue
+
+1. Thêm `enqueue_job` + `tick_schedules` + các cột ở §8.7 (**cần owner duyệt schema change**).
+2. Tạo row `automation.schedules` (08:00 T2–T6) + entry `pg_cron`.
+3. Idempotent mỗi tick.
+
+**Verify:** 1 tick ⇒ đúng 1 job; tick lặp ⇒ 0 job mới.
+
+### Phase 6 — Observability & rollout
+
+1. Summary mỗi run → console + `automation.execution_logs`; alert chỉ khi `errors.length > 0` hoặc session guard fail.
+2. Dry-run nhiều ngày công; so sánh kết quả với kỳ vọng owner.
+3. Bật `mode=submit` **sau khi owner duyệt**; kill switch = `automation.schedules.is_active = false`.
+
+**Verify:** ngày dry-run ⇒ `submitted = 0`; tắt schedule ⇒ không sinh job mới trong 1 tick.
+
+## 10. First slice
+
+Phase **1 → 2 → 3** ở dry-run, một tenant, một nhân viên, không submit. Deliverable: engine honour params + workflow re-author sạch + kết quả có cấu trúc.
+
+## 11. Lệnh verify
+
+```bash
+# Build (xem skill tuquet-workspace)
+# Browser + profile
+tq browser profile list
+tq browser profile inspect hrms-cmc-03e6b9
+
+# Secrets (dialect mới)
+tq secret list && tq secret remote
+
+# Workflow: validate + chạy local (positional = ĐƯỜNG DẪN FILE)
+tq automation inspect /tmp/hrms.workflow.json
+tq automation run /tmp/hrms.workflow.json -p mode=dry-run     # hoặc KHÔNG -p ⇒ lấy default từ trigger
+
+# Cloud (sau Phase 5)
+#   select status, result_summary, params_snapshot from automation.jobs
+#   where workflow_id = 'a27093ce-a768-4e3a-bcc1-e4d87da6157c' order by created_at desc limit 5;
 ```
 
-Rust payload types:
+## 12. Yêu cầu an toàn
 
-```rust
-pub struct SubmitJobPayload {
-    pub workflow_id: Option<String>,
-    pub workflow_path: Option<String>,
-    pub workflow_data: Option<serde_json::Value>,
-    pub options: Option<SubmitJobOptions>,
-}
+- **Zero plaintext** credential trong `graph_data`, payload, log, audit, git — chỉ `{{secrets@name}}`.
+- **Một session / một profile** — lease bắt buộc, reap stale lock, không bypass.
+- **PII**: mã nhân viên/email chỉ vào job output, mask trong log.
+- **Fail closed**: session guard fail / thiếu param / policy deny ⇒ không submit, release lease, alert.
+- **Idempotent** trước mọi request mutate (đơn `TIME_OFF`).
+- Không `cargo build --release` trên VPS; không push/CI khi chưa được yêu cầu.
 
-pub struct SubmitJobOptions {
-    pub variables: Option<serde_json::Value>,
-    pub browser_id: Option<String>,
-    pub default_browser: Option<String>,
-    pub headless: Option<bool>,
-    pub debug: Option<bool>,
-    pub close_browser_on_finish: Option<bool>,
-}
+## 13. Rủi ro
+
+| Rủi ro | Mức | Giảm thiểu |
+| --- | --- | --- |
+| Ghi đơn trùng lên HRMS | Cao | idempotency_key + check Pending/Approved + dry-run |
+| Hai phiên HRMS song song | Cao | lease `browsers.profiles` + reap stale |
+| **Engine bỏ qua canvas declared** | Cao | Phase 1 parity + publish-time validation (§0.3) |
+| Login RSA đổi key/flow | Trung bình | dùng form browser (SPA tự mã hoá), không hard-code |
+| Session/JWT mất khi đổi máy | Trung bình | snapshot + `tq secret push/pull` |
+| Fingerprint bị phát hiện | Trung bình | engine C++ fingerprint-chromium + CreepJS + webrtc shield |
+| Hiểu sai `absent_time` | Trung bình | chỉ dùng `absent_time` server |
+| Bật submit quá sớm | Cao | policy gate + owner approval |
+| ~~Credential plaintext~~ | — | ✅ đã xử lý (verify `has_cred=false`); còn nợ **rotate mật khẩu HRMS tại CMC** |
+
+## 14. Open items
+
+| # | Việc | Trạng thái |
+| --- | --- | --- |
+| 1 | Cột `idempotency_key` + `schedule_id` + `schedules.parameters` + `workflow_state` | **cần owner duyệt schema change** |
+| 2 | Flag CLI chạy workflow đã lưu theo **id** (không chỉ đường dẫn file) | cần xác nhận |
+| 3 | Mapping `reason_type` (mặc định `LOA_CORP_4`) | cần xác nhận |
+| 4 | Kênh alert "không có ngày đủ điều kiện" | cần chốt |
+| 5 | ~~Migrate credential → store~~ | ✅ DONE (dialect sẽ đổi sang `secrets@`) |
+| 6 | Profile `hrms-cmc`: dùng proxy hay không? | cần chốt |
+| 7 | `browsers.profiles.id` cloud của `hrms-cmc` | xác nhận sau khi tạo |
+| 8 | ~~Hướng dispatch~~ | ✅ RESOLVED (a) |
+| 9 | Cài & chạy worker trên **máy nào** (VPS chưa có `tq`; `HNDW-NDTU6` là Windows) | **cần chốt — chặn Phase 3** |
+| 10 | ~~Engine hỗ trợ secrets~~ | ✅ DONE (đổi dialect ở Phase 4) |
+| 11 | ~~Port credential sang máy khác~~ | ✅ DONE (device keypair + sealed DEK) |
+| 12 | Xoá `automation.workflows.variables` | theo §8.7 |
+| 13 | Verify `globalData` / `table` / `dataColumns` có được engine honour không | Phase 1 |
+
+## 15. Migration từ trạng thái hiện tại
+
+| Việc | Chi tiết |
+| --- | --- |
+| Workflow `a27093ce` | `{{secrets.hrms_username}}` → `{{secrets@hrms_username}}`; `{{secrets.hrms_password}}` → `{{secrets@hrms_password}}` |
+| `trigger.data` | thêm `parameters[]` đầy đủ; đổi `type` khỏi `manual` nếu chạy fleet |
+| Block login | xoá fallback credential/default đã nhét trong block |
+| `workflows.variables` | drop column |
+| Docs | cập nhật mọi chỗ ghi `{{secrets.*}}` → `{{secrets@name}}` (SPEC-secret-store, CLI docs, plan) |
+
+## 16. Reference code (viết lại — `tools/hrms` không còn tồn tại)
+
+```js
+// Block: session guard (javascript-code) — chạy trong page context trên hrms.cmcglobal.com.vn
+const s = JSON.parse(localStorage.getItem('session_login') || 'null');
+if (!s?.access_token) return { ok: false, reason: 'no_hrms_session' };
+return { ok: true, userName: s.userName };
 ```
 
-Response:
+```js
+// Block: đọc + phân tích timesheet (javascript-code)
+// LƯU Ý: KHÔNG hard-code credential. Username lấy qua {{secrets@hrms_username}} nếu cần.
+const token = JSON.parse(localStorage.getItem('session_login')).access_token;
+const me = await (await fetch('/api/user/profile', { headers: { Authorization: `Bearer ${token}` } })).json();
+const employeeId = me.data.userId;                       // bug đã fix: KHÔNG dùng me.data.id
 
-```json
-{ "jobId": "job_123abc", "status": "queued", "message": null }
+const period = await (await fetch(`/api/timesheets/flexible/${employeeId}/employee/${employeeId}/period`,
+  { headers: { Authorization: `Bearer ${token}` } })).json();
+const timesheetId = period.data.period.timesheet_id;     // bug đã fix
+
+const sheet = await (await fetch(`/api/timesheets/flexible/${employeeId}/employee/${employeeId}?timesheet_id=${timesheetId}`,
+  { headers: { Authorization: `Bearer ${token}` } })).json();
+const rows = sheet.data.timesheets;                      // bug đã fix: KHÔNG dùng sheet.data.rows
+// ... phân tích absent_time → buckets
 ```
 
-> Cloud paths use `automation.jobs` + `claim_next_job`, **not** this local endpoint.
+> Endpoint/field ở trên là bản đã verify trên live API 2026-10-23 (28 ngày, 0 eligible, 17 `no_absence`,
+> 3 `existing_request`, 1 `today_or_future`). Phase 2 phải chạy lại và đối chiếu trước khi tin tuyệt đối.
