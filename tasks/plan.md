@@ -441,3 +441,19 @@ Còn lại: P1 (cloud publish check block labels) · `includedWorkflows` · `tab
 | Còn lại | ⏳ | `google-sheets` / `google-drive` / `ai-workflow` (cần credential Google) |
 
 Docs: `docs/en/automation/blocks.md` (+ sidebar) — block coverage, quy tắc *declared ⇒ satisfied*, `export-data`, `execute-workflow`, data table.
+
+### 17.2 `google-sheets` (hoàn tất block cuối)
+
+| Việc | Trạng thái | Bằng chứng |
+| --- | --- | --- |
+| Service-account auth: `worker/src/core/google_auth.rs` (JWT RS256 + token cache in-memory) | ✅ | 5 test; JWT claims/`aud`/`exp<=iat+1h` verify |
+| Sheets v4 client: `worker/src/core/google_sheets.rs` (7 action như Automa) | ✅ | 3 test URL + `table_to_values` |
+| Block `google-sheets` trong engine (get/getRange/append/update/clear/add-sheet) + `{{googleSheets.<refKey>}}` | ✅ | **E2E thật**: append 2 dòng → `getRange` đọc lại `[["alice","10","row1"],["bob","20","row2"]]` → `clear` dọn sạch |
+| `export-data` nguồn `google-sheets` | ✅ | test worker |
+| Error mapping (403/404/400 → nguyên nhân thật) | ✅ | `create` trên SA trả 403 → hint quota Drive |
+| `create` với SA thuần | ⚠️ **không dùng được** | Google cấp SA 0 quota Drive → tự tạo sheet rồi share (đã ghi docs) |
+| `tq secret set name @file` / stdin | ✅ | test thật, 0 plaintext leak |
+| **Cả 5 export Automa thật đều runnable** | ✅ | test `every_real_automa_export_is_runnable` |
+
+Key đã lưu mã hoá trong Secret Store (`google_service_account`), bản plaintext đã shred khỏi đĩa.
+⚠️ Key từng được gửi qua chat ⇒ **nên rotate** (tạo key mới trong GCP, xoá key cũ, `tq secret set` lại).
