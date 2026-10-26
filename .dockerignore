@@ -1,0 +1,17 @@
+# Tuquet Root Dockerignore
+**/.git
+**/.github
+**/node_modules
+**/target
+**/dist
+**/.vitepress/dist
+**/.vitepress/cache
+**/.temp
+**/.cache
+**/.turbo
+*.log
+*.sqlite
+*.db
+.env
+.env.*
+!.env.example
