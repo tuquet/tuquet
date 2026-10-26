@@ -1,18 +1,5 @@
 {
   "git.ignoredRepositories": [
-    "skills",
-    "skills/sources/addyosmani",
-    "skills/sources/nitro",
-    "skills/sources/nuxt",
-    "skills/sources/pinia",
-    "skills/sources/pnpm",
-    "skills/sources/supabase",
-    "skills/sources/tauri-skills",
-    "skills/sources/unocss",
-    "skills/sources/vite",
-    "skills/sources/vitepress",
-    "skills/sources/vitest",
-    "skills/sources/vue"
+    "skills/sources"
   ],
-  "git.scanRepositories": true
 }

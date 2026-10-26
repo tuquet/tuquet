@@ -34,3 +34,6 @@
 [submodule "relay"]
 	path = relay
 	url = git@github.com:tuquet/relay.git
+[submodule "hugobbq.com"]
+	path = hugobbq.com
+	url = git@github.com:tuquet/hugobbq.com.git
