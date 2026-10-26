@@ -31,3 +31,6 @@
 [submodule "yak-map"]
 	path = yak-map
 	url = https://github.com/tuquet/yak-map.git
+[submodule "relay"]
+	path = relay
+	url = git@github.com:tuquet/relay.git
