@@ -1,1 +1,0 @@
-import '@tuquet-core/design';
