@@ -5,15 +5,15 @@ networks:
     driver: bridge
 
 volumes:
-  tq_daemon_data:
+  daemon_data:
   bugsink_data:
 
 services:
   # ============================================================================
-  # 1. CORE STACK (Default): CLI Daemon & Workstation Web Console
+  # 1. CORE STACK (Default): Daemon API & Web Console
   # ============================================================================
-  tq-cli-daemon:
-    container_name: tq-cli-daemon
+  daemon:
+    container_name: daemon
     build:
       context: .
       dockerfile: crates/cli/deploy/Dockerfile
@@ -33,7 +33,7 @@ services:
       - RUST_LOG=${RUST_LOG:-info}
       - DATA_DIR=/home/tuquet/.tq
     volumes:
-      - tq_daemon_data:/home/tuquet/.tq
+      - daemon_data:/home/tuquet/.tq
     networks:
       - tuquet-net
     logging:
@@ -48,8 +48,8 @@ services:
       retries: 3
       start_period: 5s
 
-  tq-workstation:
-    container_name: tq-workstation
+  console:
+    container_name: console
     build:
       context: ./console
       dockerfile: deploy/Dockerfile
@@ -68,7 +68,7 @@ services:
       - VITE_TURNSTILE_SITE_KEY=${VITE_TURNSTILE_SITE_KEY:-1x00000000000000000000AA}
       - VITE_BUGSINK_DSN=${VITE_BUGSINK_DSN:-}
     depends_on:
-      tq-cli-daemon:
+      daemon:
         condition: service_healthy
     networks:
       - tuquet-net
@@ -81,8 +81,8 @@ services:
   # ============================================================================
   # 2. OPTIONAL: Technical Documentation Portal (--profile docs, --profile all)
   # ============================================================================
-  tq-docs:
-    container_name: tq-docs
+  docs:
+    container_name: docs
     profiles:
       - docs
       - all
@@ -109,8 +109,8 @@ services:
   # ============================================================================
   # 3. OPTIONAL: Telegram ChatOps Bot (--profile ops, --profile all)
   # ============================================================================
-  tq-bot:
-    container_name: tq-bot
+  bot:
+    container_name: bot
     profiles:
       - ops
       - all
@@ -133,8 +133,8 @@ services:
   # ============================================================================
   # 4. OPTIONAL: Self-hosted Bugsink Tracker (--profile telemetry, --profile all)
   # ============================================================================
-  tq-bugsink:
-    container_name: tq-bugsink
+  bugsink:
+    container_name: bugsink
     profiles:
       - telemetry
       - all

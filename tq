@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # Tuquet CLI Smart Shim (POSIX Shell: Linux / macOS / WSL)
-# Auto-detects native tq or delegates seamlessly to tq-cli-daemon container
+# Auto-detects native tq or delegates seamlessly to daemon container
 # ==============================================================================
 
 if command -v tq >/dev/null 2>&1 && [ "$(command -v tq)" != "$0" ]; then
@@ -9,10 +9,10 @@ if command -v tq >/dev/null 2>&1 && [ "$(command -v tq)" != "$0" ]; then
     exec tq "$@"
 else
     # 2. Delegate to Docker container
-    if docker ps --filter "name=tq-cli-daemon" --filter "status=running" -q | grep -q .; then
-        exec docker exec -i tq-cli-daemon tq "$@"
+    if docker ps --filter "name=daemon" --filter "status=running" -q | grep -q .; then
+        exec docker exec -i daemon tq "$@"
     else
-        echo "Error: tq binary not found on host, and container 'tq-cli-daemon' is not running." >&2
+        echo "Error: tq binary not found on host, and container 'daemon' is not running." >&2
         echo "Hint: Start the core stack first:  docker compose up -d" >&2
         exit 1
     fi

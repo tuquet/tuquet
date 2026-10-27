@@ -168,7 +168,7 @@
     },
     {
       "label": "[infra] docker compose up (core)",
-      "detail": "Khởi động các dịch vụ cốt lõi (tq-cli-daemon) bằng Docker Compose.",
+      "detail": "Khởi động các dịch vụ cốt lõi (daemon, console) bằng Docker Compose.",
       "type": "shell",
       "command": "docker compose up -d",
       "problemMatcher": [],
