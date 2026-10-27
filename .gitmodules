@@ -16,24 +16,12 @@
 [submodule "docs"]
 	path = docs
 	url = https://github.com/tuquet/docs.git
-[submodule "lib"]
-	path = lib
-	url = https://github.com/tuquet/lib.git
 [submodule "bot"]
 	path = bot
 	url = https://github.com/tuquet/bot.git
-[submodule "tuquet.com"]
-	path = tuquet.com
-	url = https://github.com/tuquet/tuquet.com.git
 [submodule "skills"]
 	path = skills
 	url = https://github.com/tuquet/skills.git
-[submodule "yak-map"]
-	path = yak-map
-	url = https://github.com/tuquet/yak-map.git
 [submodule "relay"]
 	path = relay
 	url = git@github.com:tuquet/relay.git
-[submodule "hugobbq.com"]
-	path = hugobbq.com
-	url = git@github.com:tuquet/hugobbq.com.git
