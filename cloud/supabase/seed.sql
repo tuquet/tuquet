@@ -1,7 +1,7 @@
 -- ============================================================================
 -- SUPABASE SEED DATA: TUQUET ECOSYSTEM (DEVELOPMENT & QA ENVIRONMENT)
 -- Description: Foundation data for Testing Admin Console & Multi-Tenancy
--- Universal Password for ALL accounts: Tuquet1102@
+-- Universal Password for ALL accounts: TestPassword123!
 -- NOTE: workers.devices is NOT seeded here (dynamically enrolled via Tauri Desk)
 --       automation.jobs is NOT seeded here (dynamically created on Run)
 -- ============================================================================
@@ -15,7 +15,7 @@ DECLARE
     v_owner_id  UUID := 'a0000000-0000-0000-0000-000000000002'; -- Enterprise Tenant Owner
     v_dev_id    UUID := 'a0000000-0000-0000-0000-000000000003'; -- Automation Engineer
     v_guest_id  UUID := 'a0000000-0000-0000-0000-000000000004'; -- Guest / Free User
-    v_pwd_hash  TEXT := extensions.crypt('Tuquet1102@', extensions.gen_salt('bf', 10));
+    v_pwd_hash  TEXT := extensions.crypt('TestPassword123!', extensions.gen_salt('bf', 10));
 BEGIN
     IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'auth' AND table_name = 'users') THEN
         INSERT INTO auth.users (
@@ -29,11 +29,11 @@ BEGIN
                 '00000000-0000-0000-0000-000000000000',
                 'authenticated',
                 'authenticated',
-                'admin@tuquet.com',
+                'admin@tuquet.dev',
                 v_pwd_hash,
                 now(),
                 '{"provider":"email","providers":["email"],"platform_role":"superadmin"}'::jsonb,
-                '{"full_name":"Nguyen Dinh Tu (Superadmin)","avatar_url":"https://avatars.githubusercontent.com/u/tuquet"}'::jsonb,
+                '{"full_name":"System Administrator","avatar_url":"https://api.dicebear.com/7.x/identicon/svg?seed=admin"}'::jsonb,
                 now(), now(), '', '', '', ''
             ),
             (
@@ -88,7 +88,7 @@ BEGIN
             INSERT INTO auth.identities (
                 id, provider_id, user_id, identity_data, provider, last_sign_in_at, created_at, updated_at
             ) VALUES 
-                (gen_random_uuid(), v_admin_id::text, v_admin_id, jsonb_build_object('sub', v_admin_id::text, 'email', 'admin@tuquet.com'), 'email', now(), now(), now()),
+                (gen_random_uuid(), v_admin_id::text, v_admin_id, jsonb_build_object('sub', v_admin_id::text, 'email', 'admin@tuquet.dev'), 'email', now(), now(), now()),
                 (gen_random_uuid(), v_owner_id::text, v_owner_id, jsonb_build_object('sub', v_owner_id::text, 'email', 'owner@tuquet.dev'), 'email', now(), now(), now()),
                 (gen_random_uuid(), v_dev_id::text, v_dev_id, jsonb_build_object('sub', v_dev_id::text, 'email', 'dev@tuquet.dev'), 'email', now(), now(), now()),
                 (gen_random_uuid(), v_guest_id::text, v_guest_id, jsonb_build_object('sub', v_guest_id::text, 'email', 'guest@tuquet.dev'), 'email', now(), now(), now())
@@ -99,7 +99,7 @@ BEGIN
     -- Profiles in public.profiles
     INSERT INTO public.profiles (id, email, full_name, avatar_url)
     VALUES 
-        (v_admin_id, 'admin@tuquet.com', 'Nguyen Dinh Tu (Superadmin)', 'https://avatars.githubusercontent.com/u/tuquet'),
+        (v_admin_id, 'admin@tuquet.dev', 'System Administrator', 'https://api.dicebear.com/7.x/identicon/svg?seed=admin'),
         (v_owner_id, 'owner@tuquet.dev', 'Enterprise Owner', 'https://api.dicebear.com/7.x/identicon/svg?seed=owner'),
         (v_dev_id, 'dev@tuquet.dev', 'Automation Engineer', 'https://api.dicebear.com/7.x/identicon/svg?seed=dev'),
         (v_guest_id, 'guest@tuquet.dev', 'Sandbox Guest', 'https://api.dicebear.com/7.x/identicon/svg?seed=guest')

@@ -289,7 +289,7 @@ INSERT INTO billing.bank_receiving_accounts (id, bank_bin, bank_name, account_no
 VALUES
     ('mbbank_primary', '970422', 'MBBank', '0000123456789', 'TUQUET PLATFORM', 'compact2', 300000000.00, 1, TRUE, 'active'),
     ('vpbank_secondary', '970432', 'VPBank', '9888777666', 'TUQUET MEDIA CORP', 'compact2', 500000000.00, 2, TRUE, 'active'),
-    ('techcombank_backup', '970407', 'Techcombank', '19033445566778', 'NGUYEN DINH TU', 'compact2', 150000000.00, 3, TRUE, 'active')
+    ('techcombank_backup', '970407', 'Techcombank', '19033445566778', 'TUQUET BACKUP', 'compact2', 150000000.00, 3, TRUE, 'active')
 ON CONFLICT (id) DO UPDATE SET
     bank_name = EXCLUDED.bank_name,
     account_no = EXCLUDED.account_no,

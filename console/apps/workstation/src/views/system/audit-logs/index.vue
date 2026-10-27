@@ -215,11 +215,9 @@ function refresh() {
         </template>
 
         <template #tenant-cell="{ row }">
-          <code
-            class="rounded bg-muted px-1.5 py-0.5 text-2xs text-muted-foreground"
-          >
+          <Badge variant="outline">
             {{ row.tenant_id.slice(0, 8) }}...
-          </code>
+          </Badge>
         </template>
 
         <template #actor-cell="{ row }">

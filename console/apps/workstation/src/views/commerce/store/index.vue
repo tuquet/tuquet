@@ -827,11 +827,9 @@ onBeforeUnmount(() => {
                 {{ $t('page.commerce_view.transfer_memo_label') }}:
               </span>
               <div class="flex items-center gap-1.5">
-                <code
-                  class="rounded bg-primary/15 px-2 py-0.5 text-sm font-bold text-primary"
-                >
+                <Badge variant="secondary">
                   {{ pendingIntent.transfer_code }}
-                </code>
+                </Badge>
                 <Button
                   size="sm"
                   variant="outline"

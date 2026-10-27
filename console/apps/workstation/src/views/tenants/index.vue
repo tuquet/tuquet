@@ -250,9 +250,9 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
         </template>
 
         <template #slug-cell="{ row }">
-          <code class="rounded bg-muted/60 px-2 py-0.5 text-xs text-foreground">
+          <Badge variant="secondary">
             {{ row.slug }}
-          </code>
+          </Badge>
         </template>
 
         <template #plan-cell="{ row }">

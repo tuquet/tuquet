@@ -69,5 +69,5 @@ fi
 
 echo -e "\n===================================================================="
 echo " [SUCCESS] Database reset and initialization complete for target: $TARGET"
-echo " Universal Test Password: Tuquet1102@"
+echo " Universal Test Password: TestPassword123!"
 echo "===================================================================="

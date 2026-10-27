@@ -220,11 +220,9 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
               {{ $t('common.copy') }}
             </Button>
           </div>
-          <code
-            class="block truncate rounded bg-background px-2 py-1 text-xs text-primary"
-          >
+          <Badge variant="outline" class="w-full justify-start truncate">
             {{ createdClaimToken }}
-          </code>
+          </Badge>
         </div>
 
         <div
@@ -259,11 +257,9 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
               {{ $t('page.commerce_view.transfer_memo_label') }}
             </span>
             <div class="flex items-center gap-1.5">
-              <code
-                class="rounded bg-primary/15 px-2 py-0.5 text-sm font-bold text-primary"
-              >
+              <Badge variant="secondary">
                 {{ createdIntent.transfer_code }}
-              </code>
+              </Badge>
               <Button
                 size="sm"
                 variant="outline"

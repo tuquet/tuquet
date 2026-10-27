@@ -105,11 +105,9 @@ const planName = computed(() => {
           <div
             class="flex flex-wrap items-center gap-x-2 gap-y-1 text-2xs text-muted-foreground sm:text-xs"
           >
-            <code
-              class="rounded bg-muted/60 px-1.5 py-0.5 font-mono text-2xs text-foreground"
-            >
+            <Badge variant="secondary">
               /{{ props.tenant.slug }}
-            </code>
+            </Badge>
             <span class="text-muted-foreground/40">·</span>
             <span class="font-mono">
               {{ props.tenant.id.slice(0, 8) }}

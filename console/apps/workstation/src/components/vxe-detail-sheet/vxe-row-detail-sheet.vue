@@ -553,11 +553,9 @@ async function handleSave() {
 
                 <div class="flex items-center justify-between gap-2">
                   <span class="text-muted-foreground">RLS Policy</span>
-                  <code
-                    class="truncate rounded bg-muted px-1.5 py-0.5 text-2xs text-foreground"
-                  >
+                  <Badge variant="secondary" class="max-w-48 truncate">
                     {{ activePolicyName }}
-                  </code>
+                  </Badge>
                 </div>
               </PopoverContent>
             </Popover>

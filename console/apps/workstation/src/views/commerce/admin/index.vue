@@ -1400,11 +1400,9 @@ async function submitWarrantyClaim() {
     >
       <ManualReviewGrid>
         <template #code-cell="{ row }">
-          <code
-            class="rounded bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary"
-          >
+          <Badge variant="secondary">
             {{ row.transfer_code }}
-          </code>
+          </Badge>
         </template>
 
         <template #credits-cell="{ row }">

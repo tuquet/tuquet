@@ -2,6 +2,7 @@
 import { onMounted } from 'vue';
 
 import { Toaster } from '@tuquet-core/shadcn-ui';
+import { usePreferences } from '@tuquet/preferences';
 
 import {
   initDesktopAuthHandling,
@@ -10,6 +11,8 @@ import {
 } from '#/adapter/desktop';
 
 defineOptions({ name: 'App' });
+
+const { isDark } = usePreferences();
 
 onMounted(async () => {
   if (isTauriEnvironment()) {
@@ -21,5 +24,5 @@ onMounted(async () => {
 
 <template>
   <RouterView />
-  <Toaster position="top-right" rich-colors />
+  <Toaster position="top-right" :theme="isDark ? 'dark' : 'light'" rich-colors />
 </template>

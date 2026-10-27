@@ -193,11 +193,9 @@ defineExpose({
     <template #role-name-cell="{ row }">
       <div class="inline-flex items-center gap-1.5 py-1">
         <RoleBadge :role="row.name" />
-        <code
-          class="rounded bg-muted px-1.5 py-0.5 font-mono text-2xs text-muted-foreground"
-        >
+        <Badge variant="outline">
           {{ row.name }}
-        </code>
+        </Badge>
       </div>
     </template>
 
@@ -228,14 +226,15 @@ defineExpose({
             $t('page.system_view.roles_perms_count', [row.permissions.length])
           }}
         </Badge>
-        <code
+        <Badge
           v-for="perm in row.permissions.slice(0, 2)"
           :key="perm"
-          class="inline-block max-w-36 truncate rounded bg-muted px-1.5 py-0.5 text-2xs text-muted-foreground"
+          variant="secondary"
+          class="inline-block max-w-36 truncate"
           :title="perm"
         >
           {{ perm }}
-        </code>
+        </Badge>
         <Badge
           v-if="row.permissions.length > 2"
           variant="secondary"

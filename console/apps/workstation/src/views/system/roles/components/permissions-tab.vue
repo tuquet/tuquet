@@ -154,11 +154,9 @@ defineExpose({
   <PermissionsGrid class="permissions-vxe-grid">
     <template #perm-id-cell="{ row }">
       <div class="inline-flex items-center gap-1">
-        <code
-          class="rounded bg-muted px-2 py-0.5 text-xs font-semibold text-primary"
-        >
+        <Badge variant="secondary">
           {{ row.id }}
-        </code>
+        </Badge>
         <Button
           type="button"
           variant="ghost"
