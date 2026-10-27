@@ -1,0 +1,29 @@
+{
+  "name": "@tuquet/access",
+  "version": "5.8.0",
+  "homepage": "https://github.com/tuquet/console",
+  "bugs": "https://github.com/tuquet/console/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuquet/console.git",
+    "directory": "packages/effects/permissions"
+  },
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@tuquet/preferences": "workspace:*",
+    "@tuquet/stores": "workspace:*",
+    "@tuquet/types": "workspace:*",
+    "@tuquet/utils": "workspace:*",
+    "vue": "catalog:"
+  }
+}

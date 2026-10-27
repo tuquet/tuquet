@@ -1,0 +1,55 @@
+{
+  "name": "@tuquet-core/popup-ui",
+  "version": "5.8.0",
+  "homepage": "https://github.com/tuquet/console",
+  "bugs": "https://github.com/tuquet/console/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuquet/console.git",
+    "directory": "packages/@tuquet-core/uikit/popup-ui"
+  },
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm exec tsdown",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "production": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "dependencies": {
+    "@tuquet-core/composables": "workspace:*",
+    "@tuquet-core/icons": "workspace:*",
+    "@tuquet-core/preferences": "workspace:*",
+    "@tuquet-core/shadcn-ui": "workspace:*",
+    "@tuquet-core/shared": "workspace:*",
+    "@tuquet-core/typings": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "unplugin-vue": "catalog:"
+  }
+}

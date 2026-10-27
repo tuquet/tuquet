@@ -1,0 +1,54 @@
+{
+  "name": "@tuquet-core/shadcn-ui",
+  "version": "5.8.0",
+  "homepage": "https://github.com/tuquet/console",
+  "bugs": "https://github.com/tuquet/console/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuquet/console.git",
+    "directory": "packages/@tuquet-core/uikit/shadcn-ui"
+  },
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "components.json",
+    "src"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./src/index.ts",
+        "development": "./src/index.ts",
+        "default": "./src/index.ts"
+      }
+    }
+  },
+  "dependencies": {
+    "@lucide/vue": "catalog:",
+    "@tuquet-core/composables": "workspace:*",
+    "@tuquet-core/design": "workspace:*",
+    "@tuquet-core/icons": "workspace:*",
+    "@tuquet-core/shared": "workspace:*",
+    "@tuquet-core/typings": "workspace:*",
+    "@unovis/ts": "catalog:",
+    "@unovis/vue": "catalog:",
+    "@vueuse/core": "catalog:",
+    "class-variance-authority": "catalog:",
+    "reka-ui": "catalog:",
+    "vue": "catalog:",
+    "vue-sonner": "catalog:"
+  }
+}

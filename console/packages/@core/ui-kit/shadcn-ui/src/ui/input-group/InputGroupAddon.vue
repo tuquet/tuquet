@@ -1,0 +1,19 @@
+<script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
+
+import { cn } from '@tuquet-core/shared/utils';
+
+const props = defineProps<{
+  class?: HTMLAttributes['class'];
+}>();
+</script>
+
+<template>
+  <div
+    :class="
+      cn('flex items-center px-3 text-muted-foreground text-sm', props.class)
+    "
+  >
+    <slot></slot>
+  </div>
+</template>

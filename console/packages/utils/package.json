@@ -1,0 +1,27 @@
+{
+  "name": "@tuquet/utils",
+  "version": "5.8.0",
+  "homepage": "https://github.com/tuquet/console",
+  "bugs": "https://github.com/tuquet/console/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuquet/console.git",
+    "directory": "packages/utils"
+  },
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@tuquet-core/shared": "workspace:*",
+    "@tuquet-core/typings": "workspace:*",
+    "vue-router": "catalog:"
+  }
+}
