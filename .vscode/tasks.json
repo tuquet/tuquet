@@ -2,15 +2,15 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "[cli] dev install",
-      "detail": "Biên dịch nhanh bản debug và cài đè vào ~/.tq/bin/tq.exe trong ~1.6s. Dùng khi đang code tính năng mới cho CLI để test ngay lệnh `tq`.",
+      "label": "[rust] dev install (tq.exe)",
+      "detail": "Biên dịch nhanh bản debug và cài đè vào ~/.tq/bin/tq.exe. Dùng khi đang code tính năng mới cho CLI để test ngay lệnh `tq`.",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/cli/scripts/dev-install.ps1",
+      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/crates/cli/scripts/dev-install.ps1",
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": [],
+      "problemMatcher": ["$rustc"],
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -20,15 +20,54 @@
       }
     },
     {
-      "label": "[cli] test & contract",
-      "detail": "Chạy toàn bộ cargo test và schema contract verification cho CLI core.",
+      "label": "[rust] check workspace",
+      "detail": "Kiểm tra kiểu và biên dịch nhanh toàn bộ workspace (cli, worker, browser, faker).",
       "type": "shell",
-      "command": "cargo test --manifest-path ${workspaceFolder}/cli/Cargo.toml",
+      "command": "cargo check --workspace",
+      "group": "build",
+      "problemMatcher": ["$rustc"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "[rust] test workspace",
+      "detail": "Chạy toàn bộ unit tests trên tất cả các crate trong Cargo workspace.",
+      "type": "shell",
+      "command": "cargo test --workspace",
       "group": {
         "kind": "test",
         "isDefault": true
       },
-      "problemMatcher": [],
+      "problemMatcher": ["$rustc"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "[rust] test cli (tuquet)",
+      "detail": "Chạy unit test và contract verification cho crate tuquet (crates/cli).",
+      "type": "shell",
+      "command": "cargo test -p tuquet --lib",
+      "group": "test",
+      "problemMatcher": ["$rustc"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "[rust] test worker",
+      "detail": "Chạy unit test cho crate worker (crates/worker).",
+      "type": "shell",
+      "command": "cargo test -p worker --lib",
+      "group": "test",
+      "problemMatcher": ["$rustc"],
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -82,7 +121,7 @@
     },
     {
       "label": "[cloud] supabase db reset (linked)",
-      "detail": "Reset remote Supabase linked database via Gateway proxy và migrate toàn bộ schema/plugins.",
+      "detail": "Reset remote Supabase linked database qua Gateway proxy và migrate schema/plugins.",
       "type": "shell",
       "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/cloud/scripts/reset_db.ps1 -Target linked",
       "problemMatcher": [],
@@ -96,7 +135,7 @@
       }
     },
     {
-      "label": "[console] pnpm dev",
+      "label": "[web] console dev",
       "detail": "Khởi động Vite dev server cho ứng dụng Tuquet Console / Workstation.",
       "type": "shell",
       "command": "pnpm dev",
@@ -112,8 +151,8 @@
       }
     },
     {
-      "label": "[docs] pnpm dev",
-      "detail": "Khởi động VitePress dev server cho cổng tài liệu docs.tuquet.com.",
+      "label": "[web] docs dev",
+      "detail": "Khởi động VitePress dev server cho cổng tài liệu docs.",
       "type": "shell",
       "command": "pnpm dev",
       "problemMatcher": [],
@@ -128,14 +167,47 @@
       }
     },
     {
-      "label": "[workspace] git submodule update",
-      "detail": "Đồng bộ và khởi tạo đệ quy toàn bộ các git submodule trong workspace.",
+      "label": "[infra] docker compose up (core)",
+      "detail": "Khởi động các dịch vụ cốt lõi (tq-cli-daemon) bằng Docker Compose.",
       "type": "shell",
-      "command": "git submodule update --init --recursive",
+      "command": "docker compose up -d",
       "problemMatcher": [],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "[infra] docker compose down",
+      "detail": "Dừng và dọn dẹp các container Docker Compose.",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "[infra] gateway start --http",
+      "detail": "Khởi động Gateway tunnel (SOCKS5 port 1080 & HTTP forwarder port 8118).",
+      "type": "shell",
+      "command": "tq gateway start --http",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "[infra] gateway status",
+      "detail": "Kiểm tra trạng thái các port Gateway tunnel đang chạy.",
+      "type": "shell",
+      "command": "tq gateway status",
+      "problemMatcher": [],
       "presentation": {
         "echo": true,
         "reveal": "always",

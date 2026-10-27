@@ -10,13 +10,26 @@ if ($LASTEXITCODE -ne 0) {
     throw "Cargo build failed with exit code $LASTEXITCODE. Existing tq binaries were not updated."
 }
 
-$binPath = Join-Path $cliDir "target\x86_64-pc-windows-gnu\debug\tq.exe"
-if (-not (Test-Path $binPath)) {
-    $binPath = Join-Path $cliDir "target\debug\tq.exe"
+$rootTarget = Resolve-Path (Join-Path $PSScriptRoot "..\..\..\target") -ErrorAction SilentlyContinue
+
+$candidates = @()
+if ($rootTarget) {
+    $candidates += (Join-Path $rootTarget "x86_64-pc-windows-gnu\debug\tq.exe")
+    $candidates += (Join-Path $rootTarget "debug\tq.exe")
+}
+$candidates += (Join-Path $cliDir "target\x86_64-pc-windows-gnu\debug\tq.exe")
+$candidates += (Join-Path $cliDir "target\debug\tq.exe")
+
+$binPath = $null
+foreach ($c in $candidates) {
+    if (Test-Path $c) {
+        $binPath = $c
+        break
+    }
 }
 
-if (-not (Test-Path $binPath)) {
-    throw "Build artifact not found at $binPath"
+if (-not $binPath -or -not (Test-Path $binPath)) {
+    throw "Build artifact not found in target directories. Checked: $($candidates -join ', ')"
 }
 
 Write-Host "[2/2] Updating PATH locations..." -ForegroundColor Cyan
@@ -31,8 +44,24 @@ $destinations = @(
 foreach ($dest in $destinations) {
     $parent = Split-Path $dest
     if (Test-Path $parent) {
-        Copy-Item -Force $binPath $dest
-        Write-Host "  -> Updated $dest" -ForegroundColor Green
+        try {
+            Copy-Item -Force $binPath $dest
+            Write-Host "  -> Updated $dest" -ForegroundColor Green
+        } catch {
+            # On Windows, if tq.exe is running (e.g. background gateway tunnel or MCP server),
+            # an in-use file can be renamed or replaced via temp move:
+            $oldPath = "$dest.old"
+            if (Test-Path $oldPath) {
+                Remove-Item -Force $oldPath -ErrorAction SilentlyContinue
+            }
+            try {
+                Move-Item -Force $dest $oldPath
+                Copy-Item -Force $binPath $dest
+                Write-Host "  -> Updated $dest (via atomic move-replace)" -ForegroundColor Green
+            } catch {
+                Write-Warning "Could not update ${dest}: $_. If 'tq' daemon/gateway is running, you may need to stop it or reload."
+            }
+        }
     }
 }
 
