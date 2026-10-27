@@ -2,10 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "[rust] dev install (tq.exe)",
-      "detail": "Biên dịch nhanh bản debug và cài đè vào ~/.tq/bin/tq.exe. Dùng khi đang code tính năng mới cho CLI để test ngay lệnh `tq`.",
+      "label": "[rust] dev install (tq)",
+      "detail": "Biên dịch nhanh bản debug và cài trực tiếp vào cargo bin/PATH bằng cargo install.",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/crates/cli/scripts/dev-install.ps1",
+      "command": "cargo install --path crates/cli --debug --locked --force",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -123,7 +123,7 @@
       "label": "[cloud] supabase db reset (linked)",
       "detail": "Reset remote Supabase linked database qua Gateway proxy và migrate schema/plugins.",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/cloud/scripts/reset_db.ps1 -Target linked",
+      "command": "supabase db reset --linked",
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}/cloud"
