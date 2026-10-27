@@ -60,7 +60,7 @@ describe('desktop native adapter suite', () => {
 
     it('returns null for non-tuquet schemes or missing tokens', () => {
       expect(
-        parseDeepLinkAuthUrl('https://admin.tuquet.com/auth/callback'),
+        parseDeepLinkAuthUrl('https://console.tuquet.com/auth/callback'),
       ).toBeNull();
       expect(
         parseDeepLinkAuthUrl('tuquet://auth/callback?state=xyz'),

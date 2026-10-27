@@ -9,7 +9,7 @@
     "dashboard",
     "shadcn"
   ],
-  "homepage": "https://admin.tuquet.com",
+  "homepage": "https://console.tuquet.com",
   "bugs": "https://github.com/tuquet/console/issues",
   "repository": {
     "type": "git",

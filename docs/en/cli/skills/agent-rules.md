@@ -83,7 +83,7 @@ The workspace is organized into focused repositories adhering to the Single Resp
 - Constant-time HMAC verification. Process name checks via `sysinfo` prior to terminating any PID.
 
 ### 6. Cloud Multi-Domain OAuth Allowlist
-- Every domain or subdomain initiating authentication must be explicitly configured in the cloud allowlist (`https://admin.tuquet.com/**`, `https://*.tuquet.com/**`).
+- Every domain or subdomain initiating authentication must be explicitly configured in the cloud allowlist (`https://console.tuquet.com/**`, `https://*.tuquet.com/**`).
 
 ### 7. Preferences Engine & UI Invariants
 - **Deep-Clone Baseline Isolation:** Never share object references between initial preferences and reactive state. Always use `cloneValue()`.
