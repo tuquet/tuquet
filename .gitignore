@@ -18,7 +18,10 @@ node_modules/
 # Sensitive Environment Configurations (Protected Vault)
 *.local.env
 .env.local
+.env.dev
 .env
+.env.*
+!.env.example
 
 # Antigravity agent skills
 .agents/
